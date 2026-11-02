@@ -1,0 +1,12 @@
+PN: system-utility-bootmeta
+PV: 0.1.0
+PR: r0
+PKGV: 0.1.0
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/system-utility-bootmeta/0.1.0-r0
+FILE_RELPATH: meta-amzn-platform/recipes-sys-utilities/system-utility/system-utility-bootmeta.bb
+SSTATE_PKGSPEC: sstate:system-utility-bootmeta:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:0.1.0:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:system-utility-bootmeta:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:0.1.0:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: b9ea21f7c2d2e10031920aae80fc144d39bdf6e51342abd1d8c37e2320ea037f
+BB_TASKHASH: 435e4c880e2e55c593b1d444fedbef32c6aba47ca5c353eea657476bb3972a14
+SSTATE_SWSPEC: sstate:system-utility-bootmeta::0.1.0:r0::8:

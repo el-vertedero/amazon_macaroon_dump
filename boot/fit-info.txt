@@ -1,0 +1,179 @@
+FIT description: Kernel fitImage for Vega/6.1/macaroon
+Created:         Tue Oct 27 19:08:31 2026
+ Image 0 (kernel-1)
+  Description:  Linux kernel
+  Created:      Tue Oct 27 19:08:31 2026
+  Type:         Kernel Image
+  Compression:  uncompressed
+  Data Size:    7787704 Bytes = 7605.18 KiB = 7.43 MiB
+  Architecture: ARM
+  OS:           Linux
+  Load Address: 0x02080000
+  Entry Point:  0x02080000
+  Hash algo:    sha512
+  Hash value:   e48066047e5aa96d6ff4f0790d133b1200c623a4bc5f0c0b7d493a198c0194c33a234c12e9a728423afebeacfc14c453da04c344c52665c22a138e282596f01c
+ Image 1 (fdt-azma11-pd-mini)
+  Description:  Flattened Device Tree blob
+  Created:      Tue Oct 27 19:08:31 2026
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    46299 Bytes = 45.21 KiB = 0.04 MiB
+  Architecture: ARM
+  Hash algo:    sha512
+  Hash value:   ee6b141b7713f207792244825b00a92b1a157c4e79ebbc72eddfd87aee46e1357e49da3bef739c8de346dab20fcc1bbc295fab23ec9d399242ae75b667dfe47d
+ Image 2 (fdt-macaroon-hvt)
+  Description:  Flattened Device Tree blob
+  Created:      Tue Oct 27 19:08:31 2026
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    55392 Bytes = 54.09 KiB = 0.05 MiB
+  Architecture: ARM
+  Hash algo:    sha512
+  Hash value:   795f2c9896b7486cc64764aa0efcb245e5c8c04fe74f4e05bbf3f94e3e226b3f910b02055554a5e9e6569399f2ff007482c5f3c23b9821591052585044d6fa88
+ Image 3 (fdt-macaroon-evt)
+  Description:  Flattened Device Tree blob
+  Created:      Tue Oct 27 19:08:31 2026
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    55392 Bytes = 54.09 KiB = 0.05 MiB
+  Architecture: ARM
+  Hash algo:    sha512
+  Hash value:   404cb2d87b1467cc8ef4b548c238a2d4aaa644fcdf057796a0d2155970ad485d302116f9c9d826bbbd1bad1520315ff2d7e5f8da32a0a22a34506b66c7179722
+ Image 4 (fdt-macaroon-evt-doe)
+  Description:  Flattened Device Tree blob
+  Created:      Tue Oct 27 19:08:31 2026
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    55232 Bytes = 53.94 KiB = 0.05 MiB
+  Architecture: ARM
+  Hash algo:    sha512
+  Hash value:   f06913defd7b7f34fc87f476b34d68144887e0235c3a023b326ed4463795d14c0224b438072e6d0d87400965d160040a40867f5dabae13fef8aaee59524aa404
+ Image 5 (fdt-macaroon-evt-pvt)
+  Description:  Flattened Device Tree blob
+  Created:      Tue Oct 27 19:08:31 2026
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    54128 Bytes = 52.86 KiB = 0.05 MiB
+  Architecture: ARM
+  Hash algo:    sha512
+  Hash value:   08286721839035b23585df847d65906df6cd11a1bdd4131976b4bdef0c36a745504aad7bee2f6cc361b775bd04121683699762ec2ed079b3ae3e848a740511b3
+ Image 6 (fdt-macaroon-dvt)
+  Description:  Flattened Device Tree blob
+  Created:      Tue Oct 27 19:08:31 2026
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    56724 Bytes = 55.39 KiB = 0.05 MiB
+  Architecture: ARM
+  Hash algo:    sha512
+  Hash value:   44661ace53bd661a85cf10bd625e01efb47a5926cba157290d0b1ffc15621af159f58c78e05a7f1addb97a67a02106bdc6557428c09bd61c041d9d654a5753a0
+ Image 7 (fdt-macaroon-dvt-doe)
+  Description:  Flattened Device Tree blob
+  Created:      Tue Oct 27 19:08:31 2026
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    56892 Bytes = 55.56 KiB = 0.05 MiB
+  Architecture: ARM
+  Hash algo:    sha512
+  Hash value:   2f91529236d72d71cd23e37f1229b8b027527df981a83d9a6fcae661fee1feeefcbb608acfff6754ae2bb9309f0a79317f6ccba6ce54d3501ccbd0f9c7f18f0b
+ Image 8 (fdt-macaroon-dvt-pvt)
+  Description:  Flattened Device Tree blob
+  Created:      Tue Oct 27 19:08:31 2026
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    55624 Bytes = 54.32 KiB = 0.05 MiB
+  Architecture: ARM
+  Hash algo:    sha512
+  Hash value:   f15c23e36def88f707654d43c043919c4eba1f45e8259f516ab9ccc8911d54b5368675f9f1fe0a8b699279c4634557ac7eb2fb2df2654a9f29e6dff2658a0cf0
+ Image 9 (ramdisk-1)
+  Description:  amzn-core-image-boot
+  Created:      Tue Oct 27 19:08:31 2026
+  Type:         RAMDisk Image
+  Compression:  uncompressed
+  Data Size:    7960463 Bytes = 7773.89 KiB = 7.59 MiB
+  Architecture: ARM
+  OS:           Linux
+  Load Address: 0x04080000
+  Entry Point:  0x04080000
+  Hash algo:    sha512
+  Hash value:   7d4083695335781ec3afa2ef3ae979c1b0a30b70a51ad571b927fa0f419e9ed7a2c18496e1f19f7fc5de8c0cc77f2ffd684f8990e7353d328307c823a904a039
+ Default Configuration: 'azma11-pd-mini'
+ Configuration 0 (azma11-pd-mini)
+  Description:  1 Linux kernel, FDT blob, ramdisk
+  Kernel:       kernel-1
+  Init Ramdisk: ramdisk-1
+  FDT:          fdt-azma11-pd-mini
+  Hash algo:    sha512
+  Hash value:   unavailable
+  Sign algo:    sha512,ecdsa521:production
+  Sign value:   019af99664166ea2ae0b309dc5953188153278e002c83233eeb47fac95a04f361107fa3553b623d57ab4181f035020fc0c105528348d6641f6433b5fed5a45f7ea6c0151b18df37a9c315659187bc8d08727cfb8175bf4f6ac7656036ce3e08c18d563dfeef517d9f1e6af77a098dfcf22f7f6b9e461839c4aee50f62d4d6e02ae09c874
+  Timestamp:    Tue Oct 27 19:08:57 2026
+ Configuration 1 (macaroon-hvt)
+  Description:  0 Linux kernel, FDT blob, ramdisk
+  Kernel:       kernel-1
+  Init Ramdisk: ramdisk-1
+  FDT:          fdt-macaroon-hvt
+  Hash algo:    sha512
+  Hash value:   unavailable
+  Sign algo:    sha512,ecdsa521:production
+  Sign value:   003b92d5a343680278e37423f0a04ea68b7f7384b5b6b43a0ca124bbf8a89b5ff3d0560b28e4d04be2d06b175dbe7418b497e8d5f6334167f0943b68a0a947a6587901ab6f6749843aaad473cdff3968975abe95f8fc2b693b7fa6edbbc9287b618daeb72330c86a8db6c2195558880b8f26b63bbbe979d3e4bacb3b9de29ce55e547e13
+  Timestamp:    Tue Oct 27 19:08:57 2026
+ Configuration 2 (macaroon-evt)
+  Description:  0 Linux kernel, FDT blob, ramdisk
+  Kernel:       kernel-1
+  Init Ramdisk: ramdisk-1
+  FDT:          fdt-macaroon-evt
+  Hash algo:    sha512
+  Hash value:   unavailable
+  Sign algo:    sha512,ecdsa521:production
+  Sign value:   0136c4b3a0b75c17ae206cd37752ab8cf9202bce954a90bdae5e7c617a837d359cc01565a47751201c287aa0a37a36dddb2eb66f61b5f9344e75df8225cbacb3d61901a5e878c9cf2ff2b8f7d65393544e402fa55c4e4697a99637720a19b35466d6160d0cf8d703873d1fb1511a1a8cc4c99bd245008fc7dfea59046b6809d65aa8a06a
+  Timestamp:    Tue Oct 27 19:08:57 2026
+ Configuration 3 (macaroon-evt-doe)
+  Description:  0 Linux kernel, FDT blob, ramdisk
+  Kernel:       kernel-1
+  Init Ramdisk: ramdisk-1
+  FDT:          fdt-macaroon-evt-doe
+  Hash algo:    sha512
+  Hash value:   unavailable
+  Sign algo:    sha512,ecdsa521:production
+  Sign value:   01cd21930b213bd24a6a75a9ef698033eae62564752c5c58704594591877d46796f4b9a390af1baaed386544ebda52375eb9b7e55cfb034c933d96ec81fca6b08e86013336d08837e0b44a31babba459c83e7bc5306f11a740548bd867c6267271ccf9c6e715a4f34bba97461a5bb285572b9b2be5d41faf3286a12bb2fed93c97c64a6d
+  Timestamp:    Tue Oct 27 19:08:57 2026
+ Configuration 4 (macaroon-evt-pvt)
+  Description:  0 Linux kernel, FDT blob, ramdisk
+  Kernel:       kernel-1
+  Init Ramdisk: ramdisk-1
+  FDT:          fdt-macaroon-evt-pvt
+  Hash algo:    sha512
+  Hash value:   unavailable
+  Sign algo:    sha512,ecdsa521:production
+  Sign value:   0052236eeb21929f05dc8bacb66c932bbba9953d9472716803cf3384b78f3e742f1f47f3d9df53089b6b4c3ed84ee21a31fa46d43e8c776c51d86bef49b16e1eee1b010e73a6031700755dd38115dfbc22790cc688d3f2a97765997895fdcc5d86cfb9839ee45a15a5b0f1970edb34216679bf59a400901404e65a3b2bc7c9539f5c7493
+  Timestamp:    Tue Oct 27 19:08:57 2026
+ Configuration 5 (macaroon-dvt)
+  Description:  0 Linux kernel, FDT blob, ramdisk
+  Kernel:       kernel-1
+  Init Ramdisk: ramdisk-1
+  FDT:          fdt-macaroon-dvt
+  Hash algo:    sha512
+  Hash value:   unavailable
+  Sign algo:    sha512,ecdsa521:production
+  Sign value:   00d081f3d694b4561b021c87cbac8e59c631363c596429f9db162cd9b37c702ef1a0cd2e49069f1c2ca54242aeabd5bbc021e0022bed95a904856b24b2caf2317268013584ea4722dc6056f26b5c0eda8deb1d87b44602b8030b093edce999b420b6a9fd627fc47559759ef4909809853fbbedcb83c20c2bda4496a9bcee5a9de0c0961b
+  Timestamp:    Tue Oct 27 19:08:57 2026
+ Configuration 6 (macaroon-dvt-doe)
+  Description:  0 Linux kernel, FDT blob, ramdisk
+  Kernel:       kernel-1
+  Init Ramdisk: ramdisk-1
+  FDT:          fdt-macaroon-dvt-doe
+  Hash algo:    sha512
+  Hash value:   unavailable
+  Sign algo:    sha512,ecdsa521:production
+  Sign value:   00d2b26ae804d464dd3eeb2695bace09ddc9a878dc2ea2b351805ed1a7da3140f17fc6a08f178c304188a25a2ecfc3d9b543bd10c2915e9246f3a1ff005079055c9201a50b9c8bf6ba3b2fc230985d77497c1eaef36931d109d3af15b6601b757fb69eb5733802d8f00739f3620dd960b003ca728d3796e91909fdb75e449360bda5c755
+  Timestamp:    Tue Oct 27 19:08:57 2026
+ Configuration 7 (macaroon-dvt-pvt)
+  Description:  0 Linux kernel, FDT blob, ramdisk
+  Kernel:       kernel-1
+  Init Ramdisk: ramdisk-1
+  FDT:          fdt-macaroon-dvt-pvt
+  Hash algo:    sha512
+  Hash value:   unavailable
+  Sign algo:    sha512,ecdsa521:production
+  Sign value:   00875c2efe8c4ccbee6080f979be06aaba9864e51644bbffd7f9916fa58969319b85dd7eb0cb120e4732f2fe8ce3a409c17621190cbc16fe7aaf2c8f3ff814d1157200339585319e5ed411800b05452a4ff4bcff6bdd9e673bb9c74c204964acbcf892b4e3adebf57be47f416b0e5140f9afbd6ec115243e3553c8bddceca0c2d19a5cfb
+  Timestamp:    Tue Oct 27 19:08:57 2026

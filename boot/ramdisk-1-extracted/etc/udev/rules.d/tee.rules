@@ -1,0 +1,2 @@
+KERNEL=="tee0",				MODE="0660",	OWNER="root",		GROUP="tee"
+KERNEL=="teepriv0",			MODE="0660",	OWNER="root",		GROUP="system", SECLABEL{smack}="System"

@@ -1,0 +1,12 @@
+PN: libgpg-error
+PV: 1.44
+PR: r0
+PKGV: 1.44
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/libgpg-error/1.44-r0
+FILE_RELPATH: meta/recipes-support/libgpg-error/libgpg-error_1.44.bb
+SSTATE_PKGSPEC: sstate:libgpg-error:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.44:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:libgpg-error:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.44:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: e0f4d8114b5b120692f417ae87f97ca0a499a3481e9c85f841e361196b121a83
+BB_TASKHASH: 53558d483e8036084cb7edb03fcb8aa52a764b688c22e244042c7863b7f0da73
+SSTATE_SWSPEC: sstate:libgpg-error::1.44:r0::8:

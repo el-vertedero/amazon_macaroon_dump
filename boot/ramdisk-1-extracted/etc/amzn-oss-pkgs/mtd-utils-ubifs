@@ -1,0 +1,12 @@
+PN: mtd-utils
+PV: 2.1.4
+PR: r0
+PKGV: 2.1.4
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/mtd-utils/2.1.4-r0
+FILE_RELPATH: meta/recipes-devtools/mtd/mtd-utils_git.bb
+SSTATE_PKGSPEC: sstate:mtd-utils:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.1.4:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:mtd-utils:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.1.4:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 16e18bf756498e005170da7a5549426628509546dad7037a7c065dd63debb454
+BB_TASKHASH: a2d04f9a222637c57d0f44661cb7f379d1c05f2e305d355196a80a6ea94e5425
+SSTATE_SWSPEC: sstate:mtd-utils::2.1.4:r0::8:

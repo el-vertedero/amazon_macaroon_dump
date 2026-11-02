@@ -1,0 +1,12 @@
+PN: run-postinsts
+PV: 1.0
+PR: r10
+PKGV: 1.0
+PKGR: r10@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/all-poky-linux/run-postinsts/1.0-r10
+FILE_RELPATH: meta/recipes-devtools/run-postinsts/run-postinsts_1.0.bb
+SSTATE_PKGSPEC: sstate:run-postinsts:all-poky-linux:1.0:r10:allarch:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:run-postinsts:all-poky-linux:1.0:r10:allarch:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 4658aa77c73abcce5fc241bcf6fd58a665a6dca970719fce032c5755384b3cfa
+BB_TASKHASH: e8141d69ea37582c463c679b7b94fa692010f604092c4222b0ae4a2fe6bdf3cf
+SSTATE_SWSPEC: sstate:run-postinsts::1.0:r10::8:

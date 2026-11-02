@@ -1,0 +1,12 @@
+PN: udev-extraconf
+PV: 1.1
+PR: r0
+PKGV: 1.1
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/udev-extraconf/1.1-r0
+FILE_RELPATH: meta/recipes-core/udev/udev-extraconf_1.1.bb
+SSTATE_PKGSPEC: sstate:udev-extraconf:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.1:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:udev-extraconf:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.1:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: a294752e7d125bacc3cc0598c1d65a849dae30ad3ff3d3f9450b7481134337c7
+BB_TASKHASH: 8e1d84c1d3203d2336d870374d90e2aed93bc7c6d09d735c534a98a8cd1e22d6
+SSTATE_SWSPEC: sstate:udev-extraconf::1.1:r0::8:

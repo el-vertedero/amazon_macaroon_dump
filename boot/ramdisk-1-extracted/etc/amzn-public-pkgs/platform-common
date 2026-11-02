@@ -1,0 +1,12 @@
+PN: platform-common
+PV: 1.0
+PR: r0
+PKGV: 1.0
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/platform-common/1.0-r0
+FILE_RELPATH: meta-amzn-platform/recipes-utilities/platform-common/platform-common_1.0.bb
+SSTATE_PKGSPEC: sstate:platform-common:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.0:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:platform-common:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.0:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: dadf3e83d0d0e4ae098a95ce6c388e1867f9d061c3e71d02a2a79b1c94bf7551
+BB_TASKHASH: 7c03655631916711e962bccef6b4dd1ae8817a889c50d0a3752cbe30c4e412f0
+SSTATE_SWSPEC: sstate:platform-common::1.0:r0::8:

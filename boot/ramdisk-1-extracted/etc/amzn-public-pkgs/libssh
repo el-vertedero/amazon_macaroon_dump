@@ -1,0 +1,12 @@
+PN: libssh
+PV: 0.8.9
+PR: r0
+PKGV: 0.8.9
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/libssh/0.8.9-r0
+FILE_RELPATH: meta-vega-external/kirkstone/recipes-oss-securityfix/libssh/libssh_0.8.9.bb
+SSTATE_PKGSPEC: sstate:libssh:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:0.8.9:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:libssh:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:0.8.9:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 1547da46da59cc88aa44375a47b4ce04f0cf36ce02baf2948aac94c3f1339b32
+BB_TASKHASH: bd17f81539ea2be3fa66ca2f76daa468ad4bbfe43745232db7b7ce0fa42344a9
+SSTATE_SWSPEC: sstate:libssh::0.8.9:r0::8:

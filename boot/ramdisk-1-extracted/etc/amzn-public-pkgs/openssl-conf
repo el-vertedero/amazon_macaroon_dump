@@ -1,0 +1,12 @@
+PN: openssl
+PV: 3.5.6
+PR: r0
+PKGV: 3.5.6
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/openssl/3.5.6-r0
+FILE_RELPATH: meta-vega-external/recipes-oss-securityfix/openssl/openssl_3.5.6.bb
+SSTATE_PKGSPEC: sstate:openssl:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:3.5.6:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:openssl:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:3.5.6:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 7d69b05af3ee197d0254d83be8487a185d368606820cb38f4791e04c0311db69
+BB_TASKHASH: 72fa3cc872b2d93fc388055c8a7b9c6c346626249850058bedb1cfc068ba04cf
+SSTATE_SWSPEC: sstate:openssl::3.5.6:r0::8:

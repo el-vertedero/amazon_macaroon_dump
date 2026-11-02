@@ -1,0 +1,12 @@
+PN: systemd
+PV: 250.4
+PR: r0
+PKGV: 250.4
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/systemd/1_250.4-r0
+FILE_RELPATH: meta/recipes-core/systemd/systemd_250.4.bb
+SSTATE_PKGSPEC: sstate:systemd:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:250.4:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:systemd:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:250.4:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: bedddb49b94bc6f590ffcbcf52f6f91dd696d187452aa83cdf61959fe4cbe0fb
+BB_TASKHASH: aceb93048900107292b9a0a5bc825b98e81a9689631be758fe51df37b5210b56
+SSTATE_SWSPEC: sstate:systemd::250.4:r0::8:

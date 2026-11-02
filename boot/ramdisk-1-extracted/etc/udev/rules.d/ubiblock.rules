@@ -1,0 +1,39 @@
+# Create symlinks for ubiblock and ubi volume devices
+
+# Rule for sfw and bl2
+KERNEL=="mtd0", SYMLINK+="block/platform/sfw disk/by-partlabel/sfw"
+KERNEL=="mtd1", SYMLINK+="block/platform/bl2 disk/by-partlabel/bl2"
+
+# Rule for block device system_a/_b (first attempt)
+KERNEL=="ubiblock0_9", SYMLINK+="block/platform/system_a disk/by-partlabel/system_a", OPTIONS+="link_priority=10"
+KERNEL=="ubiblock0_10", SYMLINK+="block/platform/system_b disk/by-partlabel/system_b", OPTIONS+="link_priority=10"
+
+# Rule for block device system_a/_b (fallback)
+KERNEL=="ubi0_9", SYMLINK+="block/platform/system_a disk/by-partlabel/system_a", OPTIONS+="link_priority=5"
+KERNEL=="ubi0_10", SYMLINK+="block/platform/system_b disk/by-partlabel/system_b", OPTIONS+="link_priority=5"
+
+# Rule for boot volumes
+KERNEL=="ubi0_0", SYMLINK+="block/platform/bootloader_a disk/by-partlabel/bootloader_a"
+KERNEL=="ubi0_1", SYMLINK+="block/platform/bootloader_b disk/by-partlabel/bootloader_b"
+KERNEL=="ubi0_2", SYMLINK+="block/platform/ddr_a disk/by-partlabel/ddr_a"
+KERNEL=="ubi0_3", SYMLINK+="block/platform/ddr_b disk/by-partlabel/ddr_b"
+KERNEL=="ubi0_4", SYMLINK+="block/platform/idme disk/by-partlabel/idme"
+KERNEL=="ubi0_5", SYMLINK+="block/platform/misc disk/by-partlabel/misc"
+KERNEL=="ubi0_6", SYMLINK+="block/platform/persist disk/by-partlabel/persist"
+KERNEL=="ubi0_7", SYMLINK+="block/platform/mcu_a disk/by-partlabel/mcu_a"
+KERNEL=="ubi0_8", SYMLINK+="block/platform/mcu_b disk/by-partlabel/mcu_b"
+KERNEL=="ubi0_11", SYMLINK+="block/platform/kernel_a disk/by-partlabel/kernel_a"
+KERNEL=="ubi0_12", SYMLINK+="block/platform/kernel_b disk/by-partlabel/kernel_b"
+KERNEL=="ubi0_13", SYMLINK+="block/platform/cache disk/by-partlabel/cache"
+KERNEL=="ubi0_14", SYMLINK+="block/platform/userdata disk/by-partlabel/userdata"
+
+# Rule for smack
+SUBSYSTEM=="mtd", KERNEL=="mtd[0-9]*ro", SECLABEL{smack}="System", GROUP="disk", MODE="0640"
+SUBSYSTEM=="mtd", KERNEL=="mtd[0-9]*", KERNEL!="mtd[0-9]*ro", SECLABEL{smack}="System", GROUP="disk", MODE="0660"
+SUBSYSTEM=="mtd", KERNEL=="ubi[0-9]*", KERNEL!="ubi[0-9]*_[0-9]*", SECLABEL{smack}="System", GROUP="disk", MODE="0640"
+SUBSYSTEM=="ubi", KERNEL=="ubi[0-9]*_[0-9]*", SECLABEL{smack}="System", GROUP="disk", MODE="0660"
+SUBSYSTEM=="ubi", KERNEL=="ubiblock0_9", SECLABEL{smack}="System", GROUP="disk", MODE="0660"
+SUBSYSTEM=="ubi", KERNEL=="ubiblock0_10", SECLABEL{smack}="System", GROUP="disk", MODE="0660"
+
+#rule for ubi_ctrl
+SUBSYSTEM=="misc", KERNEL=="ubi_ctrl", SECLABEL{smack}="System", GROUP="disk", MODE="0660"

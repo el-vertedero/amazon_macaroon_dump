@@ -1,0 +1,12 @@
+PN: busybox-inittab
+PV: 1.35.0
+PR: r0
+PKGV: 1.35.0
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/macaroon-poky-linux-gnueabi/busybox-inittab/1.35.0-r0
+FILE_RELPATH: meta/recipes-core/busybox/busybox-inittab_1.35.0.bb
+SSTATE_PKGSPEC: sstate:busybox-inittab:macaroon-poky-linux-gnueabi:1.35.0:r0:macaroon:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:busybox-inittab:macaroon-poky-linux-gnueabi:1.35.0:r0:macaroon:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: c245bbd25156571f748d8b3190b4feddad7fb9ff2bd7bd69e73345cc451e4831
+BB_TASKHASH: ec25fe9dff9dd529f02f7e4802ae0d138c225347014d278c6eadc6ba4d76bf4d
+SSTATE_SWSPEC: sstate:busybox-inittab::1.35.0:r0::8:

@@ -1,0 +1,12 @@
+PN: popt
+PV: 1.18
+PR: r0
+PKGV: 1.18
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/popt/1.18-r0
+FILE_RELPATH: meta/recipes-support/popt/popt_1.18.bb
+SSTATE_PKGSPEC: sstate:popt:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.18:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:popt:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.18:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 7aedc8487f3c7b8024487b34840615b3ee1f69ef98673c8b687a3367f7065f78
+BB_TASKHASH: 6372fdf59696fc085c1c71f1f26c3bb6715977b02f0e0f67767d8315ae4a17c4
+SSTATE_SWSPEC: sstate:popt::1.18:r0::8:

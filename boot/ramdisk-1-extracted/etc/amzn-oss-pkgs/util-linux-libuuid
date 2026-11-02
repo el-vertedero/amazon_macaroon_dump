@@ -1,0 +1,12 @@
+PN: util-linux-libuuid
+PV: 2.37.4
+PR: r0
+PKGV: 2.37.4
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/util-linux-libuuid/2.37.4-r0
+FILE_RELPATH: meta/recipes-core/util-linux/util-linux-libuuid_2.37.4.bb
+SSTATE_PKGSPEC: sstate:util-linux-libuuid:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.37.4:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:util-linux-libuuid:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.37.4:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 960ca4b574964ed4476e51139f1dfdb4a9d3d603ce5cbe536b02d48b4844374a
+BB_TASKHASH: ba4d810768bbc0b8b91e1a5a48f1380083b907edf025e57a951cdb0f9032d909
+SSTATE_SWSPEC: sstate:util-linux-libuuid::2.37.4:r0::8:

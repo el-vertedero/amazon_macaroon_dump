@@ -1,0 +1,12 @@
+PN: kmod
+PV: 29
+PR: r0
+PKGV: 29
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/kmod/29-r0
+FILE_RELPATH: meta/recipes-kernel/kmod/kmod_29.bb
+SSTATE_PKGSPEC: sstate:kmod:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:29:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:kmod:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:29:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 0e57f6af4cdcf2a3c019e598cb9d80c3dd4ccc6f5a513427eb6915f335f515c9
+BB_TASKHASH: 56806d1e75fafbee94f10bb339ddea444fd7d87f88e52511cb23096bf23683de
+SSTATE_SWSPEC: sstate:kmod::29:r0::8:

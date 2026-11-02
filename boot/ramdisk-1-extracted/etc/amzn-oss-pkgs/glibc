@@ -1,0 +1,12 @@
+PN: glibc
+PV: 2.35
+PR: r0
+PKGV: 2.35
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/glibc/2.35-r0
+FILE_RELPATH: meta/recipes-core/glibc/glibc_2.35.bb
+SSTATE_PKGSPEC: sstate:glibc:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.35:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/VegaYoctoBuildMacaroonRelease/vega/build-macaroon-release/sstate-empty-poc/*/*/sstate:glibc:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.35:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 9d8d73760dcc421338c674095acf8b114388e65381f0749d3b8e57dc9e728ac9
+BB_TASKHASH: e8a6150c8d3cf568252fa48be4096aa90f4a563efdb5a11ed3e433dbff21f241
+SSTATE_SWSPEC: sstate:glibc::2.35:r0::8:

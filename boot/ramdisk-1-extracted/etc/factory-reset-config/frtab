@@ -1,0 +1,1 @@
+/dev/block/platform/userdata	ubifs	-m 4096 -e 258048 -c 2110 -v -x zstd  -R 27226112 -G 515 -y

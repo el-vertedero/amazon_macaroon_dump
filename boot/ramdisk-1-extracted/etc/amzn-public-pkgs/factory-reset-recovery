@@ -1,0 +1,12 @@
+PN: factory-reset-recovery
+PV: 1.0
+PR: r0
+PKGV: 1.0
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/macaroon-poky-linux-gnueabi/factory-reset-recovery/1.0-r0
+FILE_RELPATH: meta-amzn-platform/recipes-factory-reset/recovery/factory-reset-recovery.bb
+SSTATE_PKGSPEC: sstate:factory-reset-recovery:macaroon-poky-linux-gnueabi:1.0:r0:macaroon:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:factory-reset-recovery:macaroon-poky-linux-gnueabi:1.0:r0:macaroon:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: edaf23bb2d70f59877baeb002eee91c42c71694894c7ca6c9fd7b9d90fdda315
+BB_TASKHASH: 99876fef098ae9a243f35596e9ee2f36fc45bfb0f57e0b1e704f1ee1959a5c47
+SSTATE_SWSPEC: sstate:factory-reset-recovery::1.0:r0::8:

@@ -1,0 +1,12 @@
+PN: lzo
+PV: 2.10
+PR: r0
+PKGV: 2.10
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/lzo/2.10-r0
+FILE_RELPATH: meta/recipes-support/lzo/lzo_2.10.bb
+SSTATE_PKGSPEC: sstate:lzo:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.10:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:lzo:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.10:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: fe04c578fd45b7ba1f0cc00f1dc842efd6295da400b799e058e9a6ecd7a1c436
+BB_TASKHASH: 288040e1d5da11c7be98bc15b983bde17bd3cc91df1b53a46849e20fc2df5ead
+SSTATE_SWSPEC: sstate:lzo::2.10:r0::8:

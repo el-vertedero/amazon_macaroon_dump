@@ -1,0 +1,12 @@
+PN: opkg-utils
+PV: 0.5.0
+PR: r0
+PKGV: 0.5.0
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/opkg-utils/0.5.0-r0
+FILE_RELPATH: meta/recipes-devtools/opkg-utils/opkg-utils_0.5.0.bb
+SSTATE_PKGSPEC: sstate:opkg-utils:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:0.5.0:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:opkg-utils:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:0.5.0:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: f1def6ecc53f93ac4beb24c5e9cc47cc5186239d9fd8add0e3697185c2b7f23a
+BB_TASKHASH: 50d0c55b487d0a54ca3ff23840329fc17f3dca571c49005da6382355624d33ed
+SSTATE_SWSPEC: sstate:opkg-utils::0.5.0:r0::8:

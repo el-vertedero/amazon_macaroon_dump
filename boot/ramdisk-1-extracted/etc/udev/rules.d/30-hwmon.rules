@@ -1,0 +1,40 @@
+# Create stable device paths for dynamic sensors
+#
+# Conditions:
+#  ACTION=="add" - Device added
+#  KERNEL=="hwmon*" - Any hwmon device
+#  SUBSYSTEM=="hwmon" - In hwmon subsystem
+#
+# Actions:
+#  RUN - Create dir & symlink
+#  TAG - Add systemd dependency
+
+# SCMI sensors
+ACTION=="add", SUBSYSTEM=="hwmon", KERNEL=="hwmon*", \
+    ATTR{name}=="scmi_sensors", TAG+="systemd", \
+    RUN+="/bin/sh -c 'mkdir -p /dev/sensors && \
+    ln -s /sys$devpath /dev/sensors/scmi_sensors'"
+
+# WiFi temperature sensor
+ACTION=="add", SUBSYSTEM=="hwmon", KERNEL=="hwmon*", \
+    ATTR{name}=="wifi_temp_sensor", TAG+="systemd", \
+    RUN+="/bin/sh -c 'mkdir -p /dev/sensors && \
+    ln -s /sys$devpath /dev/sensors/wifi_temp_sensor'"
+
+# Camera temperature sensor (ov13858)
+ACTION=="add", SUBSYSTEM=="hwmon", KERNEL=="hwmon*", \
+    ATTR{name}=="ov13858", TAG+="systemd", \
+    RUN+="/bin/sh -c 'mkdir -p /dev/sensors && \
+    ln -s /sys$devpath /dev/sensors/camera_temp_sensor'"
+
+# IIO hardware monitoring sensors
+ACTION=="add", SUBSYSTEM=="hwmon", KERNEL=="hwmon*", \
+    ATTR{name}=="iio_hwmon_sensors", TAG+="systemd", \
+    RUN+="/bin/sh -c 'mkdir -p /dev/sensors && \
+    ln -s /sys$devpath /dev/sensors/iio_hwmon_sensors'"
+
+# IIO power monitoring
+ACTION=="add", SUBSYSTEM=="hwmon", KERNEL=="hwmon*", \
+    ATTR{name}=="iio_hwmon_pwr", TAG+="systemd", \
+    RUN+="/bin/sh -c 'mkdir -p /dev/sensors && \
+    ln -s /sys$devpath /dev/sensors/iio_hwmon_pwr'"

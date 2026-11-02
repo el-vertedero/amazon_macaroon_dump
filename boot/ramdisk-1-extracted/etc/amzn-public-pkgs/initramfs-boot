@@ -1,0 +1,12 @@
+PN: initramfs-boot
+PV: 1.0
+PR: r0
+PKGV: 1.0
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/macaroon-poky-linux-gnueabi/initramfs-boot/1.0-r0
+FILE_RELPATH: meta-amzn-platform/recipes-core/init/initramfs-boot.bb
+SSTATE_PKGSPEC: sstate:initramfs-boot:macaroon-poky-linux-gnueabi:1.0:r0:macaroon:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:initramfs-boot:macaroon-poky-linux-gnueabi:1.0:r0:macaroon:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 15f74bf3543ad4d5e16fec59bcc1ee2e94e13b3eeae97a80341d506e7140dfd7
+BB_TASKHASH: 912dc3f7b94ca6dc0b95dcc9e1e8b8f642b0f4d10c979372a72e89bc83c12259
+SSTATE_SWSPEC: sstate:initramfs-boot::1.0:r0::8:

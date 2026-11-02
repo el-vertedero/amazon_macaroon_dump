@@ -1,0 +1,12 @@
+PN: lvm2
+PV: 2.03.11
+PR: r0
+PKGV: 2.03.11
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/lvm2/2.03.11-r0
+FILE_RELPATH: meta-openembedded/meta-oe/recipes-support/lvm2/lvm2_2.03.11.bb
+SSTATE_PKGSPEC: sstate:lvm2:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.03.11:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:lvm2:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.03.11:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 7acbdab074a96d825bc6b8989f26f9e78d409cde9c00b0f3f48e463e220b8d8d
+BB_TASKHASH: 9ecda6bc9594342faf5affc159723ed31b291443c55c0f6622bf57ad1e098517
+SSTATE_SWSPEC: sstate:lvm2::2.03.11:r0::8:

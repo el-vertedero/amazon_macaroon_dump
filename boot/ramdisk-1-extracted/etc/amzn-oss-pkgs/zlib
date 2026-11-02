@@ -1,0 +1,12 @@
+PN: zlib
+PV: 1.2.11
+PR: r0
+PKGV: 1.2.11
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/zlib/1.2.11-r0
+FILE_RELPATH: meta/recipes-core/zlib/zlib_1.2.11.bb
+SSTATE_PKGSPEC: sstate:zlib:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.2.11:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:zlib:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.2.11:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 9ecf360daa1ebb55eaf5844812eea4e3f877e07221f4a1c3005ecacd7bc908ff
+BB_TASKHASH: 42234e3006403d5eac241bf8c0c0cec151b42ec238138092464d4142a620b6bd
+SSTATE_SWSPEC: sstate:zlib::1.2.11:r0::8:

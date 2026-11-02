@@ -1,0 +1,12 @@
+PN: cryptsetup
+PV: 2.4.3
+PR: r0
+PKGV: 2.4.3
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/cryptsetup/2.4.3-r0
+FILE_RELPATH: meta-openembedded/meta-oe/recipes-crypto/cryptsetup/cryptsetup_2.4.3.bb
+SSTATE_PKGSPEC: sstate:cryptsetup:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.4.3:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:cryptsetup:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.4.3:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 7a6fd9192ac49850b481e985513cc5478d49f316c8a1b1f9545dfa66a60474d2
+BB_TASKHASH: 3e2df0a10f778e13bae82d7e1b273a087207b0bb0224652686a1c7ace4331a0a
+SSTATE_SWSPEC: sstate:cryptsetup::2.4.3:r0::8:

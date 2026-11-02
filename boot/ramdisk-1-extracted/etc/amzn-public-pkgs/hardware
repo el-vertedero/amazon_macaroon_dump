@@ -1,0 +1,12 @@
+PN: hardware
+PV: git
+PR: r0
+PKGV: git
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/hardware/git-r0
+FILE_RELPATH: meta-vega-dpk/recipes-hardware/hardware/hardware_git.bb
+SSTATE_PKGSPEC: sstate:hardware:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:git:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:hardware:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:git:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 0288cda49264f7d18889e31de6027119cb2f355934808f91ab5f4f002c5abaeb
+BB_TASKHASH: 1ab122663454c62b3756a5c7e77918ec11e4febf9c20e7a13e3cb4f9acd7114e
+SSTATE_SWSPEC: sstate:hardware::git:r0::8:

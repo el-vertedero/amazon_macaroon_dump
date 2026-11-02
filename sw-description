@@ -1,0 +1,267 @@
+software =
+{
+    version = "0.1.0";
+    macaroon =
+    {
+        hardware-compatibility =
+        [
+            "1.0"
+        ];
+        embedded-script = "\nfunction get_device_image_version_timestamp()\n    local f=io.open('/etc/os-release', r)\n    local s=f:read('*all')\n    f:close()\n    _, _ , version = string.find(s, 'VERSION_NUMBER=\\\"(%d+)\\\"')\n    _, _ , timestamp = string.find(s, 'BUILD_TIMESTAMP=\\\"(%d+)\\\"')\n    return tonumber(version),tonumber(timestamp)\nend\n\nfunction do_version_check(image)\n    device_version, device_timestamp=get_device_image_version_timestamp()\n    image_version=tonumber('7202000014820')\n    image_timestamp=tonumber('1793127430')\n    if image_version > device_version and image_timestamp >= device_timestamp then\n        print('version check done')\n        return true, image\n    else\n        print('version check failed')\n        print(image_version, image_timestamp, device_version, device_timestamp)\n        return false, image\n    end\nend\nfunction get_secboot_value()\n    local f = io.open('/sys/firmware/devicetree/base/chosen/secboot_enabled', 'r')\n    if not f then\n        return nil, 'File does not exist'\n    end\n    local value = f:read('*all')\n    f:close()\n    return value\nend\n\nfunction do_secure_soc_check(image)\n    -- result: if nill skip the specific image update\n    -- success: if false abort entire update operation\n    local result = nil\n    local success = true\n    local secboot_enabled = '1'\n    secboot_value, err_msg = get_secboot_value()\n    if err_msg then\n        swupdate.error(err_msg)\n        -- abort entire OTA update if secboot_enabled does not exist\n        success = false\n    else\n        if string.find(secboot_value, secboot_enabled) then\n            -- safe to install the image\n            result = image\n        end\n    end\n    return success, result\nend\n\nfunction do_non_secure_soc_check(image)\n    -- result: if nill skip the specific image update\n    -- success: if false abort entire update operation\n    local result = nil\n    local success = true\n    local secboot_disabled = '0'\n    secboot_value, err_msg = get_secboot_value()\n    if err_msg then\n        swupdate.error(err_msg)\n        -- abort entire OTA update if secboot_enabled does not exist\n        success = false\n    else\n        if string.find(secboot_value, secboot_disabled) then\n            -- safe to install the image\n            result = image\n        end \n    end\n    return success, result\nend\n\n\n";
+        stable =
+        {
+            copyA =
+            {
+                scripts =
+                (
+                    {
+                        filename = "version_check.sh";
+                        type = "preinstall";
+                        hook = "do_version_check";
+                        sha256 = "5d2383d4b6aa154780afc8bd39767c2588ce5b6e7d6434559f970c0c3fd5eccd";
+                    },
+                    {
+                        filename = "verify.sh";
+                        type = "preinstall";
+                        data = "fd47e7f63f1f579b1a43be1872b4cd3ef73001fb733fc80188dabac73ce2c678 4096 243019776 /dev/block/platform/system_a";
+                        sha256 = "f01c674ee8d2308b1e946c4d52793bcd6546520121798bb141eb721f5355cfd5";
+                    }
+                );
+                images =
+                (
+                    {
+                        filename = "prod_aonlpi_fw.fit";
+                        volume = "mcu_a";
+                        type = "ubivol";
+                        hook = "do_secure_soc_check";
+                        data = "428076";
+                        installed-directly = True;
+                        sha256 = "1c30c82a8dfe71c83c442c6e61e4588dbf386b4f4354716bfbb6ab49666bd888";
+                    },
+                    {
+                        filename = "dev_aonlpi_fw.fit";
+                        volume = "mcu_a";
+                        type = "ubivol";
+                        hook = "do_non_secure_soc_check";
+                        data = "428098";
+                        installed-directly = True;
+                        sha256 = "74539a7aa25f4b56e73300e12ccee6bc7e42d6760fd92e7765d6484e4061f88d";
+                    },
+                    {
+                        filename = "prod_fip.bin";
+                        volume = "bootloader_a";
+                        type = "ubivol";
+                        hook = "do_secure_soc_check";
+                        data = "2653856";
+                        installed-directly = True;
+                        sha256 = "24b8afb900b8cee3c06746c20d9d769c236f6283996fd9c97d1fe71187a66f64";
+                    },
+                    {
+                        filename = "dev_fip.bin";
+                        volume = "bootloader_a";
+                        type = "ubivol";
+                        hook = "do_non_secure_soc_check";
+                        data = "2653855";
+                        installed-directly = True;
+                        sha256 = "9eb07e5f052607e2c7a19266d96af43e847ac89452b36177ec4ab28197983db4";
+                    },
+                    {
+                        filename = "prod_fip_ddr.bin";
+                        volume = "ddr_a";
+                        type = "ubivol";
+                        hook = "do_secure_soc_check";
+                        data = "71266";
+                        installed-directly = True;
+                        sha256 = "bdab3fe70b1c108ca6bbbe79827ca24d96d1bbffe38791e82602879c96da34dd";
+                    },
+                    {
+                        filename = "dev_fip_ddr.bin";
+                        volume = "ddr_a";
+                        type = "ubivol";
+                        hook = "do_non_secure_soc_check";
+                        data = "71162";
+                        installed-directly = True;
+                        sha256 = "a69e1e13c79a7410ef7a22eeaed0f17695cf4c1b782ac6a4eb6a40332ef5f3d4";
+                    },
+                    {
+                        filename = "boot.img";
+                        volume = "kernel_a";
+                        type = "ubivol";
+                        installed-directly = True;
+                        sha256 = "64f28362302a9991dfa0d80c39182c431af5b74095fbacc52158a0d9a5670468";
+                    },
+                    {
+                        filename = "rootfs-macaroon.squashfs-zstd.verity.gz";
+                        volume = "system_a";
+                        type = "ubivol";
+                        compressed = "zlib";
+                        properties =
+                        {
+                            decompressed-size = "246886400";
+                        };
+                        installed-directly = True;
+                        sha256 = "7095c786fcbb57027a9586328535371d0b638a3f6da4db97c9ee937f65aa1c2c";
+                    },
+                    {
+                        filename = "prod_fip_bl2.bin";
+                        device = "/dev/mtd1";
+                        type = "flash";
+                        hook = "do_secure_soc_check";
+                        data = "114679";
+                        sha256 = "d36a401c2388a584697233c6ccbddcf4f7147cedb7f701e97bab6d827decf6be";
+                    },
+                    {
+                        filename = "dev_fip_bl2.bin";
+                        device = "/dev/mtd1";
+                        type = "flash";
+                        hook = "do_non_secure_soc_check";
+                        data = "114679";
+                        sha256 = "5ff88cab57e3c2dcb68e2ba4a81733a0e1eba7f221a93dfc15470cf823015de5";
+                    },
+                    {
+                        filename = "prod_sentinel_fw.bin";
+                        device = "/dev/mtd0";
+                        type = "flash";
+                        hook = "do_secure_soc_check";
+                        data = "94448";
+                        sha256 = "c5ae248060279abbac03d1f05bfa42f00d63b8c7e67dc90895cb092361db7694";
+                    },
+                    {
+                        filename = "dev_sentinel_fw.bin";
+                        device = "/dev/mtd0";
+                        type = "flash";
+                        hook = "do_non_secure_soc_check";
+                        data = "94448";
+                        sha256 = "c78165097e7cf7f8d264ccda34e7393a1c939a4902807eca05262cb4564b7ec4";
+                    }
+                );
+            };
+            copyB =
+            {
+                scripts =
+                (
+                    {
+                        filename = "version_check.sh";
+                        type = "preinstall";
+                        hook = "do_version_check";
+                        sha256 = "5d2383d4b6aa154780afc8bd39767c2588ce5b6e7d6434559f970c0c3fd5eccd";
+                    },
+                    {
+                        filename = "verify.sh";
+                        type = "preinstall";
+                        data = "fd47e7f63f1f579b1a43be1872b4cd3ef73001fb733fc80188dabac73ce2c678 4096 243019776 /dev/block/platform/system_b";
+                        sha256 = "f01c674ee8d2308b1e946c4d52793bcd6546520121798bb141eb721f5355cfd5";
+                    }
+                );
+                images =
+                (
+                    {
+                        filename = "prod_aonlpi_fw.fit";
+                        volume = "mcu_b";
+                        type = "ubivol";
+                        hook = "do_secure_soc_check";
+                        data = "428076";
+                        installed-directly = True;
+                        sha256 = "1c30c82a8dfe71c83c442c6e61e4588dbf386b4f4354716bfbb6ab49666bd888";
+                    },
+                    {
+                        filename = "dev_aonlpi_fw.fit";
+                        volume = "mcu_b";
+                        type = "ubivol";
+                        hook = "do_non_secure_soc_check";
+                        data = "428098";
+                        installed-directly = True;
+                        sha256 = "74539a7aa25f4b56e73300e12ccee6bc7e42d6760fd92e7765d6484e4061f88d";
+                    },
+                    {
+                        filename = "prod_fip.bin";
+                        volume = "bootloader_b";
+                        type = "ubivol";
+                        hook = "do_secure_soc_check";
+                        data = "2653856";
+                        installed-directly = True;
+                        sha256 = "24b8afb900b8cee3c06746c20d9d769c236f6283996fd9c97d1fe71187a66f64";
+                    },
+                    {
+                        filename = "dev_fip.bin";
+                        volume = "bootloader_b";
+                        type = "ubivol";
+                        hook = "do_non_secure_soc_check";
+                        data = "2653855";
+                        installed-directly = True;
+                        sha256 = "9eb07e5f052607e2c7a19266d96af43e847ac89452b36177ec4ab28197983db4";
+                    },
+                    {
+                        filename = "prod_fip_ddr.bin";
+                        volume = "ddr_b";
+                        type = "ubivol";
+                        hook = "do_secure_soc_check";
+                        data = "71266";
+                        installed-directly = True;
+                        sha256 = "bdab3fe70b1c108ca6bbbe79827ca24d96d1bbffe38791e82602879c96da34dd";
+                    },
+                    {
+                        filename = "dev_fip_ddr.bin";
+                        volume = "ddr_b";
+                        type = "ubivol";
+                        hook = "do_non_secure_soc_check";
+                        data = "71162";
+                        installed-directly = True;
+                        sha256 = "a69e1e13c79a7410ef7a22eeaed0f17695cf4c1b782ac6a4eb6a40332ef5f3d4";
+                    },
+                    {
+                        filename = "boot.img";
+                        volume = "kernel_b";
+                        type = "ubivol";
+                        installed-directly = True;
+                        sha256 = "64f28362302a9991dfa0d80c39182c431af5b74095fbacc52158a0d9a5670468";
+                    },
+                    {
+                        filename = "rootfs-macaroon.squashfs-zstd.verity.gz";
+                        volume = "system_b";
+                        type = "ubivol";
+                        compressed = "zlib";
+                        properties =
+                        {
+                            decompressed-size = "246886400";
+                        };
+                        installed-directly = True;
+                        sha256 = "7095c786fcbb57027a9586328535371d0b638a3f6da4db97c9ee937f65aa1c2c";
+                    },
+                    {
+                        filename = "prod_fip_bl2.bin";
+                        device = "/dev/mtd1";
+                        type = "flash";
+                        hook = "do_secure_soc_check";
+                        data = "114679";
+                        sha256 = "d36a401c2388a584697233c6ccbddcf4f7147cedb7f701e97bab6d827decf6be";
+                    },
+                    {
+                        filename = "dev_fip_bl2.bin";
+                        device = "/dev/mtd1";
+                        type = "flash";
+                        hook = "do_non_secure_soc_check";
+                        data = "114679";
+                        sha256 = "5ff88cab57e3c2dcb68e2ba4a81733a0e1eba7f221a93dfc15470cf823015de5";
+                    },
+                    {
+                        filename = "prod_sentinel_fw.bin";
+                        device = "/dev/mtd0";
+                        type = "flash";
+                        hook = "do_secure_soc_check";
+                        data = "94448";
+                        sha256 = "c5ae248060279abbac03d1f05bfa42f00d63b8c7e67dc90895cb092361db7694";
+                    },
+                    {
+                        filename = "dev_sentinel_fw.bin";
+                        device = "/dev/mtd0";
+                        type = "flash";
+                        hook = "do_non_secure_soc_check";
+                        data = "94448";
+                        sha256 = "c78165097e7cf7f8d264ccda34e7393a1c939a4902807eca05262cb4564b7ec4";
+                    }
+                );
+            };
+        };
+    };
+};

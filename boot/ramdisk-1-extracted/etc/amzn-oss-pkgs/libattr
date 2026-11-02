@@ -1,0 +1,12 @@
+PN: attr
+PV: 2.5.1
+PR: r0
+PKGV: 2.5.1
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/attr/2.5.1-r0
+FILE_RELPATH: meta/recipes-support/attr/attr_2.5.1.bb
+SSTATE_PKGSPEC: sstate:attr:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.5.1:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:attr:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.5.1:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: aee67d39e99b6b57c60a64bb34fbafed8956baa2a8927405fee314ef1a1be939
+BB_TASKHASH: d2e254db6715d5c9105782e9503719ec31170132c5a6f966f4dd94c6920f2ee9
+SSTATE_SWSPEC: sstate:attr::2.5.1:r0::8:

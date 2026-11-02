@@ -1,0 +1,12 @@
+PN: libcap
+PV: 2.63
+PR: r0
+PKGV: 2.63
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/libcap/2.63-r0
+FILE_RELPATH: meta/recipes-support/libcap/libcap_2.63.bb
+SSTATE_PKGSPEC: sstate:libcap:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.63:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:libcap:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.63:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 22b0cbf50fa21f8ff5ef3116f7521497ff03ca4f7b80855ae275e520dd996b7a
+BB_TASKHASH: df51b284eda8519f9779b72bf1118804db6a33d83f92b7bfb2e46512220b3fb2
+SSTATE_SWSPEC: sstate:libcap::2.63:r0::8:

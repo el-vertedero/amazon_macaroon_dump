@@ -1,0 +1,12 @@
+PN: libgcrypt
+PV: 1.9.4
+PR: r0
+PKGV: 1.9.4
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/libgcrypt/1.9.4-r0
+FILE_RELPATH: meta-vega-external/kirkstone/recipes-oss-securityfix/libgcrypt/libgcrypt_1.9.4.bb
+SSTATE_PKGSPEC: sstate:libgcrypt:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.9.4:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:libgcrypt:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.9.4:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: a43ae8cf65cbc025ad67820f2c3c553c0469d9b8aa2b7ab62a8941738b70319d
+BB_TASKHASH: 134478c55913d20e4317c5c8cfa908b83f0c6ef2cd9adea2dfad352fee4d69be
+SSTATE_SWSPEC: sstate:libgcrypt::1.9.4:r0::8:

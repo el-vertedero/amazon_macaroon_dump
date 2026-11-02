@@ -1,0 +1,30 @@
+# This is run first except when booting in single-user mode.
+
+# Startup the system
+#::sysinit:/etc/init.d/rcS
+
+# Run the Recovery Init Script
+::wait:/etc/init.d/recovery_init.sh
+
+# do this last
+::wait:reboot
+
+# Stuff to do before rebooting
+::shutdown:umount -a
+
+# Stuff to do when restarting the init process
+::restart:init
+
+ttyAMA0::respawn:/sbin/getty 921600 ttyAMA0
+hvc0::respawn:/sbin/getty 921600 hvc0
+# /sbin/getty invocations for the runlevels.
+#
+# The "id" field MUST be the same as the last
+# characters of the device (after "tty").
+#
+# Format:
+#  <id>:<runlevels>:<action>:<process>
+#
+
+tty1:12345:respawn:/sbin/getty 38400 tty1
+

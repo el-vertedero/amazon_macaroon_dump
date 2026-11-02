@@ -1,0 +1,12 @@
+PN: libgcc
+PV: 11.2.0
+PR: r0
+PKGV: 11.2.0
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/libgcc/11.2.0-r0
+FILE_RELPATH: meta/recipes-devtools/gcc/libgcc_11.2.bb
+SSTATE_PKGSPEC: sstate:libgcc:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:11.2.0:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/VegaYoctoBuildMacaroonRelease/vega/build-macaroon-release/sstate-empty-poc/*/*/sstate:libgcc:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:11.2.0:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 3bdaccea8d8365a809113c21f3a928c5eb2ce60a4bdfe3f8ce1afe21aa36c476
+BB_TASKHASH: ed68b7236bc5aff6cca09413afc2650526811e6295be44aab3b4e7f4a4cf7dfb
+SSTATE_SWSPEC: sstate:libgcc::11.2.0:r0::8:

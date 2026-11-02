@@ -1,0 +1,12 @@
+PN: json-c
+PV: 0.17
+PR: r0
+PKGV: 0.17
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/json-c/0.17-r0
+FILE_RELPATH: meta-vega-external/kirkstone/recipes-oss/json-c/json-c_0.17.bb
+SSTATE_PKGSPEC: sstate:json-c:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:0.17:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:json-c:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:0.17:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: a519b2c2c08237f6c4a0ad763612cf3a656c7ee569182ddff150a1e8bacecda4
+BB_TASKHASH: 94f94bd644cc770efd1595d0be83d73c8c7db796588a69743f355c0359817d66
+SSTATE_SWSPEC: sstate:json-c::0.17:r0::8:

@@ -1,0 +1,12 @@
+PN: libxcrypt
+PV: 4.4.28
+PR: r0
+PKGV: 4.4.28
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/libxcrypt/4.4.28-r0
+FILE_RELPATH: meta/recipes-core/libxcrypt/libxcrypt_4.4.28.bb
+SSTATE_PKGSPEC: sstate:libxcrypt:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:4.4.28:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:libxcrypt:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:4.4.28:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 880c97dbb69e54adc8c73239f7c02218b1248a192616b5652e66e5455cf3dc5a
+BB_TASKHASH: 2d8ccbc4807a67a7ab00e2af1bc00099d96a812e6726ee7d04d7f1dfee9ced81
+SSTATE_SWSPEC: sstate:libxcrypt::4.4.28:r0::8:

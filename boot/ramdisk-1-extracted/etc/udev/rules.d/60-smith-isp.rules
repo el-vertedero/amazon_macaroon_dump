@@ -1,0 +1,18 @@
+# Copyright (C) 2024 Amazon, Inc. All rights reserved.
+#
+# This file is part of Smith HAL.
+
+# Udev rules for Smith HAL and Smith ISP Devices.
+#
+#
+# These rules are responsible for setting proper permissions for user camera and group camera
+# for Smith ISP devices. 
+
+KERNEL=="v4l-subdev*|video*", DRIVERS=="vimc|smith-isp|mali_c10_gdc|dw-csi2|ov13858|ov02f10", ACTION=="add", GROUP="camera", OWNER="camera", MODE="0660", SECLABEL{smack}="System"
+
+KERNEL=="media*", DRIVERS=="smith-isp|dw-csi2|ov13858|ov02f10", ACTION=="add", GROUP="camera", OWNER="camera", MODE="0660", SECLABEL{smack}="System", ENV{SYSTEMD_ALIAS}+="/dev/smithisp", TAG+="systemd"
+
+KERNEL=="media*", DRIVERS=="mali_c10_gdc", ACTION=="add", GROUP="camera", OWNER="camera", MODE="0660", SECLABEL{smack}="System", ENV{SYSTEMD_ALIAS}+="/dev/smithgdc", TAG+="systemd"
+
+KERNEL=="media*", DRIVERS=="vimc", ACTION=="add", GROUP="camera", OWNER="camera", MODE="0660", SECLABEL{smack}="System",ENV{SYSTEMD_ALIAS}+="/dev/smithvimc", TAG+="systemd"
+

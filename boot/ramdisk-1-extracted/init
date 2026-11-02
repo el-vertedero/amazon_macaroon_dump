@@ -1,0 +1,811 @@
+#!/bin/sh
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+ROOT_MOUNT="/rootfs"
+ROOT_MOUNT_RO="/rootfs.ro"
+ROOT_MOUNT_TMP="/rootfs.tmp"
+INIT="/sbin/init"
+MOUNT="/bin/mount"
+UMOUNT="/bin/umount"
+FIRMWARE=""
+BOOT_MODE=""
+VENDOR_MOUNT="/vendor"
+VENDOR_LINKS="/vendor/.links"
+VERITYSETUP="/usr/sbin/veritysetup"
+# Whether the vendor image is overlaid with system image or is mounted as
+# /rootfs/vendor
+IS_VENDOR_OVERLAY_MOUNT="y"
+# Following partition name must be fixed:
+ROOT_DEVICE="/dev/block/platform/system"
+VENDOR_DEVICE="/dev/block/platform/vendor"
+SUPER_DEVICE="/dev/block/platform/super"
+DATA_DEVICE="/dev/block/platform/userdata"
+ENABLE_RESERVED_BLOCK="n"
+GROUP_RESERVED_DISK="515"
+RESERVED_BLOCK_PERCENTAGE=1
+VENDOR_OVERRIDE_LIST="/vendor/etc/override-list"
+VENDOR_OVERRIDE_DENYLIST="/etc/override-denylist"
+ROOT_MOUNT_OPTIONS="ro,noatime,nodiratime"
+VENDOR_MOUNT_OPTIONS="ro,noatime,nodiratime"
+FEC_CONFIG=""
+# Temp file storing logs before kmsg comes up.
+LOG_TEMP_FILE="/var/init.log"
+# Optional config file for kdump level
+DUMPLEVEL_FILE="/var/non-secure/crash/dumplevel"
+DEFAULT_DUMPLEVEL=31
+
+# Set default boot slot as A
+SLOT_SUFFIX="_a"
+
+# Make rootfs writable for dev mode
+ROOT_WRITABLE="n"
+
+# Disable DM_VERITY as default
+DM_VERITY_OFF="y"
+
+# Tracking init execution time
+INIT_START_TIME=0
+DM_VERITY_START_TIME=0
+DM_VERITY_TOTAL_TIME=0
+
+# Only mount read-only partitions
+MOUNT_RO_PARTS_ONLY="n"
+
+[ -z "$CONSOLE" ] && CONSOLE="/dev/console"
+
+fatal() {
+    echo "FAILED: $1" > /dev/kmsg
+    echo "FAILED: $1" > $CONSOLE
+    run_platform_init_hook "INIT_FAILURE" $1
+    ## TODO: record failure in misc FS when it is ready.
+
+    echo "Waiting for 10 seconds before rebooting ..." > $CONSOLE
+    sleep 10s
+    # reboot
+    echo b >/proc/sysrq-trigger
+}
+
+log() {
+    echo $1 > $CONSOLE
+    echo $(date +%T.%6N) $1 >> $LOG_TEMP_FILE
+}
+
+output_log_to_kmsg() {
+    while read line; do
+        echo "[INITRD] ${line}" > /rootfs/dev/kmsg
+    done < $LOG_TEMP_FILE
+}
+
+##  FUNC: run_platform_init_hook STAGE [MESSAGE]
+##     STAGE: option for different timing called by init script.
+run_platform_init_hook() {
+    platform_init_hook="/etc/platform-init-hook.sh"
+    if [ -f "$platform_init_hook" ]; then
+        if [ "$1" = "INIT_FAILURE" ]; then
+            log "Handle failure: $platform_init_hook $@"
+            $platform_init_hook $@
+        else
+            log "run platform init hook: $platform_init_hook $@ ..."
+            $platform_init_hook $@
+            [ $? -eq 0 ] || fatal "Failed to run $platform_init_hook $@"
+            log_trace "$1"
+        fi
+    fi
+}
+
+# Cheap way to get current time (monotonic)
+get_time_in_ms() {
+    uptime="/proc/uptime"
+    [ -e "$ROOT_MOUNT/$uptime" ] && uptime="$ROOT_MOUNT/$uptime"
+    curtime=$(awk '{print $1*1000}' $uptime)
+
+    # If arg is supplied, calculate duration
+    if [ "$1" ]; then
+        stime=$1
+        echo $((curtime - stime))
+    else
+        echo $curtime
+    fi
+}
+
+# log a stage marker to the ftrace buffer (no-op if trace_marker absent)
+TRACE_MARKER="/sys/kernel/tracing/trace_marker"
+log_trace() { [ -w "$TRACE_MARKER" ] && echo "initrd:$1" > "$TRACE_MARKER"; }
+
+initrd_boot_summary() {
+    BOOTTIME_INITRD_SENTINEL=${ROOT_MOUNT}/dev/.boottime_initrd
+    INIT_TOTAL_TIME=$(get_time_in_ms $INIT_START_TIME)
+    echo "INITRD_START_TIME=$INIT_START_TIME" >$BOOTTIME_INITRD_SENTINEL
+    echo "INITRD_TOTAL_TIME=$INIT_TOTAL_TIME" >>$BOOTTIME_INITRD_SENTINEL
+    log "INITRD_TIME $INIT_TOTAL_TIME ms"
+
+    if [ "${DM_VERITY_OFF}" != "y" ]; then
+        echo "DM_VERITY_START_TIME=$DM_VERITY_START_TIME" >>$BOOTTIME_INITRD_SENTINEL
+        echo "DM_VERITY_TOTAL_TIME=$DM_VERITY_TOTAL_TIME" >>$BOOTTIME_INITRD_SENTINEL
+    fi
+
+    if [ "$RESIZE_TIME" ]; then
+        echo "RESIZE_TOTAL_TIME=$RESIZE_TIME" >>$BOOTTIME_INITRD_SENTINEL
+    fi
+
+    # Indicate Amazon common boot init complete.
+    echo "AMZN_COMMON_BOOT_INIT_COMPLETE=1" >> $BOOTTIME_INITRD_SENTINEL
+}
+
+# Copied from initramfs-framework. The core of this script probably should be
+# turned into initramfs-framework modules to reduce duplication.
+udev_daemon() {
+    OPTIONS="/sbin/udev/udevd /sbin/udevd /lib/udev/udevd /lib/systemd/systemd-udevd"
+
+    for o in $OPTIONS; do
+        if [ -x "$o" ]; then
+            echo $o
+            return 0
+        fi
+    done
+
+    return 1
+}
+
+_UDEV_DAEMON=$(udev_daemon)
+
+early_setup() {
+    mkdir -p /proc
+    mkdir -p /sys
+    mount -t proc proc /proc
+    mount -t sysfs sysfs /sys
+    mount -t tracefs tracefs /sys/kernel/tracing 2>/dev/null
+    mount -t devtmpfs none /dev
+
+    mkdir -p /run
+    mkdir -p /var/run
+    mkdir -p /dev/block/platform
+
+    # After mount proc
+    INIT_START_TIME=$(get_time_in_ms)
+
+    $_UDEV_DAEMON --daemon
+    # Coldplug only the subsystems the initramfs needs before switch_root:
+    #   block - eMMC/SD storage for rootfs/vendor/userdata
+    #   mtd   - raw NAND (UBIFS devices)
+    #   ubi   - UBI layer on top of MTD
+    #   misc  - /dev/binderfs (binder IPC); without this, services that depend
+    #           on binder (security-manager, service-registrar) can race against
+    #           systemd's post-switch_root coldplug and hit their watchdog timeout,
+    #           triggering VFM reboots on boot-storm-heavy devices (e.g. post-OTA).
+    # All other subsystems (input, net, usb, display, ...) are re-coldplugged by
+    # systemd after switch_root, so nothing is permanently skipped.
+    udevadm trigger --action=add --subsystem-match=block --subsystem-match=mtd --subsystem-match=ubi --subsystem-match=misc
+    log_trace "EARLY_SETUP"
+}
+
+read_args() {
+    [ -z "$CMDLINE" ] && CMDLINE=$(cat /proc/cmdline)
+    for arg in $CMDLINE; do
+        case "$arg" in *=*) optarg="${arg#*=}" ;; *) optarg="" ;; esac
+        case $arg in
+        *boot.slot_suffix=*)
+            # pick the last instance of slot_suffix
+            SLOT_SUFFIX="$optarg"
+            ;;
+        rootfstype=*)
+            modprobe $optarg 2>/dev/null
+            ;;
+        LABEL=*)
+            label=$optarg
+            ;;
+        video=*)
+            video_mode=$arg
+            ;;
+        vga=*)
+            vga_mode=$arg
+            ;;
+        console=*)
+            if [ -z "${console_params}" ]; then
+                console_params=$arg
+            else
+                console_params="$console_params $arg"
+            fi
+            ;;
+        firmware=*)
+            FIRMWARE=$optarg
+            ;;
+        init=*)
+            init=$optarg
+            ;;
+        *boot.boot_mode=*)
+            BOOT_MODE=$optarg
+            ;;
+        *boot.dm_verity_off=*)
+            DM_VERITY_OFF=$optarg
+            ;;
+        *boot.root_rw=*)
+            ROOT_WRITABLE=$optarg
+            ;;
+        debugshell*)
+            if [ -z "$optarg" ]; then
+                shelltimeout=30
+            else
+                shelltimeout=$optarg
+            fi
+            ;;
+        *)
+            ## Ingore the unsupported options
+            echo "Ignore unknow option: $arg $optarg."
+            ;;
+        esac
+    done
+
+    VENDOR_DEVICE="$VENDOR_DEVICE$SLOT_SUFFIX"
+    ROOT_DEVICE="$ROOT_DEVICE$SLOT_SUFFIX"
+    log_trace "READ_ARGS"
+}
+
+run_platform_common_init() {
+    if [ -f ${ROOT_MOUNT}/etc/os-release ]; then
+        if grep -q -w 'BUILD_VARIANT="user"' ${ROOT_MOUNT}/etc/os-release; then
+            # Restrict dmesg access on user build
+            echo 1 > ${ROOT_MOUNT}/proc/sys/kernel/dmesg_restrict
+        fi
+    fi
+}
+
+boot_root() {
+    # Watches the udev event queue, and exits if all current events are handled
+    udevadm settle -t 10 --exit-if-exists=$DATA_DEVICE
+    # Kill udevd before switching to system. Or it will block system shutdown.
+    udevadm control -e
+    log_trace "UDEV_SETTLED"
+
+    # The rootfs does not yet contain kernel modules.  Copy it!
+    if [ ! -d ${ROOT_MOUNT}/lib/modules ]; then
+        cp -rf /lib/modules ${ROOT_MOUNT}/lib/
+        cp -rf /lib/firmware ${ROOT_MOUNT}/lib/
+        cp -rf /etc/modprobe.d ${ROOT_MOUNT}/etc/
+        cp -rf /etc/modules-load.d ${ROOT_MOUNT}/etc/
+        cp -rf /etc/modules ${ROOT_MOUNT}/etc/
+    fi
+
+    mount -n --move /proc ${ROOT_MOUNT}/proc
+    mount -n --move /sys ${ROOT_MOUNT}/sys
+    mount -n --move /dev ${ROOT_MOUNT}/dev
+
+    cd $ROOT_MOUNT
+
+    BOOTCHART_SENTINEL=$ROOT_MOUNT/rootfs.rw/.bootchart
+    if [ -e "$BOOTCHART_SENTINEL" ]; then
+        INIT_BOOTCHART=/lib/systemd/systemd-bootchart
+        if [ -e "$ROOT_MOUNT/$ROOT_MOUNT_RO/$INIT_BOOTCHART" ]; then
+            INIT=$INIT_BOOTCHART
+            rm -f $BOOTCHART_SENTINEL
+        fi
+    fi
+
+    run_platform_init_hook "INIT_BEFORE_SWITCH_ROOT"
+
+    run_platform_common_init
+
+    # save init end time
+    initrd_boot_summary
+
+    # Output logs saved in tempt file to kmsg
+    output_log_to_kmsg
+
+    # busybox switch_root supports -c option
+    log_trace "SWITCH_ROOT"
+    exec switch_root -c /dev/console $ROOT_MOUNT $INIT ||
+        fatal "Couldn't switch_root"
+}
+
+#Waiting for device to become ready
+wait_for_device() {
+    if [ -f "/etc/disable-vendor-partition" ]; then
+        VENDOR_DEVICE=""
+    fi
+
+    i=1
+    device_ready="0"
+    logical_partions_created="0"
+    while [ "$i" -le 100 ]; do #try upto 10-secs
+        if [ -e "${SUPER_DEVICE}" ] && [ "${logical_partions_created}" == "0" ]; then
+            # If there is a super device, create the logical devices
+            log "${SUPER_DEVICE} is ready now."
+            lpmount ${SUPER_DEVICE} || fatal "Failed to create logical partitions"
+            logical_partions_created="1"
+        fi
+        if [ "${VENDOR_DEVICE}" = "" ]; then
+            if [ -e "${ROOT_DEVICE}" ] && [ -e "${DATA_DEVICE}" ] ; then
+                log "${ROOT_DEVICE} is ready now."
+                device_ready="1"
+                break
+            fi
+        else
+            if [ -e "${ROOT_DEVICE}" ] && [ -e "${VENDOR_DEVICE}" ] && [ -e "${DATA_DEVICE}" ]; then
+                log "${ROOT_DEVICE},  ${VENDOR_DEVICE} and ${DATA_DEVICE} are ready now."
+                device_ready="1"
+                break
+            fi
+        fi
+        sleep 0.1
+        i=$((i + 1))
+    done
+    if [ "${device_ready}" = "1" ]; then
+        log "Devices are ready after ${i} x 100ms"
+    else
+        log "Devices are not ready even after 10 seconds"
+    fi
+    log_trace "DEVICES_READY"
+}
+
+is_recovery_mode_fr() {
+    #more checks to be added in the future
+    if [ "${BOOT_MODE}" = "factory_reset" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+is_recovery_mode_ota(){
+    #more checks to be added in the future
+    if [ "${BOOT_MODE}" = "ota" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+#Get into recovery mode
+exec_recovery_mode() {
+    exec /sbin/init
+}
+
+is_crash_kernel() {
+    # elfcorehdr indicates it's booting crash kernel
+    if grep -q "elfcorehdr" /proc/cmdline; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# get_kdump_level() takes a path prefix for dump config file as argument.
+#
+# Dump level for kdump can be configured via $DUMPLEVEL_FILE.
+# If the config file does not exists or does not contain valid config,
+# $DEFAULT_DUMPLEVEL is used.
+get_kdump_level() {
+    dump_file_prefix=$1
+    level_file="${dump_file_prefix}${DUMPLEVEL_FILE}"
+    test -f ${level_file} && . ${level_file}
+    test "${DUMPLEVEL}" -ge 0 -a "${DUMPLEVEL}" -le 31 2>/dev/null || unset DUMPLEVEL
+    echo ${DUMPLEVEL:-${DEFAULT_DUMPLEVEL}}
+}
+
+save_vmcore() {
+    wait_for_device
+    # makedumpfile needs /tmp to store temp files.
+    mkdir /tmp
+    mount_root_image
+    set_rootfs_overlays
+    root_dir=/rootfs/rootfs.ro
+    userdata_mount=/rootfs/rootfs.rw
+    userdata_dir=$userdata_mount/upperdir
+    vmcore_save_dir=$userdata_dir/var/non-secure/crash
+    mkdir -p $vmcore_save_dir
+    dump_level=$(get_kdump_level "$userdata_dir")
+    vmcore_save_path=$vmcore_save_dir/vmcore-$(date --utc +%FT%TZ)
+    log "Saving vmcore to $vmcore_save_path"
+    # makedumpfile binary is stored in system partition to
+    # save space in initramfs
+    makedumpfile=$root_dir/usr/bin/makedumpfile
+    LD_LIBRARY_PATH=$root_dir/usr/lib/ $makedumpfile -d $dump_level /proc/vmcore $vmcore_save_path
+    rc=$?
+    if [ $rc -eq 0 ]; then
+        gzip -9 $vmcore_save_path
+    else
+        log "makedumpfile failed: $rc"
+    fi
+    $UMOUNT $userdata_mount
+}
+
+
+# Read file list from /vendor/etc/override-list, and override system /etc files
+# files listed in /etc/override-denylist can't be overrided, such as /etc/passwd
+# and /etc/group
+vendor_override() {
+    if [ -f "$ROOT_MOUNT$VENDOR_OVERRIDE_LIST" ]; then
+        grep -h -v ^# $ROOT_MOUNT$VENDOR_OVERRIDE_LIST | while read -r line;
+        do
+            if grep -q $line $VENDOR_OVERRIDE_DENYLIST ; then
+                log "$line override denied"
+            else
+                if ! mount -o bind $ROOT_MOUNT/vendor$line $ROOT_MOUNT$line; then
+                    fatal "failed to override $line"
+                fi
+            fi
+        done
+    fi
+}
+
+# Try to mount the root image read-write.
+mount_root_image() {
+    mkdir $ROOT_MOUNT
+    mkdir $ROOT_MOUNT_RO
+    [ "${MOUNT_RO_PARTS_ONLY}" = "y" ] && mkdir $ROOT_MOUNT_TMP
+    mkdir $VENDOR_MOUNT
+    mknod /dev/loop0 b 7 0 2>/dev/null
+
+    if [ "$ROOT_DEVICE" != "" ]; then
+        # mount dm-verity rootfs
+        if [ "${DM_VERITY_OFF}" != "y" ]; then
+            log "dm-verity is enabled"
+            if [ -f "/etc/system.verity.conf" ]; then
+                . /etc/system.verity.conf
+                if [[ $FEC_OFFSET ]]; then
+                    FEC_CONFIG="--fec-device=${ROOT_DEVICE} --fec-offset=${FEC_OFFSET} --fec-roots=2"
+                fi
+
+                DM_VERITY_START_TIME=$(get_time_in_ms)
+                if ! $VERITYSETUP --data-block-size=${DATA_BLOCK_SIZE} --hash-offset=${DATA_SIZE} \
+                        open ${ROOT_DEVICE} rootfs ${ROOT_DEVICE} ${ROOT_HASH} \
+                        ${FEC_CONFIG}; then
+                    fatal "system dm-verity setup failure"
+                fi
+                DM_VERITY_TOTAL_TIME=$(get_time_in_ms ${DM_VERITY_START_TIME})
+                ROOT_DEVICE=/dev/mapper/rootfs
+            else
+                fatal "Missing system.verity.conf"
+            fi
+
+            if [ ! "${VENDOR_DEVICE}" = "" ]; then
+                if [ -f "/etc/vendor.verity.conf" ]; then
+                    unset FEC_OFFSET
+                    . /etc/vendor.verity.conf
+                    FEC_CONFIG=""
+                    if [[ $FEC_OFFSET ]]; then
+                        FEC_CONFIG="--fec-device=${VENDOR_DEVICE} --fec-offset=${FEC_OFFSET} --fec-roots=2"
+                    fi
+
+                    if ! $VERITYSETUP --data-block-size=${DATA_BLOCK_SIZE} --hash-offset=${DATA_SIZE} \
+                            open ${VENDOR_DEVICE} vendor_dm ${VENDOR_DEVICE} ${ROOT_HASH} \
+                            ${FEC_CONFIG}; then
+                        fatal "vendor dm-verity setup failure"
+                    fi
+                    VENDOR_DEVICE=/dev/mapper/vendor_dm
+                else
+                    fatal "Missing vendor.verity.conf"
+                fi
+            fi
+        else
+            log "WARNING: dm-verity is disabled"
+        fi
+
+        # ETX4 and EXT3 require noload option to ensure the system doesn't
+        # write journaling metadata to the block devices.
+        # Documentation https://linux.die.net/man/8/mount.
+        if blkid $ROOT_DEVICE | grep -q -e 'TYPE="ext4"' -e 'TYPE="ext3"'; then
+            ROOT_MOUNT_OPTIONS="${ROOT_MOUNT_OPTIONS},noload"
+        fi
+
+        if ! mount -o $ROOT_MOUNT_OPTIONS $ROOT_DEVICE $ROOT_MOUNT_RO; then
+            fatal "Could not mount rootfs device"
+        fi
+
+        if [ ! "${VENDOR_DEVICE}" = "" ]; then
+            if blkid $VENDOR_DEVICE | grep -q -e 'TYPE="ext4"' -e 'TYPE="ext3"'; then
+                VENDOR_MOUNT_OPTIONS="${VENDOR_MOUNT_OPTIONS},noload"
+            fi
+            if ! mount -o $VENDOR_MOUNT_OPTIONS $VENDOR_DEVICE $VENDOR_MOUNT; then
+                fatal "Could not mount vendor"
+            fi
+        fi
+    fi
+    log_trace "ROOT_MOUNTED"
+}
+
+# Function to get the reserved block count
+get_reserved_block_count() {
+    tune2fs -l $1 | grep 'Reserved block count' | awk '{print $4}'
+}
+
+# Function to set reserved block count
+set_reserved_block_percent() {
+    # Set the reserved blocks to x% of the total blocks
+    if tune2fs -m "$2" -g $GROUP_RESERVED_DISK "$1"; then
+        echo "Reserved blocks successfully set to $2%"
+    else
+        echo "Error setting reserved blocks" >&2
+    fi
+}
+
+# Setup system and vendor overlays
+set_rootfs_overlays() {
+    # determine which unification filesystem to use
+    union_fs_type=""
+    if grep -q -w "overlay" /proc/filesystems; then
+        union_fs_type="overlay"
+    else
+        union_fs_type=""
+    fi
+
+    # make a union mount if possible
+    case $union_fs_type in
+    "overlay")
+        mkdir -p /rootfs.rw
+
+        USERDATA_MOUNT_OPTIONS="rw,noatime,nodiratime,nosuid,nodev"
+        if [ "${ROOT_WRITABLE}" = "y" ]; then
+            USERDATA_MOUNT_OPTIONS="rw,noatime,nodiratime"
+        fi
+
+        # CARNIVAL-903: Run filesystem check before resize to clear any
+        # EXT4_ERROR_FS sticky bit that would cause resize2fs to abort.
+        # Uses fsck.${USERDATA_FSTYPE} for filesystem-type portability.
+        FSCK_PASSED=1
+        if [ "$USERDATA_FSTYPE" = "ext4" ]; then
+            log "Run fsck on $DATA_DEVICE before mount"
+            fsck.${USERDATA_FSTYPE} -y $DATA_DEVICE
+            fsck_rc=$?
+            # fsck rc: 0=clean, 1=errors corrected, 2=reboot needed
+            # rc >= 4 means uncorrected errors — skip resize to avoid
+            # extending a corrupt filesystem.
+            if [ $fsck_rc -ge 4 ]; then
+                log "fsck.${USERDATA_FSTYPE} failed (rc=$fsck_rc) on $DATA_DEVICE, skipping resize"
+                FSCK_PASSED=0
+            fi
+        fi
+
+        if [ -n "$RESIZE_MAX_SIZE" ] && [ "$FSCK_PASSED" = "1" ]; then
+            RESIZE_START_TIME=$(get_time_in_ms)
+            if [ "$USERDATA_FSTYPE" = "ext4" ]; then
+                if [ "$RESIZE_MAX_SIZE" = "0" ]; then
+                    log "Resize userdata $DATA_DEVICE to max"
+                    resize2fs -f $DATA_DEVICE || log "resize2fs failed: $?"
+                else
+                    # 1. Get current filesystem stats (Block Count * Block Size)
+                    # Still needs to use the actual block size (usually 4096) for accuracy
+                    current_bytes=$(tune2fs -l $DATA_DEVICE | awk '
+                        /Block count:/ {count=$3}
+                        /Block size:/ {size=$3}
+                        END {printf "%.0f", count * size}
+                    ')
+
+                    # 2. Convert RESIZE_MAX_SIZE to bytes using 1024-base (Decimal GB/MB)
+                    max_bytes=$(echo "$RESIZE_MAX_SIZE" | awk '
+                    {
+                        num=$0; gsub(/[GMLK]/, "", num);
+                        unit=$0; gsub(/[0-9]/, "", unit);
+                        mult=1;
+                        if (unit == "G") mult = 1024*1024*1024;
+                        else if (unit == "M") mult = 1024*1024;
+                        else if (unit == "K") mult = 1024;
+                        printf "%.0f", num * mult
+                    }
+                    ')
+
+                    log "Resize userdata currest=$current_bytes, requested=$max_bytes"
+                    # 3. Compare safely using awk to avoid 32-bit shell [ -lt ] overflow
+                    is_smaller=$(awk -v cur="$current_bytes" -v max="$max_bytes" 'BEGIN {print (max < cur ? 1 : 0)}')
+
+                    if [ "$is_smaller" -eq 1 ]; then
+                        log "WARNING: Cannot shrink userdata, skipping resize"
+                    else
+                        log "Resize userdata $DATA_DEVICE $RESIZE_MAX_SIZE"
+                        resize2fs -f $DATA_DEVICE "$RESIZE_MAX_SIZE" || log "resize2fs failed: $?"
+                    fi
+                fi
+            elif [ "$USERDATA_FSTYPE" = "f2fs" ]; then
+                # FIXME: add f2fs resize support later
+                resize.f2fs $DATA_DEVICE
+            fi
+            RESIZE_TIME=$(get_time_in_ms $RESIZE_START_TIME)
+        fi
+
+        if [ "${MOUNT_RO_PARTS_ONLY}" = "n" ] || [ "${ROOT_WRITABLE}" = "y" ]; then
+            if ! mount -o $USERDATA_MOUNT_OPTIONS $DATA_DEVICE /rootfs.rw; then
+                log "Could not mount $DATA_DEVICE. Attempting repair with fsck -f."
+                fsck.${USERDATA_FSTYPE} -f -y $DATA_DEVICE
+                if ! mount -o $USERDATA_MOUNT_OPTIONS $DATA_DEVICE /rootfs.rw; then
+                    fatal "Could not mount $DATA_DEVICE."
+                fi
+            fi
+        fi
+        if [ "${ENABLE_RESERVED_BLOCK}" = "y" ] && [ "$USERDATA_FSTYPE" = "ext4" ]; then
+            # Get the total and reserved block counts
+            reserved_blocks=$(get_reserved_block_count $DATA_DEVICE)
+
+            # Check if reserved blocks are set to 0
+            if [ "$reserved_blocks" -eq 0 ]; then
+                # Set the reserved blocks to 1%
+                set_reserved_block_percent $DATA_DEVICE $RESERVED_BLOCK_PERCENTAGE
+                # Verify and report the new reserved block count
+                new_reserved_blocks=$(get_reserved_block_count $DATA_DEVICE)
+                echo "New reserved block count is: $new_reserved_blocks"
+            else
+                echo "Reserved blocks are already set to a non-zero value: $reserved_blocks"
+            fi
+        fi
+        UPPERDIR="/rootfs.rw/upperdir"
+        WORKDIR="/rootfs.rw/work"
+        ROOT_TMPFS_OVERLAY="n"
+        if [ "${MOUNT_RO_PARTS_ONLY}" = "n" ]; then
+            mkdir -p $UPPERDIR $WORKDIR
+        elif [ "${ROOT_WRITABLE}" = "y" ]; then
+            ROOT_TMPFS_OVERLAY="y"
+            ROOT_WRITABLE="n"
+        fi
+
+        if [ "${ROOT_WRITABLE}" = "y" ]; then
+            # debug mode, make entire rootfs RW
+            if [ -z "${VENDOR_DEVICE}" ]; then
+                mount -t overlay overlay -o lowerdir=$ROOT_MOUNT_RO,upperdir=$UPPERDIR,workdir=$WORKDIR $ROOT_MOUNT
+            elif [ "$IS_VENDOR_OVERLAY_MOUNT" = "y" ]; then
+                # system and vendor are overlaid
+                mount --move $VENDOR_MOUNT $ROOT_MOUNT/$VENDOR_MOUNT
+                mount -t overlay overlay -o lowerdir=$ROOT_MOUNT_RO:$VENDOR_MOUNT,upperdir=$UPPERDIR,workdir=$WORKDIR $ROOT_MOUNT
+            else
+                # vendor is mounted separately
+                if [ -d "$VENDOR_LINKS" ] ; then
+                    LOWER_DIRS="$ROOT_MOUNT_RO:$VENDOR_LINKS"
+                else
+                    LOWER_DIRS="$ROOT_MOUNT_RO"
+                fi
+                mount -t overlay overlay -o lowerdir=$LOWER_DIRS,upperdir=$UPPERDIR,workdir=$WORKDIR $ROOT_MOUNT
+                mkdir -p $UPPERDIR/vendor $WORKDIR/vendor
+                #vendor directory is RW by overlay. Move vendor mount to vendor.ro
+                mount -t overlay overlay -o lowerdir=${VENDOR_MOUNT},upperdir=$UPPERDIR/vendor,workdir=$WORKDIR/vendor $ROOT_MOUNT/vendor
+                mkdir -p $ROOT_MOUNT/$VENDOR_MOUNT.ro
+                mount --move $VENDOR_MOUNT $ROOT_MOUNT/$VENDOR_MOUNT.ro
+            fi
+        else
+            # normal mode, rootfs is read only
+            if [ -z "${VENDOR_DEVICE}" ]; then
+                mount -o $ROOT_MOUNT_OPTIONS $ROOT_DEVICE $ROOT_MOUNT
+            elif [ "$IS_VENDOR_OVERLAY_MOUNT" = "y" ]; then
+                # system and vendor are overlaid as read only
+                mount -t overlay overlay -o lowerdir=$ROOT_MOUNT_RO:$VENDOR_MOUNT $ROOT_MOUNT
+                mount --move $VENDOR_MOUNT $ROOT_MOUNT/$VENDOR_MOUNT
+            else
+                # vendor is mounted separately
+                if [ -d "$VENDOR_LINKS" ] ; then
+                    # overlay /vendor/.links to the rootfs
+                    mount -t overlay overlay -o lowerdir=$ROOT_MOUNT_RO:$VENDOR_LINKS $ROOT_MOUNT
+                else
+                    mount -o $ROOT_MOUNT_OPTIONS $ROOT_DEVICE $ROOT_MOUNT
+                fi
+                mount --move $VENDOR_MOUNT $ROOT_MOUNT/$VENDOR_MOUNT
+            fi
+
+            # overlay /var and /home directories to RW
+            if [ "${MOUNT_RO_PARTS_ONLY}" = "n" ]; then
+                mkdir -p $UPPERDIR/var $WORKDIR/var
+                mkdir -p $UPPERDIR/home $WORKDIR/home
+                mount -t overlay overlay -o lowerdir=$ROOT_MOUNT_RO/var,upperdir=$UPPERDIR/var,workdir=$WORKDIR/var $ROOT_MOUNT/var
+                mount -t overlay overlay -o lowerdir=$ROOT_MOUNT_RO/home,upperdir=$UPPERDIR/home,workdir=$WORKDIR/home $ROOT_MOUNT/home
+            fi
+        fi
+
+        if [ "${ROOT_TMPFS_OVERLAY}" = "y" ]; then
+            RW_MIRROR=/rootfs.rw/mirror
+            TMP_MIRROR=$ROOT_MOUNT_TMP/mirror
+            mount -t tmpfs -o rw,noatime,mode=755 tmpfs $ROOT_MOUNT_TMP
+            cp /sbin/mirror-sync.sh $ROOT_MOUNT_TMP/.
+            mkdir -p $RW_MIRROR
+            mkdir -p $TMP_MIRROR
+
+            mount_base=$(cat /etc/root-mount-tmp.cfg | grep ^+)
+            mount_mod=$(cat $RW_MIRROR/root-mount-tmp.cfg | grep -v ^\#)
+            mount_list=""
+            for line in $mount_base
+            do
+                mount_list="$mount_list ${line#+}"
+            done
+            for line in $mount_mod
+            do
+                case $line in
+                    +*) echo adding=${line#+}
+                        mount_list="$mount_list ${line#+}"
+                        ;;
+                    -*) echo "removing=${line#-}"
+                        mount_list=$(echo $mount_list | sed "s|${line#-}||g")
+                        ;;
+                    *) ;;
+                esac
+            done
+            for mount in $mount_list
+            do
+                if [ ! -d $RW_MIRROR/$mount ]; then
+                    log "Creating empty $RW_MIRROR${mount}"
+                    mkdir -p $RW_MIRROR/$mount
+                fi
+                log "Creating writable directory $mount"
+                mkdir -p $ROOT_MOUNT_TMP/$mount
+                mkdir $ROOT_MOUNT_TMP/$mount/upperdir
+                mkdir $ROOT_MOUNT_TMP/$mount/work
+                mkdir -p $TMP_MIRROR/$mount
+                rm -r $TMP_MIRROR/$mount
+                ln -s $ROOT_MOUNT_TMP/$mount/upperdir $TMP_MIRROR/$mount
+                cp -r $RW_MIRROR/$mount/* $ROOT_MOUNT_TMP/$mount/upperdir 2> /dev/null
+                # For vendor paths, use the vendor partition as lowerdir since
+                # /rootfs.ro/vendor is just an empty mount point in system image
+                case $mount in
+                    ${VENDOR_MOUNT}/*) OVERLAY_LOWER=$ROOT_MOUNT${mount} ;;
+                    *) OVERLAY_LOWER=$ROOT_MOUNT_RO${mount} ;;
+                esac
+                mount -t overlay overlay -o lowerdir=$OVERLAY_LOWER,upperdir=$ROOT_MOUNT_TMP${mount}/upperdir,workdir=$ROOT_MOUNT_TMP${mount}/work $ROOT_MOUNT${mount}
+            done
+
+            # was only temporarily mounted to copy data to the tmpfs mount
+            umount /rootfs.rw
+
+            mount --move $ROOT_MOUNT_TMP $ROOT_MOUNT/$ROOT_MOUNT_TMP
+        fi
+
+        # move mounts to new root. Mount points rootfs.ro, rootfs.rw, vendor are pre-created in system image.
+        mount --move $ROOT_MOUNT_RO $ROOT_MOUNT/$ROOT_MOUNT_RO
+        if [ "${MOUNT_RO_PARTS_ONLY}" = "n" ]; then
+            mount --move /rootfs.rw $ROOT_MOUNT/rootfs.rw
+        fi
+
+        # make /mnt writable and volatile
+        mount -t tmpfs -o rw,noatime,mode=755 tmpfs $ROOT_MOUNT/mnt
+
+        # vendor override
+        vendor_override
+        ;;
+    "")
+        mount --move $ROOT_MOUNT_RO $ROOT_MOUNT
+        mount -t tmpfs -o rw,noatime,mode=755 tmpfs $ROOT_MOUNT/media
+        ;;
+    esac
+    log_trace "OVERLAYS_DONE"
+}
+
+early_setup
+
+read_args
+
+run_platform_init_hook "INIT_INSERT_KERNEL_MODULES" "$BOOT_MODE"
+
+if [ -f "/etc/vendor-mount" ]; then
+    log "Found /etc/vendor-mount, disabling vendor overlay mount."
+    IS_VENDOR_OVERLAY_MOUNT="n"
+fi
+
+if [ -f "/etc/reserved-block.conf" ]; then
+    log "Found /etc/reserved-block.conf, enabling reserved blocks for userdata"
+    ENABLE_RESERVED_BLOCK="y"
+    #Source reserved-block.conf to set RESERVED_BLOCK_PERCENTAGE
+    . /etc/reserved-block.conf
+fi
+
+if [ -f "/etc/mount-ro-parts-only" ]; then
+    log "Found /etc/mount-ro-parts-only, disabling all rw mounts"
+    MOUNT_RO_PARTS_ONLY="y"
+fi
+
+if is_recovery_mode_ota; then
+    # System and Vendor partition will not be mounted for Recovery OTA
+    wait_for_device
+    exec_recovery_mode
+elif is_recovery_mode_fr; then
+    # System and Vendor partition may be necessary in recovery
+    wait_for_device
+    mount_root_image
+    # Switch to recovery script
+    exec_recovery_mode
+elif is_crash_kernel; then
+    save_vmcore
+    sleep 1
+    reboot -f
+else
+    wait_for_device
+    run_platform_init_hook "INIT_EARLY_BOOT"
+    mount_root_image
+    set_rootfs_overlays
+    run_platform_init_hook "INIT_POST_MOUNT_READY"
+    # boot the image
+    boot_root
+fi

@@ -1,0 +1,12 @@
+PN: gcc-runtime
+PV: 11.2.0
+PR: r0
+PKGV: 11.2.0
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/gcc-runtime/11.2.0-r0
+FILE_RELPATH: meta/recipes-devtools/gcc/gcc-runtime_11.2.bb
+SSTATE_PKGSPEC: sstate:gcc-runtime:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:11.2.0:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/VegaYoctoBuildMacaroonRelease/vega/build-macaroon-release/sstate-empty-poc/*/*/sstate:gcc-runtime:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:11.2.0:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: ca93e9bba9ca84252f6e027bd9b81b7895fcb9fcaf212ed2cb9208b9c18e2b62
+BB_TASKHASH: f8b7d24c76094ca2bc8539dd0478652651c3763d8e9f6bcddc7a01c6d3f893cb
+SSTATE_SWSPEC: sstate:gcc-runtime::11.2.0:r0::8:

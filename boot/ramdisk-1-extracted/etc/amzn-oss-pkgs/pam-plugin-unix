@@ -1,0 +1,12 @@
+PN: libpam
+PV: 1.5.2
+PR: r0
+PKGV: 1.5.2
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/libpam/1.5.2-r0
+FILE_RELPATH: meta/recipes-extended/pam/libpam_1.5.2.bb
+SSTATE_PKGSPEC: sstate:libpam:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.5.2:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:libpam:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.5.2:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 4aaa744e858abb13f0f72d4babe0b40522fe6f70ed65e13e2e18ec89f2b8a3a7
+BB_TASKHASH: 45e820548559af352b8b5b86e7f0722d923249c71ad02b8dff93e3e50713c040
+SSTATE_SWSPEC: sstate:libpam::1.5.2:r0::8:

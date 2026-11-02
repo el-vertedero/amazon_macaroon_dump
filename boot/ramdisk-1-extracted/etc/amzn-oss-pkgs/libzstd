@@ -1,0 +1,12 @@
+PN: zstd
+PV: 1.5.2
+PR: r0
+PKGV: 1.5.2
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/zstd/1.5.2-r0
+FILE_RELPATH: meta/recipes-extended/zstd/zstd_1.5.2.bb
+SSTATE_PKGSPEC: sstate:zstd:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.5.2:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:zstd:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.5.2:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 588d826ca3bd602578f9e534125276cd9cd1e9521ba606da41ceba0a7cf2da92
+BB_TASKHASH: 9a766a681099d03dad20502cb8cee32cddd516a64ff2a0b419e7a657ca10ff20
+SSTATE_SWSPEC: sstate:zstd::1.5.2:r0::8:

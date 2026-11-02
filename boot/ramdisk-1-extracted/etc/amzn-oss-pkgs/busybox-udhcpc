@@ -1,0 +1,12 @@
+PN: busybox
+PV: 1.35.0
+PR: r0
+PKGV: 1.35.0
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/busybox/1.35.0-r0
+FILE_RELPATH: meta/recipes-core/busybox/busybox_1.35.0.bb
+SSTATE_PKGSPEC: sstate:busybox:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.35.0:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:busybox:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.35.0:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: af8425130bd44894e496646e3a36b8d8c85a7be7152d386e936559da94939203
+BB_TASKHASH: ee139d5c1bf238b8dc3c9ed91052abf3a24dd7cd9881c251ceaface7ec472ce0
+SSTATE_SWSPEC: sstate:busybox::1.35.0:r0::8:

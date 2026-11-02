@@ -1,0 +1,12 @@
+PN: util-linux
+PV: 2.37.4
+PR: r0
+PKGV: 2.37.4
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/util-linux/2.37.4-r0
+FILE_RELPATH: meta/recipes-core/util-linux/util-linux_2.37.4.bb
+SSTATE_PKGSPEC: sstate:util-linux:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.37.4:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:util-linux:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:2.37.4:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: c5187520efa6443672e91dc6f8b78037f8b3f11051e401e8dc9e8856a35f2eee
+BB_TASKHASH: 03fe54965e852eb1f71aef748bd7e1e794ad3b27fa9b3ffc1ce0aba2f8c1e8a7
+SSTATE_SWSPEC: sstate:util-linux::2.37.4:r0::8:

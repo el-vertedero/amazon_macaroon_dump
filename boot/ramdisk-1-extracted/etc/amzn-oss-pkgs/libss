@@ -1,0 +1,12 @@
+PN: e2fsprogs
+PV: 1.46.5
+PR: r0
+PKGV: 1.46.5
+PKGR: r0@EXTENDPRAUTO@
+STAMP: <TMPDIR>/stamps/armv7at2hf-neon-vfpv4-poky-linux-gnueabi/e2fsprogs/1.46.5-r0
+FILE_RELPATH: meta/recipes-devtools/e2fsprogs/e2fsprogs_1.46.5.bb
+SSTATE_PKGSPEC: sstate:e2fsprogs:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.46.5:r0:armv7at2hf-neon-vfpv4:8:
+SSTATE_PATHSPEC: /opt/workspace/common/sstate-cache-macaroon/*/*/sstate:e2fsprogs:armv7at2hf-neon-vfpv4-poky-linux-gnueabi:1.46.5:r0:armv7at2hf-neon-vfpv4:8:*_${SSTATE_PATH_CURRTASK}.tar.zst*
+BB_BASEHASH:task-do_package: 44291fc7e13507c7433fe36c81fb0b913bea29ec832d5cd73f2fac6db2ea8fb3
+BB_TASKHASH: 67f134172ca16887af0631185755e0d43a03a0843174ec996194b66015a24995
+SSTATE_SWSPEC: sstate:e2fsprogs::1.46.5:r0::8:
