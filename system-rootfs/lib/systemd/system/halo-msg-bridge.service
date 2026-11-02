@@ -1,0 +1,43 @@
+[Unit]
+Description=Core Messaging Bridge
+After=ace_messaging_service.service halo-hub-core.service
+
+[Service]
+EnvironmentFile=-/etc/halo/common-env
+ExecStartPre=+/bin/sh -c '/bin/mkdir -p /var/lib/data/halo/var/log'
+ExecStartPre=+/bin/chown -R root:halo /var/lib/data/halo
+ExecStartPre=+/bin/chmod -R 775 /var/lib/data/halo
+ExecStart=/usr/bin/core-messaging-bridge
+Restart=always
+
+SupplementaryGroups=system aipc kvstore
+ReadWritePaths=/var/lib/data/ace/aipc/ /var/lib/data/ace/kvstorage/
+
+User=halo
+Group=halo
+
+# Fortifying the service
+SmackProcessLabel=System
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictAddressFamilies=AF_INET
+RestrictAddressFamilies=AF_INET6
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+PrivateDevices=true
+
+#Enable AIPC/IPCN Access
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+[Install]

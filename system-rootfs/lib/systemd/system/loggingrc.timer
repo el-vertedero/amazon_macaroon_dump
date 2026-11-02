@@ -1,0 +1,13 @@
+[Unit]
+Description="Run logging remote config every 24 hours."
+
+[Timer]
+# First run after boot, wait 10 min to give network and OTA group time to populate.
+OnBootSec=10min
+
+# Subsequent runs every 24 hours after last successful activation.
+OnUnitActiveSec=24h
+Unit=loggingrc.service
+
+[Install]
+WantedBy=timers.target

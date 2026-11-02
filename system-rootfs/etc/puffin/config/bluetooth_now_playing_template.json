@@ -1,0 +1,117 @@
+{
+  "type": "APL",
+  "version": "1.6",
+  "license": "Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.\nSPDX-License-Identifier: LicenseRef-.amazon.com.-AmznSL-1.0\nLicensed under the Amazon Software License  http://aws.amazon.com/asl/",
+  "settings": {
+    "_comment": "Dummy AudioPlayer settings required so the extension registers in our document scope, giving our empty OnPlayerActivityUpdated override precedence over the imported now-playing:1.0.0 handler.",
+    "AudioPlayer": {
+      "playbackStateName": "playerStatus"
+    }
+  },
+  "extensions": [
+    {
+      "name": "AudioPlayer",
+      "uri": "aplext:audioplayer:10"
+    }
+  ],
+  "AudioPlayer:OnPlayerActivityUpdated": [],
+  "_comment_AudioPlayer": "The imported now-playing:1.0.0 package registers the AudioPlayer extension internally and uses OnPlayerActivityUpdated to set playPauseButton checked state via the slow MediaSession/PlayerControllerAdapter path (~3-5s delay through A2DP REMOTE_SUSPEND). We override the handler to empty so the button is driven exclusively by our fast SetState from setIsPlayingInPlaceLocked (~150ms via AVRCP callback). DEE-660367.",
+  "theme": "dark",
+  "import": [
+    {
+      "name": "now-playing",
+      "version": "1.0.0"
+    }
+  ],
+  "resources": [],
+  "styles": {},
+  "onMount": [
+    {
+      "when": "${environment.reason != 'reinflation'}",
+      "type": "SetValue",
+      "componentId": "btNpsRoot",
+      "property": "playerActivityStatus",
+      "value": "PLAYING"
+    }
+  ],
+  "graphics": {},
+  "commands": {},
+  "layouts": {},
+  "mainTemplate": {
+    "parameters": [
+      "payload"
+    ],
+    "items": [
+      {
+        "type": "Container",
+        "id": "btNpsRoot",
+        "preserve": [
+          "playerActivityStatus"
+        ],
+        "bind": [
+          {
+            "name": "playerActivityStatus",
+            "type": "string",
+            "value": "PAUSED",
+            "onChange": {
+              "type": "SetState",
+              "componentId": "playPauseButton",
+              "state": "checked",
+              "value": "${playerActivityStatus == 'PLAYING'}"
+            }
+          },
+          {
+            "name": "btAlbum",
+            "value": "${payload.nowPlayingData.infoText.Album}"
+          },
+          {
+            "name": "btTitle",
+            "value": "${payload.nowPlayingData.infoText.Title}"
+          },
+          {
+            "name": "btArtist",
+            "value": "${payload.nowPlayingData.infoText.Artist}"
+          }
+        ],
+        "items": [
+          {
+            "type": "NowPlayingTemplate",
+            "playerActivityStatus": "${playerActivityStatus}",
+            "sliderAllowScrubbing": false,
+            "sliderMediaLength": null,
+            "primaryText": "${btAlbum}",
+            "secondaryText": "${btTitle}",
+            "tertiaryText": "${btArtist}",
+            "primaryControlPlayAction": {
+              "type": "SendEvent",
+              "arguments": ["btPlay"]
+            },
+            "primaryControlPauseAction": {
+              "type": "SendEvent",
+              "arguments": ["btPause"]
+            },
+            "secondaryControlsLeftAction": {
+              "type": "SendEvent",
+              "arguments": ["btPrevious"]
+            },
+            "secondaryControlsRightAction": {
+              "type": "SendEvent",
+              "arguments": ["btNext"]
+            }
+          }
+        ],
+        "width": "100%",
+        "height": "100%",
+        "onMount": [
+          {
+            "when": "${environment.reason == 'reinflation'}",
+            "type": "SetState",
+            "componentId": "playPauseButton",
+            "state": "checked",
+            "value": "${playerActivityStatus == 'PLAYING'}"
+          }
+        ]
+      }
+    ]
+  }
+}

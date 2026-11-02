@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# help function
+show_help() {
+cat << EOF
+Usage: shipmode [-h HELP] [-t TIMEOUT]
+   -h         display help and exit
+   -t TIMEOUT timeout in seconds
+EOF
+}
+
+# set default timeout
+timeout=5
+# parse arguements
+while getopts ht: opt; do
+    case $opt in
+        h)
+           show_help
+           exit 0
+           ;;
+        t) timeout=$OPTARG
+           ;;
+        *)
+           show_help
+           exit 1
+           ;;
+    esac
+done
+
+echo "shipmode triggered, timeout=$timeout"
+/bin/touch /run/shipmode/shipmode.txt
+# wait for console log file to be created
+while ((timeout > 0)); do
+    if [[ -f "/run/shipmode/console.txt" ]]; then
+        break
+    fi
+    sleep 1;
+    ((timeout -= 1))
+done
+# cat console log file
+cat /run/shipmode/console.txt
+exit 0

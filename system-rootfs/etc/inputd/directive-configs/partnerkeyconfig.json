@@ -1,0 +1,1396 @@
+{
+    "version": 10,
+    "remotesWithSkuids": [
+        {
+            "skuid": "0x000a",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "hbo"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "psvue"
+                }
+            ]
+        },
+        {
+            "skuid": "0x000d",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "hbo"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "psvue"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0012",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "hbo"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "psvue"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0015",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "hbo"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "hulu"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0016",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "hbo"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "hulu"
+                }
+            ]
+        },
+        {
+            "skuid": "0x000b",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "ctv"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "crave"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0022",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "ctv"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "crave"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0023",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "ctv"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "crave"
+                }
+            ]
+        },
+        {
+            "skuid": "0x000c",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "zee5"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "sony"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0011",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "zee5"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "sony"
+                }
+            ]
+        },
+        {
+            "skuid": "0xF",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "livetv"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "apps"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0010",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "dazn"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "tvnow"
+                }
+            ]
+        },
+        {
+            "skuid": "0x000e",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "dazn"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "tvnow"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0013",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "dazn"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "tvnow"
+                }
+            ]
+        },
+        {
+            "skuid": "0x001a",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "hbo"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "hulu"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0028",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "hbo"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "hulu"
+                }
+            ]
+        },
+        {
+            "skuid": "0x002e",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "amazonmusic"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "apps"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0024",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "amazonmusic"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "apps"
+                }
+            ]
+        },
+        {
+            "skuid": "0x011a",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "amazonmusic"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "apps"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0035",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "livetv"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "explorefvp"
+                }
+            ]
+        },
+        {
+            "skuid": "0x006e",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "apps"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "explorefvp"
+                }
+            ]
+        },
+        {
+            "skuid": "0x003c",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "hulu"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0047",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "imdb"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "hulu"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0048",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "dazn"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "disney"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0049",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "dazn"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "crave"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0037",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "hulu"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0038",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "amazonmusic"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0039",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "dazn"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "amazonmusic"
+                }
+            ]
+        },
+        {
+            "skuid": "0x003a",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "apps"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "amazonmusic"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0017",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "amazonmusic"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "myfca"
+                }
+            ]
+        },
+        {
+            "skuid": "0x004e",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "myfca"
+                }
+            ]
+        },
+        {
+            "skuid": "0x004f",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "download"
+                }
+            ]
+        },
+        {
+            "skuid": "0x002c",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "amazonmusic"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "apps"
+                }
+            ]
+        },
+        {
+            "skuid": "0x006b",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "amazonmusic"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "apps"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0042",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "explorefvp"
+                },
+                {
+                    "event": "KEYCODE_TV_TELETEXT",
+                    "tag": "livetv"
+                }
+            ]
+        },
+        {
+            "skuid": "0x006c",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "amazonmusic"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "explorefvp"
+                },
+                {
+                    "event": "KEYCODE_TV_TELETEXT",
+                    "tag": "livetv"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0044",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "apps"
+                },
+                {
+                    "event": "KEYCODE_TV_TELETEXT",
+                    "tag": "livetv"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0050",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "download"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "apps"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0051",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "download"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "myfca"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0043",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "tvnow"
+                }
+            ]
+        },
+        {
+            "skuid": "0x003b",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "apps"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "silk"
+                }
+            ]
+        },
+        {
+            "skuid": "0x006d",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "silk"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "apps"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0054",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "apps"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0059",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "amazonmusic"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0055",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "dazn"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "abema"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0056",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "amazonmusic"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "abema"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0057",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "apps"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "amazonmusic"
+                }
+            ]
+        },
+        {
+            "skuid": "0x005a",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "abema"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "amazonmusic"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0058",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "amazonmusic"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0060",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "directv"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "peacock"
+                }
+            ]
+        },
+        {
+            "skuid": "0x006a",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "directv"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "peacock"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0061",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "tver"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "abema"
+                }
+            ]
+        },
+        {
+            "skuid": "0x0062",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "tver"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "unext"
+                }
+            ]
+        },
+        {
+            "skuid": "0x021a",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "tver"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "unext"
+                },
+                {
+                    "event": "KEYCODE_APP_6",
+                    "tag": "hulu"
+                },
+                {
+                    "event": "KEYCODE_APP_7",
+                    "tag": "abema"
+                },
+                {
+                    "event": "KEYCODE_APP_8",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_9",
+                    "tag": "youtube"
+                }
+            ]
+        },
+        {
+            "skuid": "0x021b",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "youtube"
+                },
+                {
+                    "event": "KEYCODE_APP_6",
+                    "tag": "amazonmusic"
+                },
+                {
+                    "event": "KEYCODE_APP_7",
+                    "tag": "apps"
+                }
+            ]
+        },
+        {
+            "skuid": "0x021c",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "youtube"
+                },
+                {
+                    "event": "KEYCODE_APP_6",
+                    "tag": "amazonmusic"
+                },
+                {
+                    "event": "KEYCODE_APP_7",
+                    "tag": "apps"
+                }
+            ]
+        },
+        {
+            "skuid": "0x021f",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "youtube"
+                },
+                {
+                    "event": "KEYCODE_APP_6",
+                    "tag": "amazonmusic"
+                },
+                {
+                    "event": "KEYCODE_APP_7",
+                    "tag": "apps"
+                }
+            ]
+        },
+        {
+            "skuid": "0x021e",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "youtube"
+                },
+                {
+                    "event": "KEYCODE_APP_6",
+                    "tag": "explorefvp"
+                },
+                {
+                    "event": "KEYCODE_APP_7",
+                    "tag": "apps"
+                }
+            ]
+        },
+        {
+            "skuid": "0x021d",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "directv"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "peacock"
+                }
+            ]
+        },
+        {
+            "skuid": "0x007a",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "disney"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "youtube"
+                }
+            ]
+        },
+        {
+            "skuid": "0x008b",
+            "keyMap": [
+                {
+                    "event": "KEYCODE_APP_1",
+                    "tag": "netflix"
+                },
+                {
+                    "event": "KEYCODE_APP_2",
+                    "tag": "primevideo"
+                },
+                {
+                    "event": "KEYCODE_APP_3",
+                    "tag": "youtube"
+                },
+                {
+                    "event": "KEYCODE_APP_4",
+                    "tag": "disney"
+                }
+            ]
+        }
+    ],
+    "remoteWithSkuidDefaultKeyMap": [
+        {
+            "event": "KEYCODE_APP_1",
+            "tag": "netflix"
+        },
+        {
+            "event": "KEYCODE_APP_2",
+            "tag": "primevideo"
+        },
+        {
+            "event": "KEYCODE_APP_3",
+            "tag": "disney"
+        },
+        {
+            "event": "KEYCODE_APP_4",
+            "tag": "hulu"
+        },
+        {
+            "event": "KEYCODE_APP_5",
+            "tag": "youtube"
+        },
+        {
+            "event": "KEYCODE_APP_6",
+            "tag": "peacock"
+        },
+        {
+            "event": "KEYCODE_APP_7",
+            "tag": "directv"
+        },
+        {
+            "event": "KEYCODE_APP_8",
+            "tag": "apps"
+        },
+        {
+            "event": "KEYCODE_APP_9",
+            "tag": "amazonmusic"
+        },
+        {
+            "event": "KEYCODE_APP_10",
+            "tag": "hbo"
+        },
+        {
+            "event": "KEYCODE_APP_11",
+            "tag": "livetv"
+        },
+        {
+            "event": "KEYCODE_APP_12",
+            "tag": "silk"
+        }
+    ]
+}

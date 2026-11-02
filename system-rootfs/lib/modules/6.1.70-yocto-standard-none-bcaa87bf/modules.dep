@@ -1,0 +1,74 @@
+kernel/crypto/cmac.ko:
+kernel/crypto/tcrypt.ko:
+kernel/crypto/ecc.ko:
+kernel/crypto/ecdh_generic.ko: kernel/crypto/ecc.ko
+kernel/drivers/video/backlight/pwm_bl.ko:
+kernel/drivers/char/hw_random/optee-rng.ko:
+kernel/drivers/gpu/drm/drm_shmem_helper.ko:
+kernel/drivers/gpu/drm/vkms/vkms.ko: kernel/drivers/gpu/drm/drm_shmem_helper.ko
+kernel/drivers/spi/spi-bitbang.ko:
+kernel/drivers/usb/gadget/function/usb_f_acm.ko: kernel/drivers/usb/gadget/libcomposite.ko kernel/drivers/usb/gadget/function/u_serial.ko
+kernel/drivers/usb/gadget/function/usb_f_ss_lb.ko: kernel/drivers/usb/gadget/libcomposite.ko
+kernel/drivers/usb/gadget/function/u_serial.ko:
+kernel/drivers/usb/gadget/function/usb_f_serial.ko: kernel/drivers/usb/gadget/libcomposite.ko kernel/drivers/usb/gadget/function/u_serial.ko
+kernel/drivers/usb/gadget/function/usb_f_obex.ko: kernel/drivers/usb/gadget/libcomposite.ko kernel/drivers/usb/gadget/function/u_serial.ko
+kernel/drivers/usb/gadget/function/u_ether.ko:
+kernel/drivers/usb/gadget/function/usb_f_ncm.ko: kernel/drivers/usb/gadget/function/u_ether.ko kernel/drivers/usb/gadget/libcomposite.ko
+kernel/drivers/usb/gadget/function/usb_f_ecm.ko: kernel/drivers/usb/gadget/function/u_ether.ko kernel/drivers/usb/gadget/libcomposite.ko
+kernel/drivers/usb/gadget/function/usb_f_eem.ko: kernel/drivers/usb/gadget/function/u_ether.ko kernel/drivers/usb/gadget/libcomposite.ko
+kernel/drivers/usb/gadget/function/usb_f_ecm_subset.ko: kernel/drivers/usb/gadget/function/u_ether.ko kernel/drivers/usb/gadget/libcomposite.ko
+kernel/drivers/usb/gadget/function/usb_f_rndis.ko: kernel/drivers/usb/gadget/function/u_ether.ko kernel/drivers/usb/gadget/libcomposite.ko
+kernel/drivers/usb/gadget/function/usb_f_mass_storage.ko: kernel/drivers/usb/gadget/libcomposite.ko
+kernel/drivers/usb/gadget/function/usb_f_fs.ko: kernel/drivers/usb/gadget/libcomposite.ko
+kernel/drivers/usb/gadget/legacy/g_mass_storage.ko: kernel/drivers/usb/gadget/function/usb_f_mass_storage.ko kernel/drivers/usb/gadget/libcomposite.ko
+kernel/drivers/usb/gadget/legacy/g_serial.ko: kernel/drivers/usb/gadget/libcomposite.ko
+kernel/drivers/usb/gadget/libcomposite.ko:
+kernel/drivers/input/keyboard/atkbd.ko: kernel/drivers/input/vivaldi-fmap.ko
+kernel/drivers/input/keyboard/gpio_keys.ko:
+kernel/drivers/input/vivaldi-fmap.ko:
+kernel/drivers/i2c/busses/i2c-gpio.ko:
+kernel/drivers/bluetooth/btsdio.ko: kernel/net/bluetooth/bluetooth.ko kernel/net/rfkill/rfkill.ko kernel/crypto/ecdh_generic.ko kernel/crypto/ecc.ko
+kernel/drivers/amf/amf.ko: kernel/drivers/amf/mpc.ko
+kernel/drivers/amf/mpc.ko:
+kernel/drivers/adf/adf_ipc/adf_ipc.ko: kernel/drivers/amf/amf.ko kernel/drivers/amf/mpc.ko
+kernel/net/bluetooth/bluetooth.ko: kernel/net/rfkill/rfkill.ko kernel/crypto/ecdh_generic.ko kernel/crypto/ecc.ko
+kernel/net/bluetooth/rfcomm/rfcomm.ko: kernel/net/bluetooth/bluetooth.ko kernel/net/rfkill/rfkill.ko kernel/crypto/ecdh_generic.ko kernel/crypto/ecc.ko
+kernel/net/bluetooth/bnep/bnep.ko: kernel/net/bluetooth/bluetooth.ko kernel/net/rfkill/rfkill.ko kernel/crypto/ecdh_generic.ko kernel/crypto/ecc.ko
+kernel/net/bluetooth/hidp/hidp.ko: kernel/net/bluetooth/bluetooth.ko kernel/net/rfkill/rfkill.ko kernel/crypto/ecdh_generic.ko kernel/crypto/ecc.ko
+kernel/net/rfkill/rfkill.ko:
+extra/libs/dsp_host_driver/azma_hifi1_driver/hifi1_log.ko:
+mediatek/wifi/wlan_mt7902_sdio.ko: mediatek/wifi/wlan_mt7902_sdio_prealloc.ko extra/net/mac80211/mac80211.ko extra/net/wireless/cfg80211.ko mediatek/wifi/wlan_mt7902_sdio_reset.ko extra/compat/compat.ko kernel/net/rfkill/rfkill.ko
+extra/acenna_kmod.ko:
+extra/libs/dsp_host_driver/azma_hifi1_driver/hifi1_debug.ko: extra/libs/dsp_host_driver/hifi_host_driver.ko extra/libs/dsp_host_driver/machine_driver/hifi_pre_machine.ko
+extra/libs/codecs/es7210L.ko: extra/libs/codecs/codec_utils.ko
+extra/libs/codecs/codec_utils.ko:
+mediatek/wifi/wlan_mt7902_sdio_reset.ko: extra/compat/compat.ko
+extra/libs/codecs/es7243l.ko: extra/libs/codecs/codec_utils.ko
+extra/libs/codecs/aw85805s.ko: extra/libs/codecs/codec_utils.ko
+extra/amzn_privacy.ko:
+extra/libs/dmac/dw-audio-dmac-platform.ko:
+extra/libs/codecs/tas6582.ko: extra/libs/codecs/codec_utils.ko
+extra/nna.ko:
+extra/thermal_module.ko:
+extra/libs/dsp_host_driver/machine_driver/hifi1_machine.ko: extra/libs/codecs/codec_utils.ko extra/libs/dsp_host_driver/hifi_host_driver.ko extra/libs/dsp_host_driver/machine_driver/hifi_pre_machine.ko
+extra/perfinfo.ko:
+extra/adf_sound_card.ko:
+extra/libs/codecs/tas2781.ko: extra/libs/codecs/codec_utils.ko
+extra/libs/dsp_host_driver/azma_hifi1_driver/hifi1_pcm.ko: extra/libs/dsp_host_driver/hifi_host_driver.ko extra/libs/dsp_host_driver/machine_driver/hifi_pre_machine.ko
+mediatek/wifi/wlan_mt7902_sdio_prealloc.ko: extra/compat/compat.ko
+extra/libs/dsp_host_driver/hifi_proc.ko: extra/libs/dsp_host_driver/machine_driver/hifi1_machine.ko extra/libs/codecs/codec_utils.ko extra/libs/dsp_host_driver/hifi_host_driver.ko extra/libs/dsp_host_driver/machine_driver/hifi_pre_machine.ko
+extra/libs/dsp_host_driver/azma_hifi1_driver/hifi1_cpu.ko:
+extra/net/wireless/cfg80211.ko: extra/compat/compat.ko kernel/net/rfkill/rfkill.ko
+extra/libs/codecs/ax5688.ko: extra/libs/codecs/codec_utils.ko
+extra/libs/codecs/aw89401.ko: extra/libs/codecs/codec_utils.ko
+extra/libs/codecs/tas5805m.ko: extra/libs/codecs/codec_utils.ko
+extra/libs/codecs/tlv320adc5120.ko: extra/libs/codecs/codec_utils.ko
+extra/amzn_cpld.ko:
+extra/libs/codecs/tlv320adc5140.ko: extra/libs/codecs/codec_utils.ko
+extra/libs/codecs/tas5815m.ko: extra/libs/codecs/codec_utils.ko
+extra/perf_cpu_info.ko:
+extra/libs/dsp_host_driver/hifi_host_driver.ko: extra/libs/dsp_host_driver/machine_driver/hifi_pre_machine.ko
+extra/libs/dsp_host_driver/machine_driver/hifi_pre_machine.ko:
+extra/libs/codecs/aw85806.ko: extra/libs/codecs/codec_utils.ko
+extra/net/mac80211/mac80211.ko: extra/net/wireless/cfg80211.ko extra/compat/compat.ko kernel/net/rfkill/rfkill.ko
+extra/compat/compat.ko:

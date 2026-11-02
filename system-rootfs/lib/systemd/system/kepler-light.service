@@ -1,0 +1,51 @@
+[Unit]
+Description=Light Service to control backlight and LED devices 
+After=dbus.socket
+Conflicts=shutdown.target
+ConditionSecurity=smack
+Wants=service-registrar.service
+PartOf=service-registrar.service
+# Adding dependency on AMF service
+After=ace_amfd.service
+Wants=ace_amfd.service
+# Soft dependency on minerva service
+After=minerva.service
+Wants=minerva.service
+
+[Service]
+Type=notify
+ExecStartPre=/bin/sleep 1
+ExecStart=/usr/bin/lightservice_server
+Restart=always
+TimeoutStopSec=3
+
+#Nonroot user
+DynamicUser=yes
+
+# Further restrict the API subtrees, as most services don't need these.
+PrivateDevices=yes
+
+SmackProcessLabel=System
+
+# Adding light service to aipc supplmentary group to make it accessible.
+SupplementaryGroups=aipc system input
+
+# Make AIPC visible
+ReadWritePaths=/var/lib/data/ace/aipc/
+
+# AIPC over Binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+DeviceAllow=/dev/smqipc_0 rw                                            
+BindPaths=-/dev/smqipc_0                                                
+ReadWritePaths=-/dev/smqipc_0  
+
+# Restrict the permitted syscalls to a reasonable set used by common system services.
+# If an unexpected syscall occurs, return EPERM instead of terminating.
+SystemCallFilter=@system-service @network-io @basic-io @raw-io @file-system
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

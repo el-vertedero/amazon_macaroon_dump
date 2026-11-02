@@ -1,0 +1,4 @@
+ACTION=="add", KERNEL=="amf_0", OWNER="root", GROUP="input", MODE="0660", SECLABEL{smack}="*", ENV{SYSTEMD_ALIAS}+="/dev/amf_0", TAG+="systemd"
+ACTION=="add", KERNEL=="amf_1", OWNER="root", GROUP="input", MODE="0660", SECLABEL{smack}="*", ENV{SYSTEMD_ALIAS}+="/dev/amf_1", TAG+="systemd"
+ACTION=="add", KERNEL=="adfdspctrl", OWNER="root", GROUP="adfshm", MODE="0660", SECLABEL{smack}="*", ENV{SYSTEMD_ALIAS}+="/dev/adfdspctrl", TAG+="systemd"
+ACTION=="add", KERNEL=="dsp_log", OWNER="root", GROUP="adfshm", MODE="0660", SECLABEL{smack}="*", ENV{SYSTEMD_ALIAS}+="/dev/dsp_log", TAG+="systemd"

@@ -1,0 +1,2 @@
+enable rescueOTA.service
+enable rescueOTA.path

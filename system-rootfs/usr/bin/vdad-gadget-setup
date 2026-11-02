@@ -1,0 +1,134 @@
+#!/bin/sh
+
+# TODO enable the lines below once we have support for getprop
+# retrieve the product info from Android
+# manufacturer=$(getprop ro.product.manufacturer Android)
+# model=$(getprop ro.product.model Android)
+# serial=$(getprop ro.serialno 0123456789ABCDEF)
+
+#manufacturer="$(cat /system/build.prop | grep -o 'ro.product.manufacturer=.*' | cut -d'=' -f 2)"
+#model="$(cat /system/build.prop | grep -o 'ro.product.model=.*' | cut -d'=' -f 2)"
+# get the device serial number from /proc/cmdline directly(since we have no getprop on
+# GNU/Linux)
+#serialnumber="$(cat /proc/cmdline | sed 's/.*androidboot.serialno=//' | sed 's/ .*//' | tr -d '\n')"
+
+#cat /proc/cmdline | sed 's/.*androidboot.serialno=//' | sed 's/ .*//' | tr -d '\n' > /sys/class/android_usb/android0/iSerial
+#echo -n $manufacturer > /sys/class/android_usb/android0/iManufacturer
+#echo -n $model > /sys/class/android_usb/android0/iProduct
+
+serialnumber="$(cat /proc/device-tree/serial-number | sed 's/ .*//' | tr -d '\n')"
+if [ -z "$serialnumber" ]
+then
+    serialnumber="0123456789ABCDEF"
+fi
+
+# Amazon settings
+manufacturer="Lab126, Inc."
+idVendor="0x1949"
+idProductAdb="0x2138"
+
+if [ "$1" == "adb" ]; then
+	# Fast path: if FFS is already mounted and functional, skip setup (PROJVEGA-402911).
+	# On a clean restart the prior configfs state is perfectly valid — vdad just
+	# needs to reopen ep0. Avoids ~2.7s teardown+rebuild overhead.
+	if mountpoint -q /dev/usb-ffs/adb && [ -e /dev/usb-ffs/adb/ep0 ]; then
+		echo "vdad-gadget-setup: configfs already configured, skipping" > /dev/kmsg
+		exit 0
+	fi
+
+	# Fallback: tear down stale/broken gadget state from a prior instance.
+	# Handles partial corruption or unclean exit where FFS is not valid.
+	if [ -e /sys/kernel/config/usb_gadget/g1/UDC ]; then
+		echo "vdad-gadget-setup: clearing stale gadget state" > /dev/kmsg
+		echo "" > /sys/kernel/config/usb_gadget/g1/UDC 2>/dev/null
+		rm -f /sys/kernel/config/usb_gadget/g1/configs/c.1/ffs.adb 2>/dev/null
+		umount /dev/usb-ffs/adb 2>/dev/null
+		rmdir /dev/usb-ffs/adb 2>/dev/null
+		rmdir /dev/usb-ffs 2>/dev/null
+		rmdir /sys/kernel/config/usb_gadget/g1/functions/ffs.adb 2>/dev/null
+		rmdir /sys/kernel/config/usb_gadget/g1/configs/c.1/strings/0x409 2>/dev/null
+		rmdir /sys/kernel/config/usb_gadget/g1/configs/c.1 2>/dev/null
+		rmdir /sys/kernel/config/usb_gadget/g1/strings/0x409 2>/dev/null
+		rmdir /sys/kernel/config/usb_gadget/g1 2>/dev/null
+	fi
+
+	# Load USB gadget modules if available as modules (ignore if built-in)
+	modprobe libcomposite 2>/dev/null || true
+	modprobe usb_f_fs 2>/dev/null || true
+	mount -t configfs none /sys/kernel/config
+	mkdir /sys/kernel/config/usb_gadget/g1
+	# Set USB 2.0
+	echo 0x0200 > /sys/kernel/config/usb_gadget/g1/bcdUSB
+	# Enable OS descriptor
+	echo 1 > /sys/kernel/config/usb_gadget/g1/os_desc/use
+	echo -n $idVendor > /sys/kernel/config/usb_gadget/g1/idVendor
+	echo -n $idProductAdb > /sys/kernel/config/usb_gadget/g1/idProduct
+	mkdir /sys/kernel/config/usb_gadget/g1/strings/0x409
+	if [ "$(cat /sys/kernel/config/usb_gadget/g1/strings/0x409/serialnumber)" == "" ]; then
+		echo -n $serialnumber > /sys/kernel/config/usb_gadget/g1/strings/0x409/serialnumber
+	else
+		echo "=== usb serial number exist, keep it ===" > /dev/kmsg
+	fi
+	echo -n $manufacturer > /sys/kernel/config/usb_gadget/g1/strings/0x409/manufacturer
+	echo -n "Alexa" > /sys/kernel/config/usb_gadget/g1/strings/0x409/product
+
+	mkdir /sys/kernel/config/usb_gadget/g1/configs/c.1
+	mkdir /sys/kernel/config/usb_gadget/g1/configs/c.1/strings/0x409
+	echo -n "Conf 1" > /sys/kernel/config/usb_gadget/g1/configs/c.1/strings/0x409/configuration
+	echo 0xc0 > /sys/kernel/config/usb_gadget/g1/configs/c.1/bmAttributes
+	echo -n 400 > /sys/kernel/config/usb_gadget/g1/configs/c.1/MaxPower
+
+	mkdir /sys/kernel/config/usb_gadget/g1/functions/ffs.adb
+
+	mkdir /dev/usb-ffs
+	chmod 775 /dev/usb-ffs -R
+	/usr/bin/chsmack -a '_' /dev/usb-ffs
+	mkdir /dev/usb-ffs/adb
+	chmod 775 /dev/usb-ffs/adb -R
+
+	mount -o uid=5000,gid=5000,smackfsdef=User::Shell -t functionfs adb /dev/usb-ffs/adb
+	ln -s /sys/kernel/config/usb_gadget/g1/functions/ffs.adb  /sys/kernel/config/usb_gadget/g1/configs/c.1
+        /usr/bin/chsmack -a 'User::Shell' /dev/usb-ffs/adb/ep0
+
+	sleep 1
+elif [ "$1" == "post" ];then
+	if vdcm get com.amazon.devconf/system/developer/vda_network_mode | grep -q 'enable'; then
+		echo "VDAD network mode enabled"
+	else
+		# Wait for vdad to fully initialize FFS endpoints before writing UDC.
+		# ep1/ep2 appear only after vdad writes descriptors and FFS reaches
+		# ACTIVE state. Writing UDC before this causes ffs_func_bind crash.
+		sleep 1
+		if [ -d /sys/class/udc ] && [ "$(ls -A /sys/class/udc 2>/dev/null)" ]; then
+			timeout=100
+			while [ $timeout -gt 0 ]; do
+				if [ -e /dev/usb-ffs/adb/ep1 ] && [ -e /dev/usb-ffs/adb/ep2 ]; then
+					echo "FFS endpoints ready, proceeding with UDC bind" > /dev/kmsg
+					attempts=10
+					while [ $attempts -gt 0 ]; do
+						echo "$(ls /sys/class/udc/)" > /sys/kernel/config/usb_gadget/g1/UDC 2>/dev/null && break
+						sleep 0.1
+						attempts=$((attempts - 1))
+					done
+					if [ $attempts -eq 0 ]; then
+						echo "ERROR: UDC bind failed after retries (EBUSY)" > /dev/kmsg
+						exit 1
+					fi
+					break
+				fi
+				sleep 0.5
+				timeout=$((timeout - 1))
+			done
+			if [ $timeout -eq 0 ]; then
+				echo "ERROR: FFS endpoints not ready after 50s, aborting UDC bind" > /dev/kmsg
+				exit 1
+			fi
+		else
+			echo "No UDC found, skipping FFS endpoint check" > /dev/kmsg
+		fi
+	fi
+elif [ "$1" == "none" ];then
+	sleep 1
+	echo -n "none" > /sys/kernel/config/usb_gadget/g1/UDC
+	rm /sys/kernel/config/usb_gadget/g1/configs/c.1/f*
+fi

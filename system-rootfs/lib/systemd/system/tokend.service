@@ -1,0 +1,42 @@
+[Unit]
+Description=Ace tokend service
+After=ace_eventmgr.service kvs_util.service netsvc.service ace_messaging_service.service secure_kvs.service service-registrar.service
+Wants=service-registrar.service secure_kvs.service
+PartOf=service-registrar.service
+
+[Service]
+ExecStart=/usr/bin/tokend
+Restart=always
+RestartSec=2
+StartLimitBurst=10
+StateDirectory=tokend
+SmackProcessLabel=System
+User=tokend
+Group=tokend
+SupplementaryGroups=aipc kvstore
+PrivateDevices=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+ReadWritePaths=-/var/lib/data/ace/aipc/ -/var/lib/data/ace/kvstorage/
+ReadWritePaths=-/dev/socket -/dev/log
+BindPaths=-/dev/socket -/dev/log
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectKernelLogs=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

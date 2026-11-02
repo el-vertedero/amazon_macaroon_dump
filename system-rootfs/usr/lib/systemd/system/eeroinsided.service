@@ -1,0 +1,32 @@
+[Unit]
+Description=eeroinsided daemon
+Conflicts=shutdown.target
+After=aicfd.service netsvc.service
+
+[Service]
+User=wifi
+Group=wifi
+SupplementaryGroups=wifi aipc system shell kvstore
+ReadWritePaths=/var/lib/data/ace/aipc/ /var/lib/data/ace/kvstorage/ /var/lib/wifi/ /var/lib/eeroinside/ /var/run/wpa_supplicant/
+SmackProcessLabel=System::Privileged
+
+# eeroinsided need these capability to work:
+# CAP_MAC_OVERRIDE - for read/write disable_ipv6
+# CAP_DAC_OVERRIDE - for read/write debugfs
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_SYS_MODULE CAP_SETGID CAP_SETUID CAP_MAC_OVERRIDE CAP_DAC_OVERRIDE CAP_SYS_BOOT CAP_NET_RAW CAP_KILL
+AmbientCapabilities=CAP_NET_ADMIN CAP_SYS_MODULE CAP_MAC_OVERRIDE CAP_DAC_OVERRIDE CAP_SYS_BOOT CAP_NET_RAW CAP_KILL
+
+PrivateTmp=false
+RestrictDevices=true
+
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+Restart=always
+RestartSec=30
+
+ExecStart=/usr/bin/eeroinsided
+
+[Install]
+WantedBy=multi-user.target

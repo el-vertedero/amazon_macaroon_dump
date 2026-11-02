@@ -1,0 +1,70 @@
+[Unit]
+Description=Shipmode service
+After=netsvc.service bluetooth.service acc.service secure_kvs.service device-config-manager.service ace_powerd.service network.target
+Wants=bluetooth.service acc.service secure_kvs.service device-config-manager.service ace_powerd.service network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartPreventExitStatus=0
+RestartSec=3
+StartLimitIntervalSec=60
+StartLimitBurst=10
+TimeoutStartSec=60
+SmackProcessLabel=System
+Group=shipmode
+UMask=0117
+# Only run if not already completed
+ExecCondition=+/bin/sh -c '[ ! -f /run/shipmode/success ]'
+# Only run if flags indicate shipmode needed
+ExecCondition=+/bin/sh -c '[ "$(cat /proc/idme/fos_flags)" != 0 ] || [ "$(cat /proc/idme/dev_flags)" != 0 ]'
+# Clean up trigger file
+ExecStartPre=-+/bin/sh -c 'rm -f /run/shipmode/shipmode.txt'
+ExecStartPre=-+/bin/systemctl stop netsvc.service
+# Prepare eMMC boot partitions for IDME access
+ExecStartPre=-+/bin/sh -c 'f=/sys/class/block/mmcblk0boot0/force_ro; [ -e $f ] && chgrp disk $f'
+ExecStartPre=-+/bin/sh -c 'f=/sys/class/block/mmcblk0boot0/force_ro; [ -e $f ] && chmod g+rw $f'
+ExecStartPre=-+/bin/sh -c 'f=/sys/block/mmcblk0boot0/force_ro; [ -e $f ] && chsmack -a System $f'
+ExecStartPre=-+/bin/sh -c 'f=/sys/class/block/mmcblk0boot1/force_ro; [ -e $f ] && chgrp disk $f'
+ExecStartPre=-+/bin/sh -c 'f=/sys/class/block/mmcblk0boot1/force_ro; [ -e $f ] && chmod g+rw $f'
+ExecStartPre=-+/bin/sh -c 'f=/sys/block/mmcblk0boot1/force_ro; [ -e $f ] && chsmack -a System $f'
+ExecStart=/bin/sh -c '[ -f /run/shipmode/success ] && exit 0; /usr/bin/shipmode_service && touch /run/shipmode/success'
+SupplementaryGroups=disk aipc kvstore bt wifi system
+ReadWritePaths=/run/shipmode
+
+# Fortifying the service
+CapabilityBoundingSet=none
+NoNewPrivileges=true
+ProtectClock=true
+
+# Allow /dev/binder so that IPC could work
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+# Allow access to /dev/mmcblk0boot0 and /dev/mmcblk0boot1 for idme access
+# on emmc based devices
+DeviceAllow=/dev/mmcblk0boot0 rw
+BindPaths=-/dev/mmcblk0boot0
+ReadWritePaths=-/dev/mmcblk0boot0
+DeviceAllow=/dev/mmcblk0boot1 rw
+BindPaths=-/dev/mmcblk0boot1
+ReadWritePaths=-/dev/mmcblk0boot1
+
+# Allow access to /dev/ubi0_4 for idme access on nand based devices
+DeviceAllow=/dev/ubi0_4 rw
+BindPaths=-/dev/ubi0_4
+ReadWritePaths=-/dev/ubi0_4
+
+ProtectKernelLogs=true
+ProtectKernelModules=true
+PrivateTmp=true
+ProtectControlGroups=true
+RestrictRealtime=true
+RestrictNamespaces=true
+RestrictAddressFamilies=AF_UNIX
+LockPersonality=true
+
+# Restrict the permitted syscalls to a reasonable set
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM

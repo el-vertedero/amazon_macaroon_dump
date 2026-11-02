@@ -1,0 +1,1 @@
+KERNEL=="kmsg", SECLABEL{smack}="*", OWNER="root", GROUP="system", MODE="0660", TAG+="systemd"

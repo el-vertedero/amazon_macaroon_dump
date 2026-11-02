@@ -1,0 +1,108 @@
+[Unit]
+Description=Start PuffinApp
+Conflicts=shutdown.target
+After=service-registrar.service dbus.socket pkgmgr.service amakit.service bluetooth.target
+Wants=audioserver.service assetmgrd.service inputd.service dbus.socket amakit.service
+PartOf=service-registrar.service
+Requires=audioserver.service
+
+[Service]
+# Allow PuffinApp to retry up to 20 times with 3s delay between if it fails to start.
+StartLimitBurst=20
+RestartSec=3s
+
+EnvironmentFile=/etc/puffin/config/PuffinApp.env
+
+# Force apply proper permissions
+ExecStartPre=+/bin/mkdir -p /var/lib/data/puffin/data/resources
+ExecStartPre=+/bin/mkdir -p /var/lib/data/puffin/data/tmp
+ExecStartPre=+/bin/chown -R root:system /var/lib/data/puffin
+ExecStartPre=+/bin/chmod -R 664 /var/lib/data/puffin
+ExecStartPre=+/usr/bin/find /var/lib/data/puffin -type d -exec /bin/chmod 775 {} \;
+ExecStartPre=+/usr/bin/chsmack -r -a System /var/lib/data/puffin
+
+ExecStart=/usr/bin/PuffinApp /etc/puffin/config/AlexaClientSDKConfig.json /etc/puffin/config/KeplerAlexaClientSDKConfig.json
+Restart=always
+SmackProcessLabel=System
+# reserved_disk - manage access to reserved disk partitions on the system. This allows PuffinApp to read/write reserved disk areas
+SupplementaryGroups=aipc kvstore package alexahybrid reserved_disk assetmgr
+User=system
+Group=system
+
+# Make AIPC and KVS visible
+ReadWritePaths=/var/lib/data/ace/aipc/ /var/lib/data/ace/kvstorage/
+
+# IPC communication
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+DeviceAllow=/dev/binder rw
+
+# MAP calls
+ReadWritePaths=-/dev/idme
+BindPaths=-/dev/idme
+DeviceAllow=/dev/idme rw
+
+# Common clock for DQM on HCG platform
+ReadWritePaths=-/dev/azma_gtmem
+BindPaths=-/dev/azma_gtmem
+DeviceAllow=/dev/azma_gtmem rw
+
+# Common clock for DQM on non HCG platform
+ReadWritePaths=-/dev/mt_xgpt
+BindPaths=-/dev/mt_xgpt
+DeviceAllow=/dev/mt_xgpt rw
+
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+# CAP_SYS_NICE - required to set thread priority
+AmbientCapabilities=CAP_SYS_NICE
+
+# Allow higher logging rate for PuffinApp logs
+LogRateLimitBurst=1000
+LogRateLimitIntervalSec=1s
+
+# Configure watch dog to restart after 2 minutes of inactivity
+WatchdogSec=120
+
+# Provide OKIDL implementation to remote processes
+Environment=APMF_SERVICE_REGISTRAR_MODE=REMOTE
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+# RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6  # All address families are needed for getifaddrs()
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.puffin
+OffersService=com.amazon.puffin.frameprotocol
+OffersService=com.amazon.puffinexternalcapability.service
+OffersService=com.amazon.voiceassistant.do_not_disturb_settings.service
+OffersService=com.amazon.voiceassistant.end_request_sound_settings.service
+OffersService=com.amazon.voiceassistant.locales_settings.service
+OffersService=com.amazon.voiceassistant.mode_settings.service
+OffersService=com.amazon.voiceassistant.start_request_sound_settings.service
+OffersService=com.amazon.settings.bluetooth.service
+OffersService=com.amazon.alexa_device_client.voice_middleware_endpoints_state_service
+
+# Capability Agent Framework (CAF) Services
+OffersService=com.amazon.adk.discovery.discovery_service
+OffersService=com.amazon.adk.directives.directive_service
+OffersService=com.amazon.adk.events.events_service
+OffersService=com.amazon.adk.events.directive_execution_events_service
+OffersService=com.amazon.adk.context.context_service
+OffersService=com.amazon.adk.settings.settings_service
+OffersService=com.amazon.adk.visual_activeness_service
+

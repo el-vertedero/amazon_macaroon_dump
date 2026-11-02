@@ -1,0 +1,183 @@
+#!/bin/bash
+
+set -eu
+
+LSAN_OVERRIDE_TEMPLATE='
+[Service]
+Environment="ASAN_OPTIONS=verbosity=1:halt_on_error=0:quarantine_size_mb=0:--fast-unwind--:log_path=/var/log/log_%N"
+Environment="LD_PRELOAD=libasan.so.6 liblsan-helper.so"
+ReadWritePaths=/var/log/
+SupplementaryGroups=log
+SystemCallFilter=
+'
+
+function usage() {
+    cat 1>&2 <<EOF
+Usage: $0 {enable|disable|snapshot} <service> [FLAGS]
+
+Configure LSAN for a service or capture a snapshot of memory info for a running service.
+
+Subcommands
+  enable        Enable LSAN for the provided service
+  disable       Disable LSAN for the provided service
+  snapshot      Take a memory snapshot of a service with LSAN enabled
+
+Arguments
+  service       The name of the service to be configured (with or without '.service')
+
+Flags
+   -s           Use the 'slow' stack unwind. This is required on 'user' builds, but will have a
+                large performance impact. This must be passed when enabling LSAN for a service.
+   -o OUTPUT    The output file path for a snapshot. Defaults to "<service>.<pid>"
+   -w WAIT      The time to wait in seconds for snapshot to complete. Defaults to 3
+
+EOF
+    exit 0
+}
+
+function error() {
+    >&2 echo "${1}"
+    exit -1
+}
+
+function full_service_name() {
+    if [[ "${1}" =~ ^.*\.service$ ]]; then
+       echo "${1}"
+    fi
+    echo "${1}.service"
+}
+
+function short_service_name() {
+    echo "${1%.service}"
+}
+
+function service_override_path() {
+    echo "/etc/systemd/system/${1}.d/override.conf"
+}
+
+function find_service_pid() {
+    pid=$(systemctl show --no-pager --quiet --property MainPID --value "${1}")
+    if [[ "${pid}" == "0" ]]; then
+        error "Unable to get pid for '${1}'. Is it running?"
+    fi
+    echo "${pid}"
+}
+
+function enable_lsan() {
+    service="$(full_service_name ${1})"
+    fast_unwind="fast_unwind_on_malloc=${2}"
+
+    # Sanity check, we don't actually need this
+    target_pid="$(find_service_pid ${service})"
+
+    override_path="$(service_override_path ${service})"
+    mkdir -p "$(dirname ${override_path})"
+
+    echo "${LSAN_OVERRIDE_TEMPLATE}" | sed -e "s/--fast-unwind--/${fast_unwind}/g" > "${override_path}"
+    systemctl daemon-reload
+
+    echo "LSAN enabled for ${service}"
+}
+
+function disable_lsan() {
+    service="$(full_service_name ${1})"
+
+    # Sanity check, we don't actually need this
+    target_pid="$(find_service_pid ${service})"
+
+    override_path="$(service_override_path ${service})"
+    rm "${override_path}"
+    systemctl daemon-reload
+
+    echo "LSAN disabled for ${service}"
+}
+
+function snapshot_lsan() {
+    service="$(full_service_name ${1})"
+    short_service="$(short_service_name ${1})"
+    wait_time="${2}"
+    output="${3}"
+
+    target_pid="$(find_service_pid ${service})"
+    override_path="$(service_override_path ${service})"
+
+    if [ ! -f "${override_path}" ]; then
+        error "No override file for ${service}. Is LSAN enabled?"
+    fi
+
+    log_file_path="/var/log/log_${short_service}.${target_pid}"
+
+    if [ ! -f "${log_file_path}" ]; then
+        error "No log file at ${log_file_path}. Was it removed?"
+    fi
+
+    # Clear the existing log file
+    echo "" > "${log_file_path}"
+
+    # Send the signal to generate the snapshot
+    kill -s USR2 "${target_pid}"
+
+    # Wait a bit for this to complete
+    sleep "${wait_time}"
+
+    if [ -z "${output}" ]; then
+        output="log_${short_service}.${target_pid}"
+    fi
+
+    cp "${log_file_path}" "${output}"
+
+    # Add a footer so we can find the right debugfs
+    echo "<os-release>" >> "${output}"
+    cat /etc/os-release >> "${output}"
+    echo "</os-release>" >> "${output}"
+
+    echo "Snapshot written to ${output}"
+}
+
+if [[ -z "${1:-}" || -z "${2:-}" ]]; then
+    usage
+fi
+command="${1}"
+service_name="${2}"
+shift
+shift
+
+case "${command}" in
+    enable)
+        fast=1
+        while getopts ":s" o; do
+            case "${o}" in
+                s)
+                    fast=0
+                    ;;
+                *)
+                    usage
+                    ;;
+            esac
+        done
+        enable_lsan "${service_name}" "${fast}"
+        ;;
+    disable)
+        disable_lsan "${service_name}"
+        ;;
+    snapshot)
+        wait=3
+        output=""
+        while getopts ":w:o:" o; do
+            case "${o}" in
+                o)
+                    output=${OPTARG}
+                    ;;
+                w)
+                    wait=${OPTARG}
+                    ;;
+                *)
+                    usage
+                    ;;
+            esac
+        done
+        snapshot_lsan "${service_name}" "${wait}" "${output}"
+        ;;
+    *)
+        usage
+esac

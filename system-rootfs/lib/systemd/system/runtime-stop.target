@@ -1,0 +1,7 @@
+[Unit]
+Description=Isolatable target that disable all amazon services
+DefaultDependencies=no
+Requires=sysinit.target
+Wants=amzn-vdad.service android-tools-adbd.service
+After=sysinit.target
+AllowIsolate=yes

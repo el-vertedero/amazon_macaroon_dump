@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# /var/lib/data/halo
+/bin/mkdir -p /var/lib/data/halo/var/log
+/bin/mkdir -p /var/lib/data/halo/run/mfg
+/bin/mkdir -p /var/lib/data/halo/run/ras-hosts
+/bin/mkdir -p /var/lib/data/halo/etc/maintainer
+/bin/mkdir -p /var/lib/data/halo/tmp/dfu
+/bin/chown -R root:halo /var/lib/data/halo
+/bin/chmod -R 775 /var/lib/data/halo
+
+/bin/mkdir -p ${VEGA_FOS_SYSTEM_PROPERTY}
+/bin/chown -R root:halo ${VEGA_FOS_SYSTEM_PROPERTY}
+/bin/chmod 775 ${VEGA_FOS_SYSTEM_PROPERTY}
+
+/bin/mkdir -p ${VEGA_FOS_PERSIST_SYSTEM_PROPERTY}
+/bin/chown -R root:halo ${VEGA_FOS_PERSIST_SYSTEM_PROPERTY}
+/bin/chmod 775 ${VEGA_FOS_PERSIST_SYSTEM_PROPERTY}
+
+/usr/bin/halo_init/setprop vendor.halo.buildtype none
+/usr/bin/halo_init/setprop vendor.halo.enable.sidewalk true
+/usr/bin/halo_init/setprop vendor.halo.enable.ringnet true
+/usr/bin/halo_init/setprop vendor.halo.prov none
+/usr/bin/halo_init/setprop vendor.halo.dfu none
+/usr/bin/halo_init/setprop vendor.halo.ota.900 none
+/usr/bin/halo_init/setprop vendor.halo.key.refresh true
+
+# See https://developer.android.com/reference/java/lang/System
+/usr/bin/halo_init/setprop os.kernel $(uname)
+/usr/bin/halo_init/setprop os.version $(uname -r)
+
+# setprop above do behave of root
+/bin/chown -R root:halo ${VEGA_FOS_PERSIST_SYSTEM_PROPERTY}
+/bin/chmod -R 775 ${VEGA_FOS_PERSIST_SYSTEM_PROPERTY}
+/bin/chown -R root:halo ${VEGA_FOS_SYSTEM_PROPERTY}
+/bin/chmod -R 775 ${VEGA_FOS_SYSTEM_PROPERTY}
+
+# /run/halo
+/bin/mkdir -p /run/halo
+/bin/mkdir -p /run/halo/etc
+/bin/mkdir -p /run/halo/run/mfg
+/bin/mkdir -p /run/halo/etc/hub-core.conf.d
+/bin/chown -R root:halo /run/halo
+/bin/chmod -R 775 /run/halo

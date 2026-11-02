@@ -1,0 +1,61 @@
+{
+    "version": "1.0",
+    "libraries": {
+        "com.amazon.kepler.kepler_compatibility_1@IKeplerCompatibility_0": {
+            "entries": [
+                {
+                    "publicName": "KeplerCompatibility",
+                    "libraryName": "libKeplerCompatibility-1.so",
+                    "linkDynamic": true,
+                    "components": [],
+                    "turbomodules": [
+                        "KeplerCompatibility"
+                    ]
+                }
+            ]
+        },
+        "com.amazon.kepler.kepler_compatibility_1@IKeplerCompatibility_1": {
+            "entries": [
+                {
+                    "publicName": "KeplerCompatibility",
+                    "libraryName": "libKeplerCompatibility-1.so",
+                    "linkDynamic": true,
+                    "components": [],
+                    "turbomodules": [
+                        "KeplerCompatibility"
+                    ]
+                }
+            ]
+        }
+    },
+    "stats": {
+        "total_packages_found": 1,
+        "processed": 1,
+        "skipped": 1,
+        "validation_warnings": 0,
+        "libraries_by_source": {
+            "yocto_only": 0,
+            "vic_only": 2,
+            "vic_overrode_yocto": 0
+        }
+    },
+    "validation_warnings": [],
+    "processed_packages": [
+        {
+            "name": "KeplerCompatibility@1.x_vodka/kepler-compatibility",
+            "moduleIds": [
+                "com.amazon.kepler.kepler_compatibility_1@IKeplerCompatibility_0",
+                "com.amazon.kepler.kepler_compatibility_1@IKeplerCompatibility_1"
+            ],
+            "autolink_entries_count": 1
+        }
+    ],
+    "skipped_packages": [
+        {
+            "name": "VegaHeadlessBaseGroupVICMetadata@1.0",
+            "reason": "no_module_ids_in_toml",
+            "message": "TOML file exists but contains no [[module]] entries with 'id' field"
+        }
+    ],
+    "vic_overrides": []
+}

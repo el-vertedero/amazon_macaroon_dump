@@ -1,0 +1,49 @@
+{
+    "model_name": "macaroon",
+    "mem_stats": "/proc/meminfo",
+    "cycles_to_bytes": 16,
+    "pmu_devices": [
+        {
+            "path": "/sys/devices/armv8_pmuv3",
+            "display_name": "armv8_pmuv3",
+            "pmu_events": [
+               {
+                   "event": "l3d_cache",
+                   "name": "l3d_cache",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               },
+               {
+                   "event": "l3d_cache_allocate",
+                   "name": "l3d_alloc",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               },
+               {
+                   "event": "l3d_cache_refill",
+                   "name": "l3d_refill",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               },
+               {
+                   "event": "l2d_cache_allocate",
+                   "name": "l2d_calloc",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               },
+               {
+                   "event": "l2d_cache_refill",
+                   "name": "l2d_refil",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               },
+               {
+                   "event": "l2d_cache_wb",
+                   "name": "l2d_wb",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               }
+           ]
+        }
+    ]
+}

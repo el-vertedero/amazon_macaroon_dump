@@ -1,0 +1,105 @@
+{
+  "0x6": {
+    "attributes": {
+      "0x0": {
+        "conversions": [{
+          "namespace": "Alexa.PowerController",
+          "property": "powerState",
+          "type": "map",
+          "params": {
+            "mappings": {
+              "true": "ON",
+              "false": "OFF"
+            },
+            "output_type": "string"
+          }
+        }]
+      }
+    }
+  },
+  "0x8": {
+    "attributes": {
+      "0x0": {
+        "conversions": [
+          {
+            "namespace": "Alexa.BrightnessController",
+            "property": "brightness",
+            "type": "scale",
+            "params": {
+              "input_range": [0, 254],
+              "output_range": [0, 100],
+              "output_type": "int"
+            }
+          },
+          {
+            "namespace": "Alexa.ColorController",
+            "property": "color.brightness",
+            "type": "scale",
+            "params": {
+              "input_range": [0, 254],
+              "output_range": [0, 1],
+              "output_type": "double"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "0x300": {
+    "attributes": {
+      "0x0": {
+        "conversions": [{
+          "namespace": "Alexa.ColorController",
+          "property": "color.hue",
+          "type": "scale",
+          "params": {
+            "input_range": [0, 254],
+            "output_range": [0, 360],
+            "output_type": "double"
+          }
+        }]
+      },
+      "0x1": {
+        "conversions": [{
+          "namespace": "Alexa.ColorController",
+          "property": "color.saturation",
+          "type": "scale",
+          "params": {
+            "input_range": [0, 254],
+            "output_range": [0, 1],
+            "output_type": "double"
+          }
+        }]
+      },
+      "0x7": {
+        "conversions": [{
+          "namespace": "Alexa.ColorTemperatureController",
+          "property": "colorTemperatureInKelvin",
+          "type": "reciprocal",
+          "params": {
+            "constant": 1000000,
+            "output_type": "double"
+          }
+        }]
+      }
+    }
+  },
+  "0x406": {
+    "attributes": {
+      "0x0": {
+        "conversions": [{
+          "namespace": "Alexa.MotionSensor",
+          "property": "detectionState",
+          "type": "map",
+          "params": {
+            "mappings": {
+              "true": "DETECTED",
+              "false": "NOT_DETECTED"
+            },
+            "output_type": "string"
+          }
+        }]
+      }
+    }
+  }
+}

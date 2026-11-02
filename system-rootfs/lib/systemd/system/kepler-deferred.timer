@@ -1,0 +1,11 @@
+[Unit]
+Description=Kepler deferred services timer
+After=multi-user.target
+
+[Timer]
+Unit=kepler-deferred.target
+
+OnActiveSec=15s
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,60 @@
+[Unit]
+Description=ACS Zigbee service
+Wants=service-registrar.service
+PartOf=service-registrar.service
+# smarthomed's zigbee capability binds an AIPC handle to us at startup; if
+# smarthomed starts first, that handle is stale for the lifetime of the
+# process and every zigbee control call fails with ACE_STATUS_NOT_FOUND (-8).
+# On Vega, zigbee only exists to serve smarthome, so ordering smarthomed
+# after ace_zigbee is universally correct. See CONN-110232.
+Before=smarthomed.service
+StartLimitInterval=10
+StartLimitBurst=2
+
+[Service]
+# Type=notify: ace_zigbee_service sends sd_notify(READY=1) once its AIPC
+# endpoint is live, so the Before=smarthomed ordering above holds smarthomed's
+# start until zigbee is actually serving (not just process-launched),
+# eliminating the boot-order stale-handle race. See CONN-110232.
+Type=notify
+User=zigbee
+Group=zigbee
+SupplementaryGroups=aipc
+SupplementaryGroups=kvstore
+
+ExecStart=/usr/bin/ace_zigbee_service
+Restart=always
+
+StateDirectory=zigbee
+WorkingDirectory=/var/lib/zigbee
+
+ReadWritePaths=/var/lib/data/ace/aipc/
+ReadWritePaths=/var/lib/zigbee/
+ReadWritePaths=/var/lib/data/ace/kvstorage
+
+SystemCallFilter=@system-service @network-io @file-system
+SystemCallErrorNumber=EPERM
+
+# Fortifying the service
+PrivateNetwork=true
+SmackProcessLabel=System
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+#AIPC Binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+[Install]
+WantedBy=multi-user.target

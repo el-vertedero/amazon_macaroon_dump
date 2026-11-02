@@ -1,0 +1,65 @@
+
+[Unit]
+Description=Device Demo Daemon that enable devices to go into a demo mode
+Conflicts=shutdown.target
+After=netsvc.service audioserver.service dbus.socket PuffinApp.service
+Wants = dbus.socket PuffinApp.service assetmgrd.service inputd.service aceotad.service service-registrar.service
+PartOf=service-registrar.service
+
+[Service]
+# the service should be only conditionally run when in demo mode, this ensures that d3 will not run in non-demo devices. 
+# We use the DeviceConfigManager to check the demo type, and would skip if demo-type is "none".
+# When an ExecCondition= command exits with exit code 1 through 254 (inclusive), the remaining commands are skipped and the unit is not marked as failed. 
+# reference: https://www.freedesktop.org/software/systemd/man/systemd.service.html
+
+# condition 1: device demo flag is set as not "none"
+ExecCondition=/bin/sh -c "!(vdcm get \"com.amazon.devconf/system/retail-demo/demo-type\" | grep -q \"\'com.amazon.devconf/system/retail-demo/demo-type\' = \'none\'\")"
+
+# condition 2: device has finished OOBE setup before starting D3
+ExecCondition=/bin/sh -c "ace hal kvs cli -g -k user_setup_complete | grep -q Value=1"
+
+ExecStart=/usr/bin/demo_d3
+Type=exec
+ 
+# Restart the service if it fails. By default, it restarts up to 5 times in 10 secs
+Restart=always
+
+# Configures the time to sleep before restarting a service (as configured with Restart=). 
+# Takes a unit-less value in seconds, or a time span value such as "5min 20s". Defaults to 100ms.
+# for demo use case, restarting after 5 seconds is sufficient. For non-demo device, a condition check per 5s will have no impact
+RestartSec=5s
+
+# Note that service restart is subject to unit start rate limiting configured with StartLimitIntervalSec= and StartLimitBurst=, see systemd.unit(5) for details. 
+# A restarted service enters the failed state only after the start limits are reached.
+# below 10s and 5 are the current default used on Vega Devices. 
+# Explicitly setting it here as the values fit demo_d3 use case, and we don't want it to break if the defaults get changed later.
+StartLimitInterval=10
+StartLimitBurst=5
+
+SupplementaryGroups=aipc kvstore package ota assetmgr
+
+SmackProcessLabel=System
+User=system
+Group=system
+
+# The data directory will be created below /var/lib, with default permission as 755.
+StateDirectory=data/demo
+ 
+# Restrict the permitted syscalls
+# If an unexpected syscall occurs, return EPERM instead of terminating.
+SystemCallFilter=@system-service @network-io
+SystemCallErrorNumber=EPERM
+
+#Enable security hardening
+PrivateDevices=true 
+
+#Enable AIPC/IPCN Access
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+
+# Make AIPC, KVS & binder visible
+ReadWritePaths=/var/lib/data/ace/aipc/ /var/lib/data/ace/kvstorage/ -/dev/binder
+ 
+[Install]
+# Boot target to start this executable
+WantedBy=multi-user.target

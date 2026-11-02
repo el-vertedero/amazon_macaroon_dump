@@ -1,0 +1,3765 @@
+# This file is auto-generated. Do not take a direct dependency on it.
+
+[[message]]
+uri = "broadcast://com.amazon.net/state/connecting"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/state/connected"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/state/disconnecting"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/state/disconnected"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/state/l2connected"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/internet/reachable"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/internet/captive-portal-network"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/internet/unreachable"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.wifi/wifi-scan/scan-done"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/state/vpn-on"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.network-access",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/state/vpn-off"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.network-access",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/vpn/interface-up"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.net-vpn-ctrl",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/vpn/interface-down"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.net-vpn-ctrl",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/vpn/connected"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.net-vpn-ctrl",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/vpn/disconnected"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.net-vpn-ctrl",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/vpn/create-failure"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.net-vpn-ctrl",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/vpn/start-failure"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.net-vpn-ctrl",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/vpn/stop-failure"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.net-vpn-ctrl",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/vpn/wg-interface-updated"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.net-vpn-ctrl",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/vpn/wg-interface-update-failure"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.net-vpn-ctrl",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/vpn/wg-peer-updated"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.net-vpn-ctrl",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/vpn/wg-peer-update-failure"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.net-vpn-ctrl",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/vpn/wg-peer-removed"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.net-vpn-ctrl",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/vpn/wg-peer-remove-failure"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.net-vpn-ctrl",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/diag-status/ping-resp"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.network-access",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/state/wireguard-up"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.wireguard",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/state/wireguard-down"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.wireguard",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/wireguard/create-failure"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.wireguard",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/wireguard/remove-failure"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.wireguard",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/wireguard/peer-added"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.wireguard",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/wireguard/peer-not-added"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.wireguard",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/wireguard/interface-updated"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.wireguard",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/wireguard/interface-update-failure"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.wireguard",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/wireguard/peer-updated"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.wireguard",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/wireguard/peer-update-failure"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.wireguard",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/wireguard/peer-removed"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.wireguard",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/wireguard/peer-remove-failure"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.wireguard",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/state/gre-up"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.gre",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/state/gre-down"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.gre",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/state/gre-fatal"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.gre",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/gre/create-failure"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.gre",]
+
+[[message]]
+uri = "broadcast://com.amazon.net/gre/remove-failure"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.network.privilege.gre",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/splash-screen/show"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.splash-screen",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/splash-screen/stop"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.splash-screen",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/state-change/launch"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.state-change",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/state-change/start"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.state-change",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/state-change/stop"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.state-change",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/state-change/foreground"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.state-change",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/state-change/background"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.state-change",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/state-change/fg-on-new-launch"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.state-change",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/shutdown/app-exit-complete"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.device-shutdown",]
+
+[[message]]
+uri = "broadcast://com.amazon.kepler.lifecycle_management/state-change/nightmode-timeout"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.state-change",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/v1/splash-screen/show"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.splash-screen",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/v1/splash-screen/stop"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.splash-screen",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/v1/state-change/launch"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.state-change",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/v1/state-change/start"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.state-change",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/v1/state-change/stop"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.state-change",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/v1/state-change/foreground"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.state-change",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/v1/state-change/background"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.state-change",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/v1/state-change/fg-on-new-launch"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.state-change",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.lifecycle_management/v1/shutdown/app-exit-complete"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.device-shutdown",]
+
+[[message]]
+uri = "broadcast://com.amazon.kepler.lifecycle_management/v1/state-change/nightmode-timeout"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.lifecycle_management.privilege.state-change",]
+
+[[message]]
+uri = "unicast://*/com.amazon.kepler.experimental.app_storage_management_2024_06/StorageCleared"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "unicast://*/com.amazon.kepler.storage/StorageCleared"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "os://home"
+sender-privileges = [ "*",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-home-app-role",]
+
+[[message]]
+uri = "os://launch-delegate"
+sender-privileges = [ "com.amazon.kepler.os_messages.privilege.launch-delegate",]
+receiver-privileges = [ "com.amazon.kepler.os_messages.privilege.launch-delegate-app",]
+
+[[message]]
+uri = "os://settings"
+sender-privileges = [ "*",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-settings-app-role",]
+
+[[message]]
+uri = "os://settings/sound"
+sender-privileges = [ "*",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-settings-app-role",]
+
+[[message]]
+uri = "os://settings/wifi"
+sender-privileges = [ "*",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-settings-app-role",]
+
+[[message]]
+uri = "os://request-privilege"
+sender-privileges = [ "*",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-user-consent-app-role",]
+
+[[message]]
+uri = "os://captiveportal"
+sender-privileges = [ "com.amazon.messaging.privilege.launch-assume-captive-portal",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-captive-portal-app-role",]
+
+[[message]]
+uri = "os://uri-conflict-resolver"
+sender-privileges = [ "com.amazon.messaging.privilege.launch-conflict-resolver",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-conflict-resolver-role",]
+
+[[message]]
+uri = "os://ambient-component"
+sender-privileges = [ "*",]
+receiver-privileges = [ "com.amazon.security.privilege.assume-ambient-component-role",]
+
+[[message]]
+uri = "os://still-watching"
+sender-privileges = [ "com.amazon.messaging.privilege.launch-still-watching",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-still-watching-role",]
+
+[[message]]
+uri = "os://app-failure"
+sender-privileges = [ "com.amazon.messaging.privilege.app-failure",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-app-failure-role",]
+
+[[message]]
+uri = "os://quick-action"
+sender-privileges = [ "*",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-quick-action-role",]
+
+[[message]]
+uri = "amzn://apps"
+sender-privileges = [ "*",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-app-details-provider-role",]
+
+[[message]]
+uri = "amzns://apps"
+sender-privileges = [ "*",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-app-details-provider-role",]
+
+[[message]]
+uri = "http://www.amazon.com/gp/mas/dl/android"
+sender-privileges = [ "*",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-app-details-provider-role",]
+
+[[message]]
+uri = "https://www.amazon.com/gp/mas/dl/android"
+sender-privileges = [ "*",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-app-details-provider-role",]
+
+[[message]]
+uri = "http://"
+sender-privileges = [ "*",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-default-browser-role",]
+
+[[message]]
+uri = "https://"
+sender-privileges = [ "*",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-default-browser-role",]
+
+[[message]]
+uri = "os://browser"
+sender-privileges = [ "*",]
+receiver-privileges = [ "com.amazon.messaging.privilege.assume-default-browser-role",]
+
+[[message]]
+uri = "broadcast://com.amazon.kepler.packages/package/installed"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.packages.privilege.message.access",]
+
+[[message]]
+uri = "broadcast://com.amazon.kepler.packages/package/updated"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.packages.privilege.message.access",]
+
+[[message]]
+uri = "broadcast://com.amazon.kepler.packages/package/updating"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.packages.privilege.message.access",]
+
+[[message]]
+uri = "broadcast://com.amazon.kepler.packages/package/uninstalled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.packages.privilege.message.access",]
+
+[[message]]
+uri = "broadcast://com.amazon.kepler.packages/package/enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.packages.privilege.message.access",]
+
+[[message]]
+uri = "broadcast://com.amazon.kepler.packages/package/disabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.packages.privilege.message.access",]
+
+[[message]]
+uri = "broadcast://com.amazon.kepler.packages/default-launcher/changed"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.kepler.packages.privilege.message.access",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/resource/level"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.resource.level",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/pressure/resource"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/pressure/memory/on-trim"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/pressure/cpu/on-trim"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/pressure/io/on-trim"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/task/start"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/task/stop"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/service/start"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/service/stop"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/service/normal/start"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/service/normal/stop"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/service/persistent/start"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/service/persistent/stop"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/stem/start"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/stem/stop"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/task/unscheduled/start"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/task/unscheduled/stop"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/task/normal/start"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/task/normal/stop"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/task/urgent/start"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.resmgr/schedule/task/urgent/stop"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.resmgr.schedule",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.idle/state/not_idle"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.idle.state",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.idle/state/idle/screensaver"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.idle.state",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.idle/state/idle/display_off"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.idle.state",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.idle/time_to_screensaver"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.idle.timer",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.package-installer/install/completed"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.package.install",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.package-installer/uninstall/completed"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.package.uninstall",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.package-installer/install/batch-completed"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.package.install",]
+
+[[message]]
+uri = "broadcast://com.amazon.kepler.packages.installer/install/completed"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.package.install",]
+
+[[message]]
+uri = "broadcast://com.amazon.kepler.packages.installer/uninstall/completed"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.privilege.package.uninstall",]
+
+[[message]]
+uri = "unicast://*/com.amazon.kepler.notifications/notification_removal"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.thermal/state/normal"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.thermal/state/light"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.thermal/state/moderate"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.thermal/state/severe"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.thermal/state/critical"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.thermal/state/emergency"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.power/state/exit-sleep"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.power.privilege.state.exit-sleep",]
+
+[[message]]
+uri = "broadcast://com.amazon.power/state-machine/before-active-transition"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.power.privilege.system-power-state.before-transition-listener",]
+
+[[message]]
+uri = "broadcast://com.amazon.power/state-machine/after-active-transition"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.power.privilege.system-power-state.after-transition-listener",]
+
+[[message]]
+uri = "broadcast://com.amazon.power/state-machine/before-idle-transition"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.power.privilege.system-power-state.before-transition-listener",]
+
+[[message]]
+uri = "broadcast://com.amazon.power/state-machine/after-idle-transition"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.power.privilege.system-power-state.after-transition-listener",]
+
+[[message]]
+uri = "broadcast://com.amazon.power/state-machine/before-standby-transition"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.power.privilege.system-power-state.before-transition-listener",]
+
+[[message]]
+uri = "broadcast://com.amazon.power/state-machine/after-standby-transition"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.power.privilege.system-power-state.after-transition-listener",]
+
+[[message]]
+uri = "broadcast://com.amazon.power/state-machine/before-suspend-transition"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.power.privilege.system-power-state.before-transition-listener",]
+
+[[message]]
+uri = "broadcast://com.amazon.power/state-machine/before-hibernate-transition"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.power.privilege.system-power-state.before-transition-listener",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.datastore.rdb/table_update/reserved/_amazon_kepler_tv_database"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.datastore.rdb.privilege.read",]
+
+[[message]]
+uri = "unicast://*/com.amazon.datastore.pm.notification"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "unicast://*/com.amazon.datastore.kvs.notification"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.perfmonitor/state/idle"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.perfmonitor/state/active_idle"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.perfmonitor/state/active"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.audio/encodings"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.hdmi.privilege.deviceinfo",]
+
+[[message]]
+uri = "broadcast://com.amazon.udss/aida/event/primary_person_changed"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.udss/aida/event/engagement_changed"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.udss/aida/query/nearby_persons"
+sender-privileges = [ "*",]
+receiver-privileges = [ "self",]
+
+[[message]]
+uri = "broadcast://com.amazon.udss/aida/query/nearby_persons_with_visual_attention"
+sender-privileges = [ "*",]
+receiver-privileges = [ "self",]
+
+[[message]]
+uri = "unicast://*/com.amazon.udss/aida/response/nearby_persons"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "unicast://*/com.amazon.udss/aida/response/nearby_persons_with_visual_attention"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.udss/com.amazon.enrollmentappuxreact/response"
+sender-privileges = [ "*",]
+receiver-privileges = [ "self",]
+
+[[message]]
+uri = "unicast://*/com.amazon.udss/enrollment/request"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.udss/eds/event/presence_detection_changed"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/AlexaCaptioningEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlexaCaptioningEnabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/AlexaCaptionsEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlexaCaptionsEnabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/AlxCapCapitalization"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlxCapCapitalization",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/AlxCapPrefEdgeStyle"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlxCapPrefEdgeStyle",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/AlxCapPrefFont"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlxCapPrefFont",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/AlxCapPrefTextColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlxCapPrefTextColor",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/AlxCapPrefTextSize"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlxCapPrefTextSize",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/AlxCapPrefWindowBgColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlxCapPrefWindowBgColor",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/AlxPrefPrefBgColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlxPrefPrefBgColor",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CCPrefEdgeStyle"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CCPrefEdgeStyle",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CCPrefFont"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CCPrefFont",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CCPrefLang"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CCPrefLang",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CCPrefTextColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CCPrefTextColor",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CCPrefTextSize"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CCPrefTextSize",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CallCapPrefBgColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CallCapPrefBgColor",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CallCapPrefFont"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CallCapPrefFont",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CallCapPrefTextColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CallCapPrefTextColor",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CallCapPrefTextSize"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CallCapPrefTextSize",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CallCaptionsEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CallCaptionsEnabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefBgColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefEdgeStyle"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefFont"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefTextBgOpacity"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefTextColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefTextColorOpacity"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefTextSize"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefWindowBgColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefWindowBgColorOpacity"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/ClosedCaptioningEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/ColorCorrectionMode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/ColorInversionEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/CommsWithoutSpeechEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CommsWithoutSpeechEnabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/HighContrastTextEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/PreferAudioDescription"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/RttEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.RttEnabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/ScreenMagnifierEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/TapToAlexaEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.TapToAlexaEnabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/TestPluginEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.TestPluginEnabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/TestPluginSetting"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.TestPluginSetting",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/TextBannerEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/TimeToTakeAction"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/UiScaleFactor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/VoiceViewEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/WebSettingsForPV"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.WebSettingsForPV",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/override-locale-time-format"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.override-locale-time-format",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/accessibility/tap-to-alexa-toggle"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.tap-to-alexa-toggle",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/adep/dev_flags"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.adep.dev_flags",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/adep/fos_flags"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.adep.fos_flags",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/adep/unlock_status"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.adep.unlock_status",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/adep/usr_flags"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.adep.usr_flags",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/amazon-kids/alexa-state"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.amazon-kids.alexa-state",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/amazon-kids/app-allowlist"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.amazon-kids.app-allowlist",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/amazon-kids/app-request"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.amazon-kids.app-request",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/amazon-kids/app-store-set"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.amazon-kids.app-store-set",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/amazon-kids/is-supported"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.amazon-kids.is-supported",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/are-you-still-watching/still-watching-timeout"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.are-you-still-watching.still-watching-timeout",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/audio/dump_playback"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.audio.dump_playback",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/automation-toolkit/service-enable"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.automation-toolkit.service-enable",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/boot/dm_verity_off"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.boot.dm_verity_off",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/boot/kernel_unlocked"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.boot.kernel_unlocked",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/boot/prod_device"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.boot.prod_device",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/boot/rpmb_state"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.boot.rpmb_state",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/boot/secure_cpu"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.boot.secure_cpu",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/boot/smack_logging"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.boot.smack_logging",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/camera/operational-state"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.camera.operational-state",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/configuration/color-theme"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/configuration/day-night-mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/configuration/developer_mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.configuration.developer_mode",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/configuration/hour-clock-system"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/configuration/locale"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/configuration/music-visualizer"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.configuration.music-visualizer",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/configuration/time-zone"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/content-personalization-settings/enablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.content-personalization-settings.enablement",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/content-personalization-settings/launch-consent"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.content-personalization-settings.launch-consent",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/developer/vda_developer_mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.developer.vda_developer_mode",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/developer/vda_network_mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.developer.vda_network_mode",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/developer/vda_tcp_port"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.developer.vda_tcp_port",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/bootloader"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.device-info.bootloader",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/bt-device-name"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.device-info.bt-device-name",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/build-desc"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/build-fingerprint"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/build-tags"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/build-variant"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/device-serial"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.device-info.device-serial",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/device-type-id"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.device-info.device-type-id",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/hardware-name"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/os-version"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/package-name"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.device-info.package-name",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/product-id"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.device-info.product-id",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/product-manufacturer"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/product-model"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/product-name"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.device-info.product-name",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/device-info/software-version"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/easyupgrade/eu-restore-complete"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.easyupgrade.eu-restore-complete",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-ap-auth"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.eeroinsided.eeroinsided-mesh-ap-auth",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-ap-ssid"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.eeroinsided.eeroinsided-mesh-ap-ssid",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-disable"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.eeroinsided.eeroinsided-mesh-disable",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-status"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.eeroinsided.eeroinsided-mesh-status",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/eeroinsided/persist-eri-aipc-mesh-disable"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.eeroinsided.persist-eri-aipc-mesh-disable",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/epl/enablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/epl/epl_conversation_url"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.epl.epl_conversation_url",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/epl/epl_main_url"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.epl.epl_main_url",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/geolocation-eca/enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.geolocation-eca.enabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/identifiers/device-friendly-name"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.identifiers.device-friendly-name",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/idle/TimeoutToScreenOff"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.idle.TimeoutToScreenOff",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/idle/TimeoutToScreensaver"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.idle.TimeoutToScreensaver",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/idle/enableScreensaver"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.idle.enableScreensaver",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/launch-delegate/list"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.launch-delegate.list",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/launch-delegate/policy"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.launch-delegate.policy",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/mmcinfo/mlc"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.mmcinfo.mlc",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/mmcinfo/part_num"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.mmcinfo.part_num",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/mmcinfo/slc"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.mmcinfo.slc",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/mmcinfo/tbw"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.mmcinfo.tbw",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/mmcinfo/tlc"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.mmcinfo.tlc",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/multimedia/enable_decoder_compression"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.enable_decoder_compression",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/multimedia/group-ipc-buffer-count"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.group-ipc-buffer-count",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/multimedia/mediaTransform-decoder-capture-io-mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.mediaTransform-decoder-capture-io-mode",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/multimedia/mediaTransform-decrypt-bufferpool-max-count"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.mediaTransform-decrypt-bufferpool-max-count",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/multimedia/mediaTransform-decrypt-bufferpool-min-count"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.mediaTransform-decrypt-bufferpool-min-count",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/multimedia/mediaTransform-frameAlignment"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.mediaTransform-frameAlignment",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/multimedia/mediaTransform-secure-sessions-max-count"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.mediaTransform-secure-sessions-max-count",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/multimedia/mediaTransform-v4l2-hevc_decName"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.mediaTransform-v4l2-hevc_decName",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/multimedia/mediaTransform-v4l2converter-propose-allocation"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.mediaTransform-v4l2converter-propose-allocation",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/multimedia/renderer-alignment"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.renderer-alignment",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/netflixta/esn"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.netflixta.esn",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/oobe/alsCountryCode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.alsCountryCode",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/oobe/locale-saved"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.locale-saved",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/oobe/oobe-complete"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.oobe-complete",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/oobe/oobe-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.oobe-enabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/oobe/oobe_version"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.oobe_version",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/oobe/ota-complete"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.ota-complete",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/oobe/ota-reboot-saved"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.ota-reboot-saved",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/oobe/registration-complete"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.registration-complete",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/oobe/sessionid"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.sessionid",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/oobe/timezone"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.timezone",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/opt-outs/3p-user-action"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.opt-outs.3p-user-action",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/pact/avl"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pact.avl",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/pact/gvl"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pact.gvl",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/pact/surface_consent"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pact.surface_consent",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/pcon-internal/cached-pin"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon-internal.cached-pin",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/pcon-internal/cached-pin-value"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon-internal.cached-pin-value",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/pcon-internal/pin_operations_mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon-internal.pin_operations_mode",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/pcon-internal/spinner-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon-internal.spinner-enabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/pcon/capability-exists-for-device"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon.capability-exists-for-device",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/pcon/is-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon.is-enabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/pcon/pin-protect-profile-switch-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon.pin-protect-profile-switch-enabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/pcon/project-fork-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon.project-fork-enabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/power-daemon-metrics/cache-interval-ms"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.power-daemon-metrics.cache-interval-ms",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/power-daemon-metrics/total-samples"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.power-daemon-metrics.total-samples",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/power-day-mode-dim/status"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.power-day-mode-dim.status",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/privacy-preferences/biometrics"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.biometrics",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/privacy-preferences/bluetooth"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.bluetooth",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/privacy-preferences/calendar"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.calendar",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/privacy-preferences/camera"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.camera",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/privacy-preferences/contacts"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.contacts",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/privacy-preferences/location-coarse"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.location-coarse",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/privacy-preferences/location-fine"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.location-fine",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/privacy-preferences/logging-analytics"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.logging-analytics",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/privacy-preferences/logging-consent"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.logging-consent",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/privacy-preferences/logging-critical"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.logging-critical",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/privacy-preferences/microphone"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.microphone",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/privacy-preferences/photos"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.photos",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/probabilisticguardalloc/enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.probabilisticguardalloc.enabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/provisionerd/provisionerd_restart_count"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.provisionerd.provisionerd_restart_count",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/MaximumVolumeLimit"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.MaximumVolumeLimit",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/RequestedLocales"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/alexa-premium-default-status"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.alexa-premium-default-status",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/comms-active"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.comms-active",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/comms-callId"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.comms-callId",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/comms-tap"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.comms-tap",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/debug-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.debug-enabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/do-not-disturb"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.do-not-disturb",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/eeroinsided-mesh-status"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.eeroinsided-mesh-status",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/in-call"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.in-call",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/is_asp_supported"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.is_asp_supported",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/live-view"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.live-view",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/locale"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.locale",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/locales"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.locales",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/override-locale-time-format"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.override-locale-time-format",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-amazon-scl-host"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-amazon-scl-host",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-assetmgrd-updateIntSec"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-assetmgrd-updateIntSec",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-memtotal"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-memtotal",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-otad-bootid"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-otad-bootid",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-otad-target_sw_version"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-otad-target_sw_version",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-otad-update_count"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-otad-update_count",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-otad-ux-bootid"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-otad-ux-bootid",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-otad-ux-target_sw_version"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-otad-ux-target_sw_version",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-puffin-i18nConfig"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-puffin-i18nConfig",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-puffin-ntt-mode-conv"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-puffin-ntt-mode-conv",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-puffin-ntt-mode-prompt"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-puffin-ntt-mode-prompt",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-puffin-ntt-mode-va"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-puffin-ntt-mode-va",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-puffin_app-from_crash"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-puffin_app-from_crash",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-puffin_app-from_shutdown"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-puffin_app-from_shutdown",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-udsscamp_app-from_shutdown"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-udsscamp_app-from_shutdown",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-udsscamp_app-oobe"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-udsscamp_app-oobe",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/persist-vts-bootid"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-vts-bootid",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/setupModePrivileges"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.setupModePrivileges",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/supportedLocales"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.supportedLocales",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/puffin-app/wakeword"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.wakeword",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/qasf-consent/observability"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.qasf-consent.observability",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/resource-manager/__test__"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.resource-manager.__test__",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/resource-manager/day-night-mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.resource-manager.day-night-mode",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/resource-manager/power-config-state"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.resource-manager.power-config-state",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/resource-manager/ui-mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.resource-manager.ui-mode",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/retail-demo/dcs-url"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.retail-demo.dcs-url",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/retail-demo/demo-type"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.retail-demo.demo-type",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/retail-demo/device-correlation-id"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.retail-demo.device-correlation-id",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/retail-demo/experience-mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.retail-demo.experience-mode",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/retail-demo/persist-demo-mode-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.retail-demo.persist-demo-mode-enabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/retail-demo/retry-fallback"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.retail-demo.retry-fallback",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/retail-demo/settings-last-sync-time"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.retail-demo.settings-last-sync-time",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/runtime-restriction/displays"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.runtime-restriction.displays",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/runtime-restriction/privileges"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.runtime-restriction.privileges",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/scene-detection/enablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/security/allow_vsh"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.security.allow_vsh",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/security/developer_mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.security.developer_mode",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/security/secure-access"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.security.secure-access",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings-restriction/AmazonPhotosEnablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings-restriction.AmazonPhotosEnablement",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings-restriction/VideosSafeSearchEnablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings-restriction.VideosSafeSearchEnablement",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings-restriction/VideosSearchEnablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings-restriction.VideosSearchEnablement",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings-restriction/WebBrowserEnablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings-restriction.WebBrowserEnablement",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/AlexaAccountManagerdeviceOpMode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.AlexaAccountManagerdeviceOpMode",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/AlexaChildDirectedlockMode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.AlexaChildDirectedlockMode",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/AudioAlert"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.AudioAlert",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/DefaultSecurityRecordingTimeInSec"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.DefaultSecurityRecordingTimeInSec",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/LiveView"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.LiveView",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/ObservableLogLevel"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.ObservableLogLevel",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/ObservableLogTimeout"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.ObservableLogTimeout",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/ProjectionDeviceId"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.ProjectionDeviceId",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/ProjectionType"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.ProjectionType",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/ScreenControllerPolicy"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.ScreenControllerPolicy",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/SecurityDeviceId"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.SecurityDeviceId",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/SecurityKvsChannelName"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.SecurityKvsChannelName",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/SecurityRecordingEnablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.SecurityRecordingEnablement",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/SecuritySnapshotEnablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.SecuritySnapshotEnablement",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/SunriseEffectEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.SunriseEffectEnabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/VideoDelay"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.VideoDelay",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/amazon-soundbar-feature-flag"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.amazon-soundbar-feature-flag",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/audio-options"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.audio-options",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/connected_fire_tv_soundbar"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.connected_fire_tv_soundbar",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/country_code"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.country_code",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/dcos-endpoint"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.dcos-endpoint",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/developer_mode_dnp_count"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.developer_mode_dnp_count",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/display-options-beta-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.display-options-beta-enabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/enterprisemode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/feature-developer-mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.feature-developer-mode",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/hdmi-control-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.hdmi-control-enabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/isFirstTimeCameraClosedShutterShown"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.isFirstTimeCameraClosedShutterShown",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/language_locale"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.language_locale",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/non-fastlane-flag"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.non-fastlane-flag",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/prime-video-feature-flag"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.prime-video-feature-flag",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/profile-sharing-feature-flag"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.profile-sharing-feature-flag",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/recent_email_addresses"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.recent_email_addresses",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/settings-flow-flag"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.settings-flow-flag",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/sync-amazon-content"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.sync-amazon-content",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/settings/wifi-locker-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.wifi-locker-enabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/sightwise-live/enablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/sysui/no-lost-remote"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.sysui.no-lost-remote",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/ultrasound-sensor/enablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/userprofilemanager/child-profile-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.userprofilemanager.child-profile-enabled",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/wake-up-handler/is-default-set-new-appstore"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.wake-up-handler.is-default-set-new-appstore",]
+
+[[message]]
+uri = "broadcast://com.amazon.devconf/system/wake-up-handler/last-consent-check-time"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.wake-up-handler.last-consent-check-time",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/AlexaCaptioningEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlexaCaptioningEnabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/AlexaCaptionsEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlexaCaptionsEnabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/AlxCapCapitalization"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlxCapCapitalization",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/AlxCapPrefEdgeStyle"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlxCapPrefEdgeStyle",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/AlxCapPrefFont"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlxCapPrefFont",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/AlxCapPrefTextColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlxCapPrefTextColor",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/AlxCapPrefTextSize"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlxCapPrefTextSize",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/AlxCapPrefWindowBgColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlxCapPrefWindowBgColor",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/AlxPrefPrefBgColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.AlxPrefPrefBgColor",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CCPrefEdgeStyle"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CCPrefEdgeStyle",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CCPrefFont"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CCPrefFont",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CCPrefLang"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CCPrefLang",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CCPrefTextColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CCPrefTextColor",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CCPrefTextSize"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CCPrefTextSize",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CallCapPrefBgColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CallCapPrefBgColor",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CallCapPrefFont"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CallCapPrefFont",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CallCapPrefTextColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CallCapPrefTextColor",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CallCapPrefTextSize"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CallCapPrefTextSize",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CallCaptionsEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CallCaptionsEnabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefBgColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefEdgeStyle"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefFont"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefTextBgOpacity"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefTextColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefTextColorOpacity"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefTextSize"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefWindowBgColor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefWindowBgColorOpacity"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/ClosedCaptioningEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/ColorCorrectionMode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/ColorInversionEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/CommsWithoutSpeechEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.CommsWithoutSpeechEnabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/HighContrastTextEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/PreferAudioDescription"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/RttEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.RttEnabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/ScreenMagnifierEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/TapToAlexaEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.TapToAlexaEnabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/TestPluginEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.TestPluginEnabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/TestPluginSetting"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.TestPluginSetting",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/TextBannerEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/TimeToTakeAction"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/UiScaleFactor"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/VoiceViewEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/WebSettingsForPV"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.WebSettingsForPV",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/override-locale-time-format"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.override-locale-time-format",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/accessibility/tap-to-alexa-toggle"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.accessibility.tap-to-alexa-toggle",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/adep/dev_flags"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.adep.dev_flags",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/adep/fos_flags"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.adep.fos_flags",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/adep/unlock_status"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.adep.unlock_status",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/adep/usr_flags"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.adep.usr_flags",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/amazon-kids/alexa-state"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.amazon-kids.alexa-state",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/amazon-kids/app-allowlist"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.amazon-kids.app-allowlist",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/amazon-kids/app-request"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.amazon-kids.app-request",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/amazon-kids/app-store-set"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.amazon-kids.app-store-set",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/amazon-kids/is-supported"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.amazon-kids.is-supported",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/are-you-still-watching/still-watching-timeout"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.are-you-still-watching.still-watching-timeout",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/audio/dump_playback"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.audio.dump_playback",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/automation-toolkit/service-enable"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.automation-toolkit.service-enable",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/boot/dm_verity_off"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.boot.dm_verity_off",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/boot/kernel_unlocked"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.boot.kernel_unlocked",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/boot/prod_device"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.boot.prod_device",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/boot/rpmb_state"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.boot.rpmb_state",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/boot/secure_cpu"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.boot.secure_cpu",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/boot/smack_logging"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.boot.smack_logging",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/camera/operational-state"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.camera.operational-state",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/configuration/color-theme"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/configuration/day-night-mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/configuration/developer_mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.configuration.developer_mode",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/configuration/hour-clock-system"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/configuration/locale"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/configuration/music-visualizer"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.configuration.music-visualizer",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/configuration/time-zone"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/content-personalization-settings/enablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.content-personalization-settings.enablement",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/content-personalization-settings/launch-consent"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.content-personalization-settings.launch-consent",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/developer/vda_developer_mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.developer.vda_developer_mode",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/developer/vda_network_mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.developer.vda_network_mode",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/developer/vda_tcp_port"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.developer.vda_tcp_port",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/bootloader"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.device-info.bootloader",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/bt-device-name"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.device-info.bt-device-name",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/build-desc"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/build-fingerprint"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/build-tags"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/build-variant"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/device-serial"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.device-info.device-serial",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/device-type-id"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.device-info.device-type-id",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/hardware-name"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/os-version"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/package-name"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.device-info.package-name",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/product-id"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.device-info.product-id",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/product-manufacturer"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/product-model"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/product-name"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.device-info.product-name",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/device-info/software-version"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/easyupgrade/eu-restore-complete"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.easyupgrade.eu-restore-complete",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-ap-auth"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.eeroinsided.eeroinsided-mesh-ap-auth",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-ap-ssid"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.eeroinsided.eeroinsided-mesh-ap-ssid",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-disable"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.eeroinsided.eeroinsided-mesh-disable",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-status"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.eeroinsided.eeroinsided-mesh-status",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/eeroinsided/persist-eri-aipc-mesh-disable"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.eeroinsided.persist-eri-aipc-mesh-disable",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/epl/enablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/epl/epl_conversation_url"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.epl.epl_conversation_url",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/epl/epl_main_url"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.epl.epl_main_url",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/geolocation-eca/enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.geolocation-eca.enabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/identifiers/device-friendly-name"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.identifiers.device-friendly-name",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/idle/TimeoutToScreenOff"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.idle.TimeoutToScreenOff",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/idle/TimeoutToScreensaver"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.idle.TimeoutToScreensaver",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/idle/enableScreensaver"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.idle.enableScreensaver",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/launch-delegate/list"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.launch-delegate.list",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/launch-delegate/policy"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.launch-delegate.policy",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/mmcinfo/mlc"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.mmcinfo.mlc",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/mmcinfo/part_num"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.mmcinfo.part_num",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/mmcinfo/slc"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.mmcinfo.slc",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/mmcinfo/tbw"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.mmcinfo.tbw",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/mmcinfo/tlc"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.mmcinfo.tlc",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/multimedia/enable_decoder_compression"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.enable_decoder_compression",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/multimedia/group-ipc-buffer-count"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.group-ipc-buffer-count",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/multimedia/mediaTransform-decoder-capture-io-mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.mediaTransform-decoder-capture-io-mode",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/multimedia/mediaTransform-decrypt-bufferpool-max-count"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.mediaTransform-decrypt-bufferpool-max-count",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/multimedia/mediaTransform-decrypt-bufferpool-min-count"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.mediaTransform-decrypt-bufferpool-min-count",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/multimedia/mediaTransform-frameAlignment"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.mediaTransform-frameAlignment",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/multimedia/mediaTransform-secure-sessions-max-count"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.mediaTransform-secure-sessions-max-count",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/multimedia/mediaTransform-v4l2-hevc_decName"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.mediaTransform-v4l2-hevc_decName",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/multimedia/mediaTransform-v4l2converter-propose-allocation"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.mediaTransform-v4l2converter-propose-allocation",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/multimedia/renderer-alignment"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.multimedia.renderer-alignment",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/netflixta/esn"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.netflixta.esn",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/oobe/alsCountryCode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.alsCountryCode",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/oobe/locale-saved"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.locale-saved",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/oobe/oobe-complete"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.oobe-complete",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/oobe/oobe-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.oobe-enabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/oobe/oobe_version"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.oobe_version",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/oobe/ota-complete"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.ota-complete",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/oobe/ota-reboot-saved"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.ota-reboot-saved",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/oobe/registration-complete"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.registration-complete",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/oobe/sessionid"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.sessionid",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/oobe/timezone"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.oobe.timezone",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/opt-outs/3p-user-action"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.opt-outs.3p-user-action",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/pact/avl"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pact.avl",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/pact/gvl"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pact.gvl",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/pact/surface_consent"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pact.surface_consent",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/pcon-internal/cached-pin"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon-internal.cached-pin",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/pcon-internal/cached-pin-value"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon-internal.cached-pin-value",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/pcon-internal/pin_operations_mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon-internal.pin_operations_mode",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/pcon-internal/spinner-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon-internal.spinner-enabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/pcon/capability-exists-for-device"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon.capability-exists-for-device",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/pcon/is-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon.is-enabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/pcon/pin-protect-profile-switch-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon.pin-protect-profile-switch-enabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/pcon/project-fork-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.pcon.project-fork-enabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/power-daemon-metrics/cache-interval-ms"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.power-daemon-metrics.cache-interval-ms",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/power-daemon-metrics/total-samples"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.power-daemon-metrics.total-samples",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/power-day-mode-dim/status"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.power-day-mode-dim.status",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/privacy-preferences/biometrics"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.biometrics",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/privacy-preferences/bluetooth"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.bluetooth",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/privacy-preferences/calendar"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.calendar",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/privacy-preferences/camera"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.camera",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/privacy-preferences/contacts"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.contacts",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/privacy-preferences/location-coarse"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.location-coarse",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/privacy-preferences/location-fine"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.location-fine",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/privacy-preferences/logging-analytics"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.logging-analytics",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/privacy-preferences/logging-consent"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.logging-consent",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/privacy-preferences/logging-critical"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.logging-critical",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/privacy-preferences/microphone"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.microphone",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/privacy-preferences/photos"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.privacy-preferences.photos",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/probabilisticguardalloc/enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.probabilisticguardalloc.enabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/provisionerd/provisionerd_restart_count"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.provisionerd.provisionerd_restart_count",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/MaximumVolumeLimit"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.MaximumVolumeLimit",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/RequestedLocales"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/alexa-premium-default-status"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.alexa-premium-default-status",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/comms-active"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.comms-active",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/comms-callId"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.comms-callId",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/comms-tap"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.comms-tap",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/debug-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.debug-enabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/do-not-disturb"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.do-not-disturb",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/eeroinsided-mesh-status"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.eeroinsided-mesh-status",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/in-call"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.in-call",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/is_asp_supported"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.is_asp_supported",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/live-view"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.live-view",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/locale"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.locale",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/locales"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.locales",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/override-locale-time-format"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.override-locale-time-format",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-amazon-scl-host"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-amazon-scl-host",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-assetmgrd-updateIntSec"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-assetmgrd-updateIntSec",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-memtotal"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-memtotal",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-otad-bootid"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-otad-bootid",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-otad-target_sw_version"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-otad-target_sw_version",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-otad-update_count"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-otad-update_count",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-otad-ux-bootid"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-otad-ux-bootid",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-otad-ux-target_sw_version"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-otad-ux-target_sw_version",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-puffin-i18nConfig"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-puffin-i18nConfig",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-puffin-ntt-mode-conv"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-puffin-ntt-mode-conv",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-puffin-ntt-mode-prompt"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-puffin-ntt-mode-prompt",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-puffin-ntt-mode-va"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-puffin-ntt-mode-va",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-puffin_app-from_crash"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-puffin_app-from_crash",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-puffin_app-from_shutdown"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-puffin_app-from_shutdown",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-udsscamp_app-from_shutdown"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-udsscamp_app-from_shutdown",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-udsscamp_app-oobe"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-udsscamp_app-oobe",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/persist-vts-bootid"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.persist-vts-bootid",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/setupModePrivileges"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.setupModePrivileges",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/supportedLocales"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.supportedLocales",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/puffin-app/wakeword"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.puffin-app.wakeword",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/qasf-consent/observability"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.qasf-consent.observability",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/resource-manager/__test__"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.resource-manager.__test__",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/resource-manager/day-night-mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.resource-manager.day-night-mode",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/resource-manager/power-config-state"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.resource-manager.power-config-state",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/resource-manager/ui-mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.resource-manager.ui-mode",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/retail-demo/dcs-url"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.retail-demo.dcs-url",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/retail-demo/demo-type"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.retail-demo.demo-type",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/retail-demo/device-correlation-id"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.retail-demo.device-correlation-id",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/retail-demo/experience-mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.retail-demo.experience-mode",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/retail-demo/persist-demo-mode-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.retail-demo.persist-demo-mode-enabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/retail-demo/retry-fallback"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.retail-demo.retry-fallback",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/retail-demo/settings-last-sync-time"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.retail-demo.settings-last-sync-time",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/runtime-restriction/displays"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.runtime-restriction.displays",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/runtime-restriction/privileges"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.runtime-restriction.privileges",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/scene-detection/enablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/security/allow_vsh"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.security.allow_vsh",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/security/developer_mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.security.developer_mode",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/security/secure-access"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.security.secure-access",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings-restriction/AmazonPhotosEnablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings-restriction.AmazonPhotosEnablement",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings-restriction/VideosSafeSearchEnablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings-restriction.VideosSafeSearchEnablement",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings-restriction/VideosSearchEnablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings-restriction.VideosSearchEnablement",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings-restriction/WebBrowserEnablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings-restriction.WebBrowserEnablement",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/AlexaAccountManagerdeviceOpMode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.AlexaAccountManagerdeviceOpMode",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/AlexaChildDirectedlockMode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.AlexaChildDirectedlockMode",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/AudioAlert"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.AudioAlert",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/DefaultSecurityRecordingTimeInSec"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.DefaultSecurityRecordingTimeInSec",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/LiveView"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.LiveView",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/ObservableLogLevel"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.ObservableLogLevel",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/ObservableLogTimeout"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.ObservableLogTimeout",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/ProjectionDeviceId"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.ProjectionDeviceId",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/ProjectionType"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.ProjectionType",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/ScreenControllerPolicy"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.ScreenControllerPolicy",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/SecurityDeviceId"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.SecurityDeviceId",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/SecurityKvsChannelName"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.SecurityKvsChannelName",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/SecurityRecordingEnablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.SecurityRecordingEnablement",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/SecuritySnapshotEnablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.SecuritySnapshotEnablement",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/SunriseEffectEnabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.SunriseEffectEnabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/VideoDelay"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.VideoDelay",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/amazon-soundbar-feature-flag"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.amazon-soundbar-feature-flag",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/audio-options"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.audio-options",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/connected_fire_tv_soundbar"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.connected_fire_tv_soundbar",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/country_code"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.country_code",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/dcos-endpoint"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.dcos-endpoint",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/developer_mode_dnp_count"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.developer_mode_dnp_count",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/display-options-beta-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.display-options-beta-enabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/enterprisemode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/feature-developer-mode"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.feature-developer-mode",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/hdmi-control-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.hdmi-control-enabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/isFirstTimeCameraClosedShutterShown"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.isFirstTimeCameraClosedShutterShown",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/language_locale"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.language_locale",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/non-fastlane-flag"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.non-fastlane-flag",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/prime-video-feature-flag"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.prime-video-feature-flag",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/profile-sharing-feature-flag"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.profile-sharing-feature-flag",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/recent_email_addresses"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.recent_email_addresses",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/settings-flow-flag"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.settings-flow-flag",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/sync-amazon-content"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.sync-amazon-content",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/settings/wifi-locker-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.settings.wifi-locker-enabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/sightwise-live/enablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/sysui/no-lost-remote"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.sysui.no-lost-remote",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/ultrasound-sensor/enablement"
+sender-privileges = [ "self",]
+receiver-privileges = [ "*",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/userprofilemanager/child-profile-enabled"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.userprofilemanager.child-profile-enabled",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/wake-up-handler/is-default-set-new-appstore"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.wake-up-handler.is-default-set-new-appstore",]
+
+[[message]]
+uri = "broadcast://*/com.amazon.devconf/system/wake-up-handler/last-consent-check-time"
+sender-privileges = [ "self",]
+receiver-privileges = [ "com.amazon.devconf.privilege.wake-up-handler.last-consent-check-time",]
+
+[[module]]
+id = "/com.amazon.kepler.net.net_manager@INetManager"
+uses-services = [ "com.amazon.network.service",]
+includes-messages = [ "broadcast://com.amazon.net/state/connecting", "broadcast://com.amazon.net/state/connected", "broadcast://com.amazon.net/state/disconnecting", "broadcast://com.amazon.net/state/disconnected", "broadcast://com.amazon.net/state/l2connected", "broadcast://com.amazon.net/internet/reachable", "broadcast://com.amazon.net/internet/captive-portal-network", "broadcast://com.amazon.net/internet/unreachable", "broadcast://com.amazon.wifi/wifi-scan/scan-done", "broadcast://com.amazon.net/state/vpn-on", "broadcast://com.amazon.net/state/vpn-off", "broadcast://com.amazon.net/state/wireguard-up", "broadcast://com.amazon.net/state/wireguard-down", "broadcast://com.amazon.net/state/gre-up", "broadcast://com.amazon.net/state/gre-down", "broadcast://com.amazon.net/state/gre-fatal", "broadcast://com.amazon.net/vpn/interface-up", "broadcast://com.amazon.net/vpn/interface-down", "broadcast://com.amazon.net/vpn/connected", "broadcast://com.amazon.net/vpn/disconnected", "broadcast://com.amazon.net/vpn/create-failure", "broadcast://com.amazon.net/vpn/start-failure", "broadcast://com.amazon.net/vpn/stop-failure", "broadcast://com.amazon.net/vpn/wg-interface-updated", "broadcast://com.amazon.net/vpn/wg-interface-update-failure", "broadcast://com.amazon.net/vpn/wg-peer-updated", "broadcast://com.amazon.net/vpn/wg-peer-update-failure", "broadcast://com.amazon.net/vpn/wg-peer-removed", "broadcast://com.amazon.net/vpn/wg-peer-remove-failure", "broadcast://com.amazon.net/wireguard/create-failure", "broadcast://com.amazon.net/wireguard/remove-failure", "broadcast://com.amazon.net/wireguard/peer-added", "broadcast://com.amazon.net/wireguard/peer-not-added", "broadcast://com.amazon.net/wireguard/interface-updated", "broadcast://com.amazon.net/wireguard/interface-update-failure", "broadcast://com.amazon.net/wireguard/peer-updated", "broadcast://com.amazon.net/wireguard/peer-update-failure", "broadcast://com.amazon.net/wireguard/peer-removed", "broadcast://com.amazon.net/wireguard/peer-remove-failure", "broadcast://com.amazon.net/gre/create-failure", "broadcast://com.amazon.net/gre/remove-failure", "broadcast://com.amazon.net/diag-status/ping-resp",]
+
+[[module]]
+id = "/com.amazon.kepler.app.lifecycle@IAppLifecycleModule"
+
+[[module]]
+id = "/com.amazon.kepler.tasks@ITasksModule"
+
+[[module]]
+id = "/com.amazon.kepler.security@ISecurityModule"
+
+[[module]]
+id = "/com.amazon.kepler.packages@IPackageModule"
+
+[[module]]
+id = "/com.amazon.kepler.packages.installer@IInstallerModule"
+
+[[module]]
+id = "/com.amazon.kepler.experimental.asset_resolver_2024_03@IAssetResolverModule"
+uses-modules = [ "/com.amazon.kepler.device_config@IDeviceConfigModule", "/com.amazon.kepler.experimental_mr33.messaging@IKeplerMessagingModule",]
+
+[[module]]
+id = "/com.amazon.kepler.assets@IAssetResolverModule"
+uses-modules = [ "/com.amazon.kepler.device_config@IDeviceConfigModule", "/com.amazon.kepler.experimental_mr33.messaging@IKeplerMessagingModule",]
+
+[[module]]
+id = "/com.amazon.kepler.device_config@IDeviceConfigModule"
+uses-modules = [ "/com.amazon.kepler.internal.device_config@IDeviceConfigModule",]
+
+[[module]]
+id = "/com.amazon.kepler.experimental.device_config_2024_01@IDeviceConfig"
+uses-modules = [ "/com.amazon.kepler.experimental.internal.device_config_2024_01@IDeviceConfig",]
+
+[[module]]
+id = "/com.amazon.kepler.experimental.intl_2024_02@ILocaleConfig"
+uses-modules = [ "/com.amazon.kepler.experimental.device_config_2024_01@IDeviceConfig", "/com.amazon.kepler.experimental_mr33.messaging@IKeplerMessagingModule",]
+
+[[module]]
+id = "/com.amazon.kepler.resources@IResourceStatsModule"
+
+[[module]]
+id = "/com.amazon.kepler.experimental_mr33.messaging@IKeplerMessagingModule"
+
+[[module]]
+id = "/com.amazon.kepler.messaging@IMessagingModule"
+
+[[module]]
+id = "/com.amazon.kepler.lifecycle_management@ILifecycleManagementModule"
+includes-messages = [ "broadcast://*/com.amazon.kepler.lifecycle_management/splash-screen/show", "broadcast://*/com.amazon.kepler.lifecycle_management/splash-screen/stop", "broadcast://*/com.amazon.kepler.lifecycle_management/state-change/launch", "broadcast://*/com.amazon.kepler.lifecycle_management/state-change/start", "broadcast://*/com.amazon.kepler.lifecycle_management/state-change/stop", "broadcast://*/com.amazon.kepler.lifecycle_management/state-change/foreground", "broadcast://*/com.amazon.kepler.lifecycle_management/state-change/background", "broadcast://*/com.amazon.kepler.lifecycle_management/state-change/fg-on-new-launch", "broadcast://*/com.amazon.kepler.lifecycle_management/shutdown/app-exit-complete", "broadcast://com.amazon.kepler.lifecycle_management/state-change/nightmode-timeout", "broadcast://*/com.amazon.kepler.lifecycle_management/v1/splash-screen/show", "broadcast://*/com.amazon.kepler.lifecycle_management/v1/splash-screen/stop", "broadcast://*/com.amazon.kepler.lifecycle_management/v1/state-change/launch", "broadcast://*/com.amazon.kepler.lifecycle_management/v1/state-change/start", "broadcast://*/com.amazon.kepler.lifecycle_management/v1/state-change/stop", "broadcast://*/com.amazon.kepler.lifecycle_management/v1/state-change/foreground", "broadcast://*/com.amazon.kepler.lifecycle_management/v1/state-change/background", "broadcast://*/com.amazon.kepler.lifecycle_management/v1/state-change/fg-on-new-launch", "broadcast://*/com.amazon.kepler.lifecycle_management/v1/shutdown/app-exit-complete", "broadcast://com.amazon.kepler.lifecycle_management/v1/state-change/nightmode-timeout",]
+
+[[module]]
+id = "/com.amazon.kepler.experimental.app_storage_management_2024_06@IAppStorageManagement"
+includes-messages = [ "unicast://*/com.amazon.kepler.experimental.app_storage_management_2024_06/StorageCleared",]
+
+[[module]]
+id = "/com.amazon.kepler.storage@IStorageModule"
+includes-messages = [ "unicast://*/com.amazon.kepler.storage/StorageCleared",]
+
+[[module]]
+id = "/com.amazon.kepler.os_messages@IOsMessageModule"
+includes-messages = [ "os://home", "os://launch-delegate", "os://settings", "os://settings/sound", "os://settings/wifi", "os://request-privilege", "os://captiveportal", "os://uri-conflict-resolver", "os://still-watching", "os://ambient-component", "os://app-failure", "os://quick-action", "amzn://apps", "amzns://apps", "http://www.amazon.com/gp/mas/dl/android", "https://www.amazon.com/gp/mas/dl/android", "http://", "https://", "os://browser",]
+
+[[module]]
+id = "/com.amazon.kepler.experimental.features_2025_02@IFeature"
+
+[[module]]
+id = "/com.amazon.kepler.packages@IPackageMessage"
+includes-messages = [ "broadcast://com.amazon.kepler.packages/package/installed", "broadcast://com.amazon.kepler.packages/package/updated", "broadcast://com.amazon.kepler.packages/package/updating", "broadcast://com.amazon.kepler.packages/package/uninstalled", "broadcast://com.amazon.kepler.packages/package/enabled", "broadcast://com.amazon.kepler.packages/package/disabled", "broadcast://com.amazon.kepler.packages/default-launcher/changed",]
+
+[[module]]
+id = "/com.amazon.resmgr.resource_manager@IResourceManager"
+includes-messages = [ "broadcast://*/com.amazon.resmgr/schedule/task/start", "broadcast://*/com.amazon.resmgr/schedule/task/stop", "broadcast://*/com.amazon.resmgr/schedule/service/start", "broadcast://*/com.amazon.resmgr/schedule/service/stop", "broadcast://*/com.amazon.resmgr/schedule/service/normal/start", "broadcast://*/com.amazon.resmgr/schedule/service/normal/stop", "broadcast://*/com.amazon.resmgr/schedule/service/persistent/start", "broadcast://*/com.amazon.resmgr/schedule/service/persistent/stop", "broadcast://*/com.amazon.resmgr/schedule/stem/start", "broadcast://*/com.amazon.resmgr/schedule/stem/stop", "broadcast://*/com.amazon.resmgr/schedule/task/unscheduled/start", "broadcast://*/com.amazon.resmgr/schedule/task/unscheduled/stop", "broadcast://*/com.amazon.resmgr/schedule/task/normal/start", "broadcast://*/com.amazon.resmgr/schedule/task/normal/stop", "broadcast://*/com.amazon.resmgr/schedule/task/urgent/start", "broadcast://*/com.amazon.resmgr/schedule/task/urgent/stop", "broadcast://*/com.amazon.resmgr/resource/level", "broadcast://*/com.amazon.resmgr/pressure/resource", "broadcast://*/com.amazon.resmgr/pressure/memory/on-trim", "broadcast://*/com.amazon.resmgr/pressure/cpu/on-trim", "broadcast://*/com.amazon.resmgr/pressure/io/on-trim",]
+
+[[module]]
+id = "/com.amazon.kepler.idle@IIdleManager"
+includes-messages = [ "broadcast://*/com.amazon.idle/state/not_idle", "broadcast://*/com.amazon.idle/state/idle/screensaver", "broadcast://*/com.amazon.idle/state/idle/display_off", "broadcast://*/com.amazon.idle/time_to_screensaver",]
+
+[[module]]
+id = "/com.amazon.kepler.experimental_mr33.installer@IInstallRequestStatus"
+includes-messages = [ "broadcast://*/com.amazon.kepler.package-installer/install/completed", "broadcast://*/com.amazon.kepler.package-installer/uninstall/completed", "broadcast://*/com.amazon.kepler.package-installer/install/batch-completed",]
+
+[[module]]
+id = "/com.amazon.kepler.packages.installer@IInstallerMessages"
+includes-messages = [ "broadcast://com.amazon.kepler.packages.installer/uninstall/completed", "broadcast://com.amazon.kepler.packages.installer/install/completed",]
+
+[[module]]
+id = "/com.amazon.kepler.features@IFeatureModule"
+
+[[module]]
+id = "/com.amazon.kepler.experimental_mr33.notification_manager@INotificationManager"
+includes-messages = [ "unicast://*/com.amazon.kepler.notifications/notification_removal",]
+
+[[module]]
+id = "/com.amazon.kepler.experimental_mr33.notification_reader@INotificationReaderModule"
+
+[[module]]
+id = "/com.amazon.kepler.notifications@INotificationModule"
+uses-modules = [ "/com.amazon.kepler.experimental_mr33.notification_manager@INotificationManager",]
+
+[[module]]
+id = "/com.amazon.vega.notification.manager@INotificationManager"
+
+[[module]]
+id = "/com.amazon.kepler.thermal.thermal_service@IThermalService"
+includes-messages = [ "broadcast://*/com.amazon.thermal/state/normal", "broadcast://*/com.amazon.thermal/state/light", "broadcast://*/com.amazon.thermal/state/moderate", "broadcast://*/com.amazon.thermal/state/severe", "broadcast://*/com.amazon.thermal/state/critical", "broadcast://*/com.amazon.thermal/state/emergency",]
+
+[[module]]
+id = "/com.amazon.kepler.power.power_manager@IPowerManager"
+includes-messages = [ "broadcast://*/com.amazon.power/state/exit-sleep", "broadcast://com.amazon.power/state-machine/before-active-transition", "broadcast://com.amazon.power/state-machine/after-active-transition", "broadcast://com.amazon.power/state-machine/before-idle-transition", "broadcast://com.amazon.power/state-machine/after-idle-transition", "broadcast://com.amazon.power/state-machine/before-standby-transition", "broadcast://com.amazon.power/state-machine/after-standby-transition", "broadcast://com.amazon.power/state-machine/before-suspend-transition", "broadcast://com.amazon.power/state-machine/before-hibernate-transition",]
+
+[[module]]
+id = "/com.amazon.auth.mapclient@IMapClient"
+uses-services = [ "com.amazon.map.async.service.main", "com.amazon.map.service.main",]
+
+[[module]]
+id = "/com.amazon.datastore.rdb.module@IDatastoreRDB"
+includes-messages = [ "broadcast://*/com.amazon.datastore.rdb/table_update/reserved/_amazon_kepler_tv_database",]
+
+[[module]]
+id = "/com.amazon.datastore.pm.notification@IDSPMNotification"
+includes-messages = [ "unicast://*/com.amazon.datastore.pm.notification",]
+
+[[module]]
+id = "/com.amazon.datastore.kvs.notification@IDSKVSNotification"
+includes-messages = [ "unicast://*/com.amazon.datastore.kvs.notification",]
+
+[[module]]
+id = "/com.amazon.perfmonitor.devicestate@IDeviceState"
+includes-messages = [ "broadcast://com.amazon.perfmonitor/state/idle", "broadcast://com.amazon.perfmonitor/state/active_idle", "broadcast://com.amazon.perfmonitor/state/active",]
+
+[[module]]
+id = "/com.amazon.audio@IAudioMessageRouter"
+includes-messages = [ "broadcast://com.amazon.audio/encodings",]
+
+[[module]]
+id = "/com.amazon.udss@IAida"
+includes-messages = [ "broadcast://com.amazon.udss/aida/event/primary_person_changed", "broadcast://com.amazon.udss/aida/event/engagement_changed", "broadcast://com.amazon.udss/aida/query/nearby_persons", "broadcast://com.amazon.udss/aida/query/nearby_persons_with_visual_attention", "unicast://*/com.amazon.udss/aida/response/nearby_persons", "unicast://*/com.amazon.udss/aida/response/nearby_persons_with_visual_attention",]
+
+[[module]]
+id = "/com.amazon.udss@IEnrollment"
+includes-messages = [ "broadcast://com.amazon.udss/com.amazon.enrollmentappuxreact/response", "unicast://*/com.amazon.udss/enrollment/request",]
+
+[[module]]
+id = "/com.amazon.udss@IEds"
+includes-messages = [ "broadcast://com.amazon.udss/eds/event/presence_detection_changed",]
+
+[[module]]
+id = "/com.amazon.kepler.experimental.internal.device_config_2024_01@IDeviceConfig"
+includes-messages = [ "broadcast://*/com.amazon.devconf/system/accessibility/AlexaCaptioningEnabled", "broadcast://*/com.amazon.devconf/system/accessibility/AlexaCaptionsEnabled", "broadcast://*/com.amazon.devconf/system/accessibility/AlxCapCapitalization", "broadcast://*/com.amazon.devconf/system/accessibility/AlxCapPrefEdgeStyle", "broadcast://*/com.amazon.devconf/system/accessibility/AlxCapPrefFont", "broadcast://*/com.amazon.devconf/system/accessibility/AlxCapPrefTextColor", "broadcast://*/com.amazon.devconf/system/accessibility/AlxCapPrefTextSize", "broadcast://*/com.amazon.devconf/system/accessibility/AlxCapPrefWindowBgColor", "broadcast://*/com.amazon.devconf/system/accessibility/AlxPrefPrefBgColor", "broadcast://*/com.amazon.devconf/system/accessibility/CCPrefEdgeStyle", "broadcast://*/com.amazon.devconf/system/accessibility/CCPrefFont", "broadcast://*/com.amazon.devconf/system/accessibility/CCPrefLang", "broadcast://*/com.amazon.devconf/system/accessibility/CCPrefTextColor", "broadcast://*/com.amazon.devconf/system/accessibility/CCPrefTextSize", "broadcast://*/com.amazon.devconf/system/accessibility/CallCapPrefBgColor", "broadcast://*/com.amazon.devconf/system/accessibility/CallCapPrefFont", "broadcast://*/com.amazon.devconf/system/accessibility/CallCapPrefTextColor", "broadcast://*/com.amazon.devconf/system/accessibility/CallCapPrefTextSize", "broadcast://*/com.amazon.devconf/system/accessibility/CallCaptionsEnabled", "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefBgColor", "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefEdgeStyle", "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefFont", "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefTextBgOpacity", "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefTextColor", "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefTextColorOpacity", "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefTextSize", "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefWindowBgColor", "broadcast://*/com.amazon.devconf/system/accessibility/CaptionsPrefWindowBgColorOpacity", "broadcast://*/com.amazon.devconf/system/accessibility/ClosedCaptioningEnabled", "broadcast://*/com.amazon.devconf/system/accessibility/ColorCorrectionMode", "broadcast://*/com.amazon.devconf/system/accessibility/ColorInversionEnabled", "broadcast://*/com.amazon.devconf/system/accessibility/CommsWithoutSpeechEnabled", "broadcast://*/com.amazon.devconf/system/accessibility/HighContrastTextEnabled", "broadcast://*/com.amazon.devconf/system/accessibility/PreferAudioDescription", "broadcast://*/com.amazon.devconf/system/accessibility/RttEnabled", "broadcast://*/com.amazon.devconf/system/accessibility/ScreenMagnifierEnabled", "broadcast://*/com.amazon.devconf/system/accessibility/TapToAlexaEnabled", "broadcast://*/com.amazon.devconf/system/accessibility/TestPluginEnabled", "broadcast://*/com.amazon.devconf/system/accessibility/TestPluginSetting", "broadcast://*/com.amazon.devconf/system/accessibility/TextBannerEnabled", "broadcast://*/com.amazon.devconf/system/accessibility/TimeToTakeAction", "broadcast://*/com.amazon.devconf/system/accessibility/UiScaleFactor", "broadcast://*/com.amazon.devconf/system/accessibility/VoiceViewEnabled", "broadcast://*/com.amazon.devconf/system/accessibility/WebSettingsForPV", "broadcast://*/com.amazon.devconf/system/accessibility/override-locale-time-format", "broadcast://*/com.amazon.devconf/system/accessibility/tap-to-alexa-toggle", "broadcast://*/com.amazon.devconf/system/adep/dev_flags", "broadcast://*/com.amazon.devconf/system/adep/fos_flags", "broadcast://*/com.amazon.devconf/system/adep/unlock_status", "broadcast://*/com.amazon.devconf/system/adep/usr_flags", "broadcast://*/com.amazon.devconf/system/amazon-kids/alexa-state", "broadcast://*/com.amazon.devconf/system/amazon-kids/app-allowlist", "broadcast://*/com.amazon.devconf/system/amazon-kids/app-request", "broadcast://*/com.amazon.devconf/system/amazon-kids/app-store-set", "broadcast://*/com.amazon.devconf/system/amazon-kids/is-supported", "broadcast://*/com.amazon.devconf/system/are-you-still-watching/still-watching-timeout", "broadcast://*/com.amazon.devconf/system/audio/dump_playback", "broadcast://*/com.amazon.devconf/system/automation-toolkit/service-enable", "broadcast://*/com.amazon.devconf/system/boot/dm_verity_off", "broadcast://*/com.amazon.devconf/system/boot/kernel_unlocked", "broadcast://*/com.amazon.devconf/system/boot/prod_device", "broadcast://*/com.amazon.devconf/system/boot/rpmb_state", "broadcast://*/com.amazon.devconf/system/boot/secure_cpu", "broadcast://*/com.amazon.devconf/system/boot/smack_logging", "broadcast://*/com.amazon.devconf/system/camera/operational-state", "broadcast://*/com.amazon.devconf/system/configuration/color-theme", "broadcast://*/com.amazon.devconf/system/configuration/day-night-mode", "broadcast://*/com.amazon.devconf/system/configuration/developer_mode", "broadcast://*/com.amazon.devconf/system/configuration/hour-clock-system", "broadcast://*/com.amazon.devconf/system/configuration/locale", "broadcast://*/com.amazon.devconf/system/configuration/music-visualizer", "broadcast://*/com.amazon.devconf/system/configuration/time-zone", "broadcast://*/com.amazon.devconf/system/content-personalization-settings/enablement", "broadcast://*/com.amazon.devconf/system/content-personalization-settings/launch-consent", "broadcast://*/com.amazon.devconf/system/developer/vda_developer_mode", "broadcast://*/com.amazon.devconf/system/developer/vda_network_mode", "broadcast://*/com.amazon.devconf/system/developer/vda_tcp_port", "broadcast://*/com.amazon.devconf/system/device-info/bootloader", "broadcast://*/com.amazon.devconf/system/device-info/bt-device-name", "broadcast://*/com.amazon.devconf/system/device-info/build-desc", "broadcast://*/com.amazon.devconf/system/device-info/build-fingerprint", "broadcast://*/com.amazon.devconf/system/device-info/build-tags", "broadcast://*/com.amazon.devconf/system/device-info/build-variant", "broadcast://*/com.amazon.devconf/system/device-info/device-serial", "broadcast://*/com.amazon.devconf/system/device-info/device-type-id", "broadcast://*/com.amazon.devconf/system/device-info/hardware-name", "broadcast://*/com.amazon.devconf/system/device-info/os-version", "broadcast://*/com.amazon.devconf/system/device-info/package-name", "broadcast://*/com.amazon.devconf/system/device-info/product-id", "broadcast://*/com.amazon.devconf/system/device-info/product-manufacturer", "broadcast://*/com.amazon.devconf/system/device-info/product-model", "broadcast://*/com.amazon.devconf/system/device-info/product-name", "broadcast://*/com.amazon.devconf/system/device-info/software-version", "broadcast://*/com.amazon.devconf/system/easyupgrade/eu-restore-complete", "broadcast://*/com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-ap-auth", "broadcast://*/com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-ap-ssid", "broadcast://*/com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-disable", "broadcast://*/com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-status", "broadcast://*/com.amazon.devconf/system/eeroinsided/persist-eri-aipc-mesh-disable", "broadcast://*/com.amazon.devconf/system/epl/enablement", "broadcast://*/com.amazon.devconf/system/epl/epl_conversation_url", "broadcast://*/com.amazon.devconf/system/epl/epl_main_url", "broadcast://*/com.amazon.devconf/system/geolocation-eca/enabled", "broadcast://*/com.amazon.devconf/system/identifiers/device-friendly-name", "broadcast://*/com.amazon.devconf/system/idle/TimeoutToScreenOff", "broadcast://*/com.amazon.devconf/system/idle/TimeoutToScreensaver", "broadcast://*/com.amazon.devconf/system/idle/enableScreensaver", "broadcast://*/com.amazon.devconf/system/launch-delegate/list", "broadcast://*/com.amazon.devconf/system/launch-delegate/policy", "broadcast://*/com.amazon.devconf/system/mmcinfo/mlc", "broadcast://*/com.amazon.devconf/system/mmcinfo/part_num", "broadcast://*/com.amazon.devconf/system/mmcinfo/slc", "broadcast://*/com.amazon.devconf/system/mmcinfo/tbw", "broadcast://*/com.amazon.devconf/system/mmcinfo/tlc", "broadcast://*/com.amazon.devconf/system/multimedia/enable_decoder_compression", "broadcast://*/com.amazon.devconf/system/multimedia/group-ipc-buffer-count", "broadcast://*/com.amazon.devconf/system/multimedia/mediaTransform-decoder-capture-io-mode", "broadcast://*/com.amazon.devconf/system/multimedia/mediaTransform-decrypt-bufferpool-max-count", "broadcast://*/com.amazon.devconf/system/multimedia/mediaTransform-decrypt-bufferpool-min-count", "broadcast://*/com.amazon.devconf/system/multimedia/mediaTransform-frameAlignment", "broadcast://*/com.amazon.devconf/system/multimedia/mediaTransform-secure-sessions-max-count", "broadcast://*/com.amazon.devconf/system/multimedia/mediaTransform-v4l2-hevc_decName", "broadcast://*/com.amazon.devconf/system/multimedia/mediaTransform-v4l2converter-propose-allocation", "broadcast://*/com.amazon.devconf/system/multimedia/renderer-alignment", "broadcast://*/com.amazon.devconf/system/netflixta/esn", "broadcast://*/com.amazon.devconf/system/oobe/alsCountryCode", "broadcast://*/com.amazon.devconf/system/oobe/locale-saved", "broadcast://*/com.amazon.devconf/system/oobe/oobe-complete", "broadcast://*/com.amazon.devconf/system/oobe/oobe-enabled", "broadcast://*/com.amazon.devconf/system/oobe/oobe_version", "broadcast://*/com.amazon.devconf/system/oobe/ota-complete", "broadcast://*/com.amazon.devconf/system/oobe/ota-reboot-saved", "broadcast://*/com.amazon.devconf/system/oobe/registration-complete", "broadcast://*/com.amazon.devconf/system/oobe/sessionid", "broadcast://*/com.amazon.devconf/system/oobe/timezone", "broadcast://*/com.amazon.devconf/system/opt-outs/3p-user-action", "broadcast://*/com.amazon.devconf/system/pact/avl", "broadcast://*/com.amazon.devconf/system/pact/gvl", "broadcast://*/com.amazon.devconf/system/pact/surface_consent", "broadcast://*/com.amazon.devconf/system/pcon-internal/cached-pin", "broadcast://*/com.amazon.devconf/system/pcon-internal/cached-pin-value", "broadcast://*/com.amazon.devconf/system/pcon-internal/pin_operations_mode", "broadcast://*/com.amazon.devconf/system/pcon-internal/spinner-enabled", "broadcast://*/com.amazon.devconf/system/pcon/capability-exists-for-device", "broadcast://*/com.amazon.devconf/system/pcon/is-enabled", "broadcast://*/com.amazon.devconf/system/pcon/pin-protect-profile-switch-enabled", "broadcast://*/com.amazon.devconf/system/pcon/project-fork-enabled", "broadcast://*/com.amazon.devconf/system/power-daemon-metrics/cache-interval-ms", "broadcast://*/com.amazon.devconf/system/power-daemon-metrics/total-samples", "broadcast://*/com.amazon.devconf/system/power-day-mode-dim/status", "broadcast://*/com.amazon.devconf/system/privacy-preferences/biometrics", "broadcast://*/com.amazon.devconf/system/privacy-preferences/bluetooth", "broadcast://*/com.amazon.devconf/system/privacy-preferences/calendar", "broadcast://*/com.amazon.devconf/system/privacy-preferences/camera", "broadcast://*/com.amazon.devconf/system/privacy-preferences/contacts", "broadcast://*/com.amazon.devconf/system/privacy-preferences/location-coarse", "broadcast://*/com.amazon.devconf/system/privacy-preferences/location-fine", "broadcast://*/com.amazon.devconf/system/privacy-preferences/logging-analytics", "broadcast://*/com.amazon.devconf/system/privacy-preferences/logging-consent", "broadcast://*/com.amazon.devconf/system/privacy-preferences/logging-critical", "broadcast://*/com.amazon.devconf/system/privacy-preferences/microphone", "broadcast://*/com.amazon.devconf/system/privacy-preferences/photos", "broadcast://*/com.amazon.devconf/system/probabilisticguardalloc/enabled", "broadcast://*/com.amazon.devconf/system/provisionerd/provisionerd_restart_count", "broadcast://*/com.amazon.devconf/system/puffin-app/MaximumVolumeLimit", "broadcast://*/com.amazon.devconf/system/puffin-app/RequestedLocales", "broadcast://*/com.amazon.devconf/system/puffin-app/alexa-premium-default-status", "broadcast://*/com.amazon.devconf/system/puffin-app/comms-active", "broadcast://*/com.amazon.devconf/system/puffin-app/comms-callId", "broadcast://*/com.amazon.devconf/system/puffin-app/comms-tap", "broadcast://*/com.amazon.devconf/system/puffin-app/debug-enabled", "broadcast://*/com.amazon.devconf/system/puffin-app/do-not-disturb", "broadcast://*/com.amazon.devconf/system/puffin-app/eeroinsided-mesh-status", "broadcast://*/com.amazon.devconf/system/puffin-app/in-call", "broadcast://*/com.amazon.devconf/system/puffin-app/is_asp_supported", "broadcast://*/com.amazon.devconf/system/puffin-app/live-view", "broadcast://*/com.amazon.devconf/system/puffin-app/locale", "broadcast://*/com.amazon.devconf/system/puffin-app/locales", "broadcast://*/com.amazon.devconf/system/puffin-app/override-locale-time-format", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-amazon-scl-host", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-assetmgrd-updateIntSec", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-memtotal", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-otad-bootid", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-otad-target_sw_version", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-otad-update_count", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-otad-ux-bootid", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-otad-ux-target_sw_version", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-puffin-i18nConfig", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-puffin-ntt-mode-conv", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-puffin-ntt-mode-prompt", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-puffin-ntt-mode-va", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-puffin_app-from_crash", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-puffin_app-from_shutdown", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-udsscamp_app-from_shutdown", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-udsscamp_app-oobe", "broadcast://*/com.amazon.devconf/system/puffin-app/persist-vts-bootid", "broadcast://*/com.amazon.devconf/system/puffin-app/setupModePrivileges", "broadcast://*/com.amazon.devconf/system/puffin-app/supportedLocales", "broadcast://*/com.amazon.devconf/system/puffin-app/wakeword", "broadcast://*/com.amazon.devconf/system/qasf-consent/observability", "broadcast://*/com.amazon.devconf/system/resource-manager/__test__", "broadcast://*/com.amazon.devconf/system/resource-manager/day-night-mode", "broadcast://*/com.amazon.devconf/system/resource-manager/power-config-state", "broadcast://*/com.amazon.devconf/system/resource-manager/ui-mode", "broadcast://*/com.amazon.devconf/system/retail-demo/dcs-url", "broadcast://*/com.amazon.devconf/system/retail-demo/demo-type", "broadcast://*/com.amazon.devconf/system/retail-demo/device-correlation-id", "broadcast://*/com.amazon.devconf/system/retail-demo/experience-mode", "broadcast://*/com.amazon.devconf/system/retail-demo/persist-demo-mode-enabled", "broadcast://*/com.amazon.devconf/system/retail-demo/retry-fallback", "broadcast://*/com.amazon.devconf/system/retail-demo/settings-last-sync-time", "broadcast://*/com.amazon.devconf/system/runtime-restriction/displays", "broadcast://*/com.amazon.devconf/system/runtime-restriction/privileges", "broadcast://*/com.amazon.devconf/system/scene-detection/enablement", "broadcast://*/com.amazon.devconf/system/security/allow_vsh", "broadcast://*/com.amazon.devconf/system/security/developer_mode", "broadcast://*/com.amazon.devconf/system/security/secure-access", "broadcast://*/com.amazon.devconf/system/settings-restriction/AmazonPhotosEnablement", "broadcast://*/com.amazon.devconf/system/settings-restriction/VideosSafeSearchEnablement", "broadcast://*/com.amazon.devconf/system/settings-restriction/VideosSearchEnablement", "broadcast://*/com.amazon.devconf/system/settings-restriction/WebBrowserEnablement", "broadcast://*/com.amazon.devconf/system/settings/AlexaAccountManagerdeviceOpMode", "broadcast://*/com.amazon.devconf/system/settings/AlexaChildDirectedlockMode", "broadcast://*/com.amazon.devconf/system/settings/AudioAlert", "broadcast://*/com.amazon.devconf/system/settings/DefaultSecurityRecordingTimeInSec", "broadcast://*/com.amazon.devconf/system/settings/LiveView", "broadcast://*/com.amazon.devconf/system/settings/ObservableLogLevel", "broadcast://*/com.amazon.devconf/system/settings/ObservableLogTimeout", "broadcast://*/com.amazon.devconf/system/settings/ProjectionDeviceId", "broadcast://*/com.amazon.devconf/system/settings/ProjectionType", "broadcast://*/com.amazon.devconf/system/settings/ScreenControllerPolicy", "broadcast://*/com.amazon.devconf/system/settings/SecurityDeviceId", "broadcast://*/com.amazon.devconf/system/settings/SecurityKvsChannelName", "broadcast://*/com.amazon.devconf/system/settings/SecurityRecordingEnablement", "broadcast://*/com.amazon.devconf/system/settings/SecuritySnapshotEnablement", "broadcast://*/com.amazon.devconf/system/settings/SunriseEffectEnabled", "broadcast://*/com.amazon.devconf/system/settings/VideoDelay", "broadcast://*/com.amazon.devconf/system/settings/amazon-soundbar-feature-flag", "broadcast://*/com.amazon.devconf/system/settings/audio-options", "broadcast://*/com.amazon.devconf/system/settings/connected_fire_tv_soundbar", "broadcast://*/com.amazon.devconf/system/settings/country_code", "broadcast://*/com.amazon.devconf/system/settings/dcos-endpoint", "broadcast://*/com.amazon.devconf/system/settings/developer_mode_dnp_count", "broadcast://*/com.amazon.devconf/system/settings/display-options-beta-enabled", "broadcast://*/com.amazon.devconf/system/settings/enterprisemode", "broadcast://*/com.amazon.devconf/system/settings/feature-developer-mode", "broadcast://*/com.amazon.devconf/system/settings/hdmi-control-enabled", "broadcast://*/com.amazon.devconf/system/settings/isFirstTimeCameraClosedShutterShown", "broadcast://*/com.amazon.devconf/system/settings/language_locale", "broadcast://*/com.amazon.devconf/system/settings/non-fastlane-flag", "broadcast://*/com.amazon.devconf/system/settings/prime-video-feature-flag", "broadcast://*/com.amazon.devconf/system/settings/profile-sharing-feature-flag", "broadcast://*/com.amazon.devconf/system/settings/recent_email_addresses", "broadcast://*/com.amazon.devconf/system/settings/settings-flow-flag", "broadcast://*/com.amazon.devconf/system/settings/sync-amazon-content", "broadcast://*/com.amazon.devconf/system/settings/wifi-locker-enabled", "broadcast://*/com.amazon.devconf/system/sightwise-live/enablement", "broadcast://*/com.amazon.devconf/system/sysui/no-lost-remote", "broadcast://*/com.amazon.devconf/system/ultrasound-sensor/enablement", "broadcast://*/com.amazon.devconf/system/userprofilemanager/child-profile-enabled", "broadcast://*/com.amazon.devconf/system/wake-up-handler/is-default-set-new-appstore", "broadcast://*/com.amazon.devconf/system/wake-up-handler/last-consent-check-time",]
+
+[[module]]
+id = "/com.amazon.kepler.internal.device_config@IDeviceConfigModule"
+includes-messages = [ "broadcast://com.amazon.devconf/system/accessibility/UiScaleFactor", "broadcast://com.amazon.devconf/system/accessibility/WebSettingsForPV", "broadcast://com.amazon.devconf/system/accessibility/override-locale-time-format", "broadcast://com.amazon.devconf/system/launch-delegate/list", "broadcast://com.amazon.devconf/system/puffin-app/persist-vts-bootid", "broadcast://com.amazon.devconf/system/settings/dcos-endpoint", "broadcast://com.amazon.devconf/system/accessibility/ColorInversionEnabled", "broadcast://com.amazon.devconf/system/pcon-internal/cached-pin", "broadcast://com.amazon.devconf/system/content-personalization-settings/enablement", "broadcast://com.amazon.devconf/system/mmcinfo/slc", "broadcast://com.amazon.devconf/system/security/developer_mode", "broadcast://com.amazon.devconf/system/settings/AudioAlert", "broadcast://com.amazon.devconf/system/settings/display-options-beta-enabled", "broadcast://com.amazon.devconf/system/privacy-preferences/contacts", "broadcast://com.amazon.devconf/system/settings/hdmi-control-enabled", "broadcast://com.amazon.devconf/system/easyupgrade/eu-restore-complete", "broadcast://com.amazon.devconf/system/oobe/oobe_version", "broadcast://com.amazon.devconf/system/settings/prime-video-feature-flag", "broadcast://com.amazon.devconf/system/settings/wifi-locker-enabled", "broadcast://com.amazon.devconf/system/accessibility/RttEnabled", "broadcast://com.amazon.devconf/system/mmcinfo/tlc", "broadcast://com.amazon.devconf/system/multimedia/mediaTransform-v4l2-hevc_decName", "broadcast://com.amazon.devconf/system/puffin-app/do-not-disturb", "broadcast://com.amazon.devconf/system/privacy-preferences/bluetooth", "broadcast://com.amazon.devconf/system/puffin-app/in-call", "broadcast://com.amazon.devconf/system/puffin-app/persist-otad-bootid", "broadcast://com.amazon.devconf/system/settings/SunriseEffectEnabled", "broadcast://com.amazon.devconf/system/settings/isFirstTimeCameraClosedShutterShown", "broadcast://com.amazon.devconf/system/wake-up-handler/last-consent-check-time", "broadcast://com.amazon.devconf/system/accessibility/CallCapPrefBgColor", "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefWindowBgColor", "broadcast://com.amazon.devconf/system/boot/prod_device", "broadcast://com.amazon.devconf/system/puffin-app/comms-active", "broadcast://com.amazon.devconf/system/power-daemon-metrics/cache-interval-ms", "broadcast://com.amazon.devconf/system/settings/ProjectionType", "broadcast://com.amazon.devconf/system/settings-restriction/WebBrowserEnablement", "broadcast://com.amazon.devconf/system/pact/avl", "broadcast://com.amazon.devconf/system/userprofilemanager/child-profile-enabled", "broadcast://com.amazon.devconf/system/retail-demo/experience-mode", "broadcast://com.amazon.devconf/system/pact/surface_consent", "broadcast://com.amazon.devconf/system/power-daemon-metrics/total-samples", "broadcast://com.amazon.devconf/system/privacy-preferences/location-coarse", "broadcast://com.amazon.devconf/system/privacy-preferences/logging-consent", "broadcast://com.amazon.devconf/system/accessibility/AlxCapPrefWindowBgColor", "broadcast://com.amazon.devconf/system/puffin-app/supportedLocales", "broadcast://com.amazon.devconf/system/configuration/time-zone", "broadcast://com.amazon.devconf/system/scene-detection/enablement", "broadcast://com.amazon.devconf/system/settings/developer_mode_dnp_count", "broadcast://com.amazon.devconf/system/configuration/developer_mode", "broadcast://com.amazon.devconf/system/puffin-app/override-locale-time-format", "broadcast://com.amazon.devconf/system/epl/epl_main_url", "broadcast://com.amazon.devconf/system/puffin-app/MaximumVolumeLimit", "broadcast://com.amazon.devconf/system/settings/country_code", "broadcast://com.amazon.devconf/system/sysui/no-lost-remote", "broadcast://com.amazon.devconf/system/boot/rpmb_state", "broadcast://com.amazon.devconf/system/settings/connected_fire_tv_soundbar", "broadcast://com.amazon.devconf/system/device-info/build-tags", "broadcast://com.amazon.devconf/system/accessibility/HighContrastTextEnabled", "broadcast://com.amazon.devconf/system/accessibility/AlxCapPrefTextSize", "broadcast://com.amazon.devconf/system/puffin-app/comms-tap", "broadcast://com.amazon.devconf/system/puffin-app/persist-amazon-scl-host", "broadcast://com.amazon.devconf/system/puffin-app/persist-otad-ux-bootid", "broadcast://com.amazon.devconf/system/settings-restriction/VideosSafeSearchEnablement", "broadcast://com.amazon.devconf/system/device-info/hardware-name", "broadcast://com.amazon.devconf/system/pcon/pin-protect-profile-switch-enabled", "broadcast://com.amazon.devconf/system/puffin-app/persist-puffin_app-from_crash", "broadcast://com.amazon.devconf/system/security/allow_vsh", "broadcast://com.amazon.devconf/system/puffin-app/persist-puffin-ntt-mode-conv", "broadcast://com.amazon.devconf/system/settings/ProjectionDeviceId", "broadcast://com.amazon.devconf/system/accessibility/TestPluginSetting", "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefBgColor", "broadcast://com.amazon.devconf/system/accessibility/TimeToTakeAction", "broadcast://com.amazon.devconf/system/puffin-app/persist-assetmgrd-updateIntSec", "broadcast://com.amazon.devconf/system/puffin-app/locale", "broadcast://com.amazon.devconf/system/settings/ScreenControllerPolicy", "broadcast://com.amazon.devconf/system/settings/ObservableLogTimeout", "broadcast://com.amazon.devconf/system/device-info/device-type-id", "broadcast://com.amazon.devconf/system/settings/SecurityRecordingEnablement", "broadcast://com.amazon.devconf/system/resource-manager/power-config-state", "broadcast://com.amazon.devconf/system/puffin-app/RequestedLocales", "broadcast://com.amazon.devconf/system/configuration/color-theme", "broadcast://com.amazon.devconf/system/provisionerd/provisionerd_restart_count", "broadcast://com.amazon.devconf/system/pcon/is-enabled", "broadcast://com.amazon.devconf/system/puffin-app/persist-puffin_app-from_shutdown", "broadcast://com.amazon.devconf/system/settings/feature-developer-mode", "broadcast://com.amazon.devconf/system/device-info/device-serial", "broadcast://com.amazon.devconf/system/oobe/oobe-complete", "broadcast://com.amazon.devconf/system/qasf-consent/observability", "broadcast://com.amazon.devconf/system/eeroinsided/persist-eri-aipc-mesh-disable", "broadcast://com.amazon.devconf/system/wake-up-handler/is-default-set-new-appstore", "broadcast://com.amazon.devconf/system/automation-toolkit/service-enable", "broadcast://com.amazon.devconf/system/device-info/build-fingerprint", "broadcast://com.amazon.devconf/system/puffin-app/wakeword", "broadcast://com.amazon.devconf/system/runtime-restriction/privileges", "broadcast://com.amazon.devconf/system/multimedia/mediaTransform-v4l2converter-propose-allocation", "broadcast://com.amazon.devconf/system/configuration/hour-clock-system", "broadcast://com.amazon.devconf/system/camera/operational-state", "broadcast://com.amazon.devconf/system/geolocation-eca/enabled", "broadcast://com.amazon.devconf/system/amazon-kids/alexa-state", "broadcast://com.amazon.devconf/system/accessibility/CCPrefFont", "broadcast://com.amazon.devconf/system/multimedia/mediaTransform-frameAlignment", "broadcast://com.amazon.devconf/system/accessibility/TextBannerEnabled", "broadcast://com.amazon.devconf/system/launch-delegate/policy", "broadcast://com.amazon.devconf/system/runtime-restriction/displays", "broadcast://com.amazon.devconf/system/settings/SecuritySnapshotEnablement", "broadcast://com.amazon.devconf/system/settings/non-fastlane-flag", "broadcast://com.amazon.devconf/system/accessibility/CallCaptionsEnabled", "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefWindowBgColorOpacity", "broadcast://com.amazon.devconf/system/settings/amazon-soundbar-feature-flag", "broadcast://com.amazon.devconf/system/accessibility/VoiceViewEnabled", "broadcast://com.amazon.devconf/system/accessibility/CommsWithoutSpeechEnabled", "broadcast://com.amazon.devconf/system/boot/dm_verity_off", "broadcast://com.amazon.devconf/system/accessibility/ScreenMagnifierEnabled", "broadcast://com.amazon.devconf/system/oobe/locale-saved", "broadcast://com.amazon.devconf/system/privacy-preferences/calendar", "broadcast://com.amazon.devconf/system/accessibility/AlxCapPrefTextColor", "broadcast://com.amazon.devconf/system/security/secure-access", "broadcast://com.amazon.devconf/system/device-info/package-name", "broadcast://com.amazon.devconf/system/accessibility/CCPrefTextSize", "broadcast://com.amazon.devconf/system/mmcinfo/part_num", "broadcast://com.amazon.devconf/system/configuration/day-night-mode", "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefTextColorOpacity", "broadcast://com.amazon.devconf/system/oobe/ota-complete", "broadcast://com.amazon.devconf/system/puffin-app/debug-enabled", "broadcast://com.amazon.devconf/system/settings-restriction/VideosSearchEnablement", "broadcast://com.amazon.devconf/system/accessibility/AlxCapPrefEdgeStyle", "broadcast://com.amazon.devconf/system/multimedia/renderer-alignment", "broadcast://com.amazon.devconf/system/settings/SecurityKvsChannelName", "broadcast://com.amazon.devconf/system/privacy-preferences/photos", "broadcast://com.amazon.devconf/system/puffin-app/persist-memtotal", "broadcast://com.amazon.devconf/system/pcon/capability-exists-for-device", "broadcast://com.amazon.devconf/system/multimedia/enable_decoder_compression", "broadcast://com.amazon.devconf/system/accessibility/ColorCorrectionMode", "broadcast://com.amazon.devconf/system/multimedia/mediaTransform-decrypt-bufferpool-max-count", "broadcast://com.amazon.devconf/system/pact/gvl", "broadcast://com.amazon.devconf/system/accessibility/AlxCapPrefFont", "broadcast://com.amazon.devconf/system/amazon-kids/app-request", "broadcast://com.amazon.devconf/system/pcon-internal/pin_operations_mode", "broadcast://com.amazon.devconf/system/settings/language_locale", "broadcast://com.amazon.devconf/system/oobe/oobe-enabled", "broadcast://com.amazon.devconf/system/resource-manager/__test__", "broadcast://com.amazon.devconf/system/content-personalization-settings/launch-consent", "broadcast://com.amazon.devconf/system/privacy-preferences/biometrics", "broadcast://com.amazon.devconf/system/retail-demo/persist-demo-mode-enabled", "broadcast://com.amazon.devconf/system/audio/dump_playback", "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefTextColor", "broadcast://com.amazon.devconf/system/sightwise-live/enablement", "broadcast://com.amazon.devconf/system/adep/dev_flags", "broadcast://com.amazon.devconf/system/accessibility/AlexaCaptioningEnabled", "broadcast://com.amazon.devconf/system/idle/TimeoutToScreensaver", "broadcast://com.amazon.devconf/system/oobe/ota-reboot-saved", "broadcast://com.amazon.devconf/system/multimedia/mediaTransform-decoder-capture-io-mode", "broadcast://com.amazon.devconf/system/privacy-preferences/logging-analytics", "broadcast://com.amazon.devconf/system/adep/usr_flags", "broadcast://com.amazon.devconf/system/puffin-app/persist-otad-update_count", "broadcast://com.amazon.devconf/system/settings/audio-options", "broadcast://com.amazon.devconf/system/puffin-app/persist-otad-ux-target_sw_version", "broadcast://com.amazon.devconf/system/ultrasound-sensor/enablement", "broadcast://com.amazon.devconf/system/settings/sync-amazon-content", "broadcast://com.amazon.devconf/system/accessibility/AlxCapCapitalization", "broadcast://com.amazon.devconf/system/pcon-internal/cached-pin-value", "broadcast://com.amazon.devconf/system/puffin-app/persist-puffin-ntt-mode-prompt", "broadcast://com.amazon.devconf/system/puffin-app/persist-udsscamp_app-from_shutdown", "broadcast://com.amazon.devconf/system/amazon-kids/app-store-set", "broadcast://com.amazon.devconf/system/configuration/locale", "broadcast://com.amazon.devconf/system/accessibility/tap-to-alexa-toggle", "broadcast://com.amazon.devconf/system/oobe/timezone", "broadcast://com.amazon.devconf/system/privacy-preferences/logging-critical", "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefTextBgOpacity", "broadcast://com.amazon.devconf/system/developer/vda_developer_mode", "broadcast://com.amazon.devconf/system/boot/smack_logging", "broadcast://com.amazon.devconf/system/developer/vda_tcp_port", "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefTextSize", "broadcast://com.amazon.devconf/system/pcon-internal/spinner-enabled", "broadcast://com.amazon.devconf/system/settings-restriction/AmazonPhotosEnablement", "broadcast://com.amazon.devconf/system/resource-manager/day-night-mode", "broadcast://com.amazon.devconf/system/accessibility/TestPluginEnabled", "broadcast://com.amazon.devconf/system/identifiers/device-friendly-name", "broadcast://com.amazon.devconf/system/resource-manager/ui-mode", "broadcast://com.amazon.devconf/system/oobe/sessionid", "broadcast://com.amazon.devconf/system/retail-demo/demo-type", "broadcast://com.amazon.devconf/system/adep/unlock_status", "broadcast://com.amazon.devconf/system/puffin-app/alexa-premium-default-status", "broadcast://com.amazon.devconf/system/accessibility/CallCapPrefFont", "broadcast://com.amazon.devconf/system/accessibility/TapToAlexaEnabled", "broadcast://com.amazon.devconf/system/boot/secure_cpu", "broadcast://com.amazon.devconf/system/device-info/product-name", "broadcast://com.amazon.devconf/system/settings/profile-sharing-feature-flag", "broadcast://com.amazon.devconf/system/accessibility/CCPrefEdgeStyle", "broadcast://com.amazon.devconf/system/puffin-app/persist-udsscamp_app-oobe", "broadcast://com.amazon.devconf/system/accessibility/ClosedCaptioningEnabled", "broadcast://com.amazon.devconf/system/puffin-app/comms-callId", "broadcast://com.amazon.devconf/system/device-info/bt-device-name", "broadcast://com.amazon.devconf/system/puffin-app/persist-puffin-i18nConfig", "broadcast://com.amazon.devconf/system/settings/SecurityDeviceId", "broadcast://com.amazon.devconf/system/oobe/alsCountryCode", "broadcast://com.amazon.devconf/system/multimedia/mediaTransform-decrypt-bufferpool-min-count", "broadcast://com.amazon.devconf/system/settings/AlexaChildDirectedlockMode", "broadcast://com.amazon.devconf/system/puffin-app/is_asp_supported", "broadcast://com.amazon.devconf/system/settings/settings-flow-flag", "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefFont", "broadcast://com.amazon.devconf/system/settings/VideoDelay", "broadcast://com.amazon.devconf/system/configuration/music-visualizer", "broadcast://com.amazon.devconf/system/settings/enterprisemode", "broadcast://com.amazon.devconf/system/developer/vda_network_mode", "broadcast://com.amazon.devconf/system/accessibility/CCPrefLang", "broadcast://com.amazon.devconf/system/retail-demo/settings-last-sync-time", "broadcast://com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-disable", "broadcast://com.amazon.devconf/system/boot/kernel_unlocked", "broadcast://com.amazon.devconf/system/pcon/project-fork-enabled", "broadcast://com.amazon.devconf/system/puffin-app/locales", "broadcast://com.amazon.devconf/system/probabilisticguardalloc/enabled", "broadcast://com.amazon.devconf/system/epl/enablement", "broadcast://com.amazon.devconf/system/settings/DefaultSecurityRecordingTimeInSec", "broadcast://com.amazon.devconf/system/accessibility/PreferAudioDescription", "broadcast://com.amazon.devconf/system/power-day-mode-dim/status", "broadcast://com.amazon.devconf/system/puffin-app/persist-puffin-ntt-mode-va", "broadcast://com.amazon.devconf/system/retail-demo/device-correlation-id", "broadcast://com.amazon.devconf/system/are-you-still-watching/still-watching-timeout", "broadcast://com.amazon.devconf/system/accessibility/CCPrefTextColor", "broadcast://com.amazon.devconf/system/adep/fos_flags", "broadcast://com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-ap-ssid", "broadcast://com.amazon.devconf/system/privacy-preferences/location-fine", "broadcast://com.amazon.devconf/system/accessibility/AlexaCaptionsEnabled", "broadcast://com.amazon.devconf/system/device-info/build-variant", "broadcast://com.amazon.devconf/system/device-info/bootloader", "broadcast://com.amazon.devconf/system/device-info/product-id", "broadcast://com.amazon.devconf/system/accessibility/CallCapPrefTextSize", "broadcast://com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-status", "broadcast://com.amazon.devconf/system/epl/epl_conversation_url", "broadcast://com.amazon.devconf/system/mmcinfo/tbw", "broadcast://com.amazon.devconf/system/puffin-app/persist-otad-target_sw_version", "broadcast://com.amazon.devconf/system/retail-demo/dcs-url", "broadcast://com.amazon.devconf/system/eeroinsided/eeroinsided-mesh-ap-auth", "broadcast://com.amazon.devconf/system/oobe/registration-complete", "broadcast://com.amazon.devconf/system/amazon-kids/is-supported", "broadcast://com.amazon.devconf/system/netflixta/esn", "broadcast://com.amazon.devconf/system/multimedia/group-ipc-buffer-count", "broadcast://com.amazon.devconf/system/opt-outs/3p-user-action", "broadcast://com.amazon.devconf/system/privacy-preferences/camera", "broadcast://com.amazon.devconf/system/retail-demo/retry-fallback", "broadcast://com.amazon.devconf/system/accessibility/AlxPrefPrefBgColor", "broadcast://com.amazon.devconf/system/settings/ObservableLogLevel", "broadcast://com.amazon.devconf/system/accessibility/CaptionsPrefEdgeStyle", "broadcast://com.amazon.devconf/system/device-info/os-version", "broadcast://com.amazon.devconf/system/accessibility/CallCapPrefTextColor", "broadcast://com.amazon.devconf/system/idle/enableScreensaver", "broadcast://com.amazon.devconf/system/amazon-kids/app-allowlist", "broadcast://com.amazon.devconf/system/privacy-preferences/microphone", "broadcast://com.amazon.devconf/system/puffin-app/setupModePrivileges", "broadcast://com.amazon.devconf/system/settings/recent_email_addresses", "broadcast://com.amazon.devconf/system/mmcinfo/mlc", "broadcast://com.amazon.devconf/system/settings/LiveView", "broadcast://com.amazon.devconf/system/device-info/build-desc", "broadcast://com.amazon.devconf/system/device-info/software-version", "broadcast://com.amazon.devconf/system/multimedia/mediaTransform-secure-sessions-max-count", "broadcast://com.amazon.devconf/system/puffin-app/live-view", "broadcast://com.amazon.devconf/system/settings/AlexaAccountManagerdeviceOpMode", "broadcast://com.amazon.devconf/system/puffin-app/eeroinsided-mesh-status", "broadcast://com.amazon.devconf/system/device-info/product-manufacturer", "broadcast://com.amazon.devconf/system/device-info/product-model", "broadcast://com.amazon.devconf/system/idle/TimeoutToScreenOff",]
+
+feature = []
+
+[[module]]
+id = "/com.amazon.kepler.kepler_compatibility_1@IKeplerCompatibility_0"
+
+# Private, best-effort transitive deps of this TurboModule (queried via TryQueryInterface
+# in KeplerCompatibility.cpp). Both are OS-baseline modules, always mounted in the consumer's
+# default sandbox, so they are modeled as uses-modules here rather than app-facing needs.
+uses-modules = [
+  "/com.amazon.kepler.experimental.features_2025_02@IFeature",
+  "/com.amazon.kepler.security@ISecurityModule",
+]
+
+# 1.1: accepts major.minor version input in isPresentOnOS and isAppTargeting.
+# Dependency resolution recurses through includes-modules so _0's uses-modules
+# already apply here and are not repeated.
+[[module]]
+id = "/com.amazon.kepler.kepler_compatibility_1@IKeplerCompatibility_1"
+includes-modules = [
+  "/com.amazon.kepler.kepler_compatibility_1@IKeplerCompatibility_0",
+]
+
+# Kepler Modules help with identifying different minor versions this module supports
+# e.g. 1.0, 1.1.
+# Note: The major version of a library is up to the library owner.
+# It is not expressly tied to the version of KeplerScript it supports, though
+# it is a helpful correlation if the native library is not ABI stable. The library
+# itself may have reason to bump the major version for unrelated reasons,
+# particularly in the case of third party ports whose API is not directly under
+# our control. A third party may introduce its own breaking changes apart from
+# React Native.
+# When adding a new module to existing major version, previous modules must be
+# included for backward compatibility. Defining the next version would look like:
+# [[module]]
+# id = "/com.amazon.kepler.kepler_compatibility_1@IKeplerCompatibility_2",
+# includes-modules = [
+#   "/com.amazon.kepler.kepler_compatibility_1@IKeplerCompatibility_1",
+# ]
+
+[[module]]
+id = "/com.amazon.kepler.file_system@IFileSystems"
+
+#
+# Copyright (c) 2024-2025 Amazon.com, Inc. or its affiliates.  All rights reserved.
+# PROPRIETARY/CONFIDENTIAL.  USE IS SUBJECT TO LICENSE TERMS.
+#
+
+[[module]]
+id = "/com.amazon.kepler.system.info@ISystemInfoModule"
+uses-modules = [
+   "/com.amazon.kepler.device_config@IDeviceConfigModule",
+   "/com.amazon.kepler.file_system@IFileSystems"
+]
+
+[[module]]
+id = "/com.amazon.ace.messaging.service@IDeviceMessaging"
+includes-messages = [
+   "unicast://*/device-messaging/message",
+   "unicast://*/device-messaging/payload",
+   "unicast://*/com.amazon.device.messaging/message",
+   "unicast://*/com.amazon.device.messaging/payload",
+   "broadcast://*/com.amazon.messaging/todo/item"
+]
+
+# Internal messaging
+[[message]]
+uri = "unicast://*/device-messaging/message"
+sender-privileges = ["self"]
+receiver-privileges = ["com.amazon.device-messaging.privilege.internal.access"]
+
+[[message]]
+uri = "unicast://*/device-messaging/payload"
+sender-privileges = ["self"]
+receiver-privileges = ["com.amazon.device-messaging.privilege.internal.access"]
+
+# ADM messaging
+[[message]]
+uri = "unicast://*/com.amazon.device.messaging/message"
+sender-privileges = ["self"]
+receiver-privileges = ["com.amazon.device-messaging.privilege.access"]
+
+[[message]]
+uri = "unicast://*/com.amazon.device.messaging/payload"
+sender-privileges = ["self"]
+receiver-privileges = ["com.amazon.device-messaging.privilege.access"]
+
+# TODO messaging
+[[message]]
+uri = "broadcast://*/com.amazon.messaging/todo/item"
+sender-privileges = ["self"]
+receiver-privileges = ["*"]
+
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+# Encode a headless only device feature
+[[feature]]
+id = "com.amazon.vega.hardware.type.headless"
+# Vega OS Version Module
+# Encodes OS version as a Kepler capability marker for PackageManager install gating.
+# See CDD §8.1: https://wiki.labcollab.net/confluence/display/PROJVEGA/CDD
+# See ADR-0011: https://code.amazon.com/packages/VegaOSCompatibilitySpec/blobs/mainline/--/docs/decisions/0011-continuous-os-version-module-lineage.md
+
+# OS 1.1 predates the module system — no module exists for it.
+# This is the first module in the chain; includes-modules is intentionally absent.
+[[module]]
+id = "/com.amazon.vega.os@IVega_1_2"
+
+[[module]]
+id = "/com.amazon.vega.os@IVega_2_0"
+includes-modules = [
+  "/com.amazon.vega.os@IVega_1_2"
+]
+
+[[module]]
+id = "/com.amazon.usermanagerservice@IProfileManager"
+includes-messages = [
+    "broadcast://*/com.amazon.usermanagerservice/profile/created",
+    "broadcast://*/com.amazon.usermanagerservice/profile/deleted",
+    "broadcast://*/com.amazon.usermanagerservice/profile/changed",
+    "broadcast://*/com.amazon.usermanagerservice/profile/inappprofileswitch",
+    "broadcast://*/com.amazon.usermanagerservice/profile/state_changed",
+    "broadcast://*/com.amazon.usermanagerservice/profile/switch",
+    "broadcast://*/com.amazon.usermanagerservice/service/started",
+    "broadcast://*/com.amazon.usermanagerservice/profile/enabled-profiles-fetched"
+]
+
+[[message]]
+uri = "broadcast://*/com.amazon.usermanagerservice/profile/created"
+sender-privileges = ["self"]
+receiver-privileges = ["com.amazon.user-management.privilege.profiles.message.access"]
+
+[[message]]
+uri = "broadcast://*/com.amazon.usermanagerservice/profile/deleted"
+sender-privileges = ["self"]
+receiver-privileges = ["com.amazon.user-management.privilege.profiles.message.access"]
+
+[[message]]
+uri = "broadcast://*/com.amazon.usermanagerservice/profile/changed"
+sender-privileges = ["self"]
+receiver-privileges = ["com.amazon.user-management.privilege.profiles.message.access"]
+
+[[message]]
+uri = "broadcast://*/com.amazon.usermanagerservice/profile/inappprofileswitch"
+sender-privileges = ["self"]
+receiver-privileges = ["com.amazon.user-management.privilege.profiles.message.access"]
+
+[[message]]
+uri = "broadcast://*/com.amazon.usermanagerservice/profile/state_changed"
+sender-privileges = ["self"]
+receiver-privileges = ["com.amazon.user-management.privilege.profiles.message.access"]
+
+[[message]]
+uri = "broadcast://*/com.amazon.usermanagerservice/profile/switch"
+sender-privileges = ["self"]
+receiver-privileges = ["com.amazon.user-management.privilege.profiles.message.access"]
+
+[[message]]
+uri = "broadcast://*/com.amazon.usermanagerservice/service/started"
+sender-privileges = ["self"]
+receiver-privileges = ["com.amazon.user-management.privilege.profiles.message.access"]
+
+[[message]]
+uri = "broadcast://*/com.amazon.usermanagerservice/profile/enabled-profiles-fetched"
+sender-privileges = ["self"]
+receiver-privileges = ["self"]
+[[module]]
+id = "/com.amazon.puffin.@ITouchToStopV1"
+includes-messages = [
+    "broadcast://com.amazon.puffin/touchtostop/disable",
+    "broadcast://com.amazon.puffin/touchtostop/enable",
+    "broadcast://com.amazon.puffin/touchtostop/invoke",
+]
+
+[[module]]
+id = "/com.amazon.puffin.@ISpeechTranscription"
+includes-messages = [
+    "broadcast://*/com.amazon.speech_input_transcription_broadcaster/transcription"
+]
+
+[[message]]
+uri = "broadcast://com.amazon.puffin/touchtostop/disable"
+sender-privileges = ["*"]
+receiver-privileges = ["self"]
+
+[[message]]
+uri = "broadcast://com.amazon.puffin/touchtostop/enable"
+sender-privileges = ["*"]
+receiver-privileges = ["self"]
+
+[[message]]
+uri = "broadcast://com.amazon.puffin/touchtostop/invoke"
+sender-privileges = ["*"]
+receiver-privileges = ["self"]
+
+[[message]]
+uri = "broadcast://*/com.amazon.speech_input_transcription_broadcaster/transcription"
+sender-privileges = ["self"]
+receiver-privileges = ["*"]
+# TODO: we should enforce com.amazon.speech-input.transcription.read privlege 
+# once we are sure APL and all transcription clients migrated with the correct privilege
+
+[[wants.service]]
+id = "com.amazon.arol.ipc"
+
+[[module]]
+id = "/com.amazon.ace.timeservice@ITimeService"
+includes-messages = [
+    "broadcast://*/com.amazon.kepler.system_time/time-changed",
+    "broadcast://com.amazon.kepler.datetime/time-zone/changed",
+    "broadcast://com.amazon.kepler.datetime/time-offset/changed"
+]
+
+[[message]]
+uri = "broadcast://*/com.amazon.kepler.system_time/time-changed"
+sender-privileges = ["self"]
+receiver-privileges = ["*"]
+
+[[message]]
+uri = "broadcast://com.amazon.kepler.datetime/time-zone/changed"
+sender-privileges = ["self"]
+receiver-privileges = ["*"]
+
+[[message]]
+uri = "broadcast://com.amazon.kepler.datetime/time-offset/changed"
+sender-privileges = ["self"]
+receiver-privileges = ["*"]

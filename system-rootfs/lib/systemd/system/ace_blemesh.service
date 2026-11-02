@@ -1,0 +1,42 @@
+[Unit]
+Description=Acs Blemesh Service
+After=bluetooth.service
+Wants=bluetooth.service service-registrar.service
+PartOf=service-registrar.service
+
+[Service]
+ExecStartPre=+/bin/mkdir -p /var/lib/data/blemesh
+ExecStartPre=+/bin/chown -R blemesh:blemesh /var/lib/data/blemesh
+ExecStartPre=+/bin/chmod -R 777 /var/lib/data/blemesh
+
+ExecStart=/usr/bin/ace_blemesh_service
+Restart=always
+RestartSec=2
+
+SmackProcessLabel=System
+User=blemesh
+Group=blemesh
+SupplementaryGroups=aipc system
+
+NoNewPrivileges=yes
+RestrictSUIDSGID=yes
+RemoveIPC=yes
+PrivateTmp=yes
+
+PrivateDevices=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+# Make logging paths visible, since PrivateDevices=yes
+ReadWritePaths=-/dev/socket -/dev/log
+
+# Make logging paths visible, since PrivateDevices=yes
+BindPaths=-/dev/socket -/dev/log
+
+# AIPC over Binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+[Install]
+WantedBy=multi-user.target

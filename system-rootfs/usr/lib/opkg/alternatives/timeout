@@ -1,0 +1,2 @@
+/usr/bin/timeout
+/bin/toybox 60

@@ -1,0 +1,8 @@
+{
+    "pkcs11Module": {
+        "libraryPath": "/usr/lib/libckteec.so.0",
+        "tokenName": "DSKEY",
+        "userPin": "",
+        "defaultKeyName": ""
+    }
+}

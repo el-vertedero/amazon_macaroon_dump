@@ -1,0 +1,11 @@
+[Unit]
+Description=Helps ADEP to execute system related feature
+Requires=adep.service
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=1d
+Persistent=true
+
+[Install]
+WantedBy=timers.target

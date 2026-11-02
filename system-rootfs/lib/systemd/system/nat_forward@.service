@@ -1,0 +1,13 @@
+# Setup NAT for all traffic
+
+[Unit]
+Description=Firewall NAT forward all traffic
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/firewall.sh start nat_forward %i
+ExecStop=/usr/bin/firewall.sh stop nat_forward %i
+RemainAfterExit=True
+SmackProcessLabel=System::Privileged
+
+[Install]

@@ -1,0 +1,110 @@
+#
+# Copyright 2021-2025 Amazon.com, Inc. or its affiliates. All rights reserved.
+#
+# AMAZON PROPRIETARY/CONFIDENTIAL
+#
+# You may not use this file except in compliance with the terms and conditions
+# set forth in the accompanying LICENSE.TXT file.
+#
+# THESE MATERIALS ARE PROVIDED ON AN "AS IS" BASIS. AMAZON SPECIFICALLY
+# DISCLAIMS, WITH RESPECT TO THESE MATERIALS, ALL WARRANTIES, EXPRESS,
+# IMPLIED, OR STATUTORY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+#
+[Unit]
+Description=Service Registrar Service
+DefaultDependencies=no
+OnFailure=failure-manager@%N.service
+Wants=failure-manager@PackageManagerRegistrationTimeout.path
+Wants=failure-manager@ErrorRefreshingPackageCache.path
+
+[Service]
+Type=notify
+NotifyAccess=main
+WatchdogSec=24
+
+Restart=no
+
+# Generate an ACR on startup timeout
+TimeoutStartFailureMode=abort
+
+# Run service as servicergr user
+User=servicergr
+Group=servicergr
+
+SupplementaryGroups=aipc reserved_disk failuremgr appfwkcfgsvc
+
+SmackProcessLabel=System
+
+NoNewPrivileges=yes
+RestrictSUIDSGID=yes
+RemoveIPC=yes
+
+# Needed to access files in /proc/[pid]
+#   "The files inside each /proc/[pid] directory are normally owned by the effective user and
+#   effective group ID of the process. However, as a security measure, the ownership is made
+#   root:root if the process's "dumpable" attribute is set to a value other than 1."
+CapabilityBoundingSet=CAP_DAC_READ_SEARCH
+AmbientCapabilities=CAP_DAC_READ_SEARCH
+
+# Needed to follow symlinks (e.g. /proc/[pid]/fd/[fd]).
+#   "Permission to dereference or read (readlink(2)) the symbolic links in this directory is
+#   governed by a ptrace access mode PTRACE_MODE_READ_FSCREDS check; see ptrace(2)."
+#
+#   "Deny access if the target process "dumpable" attribute has a value other than 1
+#   (SUID_DUMP_USER; see the discussion of PR_SET_DUMPABLE in prctl(2)), and the caller does not
+#   have the CAP_SYS_PTRACE capability in the user namespace of the target process."
+CapabilityBoundingSet=CAP_SYS_PTRACE
+AmbientCapabilities=CAP_SYS_PTRACE
+
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ProtectKernelTunables=true
+ProtectControlGroups=true
+
+# Needed for aipc
+BindPaths=-/var/lib/data/ace/aipc
+
+# Needed for logging on simulator and SS
+BindPaths=-/dev/log -/dev/socket -/run/systemd/journal/socket
+
+ReadWritePaths=-/var/lib/failure-manager/custom-failure
+# Needed for binder
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+# Restrict access to device nodes except those explicitly allowed
+# This improves security by isolating the service from hardware devices
+PrivateDevices=yes
+
+# Explicitly allow read-write access to the binder device
+# This is needed even with PrivateDevices=yes to ensure binder communication works
+DeviceAllow=/dev/binder rw
+
+ConfigurationDirectory=servicergrd/
+
+# Tune the allocator to avoid retaining memory we don't actually need
+Environment="GLIBC_TUNABLES=glibc.malloc.mmap_threshold=16384:glibc.malloc.trim_threshold=16384:glibc.malloc.top_pad=16384:glibc.malloc.arena_max=2:glibc.malloc.tcache_count=3"
+
+# This is the time to wait for SR to enter is "ready for LCM" state,
+# needed to start app launches. It much be high enough to account for the
+# time it takes PM to startup on firstboot
+Environment="SUBSTATE_WAIT_SEC=480"
+
+
+# Debug logging can be enabled by putting the following in the env file below,
+#
+# LOGGING_LEVEL=debug
+# APMF_MIN_LOG_LEVEL=DEBUG
+# APMF_LOGGING="com.amazon.apmf.logger.sd_journal=DEBUG"
+EnvironmentFile=-/var/lib/servicergrd/env.conf
+
+EnvironmentFile=-/etc/app-framework/config.env
+
+ExecStart=/usr/bin/servicergrd
+
+[Install]
+WantedBy=sysinit.target
+
+[X-Kepler]
+OffersService=com.amazon.aipc.uuid.32

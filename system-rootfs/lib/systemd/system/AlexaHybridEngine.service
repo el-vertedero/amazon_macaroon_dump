@@ -1,0 +1,56 @@
+[Unit]
+Description=Start ahe
+Conflicts=shutdown.target
+After=netsvc.service audioserver.service dbus.socket PuffinApp.service secure_kvs.service ace_powerd.service stemd.service device-config-manager.service minerva.service service-registrar.service playerservice.service
+Wants=dbus.socket assetmgrd.service inputd.service PuffinApp.service
+OnFailure=AlexaHybridRecovery.service
+ 
+[Service]
+UMask=0007
+Restart=on-success
+ExecStartPre=+mkdir -p /var/lib/data/alexahybrid
+ExecStartPre=+mkdir -p /var/lib/data/alexahybrid/files/working-directory
+ExecStartPre=+mkdir -p /var/lib/data/alexahybrid/files/CoreEngineWorking
+ExecStartPre=+mkdir -p /var/lib/data/alexahybrid/smartHomeSkill
+ExecStartPre=+chown alexahybrid:alexahybrid /var/lib/data/alexahybrid
+ExecStartPre=+chown alexahybrid:alexahybrid /var/lib/data/alexahybrid/files
+ExecStartPre=+chown alexahybrid:alexahybrid /var/lib/data/alexahybrid/files/working-directory
+ExecStartPre=+chown alexahybrid:alexahybrid /var/lib/data/alexahybrid/files/CoreEngineWorking
+ExecStartPre=+chown alexahybrid:alexahybrid /var/lib/data/alexahybrid/smartHomeSkill
+ExecStartPre=+chmod 777 /var/lib/data/alexahybrid/smartHomeSkill
+
+# Force apply proper permissions
+Environment="LD_LIBRARY_PATH=/usr/lib/alexahybrid/"
+# Bound glibc malloc arena growth from per-utterance thread churn (AHE-62109)
+Environment="MALLOC_ARENA_MAX=2"
+ExecStart=/usr/bin/alexahybrid/AlexaHybridExecutionControllerLitespeed --config /etc/alexahybrid/ahe.config.json
+SmackProcessLabel=System
+SupplementaryGroups=aipc kvstore package tee system assetmgr
+User=alexahybrid
+Group=alexahybrid
+
+### Fortifying the service ###
+CapabilityBoundingSet=none
+RestrictNamespaces=true
+NoNewPrivileges=true
+RestrictSUIDSGID=true
+ProtectKernelLogs=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+PrivateTmp=true
+ProtectClock=true
+DeviceAllow=/dev/tee0 rw
+DeviceAllow=/dev/binder rw
+ProtectKernelModules=true
+ProtectKernelTunables=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+ 
+# Make AIPC and KVS visible
+ReadWritePaths=/var/lib/data/ace/aipc/
+ReadWritePaths=-/var/lib/data/ace/kvstorage/
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+ 
+[Install]
+WantedBy=multi-user.target

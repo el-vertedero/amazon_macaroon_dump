@@ -1,0 +1,48 @@
+#!/bin/sh -e
+
+if [ "${#}" -lt 2 ]; then
+   {
+      echo "Invalid command line: \"${*}\""
+      echo "Usage (from a postinst/prerm script): ${0##*/} [postinst|prerm] \"\${@}\""
+   } >&2
+   exit 1
+fi
+
+plugin="${DPKG_MAINTSCRIPT_PACKAGE#*plugin-}"
+echo "${0##*/} performing ${1} for ${plugin} (${DPKG_MAINTSCRIPT_PACKAGE})" >&2
+
+startlevel=84
+stoplevel=72
+
+case "${1}" in
+(postinst)
+   case "${2}" in
+   (configure)
+      # Make sure that this package’s init.d exists and is configured for execution.
+      ln -fs core-plugin /etc/init.d/core-plugin.${plugin}
+      ln -fs core-plugin-runner /usr/bin/core-plugin-runner.${plugin}
+      update-rc.d core-plugin.${plugin} defaults ${startlevel} ${stoplevel} > /dev/null
+      dpkg-trigger core-plugin-${plugin}-restart
+      ;;
+   (triggered)
+      for trigger in ${3}; do
+         if [ "${trigger}" = core-plugin-${plugin}-restart -o "${trigger}" = core-plugins-restart ]; then
+            maintainer-trigger ${startlevel} core-plugin-${plugin}-restart || /etc/init.d/core-plugin.${plugin} restart || true
+            break
+         fi
+      done
+      ;;
+   esac
+   ;;
+(prerm)
+   case "${2}" in
+   (deconfigure|remove|upgrade)
+      # We shouldn’t do all this on “upgrade”, but it’s the only chance to clean up
+      # if the new version does not behave the same way as the one being removed.
+      /etc/init.d/core-plugin.${plugin} stop || true
+      rm -f /etc/init.d/core-plugin.${plugin} /usr/bin/core-plugin-runner.${plugin}
+      update-rc.d core-plugin.${plugin} remove > /dev/null
+      ;;
+   esac
+   ;;
+esac

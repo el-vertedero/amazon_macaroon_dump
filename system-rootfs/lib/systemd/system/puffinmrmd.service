@@ -1,0 +1,47 @@
+[Unit]
+Description=MRM Service for Puffin
+Conflicts=shutdown.target
+Wants=PuffinApp.service service-registrar.service
+After=PuffinApp.service dbus.socket
+PartOf=service-registrar.service
+
+[Service]
+ExecStartPre=+/usr/bin/setup-puffinmrmd.sh
+ExecStartPre=-/usr/bin/amzn_xo_tool
+ExecStart=/usr/bin/puffinmrmd /etc/puffin/config/AlexaClientSDKConfig.json /etc/puffin/config/KeplerAlexaClientSDKConfig.json
+Restart=always
+SmackProcessLabel=System
+SupplementaryGroups=aipc kvstore assetmgr
+User=system
+Group=system
+
+CapabilityBoundingSet=CAP_SYS_NICE
+AmbientCapabilities=CAP_SYS_NICE
+
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+PrivateDevices=true
+
+# Enable AIPC/IPCN Access
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+# MAP calls
+ReadWritePaths=-/dev/idme
+BindPaths=-/dev/idme
+DeviceAllow=/dev/idme rw
+
+# Enable High Resolution Clock Access on HCG platform
+DeviceAllow=/dev/azma_gtmem r
+BindPaths=-/dev/azma_gtmem
+ReadWritePaths=-/dev/azma_gtmem
+
+# Enable High Resolution Clock Access on non HCG platform
+DeviceAllow=/dev/mt_xgpt r
+BindPaths=-/dev/mt_xgpt
+ReadWritePaths=-/dev/mt_xgpt
+
+[Install]
+WantedBy=multi-user.target

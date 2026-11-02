@@ -1,0 +1,85 @@
+{
+    "combos": [
+        {
+            "name": "SystemStatusMonitor",
+            "triggerType": "onRelease",
+            "resetTime": 5000,
+            "generic": true,
+            "chords": [
+                {
+                    "triggerMs": 3000,
+                    "keys": [
+                        {
+                            "keyName": "BTN_A"
+                        },
+                        {
+                            "keyName": "BTN_Y"
+                        }
+                    ]
+                },
+                {
+                    "triggerMs": 1,
+                    "keys": [
+                        {
+                            "keyName": "BTN_START"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "711Page",
+            "triggerType": "onRelease",
+            "resetTime": 5000,
+            "generic": true,
+            "chords": [
+                {
+                    "triggerMs": 3000,
+                    "keys": [
+                        {
+                            "keyName": "BTN_A"
+                        },
+                        {
+                            "keyName": "BTN_X"
+                        }
+                    ]
+                },
+                {
+                    "triggerMs": 1,
+                    "keys": [
+                        {
+                            "keyName": "BTN_START"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "UploadSpectatorLogs",
+            "triggerType": "onRelease",
+            "resetTime": 5000,
+            "generic": true,
+            "chords": [
+                {
+                    "triggerMs": 3000,
+                    "keys": [
+                        {
+                            "keyName": "BTN_X"
+                        },
+                        {
+                            "keyName": "BTN_Y"
+                        }
+                    ]
+                },
+                {
+                    "triggerMs": 1,
+                    "keys": [
+                        {
+                            "keyName": "BTN_START"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

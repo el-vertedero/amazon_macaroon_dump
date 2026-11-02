@@ -1,0 +1,25 @@
+[Unit]
+Description=AHE Recovery
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/alexahybrid/restart_ahe.sh
+
+### Fortifying the service ###
+PrivateNetwork=true
+SmackProcessLabel=System
+SupplementaryGroups=
+CapabilityBoundingSet=CAP_DAC_OVERRIDE
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM

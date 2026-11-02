@@ -1,0 +1,34 @@
+[Unit]
+Description=Amazon kernel crash report
+After=systemd-pstore.service multi-user.target cache.mount
+Conflicts=shutdown.target
+
+[Service]
+DynamicUser=yes
+Type=oneshot
+ReadWritePaths=-/var/log
+ReadWritePaths=-/cache/kcr
+ExecStartPre=+/bin/systemd-tmpfiles --create /etc/tmpfiles.d/amzn-kcr.conf
+ExecStart=-/usr/bin/amzn-kcr.sh
+ExecStartPost=-/bin/cp -f /etc/os-release /cache/kcr/os-release
+SupplementaryGroups=log
+
+# Fortifying the service
+SmackProcessLabel=System
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

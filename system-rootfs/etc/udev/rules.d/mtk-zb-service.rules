@@ -1,0 +1,2 @@
+SUBSYSTEM=="mtk_lrwpan", KERNEL=="mtk_lrwpan", OWNER="root", GROUP="spimux", MODE="0660", SECLABEL{smack}="System"
+SUBSYSTEM=="zbfwlog", KERNEL=="zbfwlog", OWNER="root", GROUP="spimux", MODE="0660", SECLABEL{smack}="System"

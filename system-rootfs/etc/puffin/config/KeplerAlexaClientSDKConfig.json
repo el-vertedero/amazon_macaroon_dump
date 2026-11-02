@@ -1,0 +1,273 @@
+{
+    "alertsCapabilityAgent": {
+        "databaseFilePath": "/var/lib/data/puffin/data/resources/alerts.db",
+        "stopReminderOnAudioRenderingComplete": true
+    },
+    "bluetooth": {
+        "databaseFilePath": "/var/lib/data/puffin/data/resources/bluetoothDatabase.db",
+        "btWhaEnabled": false,
+        "adapterPrefix": "Echo Dot Max"
+    },
+    "certifiedSender": {
+        "databaseFilePath": "/var/lib/data/puffin/data/resources/certifiedSender.db"
+    },
+    "capabilitiesDelegate": {
+        "databaseFilePath": "/var/lib/data/puffin/data/resources/capabilitiesDelegate.db"
+    },
+    "deviceSettings": {
+        "databaseFilePath": "/var/lib/data/puffin/data/resources/deviceSettingsDatabase.db"
+    },
+    "miscDatabase": {
+        "databaseFilePath": "/var/lib/data/puffin/data/resources/miscDatabase.db"
+    },
+    "mrm": {
+        "capabilities": {
+            "WholeHomeAudio": {
+                "version": "1.9",
+                "configurations": {
+                    "assignableChannels": ["ALL", "FRONT_LEFT", "FRONT_RIGHT", "ADAPTIVE"],
+                    "clusterTypes": ["CLASSIC_CLUSTER", "BONDED_CLUSTER", "HOME_THEATER_CLUSTER", "ADAPTIVE_HOME_THEATER_CLUSTER"],
+                    "streamTypes": ["BUFFERED", "REAL_TIME"],
+                    "connectivity": {
+                        "softAP": {
+                            "roles": ["CLIENT"]
+                        }
+                    }
+                }
+            }
+        },
+        "writableSettingsDirectory": "/var/lib/data/puffinmrmd/data/",
+        "drmStorageDirectory": "/var/lib/data/puffinmrmd/data/drm"
+    },
+    "notifications": {
+        "databaseFilePath": "/var/lib/data/puffin/data/resources/notifications.db"
+    },
+    "userPerceivedFatalsCapabilityAgent" : {
+        "databaseFilePath": "/var/lib/data/puffin/data/resources/user_perceived_fatals.db"
+    },
+    "led": {
+        "ledCount": 12
+    },
+    "legacyFlags": {
+        "AXON_SUPPORT": true,
+        "SUPPORTS_TTS_SPEECHMARKS": true,
+        "SUPPORTS_CALIBRATION_FREE_SPEAKER_PAIRING": true,
+        "SUPPORTS_DIRECTIVE_STREAMING_ON_EVENT_CHANNEL": true,
+        "SUPPORTS_PFM_CHANGED": true
+    },
+    "locales": {
+        "localesWWTranscriptionBasePath": "/usr/share/PuffinApp/"
+    },
+    "discovery": {
+        "databaseFilePath": "/var/lib/data/puffin/data/resources/discovery.db"
+    },
+    "context": {
+        "databaseFilePath": "/var/lib/data/puffin/data/resources/context.db"
+    },
+    "puffinApp": {
+        "displayCardsSupported": true
+    },
+    "applicationMappings": {
+        "amzn1.alexa-ask-target.shortcut.33122": "orpheus://com.amazon.homelauncher.main",
+        "amzn1.alexa-ask-target.shortcut.07395": "os://settings",
+        "amzn1.alexa-ask-target.app.72095": "orpheus://com.amazon.coldbrew.main",
+        "B07VCB6CRK": "orpheus://com.amazon.coldbrew.main",
+        "amzn1.alexa-ask-target.app.83709": "orpheus://com.amazon.cloud9.main",
+        "amzn1.alexa-ask-target.app.12345": "orpheus://com.amazon.kepler.react.appdemos.video",
+        "amzn1.alexa-ask-target.app.70045": "orpheus://com.amazon.youtube.main"
+    },
+    "softwareUpdate": {
+        "databaseFilePath": "/var/lib/data/puffin/data/resources/software_update_history.db"
+    },
+
+    "externalMediaPlayer": {
+        "agentString": "06Z2T72A5M",
+        "players": {
+            "Spotify:ESDK": {
+                "displayName": "Echo Dot Max",
+                "modelName": "Echo_Dot_Max",
+                "productId": 2000000012
+            }
+        }
+    },
+    "presentationOrchestratorState": {
+        "windowInstances": [
+            {
+                "id": "fullscreen",
+                "templateId": "hub",
+                "sizeConfigurationId": "fullscreen",
+                "interactionMode": "hub",
+                "supportedInterfaces": ["Alexa.Presentation.APL"],
+                "zOrderIndex": 0
+            },
+            {
+                "id": "MMOverlay",
+                "templateId": "MMOverlay",
+                "sizeConfigurationId": "MMOverlaySize",
+                "interactionMode": "hub",
+                "backgroundColor": {"r" : 0, "g" : 0, "b" : 0, "a" : 0.0},
+                "supportedInterfaces": ["Alexa.Presentation.APL"],
+                "displayType": "FULLSCREEN",
+                "zOrderIndex": 1,
+                "isStateReported": false
+            }
+        ],
+        "defaultWindowId": "fullscreen"
+    },
+    "settingsConfiguration": {
+        "settingsContext": [
+            {
+                "settingsName": "WakeWord",
+                "DCSGroup": "puffin-app",
+                "DCSKey": "wakeword",
+                "initMode": "SM",
+                "listenMode": ["SM"]
+            },
+            {
+                "settingsName": "SetupModePrivileges",
+                "DCSGroup": "puffin-app",
+                "DCSKey": "setupModePrivileges",
+                "initMode": "SM",
+                "listenMode": ["SM"]
+            },
+            {
+                "settingsName": "MaximumVolumeLimit",
+                "DCSGroup": "puffin-app",
+                "DCSKey": "MaximumVolumeLimit",
+                "initMode": "SM",
+                "listenMode": ["SM"]
+            },
+            {
+                "settingsName": "DoNotDisturb",
+                "DCSGroup": "puffin-app",
+                "DCSKey": "do-not-disturb",
+                "initMode": "SM",
+                "listenMode": ["SM"]
+            },
+            {
+                "settingsName": "TimeZone",
+                "DCSGroup": "configuration",
+                "DCSKey": "time-zone",
+                "initMode": "DCS",
+                "listenMode": ["SM","DCS"]
+            }
+        ]
+    },
+    "visualCharacteristics": [
+        {
+            "type": "AlexaInterface",
+            "interface": "Alexa.InteractionMode",
+            "version": "1.1",
+            "configurations": {
+                "interactionModes": [
+                    {
+                        "id": "hub",
+                        "uiMode": "HUB",
+                        "interactionDistance": {
+                            "unit": "INCHES",
+                            "value": 120
+                        },
+                        "touch": "SUPPORTED",
+                        "keyboard": "SUPPORTED",
+                        "video": "SUPPORTED",
+                        "dialog": "SUPPORTED"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "AlexaInterface",
+            "interface": "Alexa.Display.Window",
+            "version": "1.0",
+            "configurations": {
+                "templates": [
+                    {
+                        "id": "hub",
+                        "type": "STANDARD",
+                        "configuration": {
+                            "sizes": [
+                                {
+                                    "type": "DISCRETE",
+                                    "id": "fullscreen",
+                                    "value": {
+                                        "unit": "PIXEL",
+                                        "value": {
+                                            "width": 960,
+                                            "height": 480
+                                        }
+                                    }
+                                }
+                            ],
+                            "interactionModes": [
+                                "hub"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "MMOverlay",
+                        "type": "OVERLAY",
+                        "configuration": {
+                            "sizes": [
+                                {
+                                    "type": "DISCRETE",
+                                    "id": "MMOverlaySize",
+                                    "value": {
+                                        "unit": "PIXEL",
+                                        "value": {
+                                            "width": 960,
+                                            "height": 480
+                                        }
+                                    }
+                                }
+                            ],
+                            "interactionModes": [
+                                "hub"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "AlexaInterface",
+            "interface": "Alexa.Display",
+            "version": "1.0",
+            "configurations": {
+                "display": {
+                    "type": "PIXEL",
+                    "touch": [
+                        "SINGLE"
+                    ],
+                    "shape": "RECTANGLE",
+                    "dimensions": {
+                        "resolution": {
+                            "unit": "PIXEL",
+                            "value": {
+                                "width": 960,
+                                "height": 480
+                            }
+                        },
+                        "physicalSize": {
+                            "unit": "INCHES",
+                            "value": {
+                                "width": 5.8,
+                                "height": 3.4
+                            }
+                        },
+                        "pixelDensity": {
+                            "unit": "DPI",
+                            "value": 160
+                        },
+                        "densityIndependentResolution": {
+                            "unit": "DP",
+                            "value": {
+                                "width": 960,
+                                "height": 480
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

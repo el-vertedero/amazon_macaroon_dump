@@ -1,0 +1,9 @@
+[Unit]
+Description=Trigger failure-manager reboot count reset
+
+[Timer]
+Unit=failure-reset.service
+OnBootSec=30min
+
+[Install]
+WantedBy=timers.target

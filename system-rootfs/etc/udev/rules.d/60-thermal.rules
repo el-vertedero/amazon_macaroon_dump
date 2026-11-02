@@ -1,0 +1,17 @@
+# Fix SMACK labels for thermal sysfs nodes.
+# Thermal zones and cooling devices are registered under SUBSYSTEM=thermal.
+#
+# ACTION==add: labels all nodes at coldplug (boot)
+# ACTION==change + ATTR{trips}!="0": relabels zone-specific trip point files
+#   created dynamically by ace_thermald (e.g. thermal_zone6/trip_point_*).
+#   ATTR filter prevents running on every temperature polling change event.
+
+SUBSYSTEM=="thermal", ACTION=="add", \
+    RUN+="/bin/chown -R root:system /sys/devices/virtual/thermal/%k", \
+    RUN+="/bin/chmod -R g+rw /sys/devices/virtual/thermal/%k", \
+    RUN+="/usr/bin/chsmack -r -s -a System /sys/devices/virtual/thermal/%k"
+
+SUBSYSTEM=="thermal", ACTION=="change", ATTR{trips}!="0", \
+    RUN+="/bin/chown -R root:system /sys/devices/virtual/thermal/%k", \
+    RUN+="/bin/chmod -R g+rw /sys/devices/virtual/thermal/%k", \
+    RUN+="/usr/bin/chsmack -r -s -a System /sys/devices/virtual/thermal/%k"

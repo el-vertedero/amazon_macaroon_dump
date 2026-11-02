@@ -1,0 +1,21 @@
+[Unit]
+Description=Enable ZRAM swap
+
+[Service]
+User=system
+Group=system
+SupplementaryGroups=disk
+Type=oneshot
+RemainAfterExit=true
+
+# https://man7.org/linux/man-pages/man2/swapon.2.html
+# Technically, swapon and mkswap needs CAP_SYS_ADMIN.
+# Instead of adding this capability to the service,
+# we execute the mkswap and swapon as part of ExecStartPre
+# before dropping privilege.
+ExecStartPre=+/sbin/mkswap /dev/zram0
+ExecStartPre=+/sbin/swapon /dev/zram0
+ExecStop=/sbin/swapoff /dev/zram0
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,67 @@
+[Unit]
+Description=Acs BT service
+After=ace_eventmgr.service audioserver.service dbus.socket
+Wants=ace_eventmgr.service service-registrar.service
+PartOf=service-registrar.service
+
+[Service]
+User=bt
+Group=bt
+
+SupplementaryGroups=aipc
+SupplementaryGroups=kvstore
+SupplementaryGroups=input
+SupplementaryGroups=reserved_disk
+
+ExecStartPre=+/usr/bin/stage-bluetooth-config.sh
+ExecStart=/usr/bin/btmanagerd
+Restart=always
+
+RuntimeDirectory=bluetooth
+
+ReadWritePaths=/var/lib/data/ace/aipc/
+ReadWritePaths=/var/lib/bluetooth/
+
+SystemCallFilter=@system-service @network-io
+SystemCallErrorNumber=EPERM
+
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateTmp=true
+RestrictSUIDSGID=true
+LockPersonality=true
+ProtectKernelLogs=true
+ProtectClock=true
+ProtectKernelTunables=true
+ProtectKernelModule=true
+
+#AIPC Binder
+# Need to grant access to /dev/binder and /dev/stpbt if PrivateDevices set to true.
+PrivateDevices=true
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+DeviceAllow=/dev/stpbt rw
+BindPaths=-/dev/stpbt
+ReadWritePaths=-/dev/stpbt
+DeviceAllow=/dev/uhid rw
+BindPaths=-/dev/uhid
+ReadWritePaths=-/dev/uhid
+
+# Since ProtectClock=true sets "DeviceAllow=char-rtc r" implicitly and PrivateDevices=true prevents device access,
+# we need to explicitly specify which device files we have access to
+DeviceAllow=/dev/input rw
+BindPaths=-/dev/input
+ReadWritePaths=-/dev/input
+DeviceAllow=/dev/uinput rw
+ReadWritePaths=-/dev/input -/dev/uinput
+BindPaths=-/dev/input -/dev/uinput
+
+CapabilityBoundingSet=
+AmbientCapabilities=
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.bluetooth.service

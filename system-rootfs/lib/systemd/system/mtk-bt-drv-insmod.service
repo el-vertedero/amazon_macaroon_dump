@@ -1,0 +1,20 @@
+[Unit]
+Description=bt_drv_insmod
+After=data-ubi-mnt.service
+Before=bluetooth.service
+StartLimitInterval=10
+StartLimitBurst=2
+
+[Service]
+DynamicUser=yes
+Group=system
+AmbientCapabilities=CAP_SYS_MODULE CAP_SYS_BOOT CAP_SYS_ADMIN CAP_NET_ADMIN
+Type=oneshot
+EnvironmentFile=/etc/mtk-bt-chip.default
+ExecStart=/bin/sh /etc/${MTK_CHIP_ID}_drv_insmod.sh
+SmackProcessLabel=System
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

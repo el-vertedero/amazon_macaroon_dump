@@ -1,0 +1,115 @@
+{
+    "version": 1.0,
+    "eventGroups": [
+        {
+            "groupName": "DAC_EVENT_GROUP_WAKEWORD",
+            "groupId": 1,
+            "events": [
+                {
+                    "eventName": "DAC_EVENT_WAKEWORD_PAUSE",
+                    "eventId": 1
+                },
+                {
+                    "eventName": "DAC_EVENT_WAKEWORD_RESUME",
+                    "eventId": 2
+                }
+            ]
+        },
+        {
+            "groupName": "DAC_EVENT_GROUP_AED",
+            "groupId": 2,
+            "events": [
+                {
+                    "eventName": "DAC_EVENT_AED_PAUSE",
+                    "eventId": 4
+                },
+                {
+                    "eventName": "DAC_EVENT_AED_RESUME",
+                    "eventId": 8
+                }
+            ]
+        }
+    ],
+    "components": [
+        {
+            "identifier": "AHE",
+            "processName": "AlexaHybridExecutionControllerLitespeed",
+            "tasks": [
+                {
+                    "identifier": "AHE_RECOGNIZE_AUDIO_PROCESSING",
+                    "priority": "DAC_TASK_CRITICAL",
+                    "duration": 5000,
+                    "preempt": false
+                }
+            ]
+        },
+	{
+            "identifier": "AHE",
+            "processName": "AlexaHybridExecutionControllerBlueBottle",
+            "tasks": [
+                {
+                    "identifier": "AHE_RECOGNIZE_AUDIO_PROCESSING",
+                    "priority": "DAC_TASK_CRITICAL",
+                    "duration": 5000,
+                    "preempt": false
+                }
+            ]
+        }
+    ],
+    "rules": [
+        {
+            "name": "AHEWakewordControl",
+            "identifier": {
+                "componentId": "AHE",
+                "taskId": "AHE_RECOGNIZE_AUDIO_PROCESSING"
+            },
+            "actions": [
+                {
+                    "message": "DAC_TASK_STARTED",
+                    "events": [
+                        {
+                            "eventGroup": "DAC_EVENT_GROUP_WAKEWORD",
+                            "eventName": "DAC_EVENT_WAKEWORD_PAUSE"
+                        }
+                    ]
+                },
+                {
+                    "message": "DAC_TASK_COMPLETED",
+                    "events": [
+                        {
+                            "eventGroup": "DAC_EVENT_GROUP_WAKEWORD",
+                            "eventName": "DAC_EVENT_WAKEWORD_RESUME"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "AHEAEDControl",
+            "identifier": {
+                "componentId": "AHE",
+                "taskId": "AHE_RECOGNIZE_AUDIO_PROCESSING"
+            },
+            "actions": [
+                {
+                    "message": "DAC_TASK_STARTED",
+                    "events": [
+                        {
+                            "eventGroup": "DAC_EVENT_GROUP_AED",
+                            "eventName": "DAC_EVENT_AED_PAUSE"
+                        }
+                    ]
+                },
+                {
+                    "message": "DAC_TASK_COMPLETED",
+                    "events": [
+                        {
+                            "eventGroup": "DAC_EVENT_GROUP_AED",
+                            "eventName": "DAC_EVENT_AED_RESUME"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+[Unit]
+Description=VDA Daemon Restarter
+After=multi-user.target
+ 
+[Service]
+Type=oneshot
+Restart=no
+ExecStartPre=/bin/rm /var/run/amzn-vdad/restart
+ExecStart=/usr/bin/vsm developer-mode enable
+ 
+[Install]
+WantedBy=multi-user.target

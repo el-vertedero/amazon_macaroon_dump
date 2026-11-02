@@ -1,0 +1,15 @@
+[Unit]
+Description=Pre-cache Pryon wakeword model data
+After=local-fs.target
+DefaultDependencies=no
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+
+ExecStart=-/bin/sh -c 'find /var/lib/data/davs/resources/wakeword_alexa_* /var/lib/data/davs/resources/wakeword_f92e9ee* -type f -size +100k -exec cat {} + > /dev/null 2>&1'
+
+[Install]
+WantedBy=sysinit.target

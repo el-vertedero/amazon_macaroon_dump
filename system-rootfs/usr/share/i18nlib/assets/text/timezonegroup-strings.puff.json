@@ -1,0 +1,39 @@
+{
+  "note": "time zone group display name strings",
+  "dir": "ltr",
+  "resources": {
+    "time-zone-group-north-america": {
+      "value": "North America"
+    },
+    "time-zone-group-united-states": {
+      "value": "United States"
+    },
+    "time-zone-group-south-america": {
+      "value": "South America"
+    },
+    "time-zone-group-atlantic-ocean": {
+      "value": "Atlantic Ocean"
+    },
+    "time-zone-group-europe": {
+      "value": "Europe"
+    },
+    "time-zone-group-africa": {
+      "value": "Africa"
+    },
+    "time-zone-group-indian-ocean": {
+      "value": "Indian Ocean"
+    },
+    "time-zone-group-asia": {
+      "value": "Asia"
+    },
+    "time-zone-group-australia": {
+      "value": "Australia"
+    },
+    "time-zone-group-pacific-ocean": {
+      "value": "Pacific Ocean"
+    },
+    "time-zone-group-antarctica": {
+      "value": "Antarctica"
+    }
+  }
+}

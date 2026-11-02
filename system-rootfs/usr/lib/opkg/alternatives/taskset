@@ -1,0 +1,3 @@
+/usr/bin/taskset
+/bin/toybox 60
+/usr/bin/taskset.util-linux 80

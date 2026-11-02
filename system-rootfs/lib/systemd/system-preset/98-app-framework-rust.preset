@@ -1,0 +1,2 @@
+enable eventmgr.service
+enable lifecycle-manager.service

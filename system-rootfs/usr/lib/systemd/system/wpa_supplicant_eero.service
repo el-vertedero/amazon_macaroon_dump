@@ -1,0 +1,33 @@
+[Unit]
+Description=WPA supplicant daemon for eeroinsided
+
+
+[Service]
+Type=simple
+User=wifi
+Group=wifi
+SupplementaryGroups=net log tee reserved_disk
+SmackProcessLabel=System::Privileged
+
+# wpa_supplicant need this capability to work:
+# CAP_MAC_OVERRIDE - for read/write disable_ipv6
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_RAW CAP_MAC_OVERRIDE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_RAW CAP_MAC_OVERRIDE
+
+WorkingDirectory=/var/run/
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+NoNewPrivileges=yes
+RestrictSUIDSGID=yes
+
+# Make logging paths visible, since PrivateDevices=yes
+BindPaths=-/dev/socket -/dev/log
+ReadWritePaths=-/dev/socket -/dev/log
+
+
+ExecStart=/usr/sbin/wpa_supplicant -imesh0 -c/var/lib/wifi/mesh_supplicant.conf -O/var/run/wpa_supplicant -g/var/run/sockets
+
+[Install]

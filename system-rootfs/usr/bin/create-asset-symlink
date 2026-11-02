@@ -1,0 +1,44 @@
+#!/bin/sh
+
+TAG=create-asset-symlink
+
+debug(){
+    echo "D $@" | systemd-cat -t "$TAG" -p debug
+}
+
+info(){
+    echo "I $@" | systemd-cat -t "$TAG" -p info
+}
+
+warn(){
+    echo "W $@" | systemd-cat -t "$TAG" -p warning
+}
+
+error(){
+    echo "E $@" | systemd-cat -t "$TAG" -p err
+}
+
+REAL_ASSETS="$1"
+SYMLINK_ASSETS="$2"
+
+if [ ! -e "$REAL_ASSETS" ] ; then
+    error "Cannot create symlink to directory that does not exist $REAL_ASSETS"
+    exit 1
+fi
+
+if [ -L "$SYMLINK_ASSETS" ] ; then
+    REAL="$(realpath "$SYMLINK_ASSETS" )"
+    info "Symlink '$SYMLINK_ASSETS' already exists. Real path '$REAL'."
+    exit 0
+fi
+
+if [ -d "$SYMLINK_ASSETS" ] ; then
+    warn "The path '$SYMLINK_ASSETS' already exists and is a real directory. Removing before creating a symlink."
+    rm -rf "$SYMLINK_ASSETS"
+fi
+
+info "Creating symlink '$REAL_ASSETS' -> '$SYMLINK_ASSETS'"
+ln -s "$REAL_ASSETS" "$SYMLINK_ASSETS"
+SYMLINK_RETURN_CODE="$?"
+info "Symlink command returned $SYMLINK_RETURN_CODE"
+

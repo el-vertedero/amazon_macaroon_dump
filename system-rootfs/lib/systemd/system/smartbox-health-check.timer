@@ -1,0 +1,10 @@
+[Unit]
+Description=Periodic health check of logging stack
+
+[Timer]
+# Run health check every 24h after boot
+OnBootSec=24h
+OnUnitActiveSec=24h
+
+[Install]
+WantedBy=timers.target

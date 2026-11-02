@@ -1,0 +1,60 @@
+[Unit]
+Description=Start asset manager daemon that sets up all the earcons and ww models for Puffin-app
+Conflicts=shutdown.target
+After=netsvc.service dbus.socket
+Wants=dbus.socket
+
+[Service]
+ExecStart=/usr/bin/assetmgrd
+Restart=always
+SupplementaryGroups=aipc kvstore tee assetmgr
+SmackProcessLabel=System
+User=assetmgr
+Group=assetmgr
+
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+# Make AIPC visible
+ReadWritePaths=/var/lib/data/ace/aipc/ /var/lib/data/ace/kvstorage/
+
+# Configure watch dog to restart after 30 seconds of inactivity
+WatchdogSec=30
+
+# IPC communication
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+DeviceAllow=/dev/binder rw
+
+# MAP calls
+ReadWritePaths=-/dev/idme
+BindPaths=-/dev/idme
+DeviceAllow=/dev/idme rw
+
+# required to refersh auth token after fortifying the service
+ReadWritePaths=-/dev/qseecom
+BindPaths=-/dev/qseecom
+DeviceAllow=/dev/qseecom rw
+
+ReadWritePaths=-/dev/dma_heap/qcom,qseecom-ta
+BindPaths=-/dev/dma_heap/qcom,qseecom-ta
+DeviceAllow=/dev/dma_heap/qcom,qseecom-ta
+
+ReadWritePaths=-/dev/dma_heap/qcom,qseecom
+BindPaths=-/dev/dma_heap/qcom,qseecom
+DeviceAllow=/dev/dma_heap/qcom,qseecom
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+CapabilityBoundingSet=none
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

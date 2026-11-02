@@ -1,0 +1,2 @@
+%power ALL= NOPASSWD: /sbin/reboot
+%power ALL= NOPASSWD: /sbin/shutdown

@@ -1,0 +1,23 @@
+{
+    "description": "Alexa.Identity.Enrollment Minimal GCA config for Vega",
+    "version": "1.0",
+    "CAMPSchemaVersion": "1.0",
+    "streams": [
+        {
+            "name": "MINIMAL_ENROLLMENT_GCA",
+            "type": "core.GenericCA",
+            "args": {
+                "capability": {
+                    "discovery": {
+                        "type": "AlexaInterface",
+                        "interface": "Alexa.Identity.Enrollment",
+                        "version": "2.2",
+                        "configurations": {
+                            "activities": ["AUTH_CHALLENGE"]
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

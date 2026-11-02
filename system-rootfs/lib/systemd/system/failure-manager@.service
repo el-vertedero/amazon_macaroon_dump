@@ -1,0 +1,41 @@
+[Unit]
+Description=Failure Manager for %i
+ConditionPathExists=!/var/forbid_failure_reboot
+RefuseManualStart=true
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/failure-manager -a failure %i
+RemainAfterExit=true
+StateDirectory=failure-manager
+StateDirectoryMode=0775
+WorkingDirectory=/var/lib/failure-manager
+
+SupplementaryGroups=reserved_disk
+
+User=failuremgr
+Group=failuremgr
+
+Slice=framework.slice
+
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+DeviceAllow=/dev/binder rw
+
+# Most typical protections like this also imply "NoNewPrivileges",
+# which conflicts with our need to invoke 'sudo'. So only take the
+# ones we can. If adding to this list, ensure that the non-powerd
+# fallback continues to work.
+PrivateNetwork=false
+PrivateTmp=true
+
+# Needed for 'sudo' for systemd reboot fallback
+NoNewPrivileges=false
+
+# Needed for direct reboot fallback
+AmbientCapabilities=CAP_SYS_BOOT
+
+EnvironmentFile=-/etc/app-framework/config.env
+
+[Install]
+WantedBy=

@@ -1,0 +1,38 @@
+[Unit]
+Description=Acs thermal service
+After=ace_eventmgr.service kvs_util.service
+Wants=ace_eventmgr.service service-registrar.service
+PartOf=service-registrar.service
+Conflicts=shutdown.target
+
+[Service]
+ExecStart=/usr/bin/ace_thermald
+Restart=on-failure
+
+SmackProcessLabel=System
+DynamicUser=yes
+SupplementaryGroups=aipc system
+ReadWritePaths=-/var/lib/data/ace/aipc/
+SupplementaryGroups=metrics
+
+# Fortifying the service
+CapabilityBoundingSet=none
+RestrictNamespaces=true
+PrivateDevices=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+LockPersonality=true
+SystemCallFilter=@system-service
+
+#AIPC Binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.thermal.service

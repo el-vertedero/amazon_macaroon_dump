@@ -1,0 +1,9 @@
+%system ALL= NOPASSWD: /bin/systemctl ^start halo.+$
+%system ALL= NOPASSWD: /bin/systemctl ^status halo.+$
+%system ALL= NOPASSWD: /bin/systemctl ^stop halo.+$
+%system ALL= NOPASSWD: /bin/systemctl ^reload-or-restart halo.+$
+%system ALL= NOPASSWD: /bin/systemctl ^try-restart halo.+$
+%system ALL= NOPASSWD: /bin/systemctl ^show --property MainPID --property UID --property GID halo.+$
+
+%system ALL= NOPASSWD: /sbin/insmod ^.+halo-core.ko$
+%system ALL= NOPASSWD: /sbin/insmod ^.+halo-user.ko$

@@ -1,0 +1,32 @@
+[Unit]
+Description=Halo Init Service
+StartLimitInterval=150
+StartLimitBurst=3
+
+[Service]
+EnvironmentFile=-/etc/halo/sysprop/sysprop_systemd_envfile
+
+ExecStartPre=+/usr/bin/halo-init-service.d/start_exec_pre
+ExecStartPre=/usr/bin/plugin-sidewalk-init
+
+ExecStart=/usr/bin/halo-init-service \
+    --volatile ${VEGA_FOS_SYSTEM_PROPERTY} \
+    --persist ${VEGA_FOS_PERSIST_SYSTEM_PROPERTY} \
+    --logpath /var/lib/data/halo/var/log/halo-init-service.log
+
+Restart=always
+
+User=halo
+Group=halo
+SupplementaryGroups=system net aipc kvstore
+
+# Fortifying the service
+SmackProcessLabel=System
+SystemCallErrorNumber=EPERM
+
+#Enable AIPC/IPCN Access
+DeviceAllow=/dev/binder rw
+DeviceAllow=char-halo rw
+
+[Install]
+WantedBy=multi-user.target

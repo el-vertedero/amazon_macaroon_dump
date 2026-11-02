@@ -1,0 +1,84 @@
+[Unit]
+Description=Acs power service
+After=ace_eventmgr.service kvs_util.service
+Wants=ace_eventmgr.service service-registrar.service
+PartOf=service-registrar.service
+Conflicts=shutdown.target
+
+[Service]
+Type=notify
+User=power
+Group=power
+DynamicUser=no
+ExecStart=/usr/bin/ace_powerd
+Restart=always
+RestartSec=1s
+NotifyAccess=all
+
+SmackProcessLabel=System
+SupplementaryGroups=aipc kvstore system graphic debugfs
+ReadWritePaths=-/var/lib/data/ace/aipc/ -/var/lib/data/ace/kvstorage
+SupplementaryGroups=metrics
+
+# Service will use its own /tmp, instead of host /tmp
+PrivateTmp=yes
+
+# powerd need sudo privileges for shutdown through systemctl, so cannot set 'NoNewPrivileges', any implicitly setting 'NoNewPrivileges' items cannot be set neither.
+
+# Allows Unix domain socket. This is the default setting because Vega logging framework rely on Unix domain socket. If your service uses Vega logging, please set this value.
+# It will implicitly setting "NoNewPrivileges", so won't set this one.
+#RestrictAddressFamilies=AF_UNIX
+
+# Prohibits any namespacing
+# It will implicitly setting "NoNewPrivileges", so won't set this one.
+#RestrictNamespaces=true
+
+# Disables all privilege escalation mechanisms, implicitly setting several other privilege-related configurations.
+# It will implicitly setting "NoNewPrivileges", so won't set this one.
+#NoNewPrivileges=true
+
+# Prohibit device accesses (/dev/*) except for pseudo devices(i.e /dev/random, /dev/null, ...).
+# It will implicitly setting "NoNewPrivileges", so won't set this one.
+#PrivateDevices=true
+
+# The service can’t write the system clock
+# It will implicitly setting "NoNewPrivileges", so won't set this one.
+#ProtectClock=true
+
+# Service will not be able to read kernel log ring buffer.
+# It will implicitly setting "NoNewPrivileges", so won't set this one.
+#ProtectKernelLogs=true
+
+# Service will not be able to load kernel modules
+# It will implicitly setting "NoNewPrivileges", so won't set this one.
+#ProtectKernelModules=true
+
+# Makes kernel variables read-only, preventing the service from altering kernel tunables.
+# It will implicitly setting "NoNewPrivileges", so won't set this one.
+#ProtectKernelTunables=true
+
+# Prevents executing SUID binaries and creating files in SGID directories.
+# It will implicitly setting "NoNewPrivileges", so won't set this one.
+#RestrictSUIDSGID=true
+
+# Service cannot call personality() system call
+# It will implicitly setting "NoNewPrivileges", so won't set this one.
+#LockPersonality=true
+
+# Restrict the permitted syscalls to a reasonable set used by common system services.
+# If an unexpected syscall occurs, return EPERM instead of terminating.
+# It will implicitly setting "NoNewPrivileges", so won't set this one.
+#SystemCallFilter=@system-service
+#SystemCallErrorNumber=EPERM
+
+#AIPC Binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.power.service
+OffersService=com.amazon.powermanagerext.service

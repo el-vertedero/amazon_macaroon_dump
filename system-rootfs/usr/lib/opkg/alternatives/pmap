@@ -1,0 +1,3 @@
+/usr/bin/pmap
+/bin/toybox 60
+/usr/bin/pmap.procps 200

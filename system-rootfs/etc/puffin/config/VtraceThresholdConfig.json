@@ -1,0 +1,12 @@
+{
+    "UserPerceivedLatency.Audio": 1400,
+    "UserPerceivedLatency.Audio.DeviceProcessing": 100,
+    "UserPerceivedLatency.Audio.ServerProcessing": 1400,
+    "UserPerceivedLatency.Audio.WakeWordToBar": 300,
+    "UserPerceivedLatency.Visual": 4000,
+    "UserPerceivedLatency.Visual.DeviceProcessing": 2000,
+    "UserPerceivedLatency.Visual.ServerProcessing": 2000,
+    "VSK.Visual": 4000,
+    "VSK.Visual.ServerProcessing": 2000,
+    "VSK.Visual.DeviceProcessing": 2000
+}

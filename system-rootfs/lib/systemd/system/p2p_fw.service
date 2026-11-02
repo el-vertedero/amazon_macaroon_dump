@@ -1,0 +1,13 @@
+# Setup NAT
+
+[Unit]
+Description=Firewall for P2P of headless device
+
+[Service]
+Type=oneshot
+EnvironmentFile=/var/run/p2p_file
+ExecStart=/usr/bin/firewall.sh start p2p $P2PIF $IP 1
+ExecStop=/usr/bin/firewall.sh stop p2p $P2PIF $IP 1
+RemainAfterExit=True
+
+[Install]

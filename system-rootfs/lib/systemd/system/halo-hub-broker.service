@@ -1,0 +1,36 @@
+[Unit]
+Description=Hub Broker
+
+[Service]
+EnvironmentFile=-/etc/halo/common-env
+ExecStartPre=+/bin/sh -c '/bin/mkdir -p /var/lib/data/halo/var/log/zservice'
+ExecStartPre=+/bin/chown -R root:halo /var/lib/data/halo
+ExecStartPre=+/bin/chmod -R 775 /var/lib/data/halo
+ExecStart=/usr/bin/psbroker
+Restart=always
+
+User=halo
+Group=halo
+SupplementaryGroups=system log
+
+# Fortifying the service
+SmackProcessLabel=System
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_NETLINK
+RestrictAddressFamilies=AF_UNIX
+RestrictAddressFamilies=AF_INET
+RestrictAddressFamilies=AF_INET6
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]

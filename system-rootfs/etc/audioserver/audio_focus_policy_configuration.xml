@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+   Copyright (c) 2025 Amazon.com, Inc. or its affiliates.  All rights reserved.
+   PROPRIETARY/CONFIDENTIAL.  USE IS SUBJECT TO LICENSE TERMS.
+-->
+<audio_focus_policy version="1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <!-- matrix configuration section, <matrix>:
+        There is one section <matrix> per platform.
+        Each matrix section will contain the following child sections:
+        <active_focus>: multiple active focuses with different usages are listed.
+            Each active_focus section will contain the following attribute:
+            "usage" - Mandatory. Usage of the focus.
+            Each active_focus section will contain the following child sections:
+            <incoming_focus>: multiple incoming focuses with different usages are listed.
+                Each incoming_focus section will contain the following attribute:
+                "usage" - Mandatory. Usage of the focus.
+                          Supported usages: {media, communication, alarm, notification,
+                                            accessibility, game, navigation, ring,
+                                            voice assistant, system, vehicle chime,
+                                            safety alert, emergency call, voice recognition}.
+                Each incoming_focus section will contain the following child sections:
+                <outcome>: outcome determines how concurrent audio sessions will be prioritized
+                    Each outcome section will contain the following attributes:
+                    "active" - Mandatory. The outcome state of the active focus.
+                    "incoming" - Mandatory. The outcome state of the incoming focus.
+                                 Supported states: {granted, ducked, stopped, mixed, paused};
+                                 Either "active" or "incoming" should be equal to "granted".
+    -->
+    <matrix>
+        <active_focus usage="ring">
+            <incoming_focus usage="voice assistant">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="media">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="accessibility">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="alarm">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="notification">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="communication">
+                <outcome active="granted" incoming="mixed"/>
+            </incoming_focus>
+            <incoming_focus usage="voice recognition">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+        </active_focus>
+
+        <active_focus usage="communication">
+            <incoming_focus usage="ring">
+                <outcome active="granted" incoming="mixed"/>
+            </incoming_focus>
+            <incoming_focus usage="voice assistant">
+                <outcome active="granted" incoming="mixed"/>
+            </incoming_focus>
+            <incoming_focus usage="media">
+                <outcome active="granted" incoming="paused"/>
+            </incoming_focus>
+            <incoming_focus usage="accessibility">
+                <outcome active="granted" incoming="mixed"/>
+            </incoming_focus>
+            <incoming_focus usage="alarm">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="notification">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="voice recognition">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+        </active_focus>
+
+        <active_focus usage="media">
+            <incoming_focus usage="media">
+                <outcome active="stopped" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="ring">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="alarm">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="notification">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="communication">
+                <outcome active="paused" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="accessibility">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="voice assistant">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="voice recognition">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+        </active_focus>
+
+        <active_focus usage="alarm">
+            <incoming_focus usage="communication">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="ring">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="notification">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="media">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="voice assistant">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="voice recognition">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="accessibility">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+        </active_focus>
+
+        <active_focus usage="notification">
+            <incoming_focus usage="communication">
+                <outcome active="stopped" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="ring">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="alarm">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="media">
+                <outcome active="granted" incoming="paused"/>
+            </incoming_focus>
+            <incoming_focus usage="accessibility">
+                <outcome active="granted" incoming="mixed"/>
+            </incoming_focus>
+            <incoming_focus usage="voice assistant">
+                <outcome active="stopped" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="voice recognition">
+                <outcome active="stopped" incoming="granted"/>
+            </incoming_focus>
+        </active_focus>
+
+        <active_focus usage="voice assistant">
+            <incoming_focus usage="communication">
+                <outcome active="granted" incoming="mixed"/>
+            </incoming_focus>
+            <incoming_focus usage="ring">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="alarm">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="media">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="accessibility">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="notification">
+                <outcome active="granted" incoming="mixed"/>
+            </incoming_focus>
+            <incoming_focus usage="voice recognition">
+                <outcome active="granted" incoming="mixed"/>
+            </incoming_focus>
+        </active_focus>
+
+        <active_focus usage="accessibility">
+            <incoming_focus usage="communication">
+                <outcome active="granted" incoming="mixed"/>
+            </incoming_focus>
+            <incoming_focus usage="ring">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="alarm">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="media">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="accessibility">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="notification">
+                <outcome active="granted" incoming="mixed"/>
+            </incoming_focus>
+            <incoming_focus usage="voice assistant">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+            <incoming_focus usage="voice recognition">
+                <outcome active="ducked" incoming="granted"/>
+            </incoming_focus>
+        </active_focus>
+
+        <active_focus usage="voice recognition">
+            <incoming_focus usage="communication">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="ring">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="alarm">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+            <incoming_focus usage="media">
+                <outcome active="granted" incoming="paused"/>
+            </incoming_focus>
+            <incoming_focus usage="notification">
+                <outcome active="granted" incoming="mixed"/>
+            </incoming_focus>
+            <incoming_focus usage="voice assistant">
+                <outcome active="granted" incoming="mixed"/>
+            </incoming_focus>
+            <incoming_focus usage="accessibility">
+                <outcome active="granted" incoming="ducked"/>
+            </incoming_focus>
+        </active_focus>
+
+    </matrix>
+    <!-- ducking_policy configuration section, <ducing_policy>:
+        ducing_policy section contains attributes:
+        "switch_duration" - Optional. Switching Delay in milliseconds
+        "volume" - Optional. A kind of ducking method,
+                can't coexist with other ducking methods.
+                Duck to fixed volume in percentage (0~100).
+        "percentage" - Optional. A kind of ducking method,
+                can't coexist with other ducking methods (0~100).
+                Reduced by the percentage of current volume.
+        "dB" - Optional. A kind of ducking method,
+                can't coexist with other ducking methods.
+                Reduced by dB of current volume (0~127).
+        "curve" - Optional. A kind of ducking method,
+                can't coexist with other ducking methods.
+                Use a 101-point (0~100%) percentage volume curve,
+                e.g. curve="0,0,0,0,0,0,0,3,6,10,13,16,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20"
+    -->
+    <ducking_policy curve="0,0,0,0,0,0,0,3,6,10,13,16,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20" switch_duration="150"/>
+</audio_focus_policy>

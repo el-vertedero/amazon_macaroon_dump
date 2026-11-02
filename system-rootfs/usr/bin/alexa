@@ -1,0 +1,15 @@
+#!/bin/sh
+
+usage(){
+    cat <<EOF
+Usage: $0 [-h|--help]
+Use lipc-set-prop to simulate an uber button press.
+Allows devices without an uber button to open ASR to listen.
+EOF
+}
+
+if [ -n "$1" ] && [ "$1" = "-h" -o "$1" = "--help" ] ; then
+    usage ; exit
+fi
+
+/usr/bin/lipc-set-prop com.doppler.buttond fakeButton 'uber short'

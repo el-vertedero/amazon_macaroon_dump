@@ -1,0 +1,63 @@
+[Unit]
+Description=Logging Remote Configuration Service
+After=systemd-tmpfiles-setup.service local-fs.target service-registrar.service logconfig-init.service device-config.service network.service
+Requires=service-registrar.service device-config-manager.service logconfig-init.service
+PartOf=service-registrar.service
+Conflicts=shutdown.target
+# After 15 minutes, restart counter resets allowing new batch of restarts
+StartLimitIntervalSec=900
+# Maximum 3 restart attempts within the 15-minute window
+StartLimitBurst=3
+
+[Service]
+Type=simple
+# Trigger a restart on non-0 exit code (see systemd man page for nuances)
+Restart=on-failure
+# Delay 180 seconds between restart attempts
+RestartSec=180
+
+ProtectSystem=strict
+ProtectControlGroups=yes
+
+ReadOnlyPaths=/etc/loggingrc/
+ReadWritePaths=/var/lib/loggingrc
+
+# Make AIPC visible
+ReadWritePaths=/var/lib/data/ace/aipc
+
+ExecStart=/usr/bin/loggingrcd
+TimeoutStartSec=60
+WatchdogSec=300
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+User=log
+Group=log
+SmackProcessLabel=System
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+#Needed as AIPC is over socket on MM and HL devices.
+SupplementaryGroups=aipc
+
+[Install]
+# Service is activated via loggingrc.timer to give time for network connection
+# and OTA group to populate.
+
+[X-Kepler]
+OffersService=com.amazon.loggingrc.service

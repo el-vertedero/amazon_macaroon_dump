@@ -1,0 +1,27 @@
+[Unit]
+Description=Gracefull reboot for the device.
+After=amzn-vdad.service
+ConditionPathExists=/var/run/amzn-vdad/reboot
+
+[Service]
+Type=oneshot
+Restart=no
+RemainAfterExit=yes
+ExecStartPre=/bin/systemctl stop amzn-vdad.service
+ExecStart=/bin/sh -c 'PARAM=$(/bin/cat /var/run/amzn-vdad/reboot | /usr/bin/tr -dc "[:alpha:]") && /bin/rm -rf /var/run/amzn-vdad/reboot && /sbin/reboot $PARAM'
+SmackProcessLabel=System
+SupplementaryGroups=shutdown
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM

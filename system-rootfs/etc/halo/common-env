@@ -1,0 +1,2 @@
+SETUP_DOC_PATH=/usr/share/zdk/setup-docs/
+CONFUSER_ROOT=/run/halo/etc

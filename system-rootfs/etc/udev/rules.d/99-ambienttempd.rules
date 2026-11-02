@@ -1,0 +1,11 @@
+# Create symlinks for LED modules under /dev/atsd_inputs/
+
+SUBSYSTEM=="leds", DEVPATH=="*ledmod_*", ACTION=="add", \
+RUN+="/bin/mkdir -p /dev/atsd_inputs/leds", \
+RUN+="/bin/bash -c 'index=${DEVPATH##*ledmod_}; ln -sfT /sys/class/leds/%k /dev/atsd_inputs/leds/ledmod_$index'"
+
+# Create symlinks for thermal zones based on their types
+SUBSYSTEM=="thermal", KERNEL=="thermal_zone*", ACTION=="add", \
+    IMPORT{program}="/bin/sh -c 'echo TYPE=$(cat /sys/class/thermal/%k/type)'", \
+    RUN+="/bin/mkdir -p /dev/atsd_inputs/thermal-zones", \
+    RUN+="/bin/bash -c '/bin/ln -sfT /sys/class/thermal/%k /dev/atsd_inputs/thermal-zones/${TYPE}'"

@@ -1,0 +1,40 @@
+[Unit]
+Description=Load onlycap after all System::Privileged services are launched.
+After=smack-rule-loader.service security-manager.service stemd.service android-tools-adbd.service download_manager.service multi-user.target
+DefaultDependencies=no
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+DynamicUser=yes
+SmackProcessLabel=System::Privileged
+
+# Required to change onlycap
+CapabilityBoundingSet=CAP_MAC_ADMIN
+AmbientCapabilities=CAP_MAC_ADMIN
+
+# Required to write /sys/fs/smackfs/onlycap
+CapabilityBoundingSet=CAP_DAC_OVERRIDE
+AmbientCapabilities=CAP_DAC_OVERRIDE
+
+ExecStart=/bin/bash -c '/bin/sed -e /^#/d /etc/smack/onlycap-post > /sys/fs/smackfs/onlycap'
+
+### Fortifying the service ###
+PrivateNetwork=true
+RestrictAddressFamilies=none
+RestrictNamespaces=true
+NoNewPrivileges=true 
+PrivateDevices=true 
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+RestrictSUIDSGID=true      
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+RestrictRealtime=true           
+LockPersonality=true 
+ProtectControlGroups=true
+
+[Install]
+WantedBy=multi-user.target

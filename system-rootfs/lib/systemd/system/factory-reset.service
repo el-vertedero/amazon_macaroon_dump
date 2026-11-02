@@ -1,0 +1,52 @@
+
+[Unit]
+Description=Factory Reset service
+Conflicts=shutdown.target
+After=service-registrar.service cache.mount
+After=ace_powerd.service multi-user.target
+Wants=service-registrar.service
+PartOf=service-registrar.service
+ 
+[Service]
+ExecStartPre=+/bin/mkdir -p /cache/recovery
+ExecStartPre=+/bin/chown -R root:log /cache/recovery
+ExecStartPre=+/bin/chmod 664 -R /cache/recovery/
+ExecStartPre=+/bin/chmod 2770 /cache/recovery
+ExecStartPre=+/usr/bin/chsmack -r -a 'System' /cache/recovery
+ExecStart=/usr/bin/factory_reset_service
+SmackProcessLabel=System
+DynamicUser=yes
+Group=factoryreset
+StateDirectory=factory-reset
+
+StandardError=file:/var/lib/factory-reset/factoryreset_service.log
+StandardOutput=file:/var/lib/factory-reset/factoryreset_service.log
+
+Restart=always
+
+SystemCallFilter=@system-service @reboot
+SystemCallErrorNumber=EPERM
+
+# Required for AIPC
+SupplementaryGroups=aipc kvstore disk log
+ReadWritePaths=/var/lib/data/ace/aipc/
+ReadWritePaths=/var/non-secure/factory-reset/
+ReadWritePaths=-/cache/recovery/
+ReadWritePaths=/var/lib/data/ace/kvstorage/
+
+# reboot syscall needed
+CapabilityBoundingSet=CAP_SYS_BOOT
+AmbientCapabilities=CAP_SYS_BOOT
+
+# Required for logging
+ReadWritePaths=-/dev/socket -/dev/log
+BindPaths=-/dev/socket -/dev/log
+BindPaths=/cache
+
+# Required for ipcf4
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+
+[Install]
+#Boot target to start this executable
+WantedBy=multi-user.target

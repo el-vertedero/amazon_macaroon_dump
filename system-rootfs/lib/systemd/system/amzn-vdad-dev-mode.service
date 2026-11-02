@@ -1,0 +1,14 @@
+[Unit]
+Description=VDA Daemon Developer Mode Startup
+ConditionPathExists=/etc/vda/enable-vda
+Requires=device-config-manager.service
+After=device-config-manager.service
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/sbin/vdad-dev-mode-check.sh
+ExecStart=/bin/systemctl restart amzn-vdad.service
+
+[Install]
+WantedBy=multi-user.target

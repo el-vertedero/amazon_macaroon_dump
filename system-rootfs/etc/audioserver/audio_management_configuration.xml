@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<audio_volume_configuration version="1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <!-- version section contains a tag in the form "major.minor" e.g version="1.0" -->
+
+    <!-- Active volume type update API can be called without specifying a fallback volume type,
+         in that case following default volume type will be updated.
+
+         If not defined, system default is AMAZON_AUDIO_VOLUME_TYPE_MUSIC.
+    -->
+    <default_volume_type type="AMAZON_AUDIO_VOLUME_TYPE_MUSIC"/>
+
+    <!--
+        To configure what power resource audioserver acquires when initiating regular
+        playback streams. Options for value are "low", "medium", or "high".
+    -->
+    <power_mode_for_playback_streams value="medium"/>
+
+    <!--
+        To configure what power resource audioserver acquires when initiating low latency
+        high perf mode playback streams. Options for value are "low", "medium", or "high".
+    -->
+    <power_mode_for_low_latency_streams value="high"/>
+
+    <!-- Product specific configurable volume groups and curves for each "device:volume type" combo that
+         product supports.
+         Each curve can have any number of steps and it’s own minimum and maximum value
+         in linear (0 - 100 percentage volume) scale.
+
+         Volume Groups:
+         Group helps to combine some volume types such that an update
+         to the group's primary type by N steps also updates group's member volume types by N steps.
+         Please keep number of steps in volume curve same for all the volume types in a group.
+         This helps to achieve one Volume knob for certain Volume types. For example, in the example Main group
+         here, two turns on a knob will update each group member type by 2 steps from their current position.
+
+         Please avoid having one volume type in two groups.
+
+         Device types can be:
+         AMAZON_AUDIO_DEVICE_SPEAKER
+         AMAZON_AUDIO_DEVICE_WIRED_HEADSET
+         AMAZON_AUDIO_DEVICE_BLUETOOTH_SCO
+         AMAZON_AUDIO_DEVICE_BLUETOOTH_A2DP
+         AMAZON_AUDIO_DEVICE_TERRESTRIAL_RADIO_TUNER
+         AMAZON_AUDIO_DEVICE_TV_TUNER
+         AMAZON_AUDIO_DEVICE_TELEPHONY
+         AMAZON_AUDIO_DEVICE_SATELLITE_RADIO_TUNER
+
+         Primitive volume types are:
+         AMAZON_AUDIO_VOLUME_TYPE_MUSIC,
+         AMAZON_AUDIO_VOLUME_TYPE_TTS,
+         AMAZON_AUDIO_VOLUME_TYPE_VOICE_CALL,
+         AMAZON_AUDIO_VOLUME_TYPE_RING,
+         AMAZON_AUDIO_VOLUME_TYPE_ALARM,
+         AMAZON_AUDIO_VOLUME_TYPE_NOTIFICATION,
+         AMAZON_AUDIO_VOLUME_TYPE_ACCESSIBILITY,
+         AMAZON_AUDIO_VOLUME_TYPE_SYSTEM,
+         AMAZON_AUDIO_VOLUME_TYPE_NAVIGATION
+
+         comfort_level_min and comfort_level_max per curve are optional features to set cap the min and max while restoring volumes while still allowing
+         lower or higher volume levels in the curve in extraordinary conditions.
+
+         Initial value will be used to initialize Volume level for the group at the very first boot up and at factory reset.
+
+         If no curves are defined then internal system defaults will be used without any groupings.
+    -->
+    <volume_curves>
+        <device type="AMAZON_AUDIO_DEVICE_SPEAKER">
+            <volume_group name="main" primary="AMAZON_AUDIO_VOLUME_TYPE_MUSIC">
+                <!-- default initial step for this group, make sure to set within the curve size, indexed from 0 -->
+            <initial step="12"/>
+                <!-- number of steps in all volume curves are same in a group, use same curve and values to dupe a curve to another volume type -->
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_MUSIC" steps="0,1,2,3,6,8,9,16,20,22,27,32,36,38,41,46,52,55,59,66,70,74,80,82,85,88,90,92,95,98,100"/>
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_VOICE_CALL" steps="0,32,36,40,42,44,47,50,52,54,56,58,60,63,66,68,70,72,74,76,78,80,81,82,83,85,86,88,90,92,94"/>
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_NOTIFICATION" steps="0,7,9,10,12,16,20,20,20,20,30,33,36,40,44,47,50,52,55,58,60,63,65,67,69,75,78,80,80,80,80"/>
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_RING" steps="0,7,9,10,12,16,20,20,20,20,30,33,36,40,44,47,50,52,55,58,60,63,65,67,69,75,78,80,80,80,80"/>
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_SYSTEM" steps="0,7,9,10,12,16,20,20,20,20,30,33,36,40,44,47,50,52,55,58,60,63,65,67,69,75,78,80,80,80,80"/>
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_TTS" steps="0,7,9,10,12,16,20,20,20,20,30,33,36,40,44,47,50,52,55,58,60,63,65,67,69,75,78,80,80,80,80"/>
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_ACCESSIBILITY" steps="0,7,9,10,12,16,20,20,20,20,30,33,36,40,44,47,50,52,55,58,60,63,65,67,69,75,78,80,80,80,80"/>
+            </volume_group>
+
+            <volume_group name="alert" primary="AMAZON_AUDIO_VOLUME_TYPE_ALARM">
+                <!-- default initial step for this group, make sure to set within the curve size, indexed from 0 -->
+                <initial step="18"/>
+                <!-- number of steps in all volume curves are same in a group, use same curve and values to dupe a curve to another volume type -->
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_ALARM" steps="0,7,9,10,12,16,20,20,20,20,30,33,36,40,44,47,50,52,55,65,67,74,80,82,85,88,90,92,95,98,100"/>
+            </volume_group>
+        </device>
+
+        <device type="AMAZON_AUDIO_DEVICE_BLUETOOTH_A2DP">
+            <volume_group name="main" primary="AMAZON_AUDIO_VOLUME_TYPE_MUSIC">
+                <!-- default initial step for this group, make sure to set within the curve size, indexed from 0 -->
+                <initial step="12"/>
+                <!-- number of steps in all volume curves are same in a group, use same curve and values to dupe a curve to another volume type -->
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_MUSIC" steps="0,1,2,3,6,8,9,16,20,22,27,32,36,38,41,46,52,55,59,66,70,74,80,82,85,88,90,92,95,98,100"/>
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_VOICE_CALL" steps="0,32,36,40,42,44,47,50,52,54,56,58,60,63,66,68,70,72,74,76,78,80,81,82,83,85,86,88,90,92,94"/>
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_NOTIFICATION" steps="0,7,9,10,12,16,20,20,20,20,30,33,36,40,44,47,50,52,55,58,60,63,65,67,69,75,78,80,80,80,80"/>
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_RING" steps="0,7,9,10,12,16,20,20,20,20,30,33,36,40,44,47,50,52,55,58,60,63,65,67,69,75,78,80,80,80,80"/>
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_SYSTEM" steps="0,7,9,10,12,16,20,20,20,20,30,33,36,40,44,47,50,52,55,58,60,63,65,67,69,75,78,80,80,80,80"/>
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_TTS" steps="0,7,9,10,12,16,20,20,20,20,30,33,36,40,44,47,50,52,55,58,60,63,65,67,69,75,78,80,80,80,80"/>
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_ACCESSIBILITY" steps="0,7,9,10,12,16,20,20,20,20,30,33,36,40,44,47,50,52,55,58,60,63,65,67,69,75,78,80,80,80,80"/>
+            </volume_group>
+
+            <volume_group name="alert" primary="AMAZON_AUDIO_VOLUME_TYPE_ALARM">
+                <!-- default initial step for this group, make sure to set within the curve size, indexed from 0 -->
+                <initial step="18"/>
+                <!-- number of steps in all volume curves are same in a group, use same curve and values to dupe a curve to another volume type -->
+                <curve type="AMAZON_AUDIO_VOLUME_TYPE_ALARM" steps="0,7,9,10,12,16,20,20,20,20,30,33,36,40,44,47,50,52,55,65,67,74,80,82,85,88,90,92,95,98,100"/>
+            </volume_group>
+        </device>
+    </volume_curves>
+</audio_volume_configuration>
+

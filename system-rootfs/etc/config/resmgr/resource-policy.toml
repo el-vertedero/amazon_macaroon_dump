@@ -1,0 +1,367 @@
+[resmgr]
+
+#
+# provide the path and the name of the framework cgroup
+#
+base-cgroup-path = "/sys/fs/cgroup"
+framework-cgroup-name = "framework.slice"
+
+#
+# product owner defined list of containers
+# note that system.slice is treated special where it is set under
+# 'base-cgroup-path' and not under 'framework-cgroup-name'
+#
+containers = ["critical", "essential", "background", "service", 'task', "system.slice"]
+default-container = "essential"
+
+#
+# note that the container name 'critical' shall match
+# the 'containers' name. In this example 'critical'
+#
+[container.critical]
+#
+# list of service that needs to run under the container
+#
+services = [
+  "pkgmgr.service",
+  "security-manager.service",
+  "service-registrar.service",
+  "device-config-manager.service",
+  "lifecycle-manager.service",
+  "background-work-manager.service",
+  "eventmgr.service",
+]
+#
+# memory configuration of the container
+#
+[container.critical.memory]
+#
+# Memory usage throttle limit.
+# This is the main mechanism to control memory usage of a container.
+# If a containers usage goes over the high boundary, the processes
+# of the cgroup are throttled and put under heavy reclaim pressure.
+# Going over the high limit never invokes the OOM killer and under
+# extreme conditions the limit may be breached.
+#
+high = "max"
+#
+# Best-effort memory protection or "soft guarantee".  If the memory
+# usage of a container is within its effective low boundary, the
+# container's memory won't be reclaimed unless there is no reclaimable
+# memory available in unprotected (process that are not memory bounded)
+# process.    Above the effective low boundary, pages are reclaimed
+# proportionally to the overage, reducing reclaim pressure for smaller
+# overages.
+#
+low = "0"
+#
+# Memory usage hard limit.  This is the final protection mechanism.
+# If a container's memory usage reaches this limit and can't be reduced,
+# the OOM killer is invoked in the container. Under certain circumstances,
+# the usage may go over the limit temporarily.    This is the ultimate
+# protection mechanism.  As long as the "memory.high" limit is used
+# and monitored properly, this limit's utility is limited to providing
+# the final safety net.
+#
+max = "max"
+
+[container.critical.memory.swap]
+#
+# The swap usage hard limit. If a conrainer's swap usage reaches
+# this limit, anonymous memory of the container will not be swapped
+# out; memory that already has swap slots allocated to it can
+# continue to be swapped out.
+#
+max = "max"
+
+[container.critical.cpu]
+#
+# unit is percentile
+#
+weight = 10
+
+# hyper parameters for container 'essential'
+[container.essential]
+services = []
+
+[container.essential.memory]
+high = "max"
+low = "0"
+max = "max"
+
+[container.essential.memory.swap]
+max = "max"
+
+[container.essential.cpu]
+#
+# unit is percentile
+#
+weight = 31
+
+# use this configuration to create 'threaded' slices within a given container,
+# 'essential' in this example. User needs to provide the % of cpu used that is
+# allocated to the container 'essential', the name of the slice and the threads
+# that shall be in this slice. The thread will be moved to this threaded slice
+# 'high' when the process moves to the container 'essential'
+
+# this is an example for threaded slices with the container
+[[container.essential.cpu.threadslice]]
+name = "high"
+threads = ['Toolkit/Render', 'Toolkit/UI', 'VizCompositorThread', 'Chrome_InProcGpuThread', 'Chrome_InProcRendererThread', 'CrBrowserMain']
+weight = 65 # unit is percentile
+
+# [[container.essential.cpu.threadslice]]
+# name = "low"
+# threads = ['apl_stem']
+# weight = 5 # unit is percentile
+
+# hyper parameters for container 'background'
+[container.background]
+services = []
+
+[container.background.memory]
+high = "max"
+low = "0"
+max = "max"
+
+[container.background.memory.swap]
+max = "max"
+
+[container.background.cpu]
+#
+# unit is percentile
+#
+weight = 3
+
+###########################
+# hyper parameters for container 'service'
+[container.service]
+services = []
+
+[container.service.memory]
+high = "max"
+low = "0"
+max = "max"
+
+[container.service.memory.swap]
+max = "max"
+
+[container.service.cpu]
+#
+# unit is percentile
+#
+weight = 8
+###########################
+#
+###########################
+# hyper parameters for container 'task'
+[container.task]
+services = []
+
+[container.task.memory]
+high = "max"
+low = "0"
+max = "max"
+
+[container.task.memory.swap]
+max = "max"
+
+[container.task.cpu]
+#
+# unit is percentile
+#
+weight = 6
+###########################
+
+# hyper parameters for container 'system.slice'
+[container."system.slice"]
+services = []
+
+[container."system.slice".memory]
+high = "max"
+low = "0"
+max = "max"
+
+[container."system.slice".memory.swap]
+max = "max"
+
+[container."system.slice".cpu]
+#
+# unit is percentile
+#
+weight = 42
+
+[app]
+
+[app.type]
+interactive = "essential"
+service = "service"
+task = "task"
+
+[app.state]
+[app.state.background]
+container = "background"
+
+[app.state.foreground]
+container = "essential"
+
+[app.state.stopped]
+container = "background"
+
+# application that shall be always in a given power state
+[app.power]
+#
+# list of apps that shall always be power save, these apps should not hold
+# display and cpu even if they are in the foreground
+power-save = ["com.amazon.homelauncher.main", "com.amazon.sample.screensaver", "com.amazon.screensaver"]
+
+#
+# Users can register triggers (onTrimResource()) to be woken up when
+# resource pressure exceeds certain thresholds.A trigger describes
+# the maximum cumulative stall time over a specific time window,
+# e.g. 100ms of total stall time within any 1s window to generate
+# a wakeup event.For example, with the default configuration,
+# if the memory pressure situation persist for 100ms, resource
+# manager will declare it as a memory pressure condition and call
+# onTrimResource() of the registered app. It then monitors the
+# resourse memory of the PIDs and if the process did not free up
+# the memory in ontrimtimeout time, it may decide to kill the
+# process to reclaim the memory.
+# 'low': 'process-threshold' = 'some'
+# The 'some' statistic gives the percentage of time some (one or more) tasks
+# were delayed due to lack of resources.
+# 'high': 'process-threshold' = 'full'
+# The full metric indicates the percentage of time in which all tasks
+# were delayed by lack of resources, i.e., the amount of completely unproductive
+# time.
+#
+[pressure.level]
+[[pressure.level.memory]]
+# pressure level identifier
+level = "mid"
+# unit is microseconds
+threshold-period = "70000"
+# unit is microseconds
+window-size = "5000000"
+# time some (one or more) tasks were delayed due to lack of resources.
+process-threshold = "some"
+# Below this memory(in kilo bytes) watermark corresponding action(terminate) will be taken
+high-watermark = "100000"
+# action on pressure
+actions = ['event', 'metric', 'terminate-state-background', 'notify-type-service', 'terminate-type-task'] # freeze service and task
+
+[[pressure.level.memory]]
+# pressure level identifier
+level = "high"
+# unit is second
+on-trim-timeout = "1"
+# unit is microseconds
+threshold-period = "5000"
+# unit is microseconds
+window-size = "5000000"
+# indicates the percentage of time in which all tasks were delayed by lack of
+# resources
+process-threshold = "full"
+# Below this memory(in kilo bytes) watermark corresponding action(notify-then-terminate) will be taken
+high-watermark = "70000"
+# action on pressure
+actions = ['event', 'metric', 'trim-state-foreground', 'terminate-type-service', 'terminate-type-task']
+
+[[pressure.level.memory]]
+# pressure level identifier
+level = "low"
+# unit is microseconds
+threshold-period = "40000"
+# unit is microseconds
+window-size = "5000000"
+# time some (one or more) tasks were delayed due to lack of resources.
+process-threshold = "some"
+# Below this memory(in kilo bytes) watermark corresponding action(log) will be taken
+high-watermark = "300000"
+# action on pressure
+actions = ['log', 'notify-type-task']
+
+#
+# cpu pressure
+#
+[[pressure.level.cpu]]
+# pressure level identifier
+level = "high"
+# unit is second
+on-trim-timeout = "10"
+# unit is microseconds
+threshold-period = "700000"
+# unit is microseconds
+window-size = "5000000"
+# time some (one or more) tasks were delayed due to lack of resources.
+process-threshold = "some"
+# percentage of tasks starving for cpu in the last 10s
+high-watermark = "35"
+# action on pressure
+actions = ['event', 'metric', 'terminate-type-service', 'terminate-type-task', 'trim-state-foreground'] # add event with data.
+
+[[pressure.level.cpu]]
+# pressure level identifier
+level = "mid"
+# unit is second
+on-trim-timeout = "3"
+# unit is microseconds
+threshold-period = "500000"
+# unit is microseconds
+window-size = "5000000"
+# indicates the percentage of time in which all tasks were delayed by lack of
+# resources
+process-threshold = "some"
+# percentage of tasks starving for cpu in the last 10s
+high-watermark = "24"
+# action on pressure
+actions = ['event', 'metric', 'terminate-state-background', 'notify-type-task'] # freeze service and task
+
+[[pressure.level.cpu]]
+# pressure level identifier
+level = "low"
+# unit is second
+on-trim-timeout = "10"
+# unit is microseconds
+threshold-period = "100000"
+# unit is microseconds
+window-size = "5000000"
+# time some (one or more) tasks were delayed due to lack of resources.
+process-threshold = "some"
+# percentage of tasks starving for cpu in the last 10s
+high-watermark = "12"
+# action on pressure
+actions = ['log', 'event', 'notify-type-service', 'notify-type-task', 'notify-state-background', 'notify-state-foreground']
+
+#
+# thread name and its priority that shall be applied when the app having the given thread name gets
+# to the foreground
+# name: thread name
+# priority: similar to nice value (niceness) which ranges from -20 (highest priority value) to
+#           19 (lowest priority value) and the default is 0.
+#
+# this is an example
+
+[[thread-config]]
+name = 'Toolkit/Render'
+priority = -4
+
+[[thread-config]]
+name = 'Toolkit/UI'
+priority = -2
+
+[[thread-config]]
+name = 'Chrome_InProcRendererThread'
+priority = -4
+
+[[thread-config]]
+name = 'CrBrowserMain'
+priority = -2
+
+[[thread-config]]
+name = 'VizCompositorThread'
+priority = -4
+
+[[thread-config]]
+name = 'Chrome_InProcGpuThread'
+priority = -4

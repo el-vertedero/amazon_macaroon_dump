@@ -1,0 +1,110 @@
+{
+  "Alexa.PowerController": {
+    "properties": {
+      "powerState": {
+        "conversions": [{
+          "clusterId": "0x6",
+          "attributeId": "0x0",
+          "type": "map",
+          "params": {
+            "mappings": {
+              "ON": true,
+              "OFF": false
+            },
+            "output_type": "bool"
+          }
+        }]
+      }
+    }
+  },
+  "Alexa.BrightnessController": {
+    "properties": {
+      "brightness": {
+        "conversions": [{
+          "clusterId": "0x8",
+          "attributeId": "0x0",
+          "type": "scale",
+          "params": {
+            "input_range": [0, 100],
+            "output_range": [0, 254],
+            "output_type": "uint8"
+          }
+        }]
+      }
+    }
+  },
+  "Alexa.ColorController": {
+    "properties": {
+      "color": {
+        "conversions": [
+          {
+            "clusterId": "0x300",
+            "attributeId": "0x0",
+            "type": "scale",
+            "params": {
+              "input_field": "hue",
+              "input_range": [0, 360],
+              "output_range": [0, 254],
+              "output_type": "uint8"
+            }
+          },
+          {
+            "clusterId": "0x300",
+            "attributeId": "0x1",
+            "type": "scale",
+            "params": {
+              "input_field": "saturation",
+              "input_range": [0, 1],
+              "output_range": [0, 254],
+              "output_type": "uint8"
+            }
+          },
+          {
+            "clusterId": "0x8",
+            "attributeId": "0x0",
+            "type": "scale",
+            "params": {
+              "input_field": "brightness",
+              "input_range": [0, 1],
+              "output_range": [0, 254],
+              "output_type": "uint8"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Alexa.ColorTemperatureController": {
+    "properties": {
+      "colorTemperatureInKelvin": {
+        "conversions": [{
+          "clusterId": "0x300",
+          "attributeId": "0x7",
+          "type": "reciprocal",
+          "params": {
+            "constant": 1000000,
+            "output_type": "uint16"
+          }
+        }]
+      }
+    }
+  },
+  "Alexa.MotionSensor": {
+    "properties": {
+      "detectionState": {
+        "conversions": [{
+          "clusterId": "0x406",
+          "attributeId": "0x0",
+          "type": "map",
+          "params": {
+            "mappings": {
+              "DETECTED": true,
+              "NOT_DETECTED": false
+            },
+            "output_type": "bool"
+          }
+        }]
+      }
+    }
+  }
+}

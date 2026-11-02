@@ -1,0 +1,51 @@
+[Unit]
+Description=Start perfmonitord
+After=multi-user.target
+Wants=service-registrar.service
+PartOf=service-registrar.service
+
+[Service]
+ExecStartPre=+/bin/chown -R system:system /sys/kernel/perfinfo
+ExecStartPre=+/usr/bin/chsmack -r -a 'System' /sys/kernel/perfinfo
+ExecStart=/usr/bin/perfmonitord
+Restart=always
+
+# run perfmonitord as system user and group
+User=system
+Group=system
+
+# add supplementary groups
+# aipc for to send receive events
+# metrics for uploading metrics using pmet
+SupplementaryGroups=aipc metrics log
+
+# use system smack label
+SmackProcessLabel=System
+
+# Access to aipc, logs
+ReadWritePaths=-/var/lib/data/ace/aipc/ -/dev/socket -/dev/log
+BindPaths=-/dev/socket -/dev/log
+
+# AIPC over Binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+# Capability needed to read /proc/pid/fdinfo to report PSS of processes
+CapabilityBoundingSet=CAP_DAC_OVERRIDE
+AmbientCapabilities=CAP_DAC_OVERRIDE
+
+# Fortify EPFX-8580
+PrivateNetwork=true
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM

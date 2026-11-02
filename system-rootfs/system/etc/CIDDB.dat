@@ -1,0 +1,144 @@
+{
+    "endpoints": [
+        {
+            "cid": 1326,
+            "defaultManufacturerName": "Ledvance",
+            "defaultDisplayCategory": "LIGHT"
+        },
+        {
+            "cid": 741,
+            "defaultManufacturerName": "Espressif"
+        },
+        {
+            "cid": 2228,
+            "defaultManufacturerName": "Sengled",
+            "defaultDisplayCategory": "LIGHT",
+            "pids": [
+                {
+                    "pid": 101,
+                    "displayCategory": "SWITCH",
+                    "proactivelyReportable": true
+                }
+            ]
+        },
+        {
+            "cid": 529,
+            "defaultManufacturerName": "Third Reality",
+            "pids": [
+                {
+                    "pid": 1283,
+                    "displayCategory": "SWITCH",
+                    "proactivelyReportable": true
+                },
+                {
+                    "pid": 1284,
+                    "displayCategory": "SMARTPLUG",
+                    "proactivelyReportable": true
+                },
+                {
+                    "pid": 1288,
+                    "displayCategory": "MOTION_SENSOR",
+                    "proactivelyReportable": true
+                }
+            ]
+        },
+        {
+            "cid": 1998,
+            "defaultManufacturerName": "Yankon"
+        },
+        {
+            "cid": 439,
+            "defaultManufacturerName": "GE"
+        },
+        {
+            "cid": 473,
+            "defaultManufacturerName": "GE Lighting, a Savant company",
+            "defaultDisplayCategory": "LIGHT",
+            "pids": [
+                {
+                    "pid": 134,
+                    "displayCategory": "LIGHT",
+                    "description": "Soft White Light",
+                    "modelName": "Cync: Direct Connect Soft White Bulb (A19)",
+                    "manufacturerName": "Cync: Direct Connect Soft White Bulb (A19)"
+                },
+                {
+                    "pid": 135,
+                    "displayCategory": "LIGHT",
+                    "description": "Tunable White Light",
+                    "modelName": "Cync: Direct Connect Tunable White Bulb (A19)",
+                    "manufacturerName": "Cync: Direct Connect Tunable White Bulb (A19)"
+                },
+                {
+                    "pid": 136,
+                    "displayCategory": "LIGHT",
+                    "description": "Tunable White Floodlight",
+                    "modelName": "Cync: Direct Connect Tunable White Bulb (BR30 Floodlight)",
+                    "manufacturerName": "Cync: Direct Connect Tunable White Bulb (BR30 Floodlight)"
+                },
+                {
+                    "pid": 137,
+                    "displayCategory": "LIGHT",
+                    "description": "Full Color Light",
+                    "modelName": "Cync: Direct Connect Full Color Bulb (A19)",
+                    "manufacturerName": "Cync: Direct Connect Full Color Bulb (A19)"
+                },
+                {
+                    "pid": 138,
+                    "displayCategory": "LIGHT",
+                    "description": "Full Color Floodlight",
+                    "modelName": "Cync: Direct Connect Full Color Bulb (BR30 Floodlight)",
+                    "manufacturerName": "Cync: Direct Connect Full Color Bulb (BR30 Floodlight)"
+                },
+                {
+                    "pid": 139,
+                    "displayCategory": "LIGHT",
+                    "description": "Full Color Light Strip",
+                    "modelName": "Cync: Direct Connect Full Color Light Strip",
+                    "manufacturerName": "Cync: Direct Connect Full Color Light Strip"
+                },
+                {
+                    "pid": 140,
+                    "displayCategory": "LIGHT",
+                    "description": "Full Color Floodlight",
+                    "modelName": "Cync: Direct Connect Full Color Bulb (PAR38 Floodlight)",
+                    "manufacturerName": "Cync: Direct Connect Full Color Bulb (PAR38 Floodlight)"
+                },
+                {
+                    "pid": 68,
+                    "displayCategory": "SMARTPLUG",
+                    "description": "Indoor Plug",
+                    "proactivelyReportable": true,
+                    "modelName": "Cync: Indoor Plug",
+                    "manufacturerName": "Cync: Indoor Plug"
+                }
+            ]
+        },
+        {
+            "cid": 2052,
+            "defaultManufacturerName": "Andon"
+        },
+        {
+            "cid": 369,
+            "defaultManufacturerName": "Amazon",
+            "pids": [
+                {
+                    "pid": 257,
+                    "displayCategory": "SOAP_DISPENSER",
+                    "proactivelyReportable": true
+                }
+            ]
+        },
+        {
+            "cid": 2601,
+            "defaultManufacturerName": "Worthcloud Technology Co.,Ltd",
+            "pids": [
+                {
+                    "pid": 258,
+                    "displayCategory": "SMARTPLUG",
+                    "proactivelyReportable": true
+                }
+            ]
+        }
+    ]
+}

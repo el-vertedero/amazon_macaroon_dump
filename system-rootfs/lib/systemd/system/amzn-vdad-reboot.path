@@ -1,0 +1,9 @@
+[Unit]
+Description=Trigger gracefull reboot
+
+[Path]
+PathExists=/var/run/amzn-vdad/reboot
+Unit=amzn-vdad-reboot.service
+
+[Install]
+WantedBy=sysinit.target

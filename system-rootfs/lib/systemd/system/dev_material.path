@@ -1,0 +1,10 @@
+[Unit]
+Description="Trigger dev_material"
+
+[Path]
+PathModified=/var/run/dev_material/trigger_dev_material.txt
+Unit=dev_material.service
+
+[Install]
+WantedBy=multi-user.target
+

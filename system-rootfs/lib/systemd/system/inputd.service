@@ -1,0 +1,157 @@
+#
+# Copyright 2021-2025 Amazon.com, Inc. or its affiliates. All rights reserved.
+#
+# AMAZON PROPRIETARY/CONFIDENTIAL
+#
+# You may not use this file except in compliance with the terms and conditions
+# set forth in the accompanying LICENSE.TXT file. This file is a
+# Modifiable File, as defined in the accompanying LICENSE.TXT file.
+#
+# THESE MATERIALS ARE PROVIDED ON AN "AS IS" BASIS. AMAZON SPECIFICALLY
+# DISCLAIMS, WITH RESPECT TO THESE MATERIALS, ALL WARRANTIES, EXPRESS,
+# IMPLIED, OR STATUTORY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+#
+[Unit]
+Description=Start the input manager daemon that manages input events
+Conflicts=shutdown.target
+After=dev-uinput.device dbus.socket kvs_util.service service-registrar.service weston@.service playerservice.service device-config-manager.service
+Wants=dev-uinput.device dbus.socket service-registrar.service
+PartOf=service-registrar.service
+OnFailure=failure-manager@%N.service
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/inputd
+Restart=always
+
+# Configure watch dog to restart after 10 seconds of inactivity
+WatchdogSec=10
+
+# Configure startup timeout for 60 seconds
+TimeoutStartSec=60
+
+# Generate an ACR on startup timeout
+TimeoutStartFailureMode=abort
+
+# Set the Smack Process Label
+SmackProcessLabel=System
+
+# Set the User - This will be able to be set to DynamicUser and
+# we'll be able to remove the inputmgr user/group after aipc
+# is fully adopted and lipc can be removed.
+# Jira: https://issues.labcollab.net/browse/17700
+User=inputmgr
+Group=inputmgr
+
+# Set Supplementary Groups
+SupplementaryGroups=aipc kvstore log input system graphic
+
+# Make AIPC visible
+ReadWritePaths=/var/lib/data/ace/aipc
+
+# Make KVS visible
+ReadWritePaths=-/var/lib/data/ace/kvstorage
+
+# Make Bugreport visible
+ReadWritePaths=-/var/spool/bugreport -/var/lib/data/acr/tombstones
+ReadWritePaths=-/var/spool/debugd
+
+# Make logging paths visible
+# /dev/socket for multimodal
+# /dev/log for non-multimodal
+ReadWritePaths=-/dev/socket -/dev/log
+BindPaths=-/dev/socket -/dev/log
+
+# Make input paths visible
+ReadWritePaths=-/dev/input -/dev/uinput
+BindPaths=-/dev/input -/dev/uinput
+DeviceAllow=char-input r
+DeviceAllow=/dev/uinput rw
+
+# Make GPIO privacy control accessible
+ReadWritePaths=-/sys/devices/platform/gpio-privacy
+
+# Make input storage path visible
+ReadWritePaths=/var/lib/inputd
+
+# Service cannot call personality() system call
+LockPersonality=yes
+
+# Prevent the service process and its children from acquiring any capabilities
+CapabilityBoundingSet=none
+
+# Prevent the service from setting the system time
+ProtectClock=true
+
+# Make kernel variables read-only, preventing the service from altering kernel tunables
+ProtectKernelTunables=true
+
+# Prevents access to /dev/ except for common files like /dev/null, /dev/zero, and /dev/random
+PrivateDevices=true
+
+# Allow access to binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+# Service and children processes will never get more privileges, such as SUID.
+NoNewPrivileges=true
+
+# Service cannot get setuid() by executing SUID binary.
+RestrictSUIDSGID=true
+
+# Service will use its own /tmp, instead of host /tmp
+PrivateTmp=yes
+
+# Service will not be able to read kernel log ring buffer.
+ProtectKernelLogs=yes
+
+# Service will not be able to load kernel modules
+ProtectKernelModules=yes
+
+# Prohibits any namespacing
+RestrictNamespaces=yes
+
+# Service cannot access realtime scheduling policy.
+RestrictRealtime=yes
+
+# Allow AF_UNIX socket for weston and logging
+# Allow AF_INET and AF_INET6 for remote config
+# Allow AF_NETLINK for kernal to user space interaction for input devices
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
+
+# Restrict the permitted syscalls to a reasonable set used by common system services.
+# If an unexpected syscall occurs, return EPERM instead of terminating.
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+# Don't deny any ips in order to use remote config
+IPAddressDeny=
+
+# Restrict creating writable executable memory mappings
+MemoryDenyWriteExecute=yes
+
+# Service user cannot leave SysV IPC objects around
+RemoveIPC=true
+
+# Service cannot modify the control group file system
+ProtectControlGroups=yes
+
+# Make the directories /home/, /root, and /run/user, read only
+ProtectHome=read-only
+
+# Service may not change system host/domainname
+ProtectHostname=yes
+
+# the entire file system hierarchy is mounted read-only, except for the API file system subtrees /dev/, /proc/ and /sys/
+ProtectSystem=strict
+
+# System calls for the native architecture will be allowed
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.inputd.service

@@ -1,0 +1,2 @@
+ACTION=="add", KERNEL=="acenna*", OWNER="acenna", GROUP="acenna", MODE="0660", TAG+="systemd"
+ACTION=="add", KERNEL=="nna", OWNER="acenna", GROUP="acenna", MODE="0660", TAG+="systemd", SECLABEL{smack}="*"

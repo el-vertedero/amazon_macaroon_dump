@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<audio_hwio_configuration version="1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <!-- version section contains a tag in the form "major.minor" e.g version="1.0" -->
+
+    <!-- Hardware Modules section, <hw_modules>:
+        There is one section, <module>, per audio HAL module present on the platform.
+        Each module section will contain attributes of the audio HAL:
+        "id" - Mandatory. Helps identify
+        "description" - Description of the HAL module
+        "version" - Version of the HAL module
+        "library" - Library to load. If this is not specified, then the HwIoManager would
+                    assume the library name as audio.<module id>.<target>.so
+
+        Each HAL <module> will contain the following child sections:
+        <audio_ports>: a list of port descriptors for all different sink/source ports
+                       supported by the module.
+
+        <audio_devices>: descriptors of the devices supported by the module. For e.g. Speaker, HDMI, etc.
+
+        <audio_patches>: descriptors for any device to device loopback supported by the module.
+                         For e.g. Line In to Speaker, HDMI In to Speaker etc.
+    -->
+    <hw_modules>
+        <!-- Primary Audio HAL -->
+        <module id="primary" description="Primary Audio HAL" version="1.0">
+            <!-- library="audio.primary.default.so" -->
+
+            <audio_ports>
+                <port name="primary output" role="AMAZON_AUDIO_ROLE_SINK"
+                    flags="AMAZON_AUDIO_FLAG_NONE"
+                    devices="Speaker,LineOut,Hdmi">
+                    <config format="AMAZON_AUDIO_FORMAT_PCM_16_BIT"
+                            sampleRates="AMAZON_AUDIO_SAMPLE_RATE_48_KHZ"
+                            channelMasks="AMAZON_AUDIO_CHANNEL_STEREO"/>
+                </port>
+
+                <port name="primary input" role="AMAZON_AUDIO_ROLE_SOURCE"
+                    flags="AMAZON_AUDIO_FLAG_NONE"
+                    devices="BuiltIn-Mic">
+                    <config format="AMAZON_AUDIO_FORMAT_PCM_16_BIT"
+                            sampleRates="AMAZON_AUDIO_SAMPLE_RATE_16_KHZ,AMAZON_AUDIO_SAMPLE_RATE_48_KHZ"
+                            channelMasks="AMAZON_AUDIO_CHANNEL_MONO,AMAZON_AUDIO_CHANNEL_STEREO"/>
+                </port>
+
+                <port name="bt-sco input" role="AMAZON_AUDIO_ROLE_SOURCE"
+                    flags="AMAZON_AUDIO_FLAG_NONE"
+                    devices="BtScoSource">
+                    <config format="AMAZON_AUDIO_FORMAT_PCM_16_BIT"
+                            sampleRates="AMAZON_AUDIO_SAMPLE_RATE_16_KHZ"
+                            channelMasks="AMAZON_AUDIO_CHANNEL_MONO"/>
+                </port>
+            </audio_ports>
+
+            <audio_devices>
+                <device name="Speaker" role="AMAZON_AUDIO_ROLE_SINK" type="AMAZON_AUDIO_DEVICE_SPEAKER" address="" attached="true">
+                </device>
+
+                <device name="LineOut" role="AMAZON_AUDIO_ROLE_SINK" type="AMAZON_AUDIO_DEVICE_AUX_LINE" address="">
+                </device>
+
+                <device name="Hdmi" role="AMAZON_AUDIO_ROLE_SINK" type="AMAZON_AUDIO_DEVICE_HDMI" address="">
+                </device>
+
+                <device name="BuiltIn-Mic" role="AMAZON_AUDIO_ROLE_SOURCE" type="AMAZON_AUDIO_DEVICE_BUILTIN_MIC" address="" attached="true">
+                </device>
+
+                <device name="BtScoSource" role="AMAZON_AUDIO_ROLE_SOURCE" type="AMAZON_AUDIO_DEVICE_BLUETOOTH_SCO" address="">
+                </device>
+            </audio_devices>
+
+        </module>
+
+        <!-- Nested XML configuration xml files are supported. But must be listed as below within the
+             <hw_modules> section-->
+        <!-- e.g. <include file="xxx.xml" /> -->
+
+    </hw_modules>
+    <!-- End of HwModules section -->
+
+</audio_hwio_configuration>

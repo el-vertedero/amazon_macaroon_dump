@@ -1,0 +1,27 @@
+[Unit]
+Description=Service to enable tracker functionality on Echo devices
+Conflicts=shutdown.target
+After=PuffinApp.service ace_messaging_service.service netsvc.service dbus.socket
+Wants=ace_messaging_service.service dbus.socket
+
+[Service]
+ExecStart=/usr/bin/TrackerService
+Restart=always
+SmackProcessLabel=System
+
+SupplementaryGroups=aipc kvstore
+User=system
+Group=system
+
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+#Make AIPC visible
+ReadWritePaths=/var/lib/data/ace/aipc/ /var/lib/data/ace/kvstorage/
+# Enable AIPC over IPCN
+PrivateDevices=true
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,4 @@
+/sbin/reboot
+/bin/busybox 50
+/bin/toybox 60
+/bin/systemctl 300

@@ -1,0 +1,3 @@
+/usr/sbin/i2cset
+/bin/toybox 60
+/usr/sbin/i2cset.i2c-tools 100

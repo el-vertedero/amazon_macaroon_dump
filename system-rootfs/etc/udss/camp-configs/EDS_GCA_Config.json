@@ -1,0 +1,58 @@
+{
+    "description": "Alexa.EDS GCA config",
+    "version": "1.0",
+    "CAMPSchemaVersion": "1.0",
+    "streams": [
+        {
+            "name": "EDS_GCA",
+            "type": "core.GenericCA",
+            "args": {
+                "capability": {
+                    "discovery": {
+                        "type": "AlexaInterface",
+                        "interface": "Alexa.EventDetectionSensor",
+                        "version": "3.2",
+                        "properties": {
+                            "supported": [
+                                {
+                                    "name": "humanPresenceDetectionState",
+                                    "type": "object",
+                                    "default": "{\"value\":\"NOT_DETECTED\"}"
+                                },
+                                {
+                                    "name": "detectionModes",
+                                    "type": "object",
+                                    "default": "{\"humanPresence\":{\"enablementMode\":\"DISABLED\"}}"
+                                },
+                                {
+                                    "name": "enablementMode",
+                                    "type": "string",
+                                    "default": "DISABLED"
+                                }
+                            ],
+                            "proactivelyReported": true,
+                            "retrievable": false
+                        },
+                        "configuration": {
+                            "detectionMethods": ["AUDIO", "VIDEO", "TACTILE"],
+                            "detectionModes": {
+                                "humanPresence": {
+                                    "supportsEnablementMode": true,
+                                    "supportsCloudVerificationMode": false
+                                }
+                            }
+                        }
+                    },
+                    "directives": [
+                        {
+                            "name": "SetDetectionMode"
+                        },
+                        {
+                            "name": "SetEnablementMode"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

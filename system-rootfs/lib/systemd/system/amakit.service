@@ -1,0 +1,18 @@
+[Unit]
+Description=Start ACS middleware amakit service
+After=ace_eventmgr.service kvs_util.service secure_kvs.service
+Wants=secure_kvs.service
+
+[Service]
+DynamicUser=yes
+SupplementaryGroups=aipc kvstore
+
+ExecStart=/usr/bin/amakit_server
+Restart=always
+
+ReadWritePaths=/var/lib/data/ace/aipc/
+ReadWritePaths=/var/lib/data/ace/kvstorage
+SmackProcessLabel=System
+
+[Install]
+WantedBy=multi-user.target

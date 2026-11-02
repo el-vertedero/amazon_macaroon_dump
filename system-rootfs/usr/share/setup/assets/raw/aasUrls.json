@@ -1,0 +1,15 @@
+{
+  "US": "https://api.amazonalexa.com/v2/devices",
+  "GB": "https://api.eu.amazonalexa.com/v2/devices",
+  "DE": "https://api.eu.amazonalexa.com/v2/devices",
+  "IN": "https://api.eu.amazonalexa.com/v2/devices",
+  "JP": "https://api.fe.amazonalexa.com/v2/devices",
+  "CA": "https://api.amazonalexa.com/v2/devices",
+  "AU": "https://api.fe.amazonalexa.com/v2/devices",
+  "FR": "https://api.eu.amazonalexa.com/v2/devices",
+  "ES": "https://api.eu.amazonalexa.com/v2/devices",
+  "IT": "https://api.eu.amazonalexa.com/v2/devices",
+  "MX": "https://api.amazonalexa.com/v2/devices",
+  "BR": "https://api.amazonalexa.com/v2/devices",
+  "NL": "https://api.eu.amazonalexa.com/v2/devices"
+}

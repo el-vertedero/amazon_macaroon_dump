@@ -1,0 +1,9 @@
+ [Unit]
+ Description=Trigger amzn-vdad restart
+ 
+ [Path]
+ PathModified=/var/run/amzn-vdad/restart
+ Unit=amzn-vdad-watcher.service
+ 
+ [Install]
+ WantedBy=sysinit.target

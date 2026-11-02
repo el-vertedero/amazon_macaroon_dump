@@ -1,0 +1,4 @@
+/usr/bin/renice
+/bin/busybox 50
+/bin/toybox 60
+/usr/bin/renice.util-linux 80

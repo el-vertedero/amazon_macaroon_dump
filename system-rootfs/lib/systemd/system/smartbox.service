@@ -1,0 +1,78 @@
+[Unit]
+Description=Smartbox Daemon
+After=systemd-journald.service dbus.service
+Wants=systemd-journald.service service-registrar.service
+PartOf=service-registrar.service
+Conflicts=shutdown.target
+DefaultDependencies=no
+
+[Service]
+Type=notify
+User=log
+Group=log
+SmackProcessLabel=System
+SupplementaryGroups=systemd-journal aipc kvstore
+
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+#AIPC Binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+# Create private /tmp dir to insulate this service from memory leaks
+# created by others. `PrivateTmp=yes` is not sufficient because it
+# reuses the existing top level /tmp dir on Vega.
+TemporaryFileSystem=/tmp:rw,uid=0,gid=0,mode=1777,nosuid,nodev,size=51200k,smackfsroot=*
+
+# to enable logging of service with PrivateDevices=yes
+BindPaths=-/dev/log -/dev/kmsg
+ReadOnlyPaths=-/dev/kmsg
+ReadWritePaths=-/dev/log -/cache/recovery/ -/var/ -/run/log/journal
+DeviceAllow=/dev/kmsg r
+
+# Make AIPC visible
+ReadWritePaths=/var/lib/data/ace/aipc
+
+# Make KVS visible
+ReadWritePaths=-/var/lib/data/ace/kvstorage
+
+# Apply syscall filtering
+SystemCallFilter=@system-service adjtimex clock_adjtime clock_adjtime64 arm_fadvise64_64
+
+# CAP_FOWNER: Smartbox enrolls files not always owned by User=log.
+#  It needs to edit mod time for age-based pruning when system clock
+#  is not trusted.
+# CAP_SYSLOG: Smartbox needs to read /dev/kmsg when dmesg_restrict=1
+#  is set.
+# CAP_DAC_OVERRIDE: Workaround: /dev/kmsg created with 0600 permissions
+#  on some devices.
+CapabilityBoundingSet=CAP_FOWNER CAP_SYSLOG CAP_DAC_OVERRIDE
+AmbientCapabilities=CAP_FOWNER CAP_SYSLOG CAP_DAC_OVERRIDE
+
+ExecStart=/usr/bin/smartboxd
+Restart=always
+TimeoutStartSec=60
+TimeoutStopSec=60
+WatchdogSec=60
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+# PrivateTmp=true            # Conflicts with TemporaryFileSystem= above
+ProtectClock=true
+# ProtectKernelLogs=true     # Conflicts with Smartbox kmsg capture
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=basic.target
+Alias=acedropboxd.service
+
+[X-Kepler]
+OffersService=com.amazon.smartbox.ipc

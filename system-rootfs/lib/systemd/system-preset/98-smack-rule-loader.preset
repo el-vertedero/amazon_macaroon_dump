@@ -1,0 +1,2 @@
+enable smack-rule-loader.service
+enable onlycap-post.service

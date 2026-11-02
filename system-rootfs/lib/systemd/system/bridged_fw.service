@@ -1,0 +1,13 @@
+# Setup Bridged
+
+[Unit]
+Description=Firewall Bridged 
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/firewall.sh start bridged
+ExecStop=/usr/bin/firewall.sh stop bridged
+RemainAfterExit=True
+
+[Install]
+

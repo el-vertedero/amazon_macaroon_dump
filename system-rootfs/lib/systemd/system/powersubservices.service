@@ -1,0 +1,83 @@
+[Unit]
+Description=Power Subservices
+After=ace_powerd.service ace_eventmgr.service multi-user.target powermonitor.service
+Wants=ace_powerd.service ace_eventmgr.service service-registrar.service
+PartOf=service-registrar.service
+
+[Service]
+ExecStartPre=+/bin/mkdir -p /var/lib/powersubservices/metrics
+ExecStartPre=+/bin/mkdir -p /var/lib/powersubservices/arcus/configs/
+ExecStartPre=+/bin/mkdir -p /var/lib/powersubservices/ifm
+ExecStartPre=+/bin/chown -R power:power /var/lib/powersubservices
+ExecStartPre=+/bin/chmod -R 770 /var/lib/powersubservices
+User=power
+Group=power
+DynamicUser=no
+ExecStart=/usr/bin/PowerSubServices
+Restart=always
+RestartSec=1s
+
+SmackProcessLabel=System
+
+SupplementaryGroups=system aipc
+
+# Required for AIPC
+ReadWritePaths=/var/lib/data/ace/aipc/
+
+ReadWritePaths=-/var/lib/powersubservices
+
+# Make logging paths visible, since PrivateDevices=yes
+# /dev/socket for SS
+# /dev/log for SS and SIM
+# /run/systemd/journal/socket for sd_journal
+# /dev/binder for ipcf 4
+ReadWritePaths=-/dev/socket -/dev/log -/run/systemd/journal/socket -/dev/binder
+
+# Make logging paths visible, since PrivateDevices=yes
+BindPaths=-/dev/socket -/dev/log -/run/systemd/journal/socket -/dev/binder
+
+# Binder configs, since PrivateDevices=yes
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+
+# Fortifying the service
+
+# Service will use its own /tmp, instead of host /tmp
+PrivateTmp=yes
+
+# Allows Unix domain socket. This is the default setting because Vega logging framework rely on Unix domain socket. If your service uses Vega logging, please set this value.
+RestrictAddressFamilies=AF_UNIX
+
+# Prohibits any namespacing
+RestrictNamespaces=true
+
+# Disables all privilege escalation mechanisms, implicitly setting several other privilege-related configurations.
+NoNewPrivileges=true
+
+# The service can’t write the system clock
+ProtectClock=true
+
+# Service will not be able to read kernel log ring buffer.
+ProtectKernelLogs=true
+
+# Service will not be able to load kernel modules
+ProtectKernelModules=true
+
+# Prevents executing SUID binaries and creating files in SGID directories.
+RestrictSUIDSGID=true
+
+# Service cannot call personality() system call
+LockPersonality=true
+
+# Restrict the permitted syscalls to a reasonable set used by common system services.
+# If an unexpected syscall occurs, return EPERM instead of terminating.
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.powersubservices.power_api.service

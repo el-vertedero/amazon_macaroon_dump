@@ -1,0 +1,30 @@
+[Unit]
+Description=Device material systemd service, provides presence of DHA and DRM materials on device in a json file
+DefaultDependencies=no
+After=tee-supplicant.service disk-encryption.service
+
+[Service]
+User=drm
+Group=tee
+Type=oneshot
+ExecStart=/usr/bin/dev_material.sh
+SupplementaryGroups=app_user
+SmackProcessLabel=System
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+DeviceAllow=/dev/tee0
+BindPaths=-/dev/tee0
+ReadWritePaths=-/dev/tee0
+BindPaths=-/tmp/dev_material
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM

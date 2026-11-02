@@ -1,0 +1,46 @@
+#
+# Copyright 2021 Amazon.com, Inc. or its affiliates. All rights reserved.
+#
+# AMAZON PROPRIETARY/CONFIDENTIAL
+#
+# You may not use this file except in compliance with the terms and conditions
+# set forth in the accompanying LICENSE.TXT file. This file is a
+# Modifiable File, as defined in the accompanying LICENSE.TXT file.
+#
+# THESE MATERIALS ARE PROVIDED ON AN "AS IS" BASIS. AMAZON SPECIFICALLY
+# DISCLAIMS, WITH RESPECT TO THESE MATERIALS, ALL WARRANTIES, EXPRESS,
+# IMPLIED, OR STATUTORY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+#
+
+[Unit]
+Description=Start provisionerd application
+Conflicts=shutdown.target
+After=dbus.socket netsvc.service btmanagerd.service
+Wants=dbus.socket
+
+[Service]
+ExecStart=/usr/bin/provisionerd
+Restart=always
+SmackProcessLabel=System
+
+DynamicUser=yes
+SupplementaryGroups=aipc kvstore
+
+# Make AIPC visible
+ReadWritePaths=/var/lib/data/ace/aipc /var/lib/data/ace/kvstorage/
+
+# Restrict the permitted syscalls
+# If an unexpected syscall occurs, return EPERM instead of terminating.
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+PrivateDevices=true
+
+#Enable AIPC/IPCN Access
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+[Install]
+WantedBy=multi-user.target

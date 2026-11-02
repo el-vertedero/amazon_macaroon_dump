@@ -1,0 +1,27 @@
+[Unit]
+Description=MTK ZigBee service
+Before=otbr-agent.service ace_zigbee.service ace_conn_thread.service
+StartLimitInterval=10
+StartLimitBurst=2
+
+[Service]
+Type=forking
+DynamicUser=yes
+Group=spimux
+SupplementaryGroups=tty
+EnvironmentFile=-/etc/default/mtk-zb-service.default
+ExecStart=/usr/sbin/mtk-802154-service $MTK_ZB_SERVICE_OPTS
+Restart=always
+RestartSec=5
+
+RuntimeDirectory=mtk-zb-service
+
+ReadWritePaths=/dev/mtk_lrwpan
+ReadWritePaths=/dev/zbfwlog
+
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target
+

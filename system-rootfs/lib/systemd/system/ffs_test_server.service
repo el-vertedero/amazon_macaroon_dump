@@ -1,0 +1,31 @@
+[Unit]
+Description=FFS Test Server
+After=multi-user.target
+Wants=service-registrar.service
+PartOf=service-registrar.service
+
+[Service]
+ExecStart=/usr/bin/ffs_test_server
+SmackProcessLabel=System
+DynamicUser=yes
+SupplementaryGroups=aipc tee kvstore
+ReadWritePaths=/var/lib/data/ace/aipc/ /var/lib/data/ace/kvstorage/
+
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+DeviceAllow=/dev/tee0 rw
+BindPaths=-/dev/tee0
+ReadWritePaths=-/dev/tee0
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=true
+PrivateDevices=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelTunables=true
+LockPersonality=true
+

@@ -1,0 +1,53 @@
+[Unit]
+Description=Launch Audio System Service
+
+After=dbus.socket audioserver.service
+Wants=dbus.socket service-registrar.service
+PartOf=service-registrar.service
+
+DefaultDependencies=no
+Conflicts=shutdown.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/audiosystemservice
+Restart=on-failure
+SmackProcessLabel=System
+
+User=audio
+Group=audio
+SupplementaryGroups=aipc graphic
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX AF_NETLINK
+RestrictNamespaces=true
+NoNewPrivileges=true
+
+PrivateDevices=true
+#Enable AIPC/IPCN Access
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+#Enable device access for gfx libs
+#TODO: remove once GFX team removes /dev/ access from client libs
+DeviceAllow=/dev/dri/* rw
+BindPaths=-/dev/dri
+ReadWritePaths=-/dev/dri
+
+PrivateTmp=true
+# ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.audio.system

@@ -1,0 +1,5 @@
+/bin/su
+/bin/busybox 50
+/bin/su.shadow 200
+/bin/su.util-linux 80
+/bin/toybox 60

@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+# Copyright 2025 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+#
+
+# help function
+show_help() {
+cat << EOF
+Usage:  trigger_dev_material [-h HELP] [-t TIMEOUT]
+   -h         display help and exit
+   -t TIMEOUT timeout in seconds
+EOF
+}
+
+# set default timeout
+timeout=10
+# parse arguements
+while getopts ht: opt; do
+    case $opt in
+        h)
+           show_help
+           exit 0
+           ;;
+        t) timeout=$OPTARG
+           ;;
+        *)
+           show_help
+           exit 1
+           ;;
+    esac
+done
+
+echo "dev_material triggered, timeout=$timeout"
+/bin/touch /var/run/dev_material/trigger_dev_material.txt
+# wait for device_material json file to be created
+while ((timeout > 0)); do
+    if [[ -f "/var/run/dev_material/device_material.json" ]]; then
+        break
+    fi
+    sleep 1;
+    ((timeout -= 1))
+done
+# cat device_material json file
+cat /var/run/dev_material/device_material.json
+exit 0

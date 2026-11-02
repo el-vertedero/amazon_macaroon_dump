@@ -1,0 +1,14 @@
+{
+  "version": "1",
+  "aclMode": "enforcing",
+  "byPkgId": {
+    "*": [
+      "broadcast://*/systemtest",
+      "com.amazon.smarthomemapviewapp://smarthomedashboard",
+      "orpheus://com.amazon.smarthomemapviewapp.widget",
+      "orpheus://com.amazon.smplighthouse.launcher.main",
+      "package://Domain:Application:Lists/AlexaListsWidget/presentations/ShoppingList/banyanShoppingFullAplList.tpl",
+      "unicast://*/com.amazon.smarthomemapviewapp.rnar.data/notification"
+    ]
+  }
+}

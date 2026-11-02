@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export STEMD_LAUNCH_ENABLE=false
+/usr/bin/acr_core_dump_native "$@"

@@ -1,0 +1,251 @@
+{
+    "combos": [
+        {
+            "name": "LaunchHUDOnSettingsButton",
+            "triggerType": "onRelease",
+            "resetTime": 5000,
+            "generic": true,
+            "chords": [
+                {
+                    "triggerMs": 0,
+                    "keys": [
+                        {
+                            "keyName": "KEY_APP_SETTINGS"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "VoiceView",
+            "triggerType": "timeElapsed",
+            "resetTime": 5000,
+            "generic": true,
+            "suppressKeys": true,
+            "chords": [
+                {
+                    "triggerMs": 2000,
+                    "keys": [
+                        {
+                            "keyName": "KEY_MENU"
+                        },
+                        {
+                            "keyName": "KEY_BACK"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ScreenMagnifier",
+            "triggerType": "timeElapsed",
+            "resetTime": 5000,
+            "generic": true,
+            "suppressKeys": true,
+            "chords": [
+                {
+                    "triggerMs": 2000,
+                    "keys": [
+                        {
+                            "keyName": "KEY_FASTFORWARD"
+                        },
+                        {
+                            "keyName": "KEY_BACK"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Screenshot",
+            "triggerType": "timeElapsed",
+            "resetTime": 5000,
+            "generic": true,
+            "suppressKeys": true,
+            "chords": [
+                {
+                    "triggerMs": 5000,
+                    "keys": [
+                        {
+                            "keyName": "KEY_MENU"
+                        },
+                        {
+                            "keyName": "KEY_REWIND"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "DeepFactoryReset",
+            "triggerType": "timeElapsed",
+            "resetTime": 5000,
+            "generic": true,
+            "suppressKeys": true,
+            "chords": [
+                {
+                    "triggerMs": 10000,
+                    "keys": [
+                        {
+                            "keyName": "KEY_RIGHT"
+                        },
+                        {
+                            "keyName": "KEY_BACK"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SystemStatusMonitor",
+            "triggerType": "onRelease",
+            "resetTime": 5000,
+            "generic": true,
+            "suppressKeys": true,
+            "chords": [
+                {
+                    "triggerMs": 3000,
+                    "keys": [
+                        {
+                            "keyName": "KEY_DOWN"
+                        },
+                        {
+                            "keyName": "KEY_KPENTER"
+                        }
+                    ]
+                },
+                {
+                    "triggerMs": 1,
+                    "keys": [
+                        {
+                            "keyName": "KEY_MENU"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        {
+            "name": "UploadSpectatorLogs",
+            "triggerType": "onRelease",
+            "resetTime": 5000,
+            "generic": true,
+            "suppressKeys": true,
+            "chords": [
+                {
+                    "triggerMs": 3000,
+                    "keys": [
+                        {
+                            "keyName": "KEY_UP"
+                        },
+                        {
+                            "keyName": "KEY_PLAYPAUSE"
+                        }
+                    ]
+                },
+                {
+                    "triggerMs": 1,
+                    "keys": [
+                        {
+                            "keyName": "KEY_MENU"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Reboot",
+            "triggerType": "timeElapsed",
+            "resetTime": 5000,
+            "generic": true,
+            "suppressKeys": true,
+            "chords": [
+                {
+                    "triggerMs": 5000,
+                    "keys": [
+                        {
+                            "keyName": "KEY_KPENTER"
+                        },
+                        {
+                            "keyName": "KEY_PLAYPAUSE"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CycleOutputResolution",
+            "triggerType": "timeElapsed",
+            "resetTime": 5000,
+            "generic": true,
+            "suppressKeys": true,
+            "chords": [
+                {
+                    "triggerMs": 5000,
+                    "keys": [
+                        {
+                            "keyName": "KEY_UP"
+                        },
+                        {
+                            "keyName": "KEY_REWIND"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ErasePairingInformation",
+            "triggerType": "timeElapsed",
+            "resetTime": 5000,
+            "generic": true,
+            "suppressKeys": true,
+            "chords": [
+                {
+                    "triggerMs": 7000,
+                    "keys": [
+                        {
+                            "keyName": "KEY_LEFT"
+                        },
+                        {
+                            "keyName": "KEY_MENU"
+                        }
+                    ]
+                }
+            ]
+        },
+	    {
+            "name": "screenOff",
+            "triggerType": "onRelease",
+            "resetTime": 5000,
+            "generic": false,
+            "chords": [
+                {
+                    "triggerMs": 0,
+                    "keys": [
+                        {
+                            "inputDeviceName": "Amazon Fire TV Remote",
+                            "keyName": "KEY_POWEROFF"
+                        }
+                    ]
+                }
+            ]
+        },
+	    {
+            "name": "screenOn",
+            "triggerType": "onRelease",
+            "resetTime": 5000,
+            "generic": false,
+            "chords": [
+                {
+                    "triggerMs": 0,
+                    "keys": [
+                        {
+                            "inputDeviceName": "Amazon Fire TV Remote",
+                            "keyName": "KEY_POWERON"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

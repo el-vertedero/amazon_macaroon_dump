@@ -1,0 +1,115 @@
+{
+    "description": "Sleep Tracking GCA config",
+    "version": "1.0",
+    "CAMPSchemaVersion": "1.0",
+    "streams": [
+        {
+            "name": "SleepTracking.GCA",
+            "type": "core.GenericCA",
+            "args": {
+                "capability": {
+                    "discovery": {
+                        "type": "AlexaInterface",
+                        "interface": "Alexa.Health.Sleep",
+                        "version": "1.0",
+                        "properties": {
+                            "supported": [
+                                {
+                                    "name": "trackingEnablement",
+                                    "type": "string",
+                                    "default": "DISABLED"
+                                }
+                            ],
+                            "proactivelyReported": false,
+                            "retrievable": true
+                        }
+                    },
+                    "directives": [
+                        { "name": "SetTrackingEnablement" }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "SleepTracking.DirectiveAccessor",
+            "type": "core.json.accessor",
+            "args": { "accessKey": "directive.payload.trackingEnablement" },
+            "inputs": [
+                "GenericCA|Directives|Alexa.Health.Sleep|SetTrackingEnablement|IPCIn"
+            ]
+        },
+        {
+            "name": "SleepTracking.ClearIPCOutCache",
+            "type": "core.clearcache",
+            "inputs": [
+                "GenericCA|Directives|Alexa.Health.Sleep|SetTrackingEnablement|IPCIn",
+                "GenericCA|Properties|Alexa.Health.Sleep|trackingEnablement|IPCOut"
+            ]
+        },
+        {
+            "name": "SleepTracking.EnablementOrchestrator",
+            "type": "sleeptracking.enablementOrchestrator",
+            "inputs": [
+                "GenericCA|Properties|Alexa.Health.Sleep|trackingEnablement|IPCOut"
+            ]
+        },
+        {
+            "name": "SleepTracking.ReportEventBuilder",
+            "type": "core.avs.event",
+            "inputs": [
+                "SleepTracking.EnablementOrchestrator"
+            ],
+            "args": {
+                "propertyName": "trackingEnablement",
+                "headerNamespace": "Alexa.Health.Sleep",
+                "headerName": "TrackingEnablementReport",
+                "payloadVersion": "1.0"
+            }
+        },
+        {
+            "name": "SleepTracking.SettingSync",
+            "type": "sleeptracking.settingSync"
+        },
+        {
+            "name": "SleepTracking.ChangedEventBuilder",
+            "type": "core.avs.event",
+            "inputs": [
+                "SleepTracking.SettingSync"
+            ],
+            "args": {
+                "propertyName": "trackingEnablement",
+                "headerNamespace": "Alexa.Health.Sleep",
+                "headerName": "TrackingEnablementChanged",
+                "payloadVersion": "1.0"
+            }
+        },
+        {
+            "name": "SleepTracking.DCSEnablementWriter",
+            "type": "core.dcs.writer",
+            "args": {
+                "dcsGroup": "sleep-tracking",
+                "dcsKey": "enablement"
+            },
+            "inputs": [
+                "GenericCA|Properties|Alexa.Health.Sleep|trackingEnablement|Setting"
+            ]
+        }
+    ],
+    "exec": [
+        {
+            "command": "connect",
+            "input": "SleepTracking.DirectiveAccessor",
+            "consumer": "GenericCA|Properties|Alexa.Health.Sleep|trackingEnablement|Setting"
+        },
+        {
+            "command": "connect",
+            "input": "SleepTracking.ReportEventBuilder",
+            "consumer": "GenericCA|Events|Alexa.Health.Sleep|IPCOut"
+        },
+        {
+            "command": "connect",
+            "input": "SleepTracking.ChangedEventBuilder",
+            "consumer": "GenericCA|Events|Alexa.Health.Sleep|IPCOut"
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+/usr/bin/logger
+/bin/busybox 50
+/bin/toybox 60
+/usr/bin/logger.util-linux 80

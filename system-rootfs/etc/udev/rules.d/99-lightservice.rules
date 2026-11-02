@@ -1,0 +1,21 @@
+# vega-light-service: grant 'system' group + 'System' SMACK on the LED nodes the service drives.
+# Anchored on the AON-LPI pseudo-i2c controller, so it is independent of LED chip
+# (aw21036/lp5036/...), i2c address, controller count, bus number, and the /soc path prefix.
+# Hardware-validated on Macaroon (aw21036) and Persimmon (lp5036); Kanto (sgm31324) handled by
+# the rgb:status stanza below. Capitola confirmed via its legacy aonlpi rule (same controller
+# family, no separate-bus LED), so the aonlpi anchor covers it without a device check.
+#
+# Each matched leaf 'leds' event relabels ONLY its own node subtree ($sys$devpath, recursive:
+# covers brightness/trigger/... attrs) plus the parent leds/ container dir non-recursively
+# ($sys$devpath/.., no -R). This yields the same final labeled set as a full recursive relabel
+# of the parent tree, but each of the N per-channel events does O(1) work on its own node instead
+# of re-walking all N sibling nodes -- avoiding the ~N-fold redundant relabel on multi-channel
+# controllers (e.g. lp5036 = 24 channels) that regressed reboot boot time (PROJVEGA-413440).
+ACTION=="add", SUBSYSTEM=="leds", DRIVERS=="aonlpi-pseudo-i2c", OWNER="root", RUN+="/bin/chgrp -R -h system $sys$devpath", RUN+="/bin/chgrp -h system $sys$devpath/.."
+ACTION=="add", SUBSYSTEM=="leds", DRIVERS=="aonlpi-pseudo-i2c", OWNER="root", RUN+="/bin/chmod g+rw -R $sys$devpath", RUN+="/bin/chmod g+rw $sys$devpath/.."
+ACTION=="add", SUBSYSTEM=="leds", DRIVERS=="aonlpi-pseudo-i2c", OWNER="root", RUN+="/usr/bin/chsmack -r -s -a 'System' $sys$devpath", RUN+="/usr/bin/chsmack -s -a 'System' $sys$devpath/.."
+
+# Kanto: LED is an sgm31324 on real i2c3 (not behind aonlpi) -> match its class device by name.
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="rgb:status", OWNER="root", RUN+="/bin/chgrp -R -h system $sys$devpath", RUN+="/bin/chgrp -h system $sys$devpath/.."
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="rgb:status", OWNER="root", RUN+="/bin/chmod g+rw -R $sys$devpath", RUN+="/bin/chmod g+rw $sys$devpath/.."
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="rgb:status", OWNER="root", RUN+="/usr/bin/chsmack -r -s -a 'System' $sys$devpath", RUN+="/usr/bin/chsmack -s -a 'System' $sys$devpath/.."

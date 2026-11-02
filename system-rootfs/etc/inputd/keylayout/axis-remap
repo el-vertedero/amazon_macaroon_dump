@@ -1,0 +1,27 @@
+# Copyright (c) 2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+#
+# PROPRIETARY/CONFIDENTIAL.  USE IS SUBJECT TO LICENSE TERMS.
+#
+# Amazon Key Remap
+#
+
+X           ABS_X
+Y           ABS_Y
+VSCROLL     ABS_HAT0Y
+HSCROLL     ABS_HAT0X
+HAT_Y       ABS_HAT0Y
+HAT_X       ABS_HAT0X
+Z           ABS_Z
+RX          ABS_RX
+RY          ABS_RY
+RZ          ABS_RZ
+LTRIGGER    ABS_BRAKE
+RTRIGGER    ABS_GAS
+THROTTLE    ABS_THROTTLE
+RUDDER      ABS_RUDDER
+WHEEL       ABS_WHEEL
+GAS         ABS_GAS
+BRAKE       ABS_BRAKE
+DISTANCE    ABS_DISTANCE
+TILT        ABS_TILT_X
+GENERIC_1   ABS_MISC

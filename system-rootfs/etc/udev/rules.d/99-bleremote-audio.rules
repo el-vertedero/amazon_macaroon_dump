@@ -1,0 +1,4 @@
+# GROUP should be the group of the audioserver.
+# Currently it is "root". If the audioserver group is changed,
+# the GROUP definition here should be modified accordingly.
+KERNEL=="bleremote_audio", OWNER="audio", GROUP="audio", MODE="0660"

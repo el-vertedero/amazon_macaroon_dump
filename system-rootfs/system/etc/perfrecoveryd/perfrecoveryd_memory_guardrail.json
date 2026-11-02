@@ -1,0 +1,64 @@
+{
+	"processes": [
+		{
+			"name": "PuffinApp",
+			"soft_memory_limit": 105000,
+			"hard_memory_limit": 500000
+		},
+		{
+			"name": "puffinmrmd",
+			"soft_memory_limit": 75000,
+			"hard_memory_limit": 500000
+		},
+		{
+			"name": "AlexaHybridExec",
+			"soft_memory_limit": 90000,
+			"hard_memory_limit": 500000
+		},
+		{
+			"name": "SmartHomed",
+			"soft_memory_limit": 60000,
+			"hard_memory_limit": 500000
+		},
+		{
+			"name": "dbus-daemon",
+			"soft_memory_limit": 100000,
+			"hard_memory_limit": 500000
+		},
+		{
+			"name": "servicergrd",
+			"soft_memory_limit": 250000,
+			"hard_memory_limit": 500000
+		},
+		{
+			"name": "DataStoreDaemon",
+			"soft_memory_limit": 100000,
+			"hard_memory_limit": 500000
+		},
+		{
+			"name": "comms_service_a",
+			"soft_memory_limit": 100000,
+			"hard_memory_limit": 500000
+		},
+		{
+			"name": "eventmgrd",
+			"soft_memory_limit": 50000,
+			"hard_memory_limit": 500000
+		},
+		{
+			"name": "perfmonitord",
+			"soft_memory_limit": 30000,
+			"hard_memory_limit": 500000
+		},
+		{
+			"name": "ace_blemesh_ser",
+			"soft_memory_limit": 30000,
+			"hard_memory_limit": 500000
+		},
+		{
+			"name": "PowerSubService",
+			"soft_memory_limit": 100000,
+			"hard_memory_limit": 500000
+		}
+	]
+}

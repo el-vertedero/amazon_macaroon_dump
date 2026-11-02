@@ -1,0 +1,191 @@
+#
+# Copyright 2020-2026 Amazon.com, Inc. or its affiliates. All rights reserved.
+#
+# AMAZON PROPRIETARY/CONFIDENTIAL
+#
+# You may not use this file except in compliance with the terms and conditions
+# set forth in the accompanying LICENSE.TXT file.
+#
+# THESE MATERIALS ARE PROVIDED ON AN "AS IS" BASIS. AMAZON SPECIFICALLY
+# DISCLAIMS, WITH RESPECT TO THESE MATERIALS, ALL WARRANTIES, EXPRESS,
+# IMPLIED, OR STATUTORY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+#
+[Unit]
+Description=Lifecycle Manager Service
+After=security-manager.service
+Wants=service-registrar.service
+PartOf=service-registrar.service stemd.service
+
+# APP_FWK_REMOVE_IF_DEBUG_START
+# This section will be removed by copy-systemd-service-files.sh
+# in debug builds.
+
+OnFailure=failure-manager@%N.service
+# APP_FWK_REMOVE_IF_DEBUG_END
+
+[Service]
+WorkingDirectory=/var/lib/lcm-service
+StateDirectory=lcm-service
+# Execution type: exec
+Type=notify
+WatchdogSec=15
+
+# LCM waits for PM before it can finish startup, and PM could
+# be doing firstboot install, so keep the same startup timeout
+# as PM.
+TimeoutStartSec=240
+
+# Give LCM time to stop the apps on exit
+TimeoutStopSec=20
+
+# Generate an ACR on startup timeout
+TimeoutStartFailureMode=abort
+
+# Restart the service always.
+Restart=always
+
+User=lcm
+Group=lcm
+
+# Create config file directory
+ConfigurationDirectory=lifecycle-manager/
+
+SupplementaryGroups=aipc system package-cache
+
+#Other security options:
+RemoveIPC=true
+NoNewPrivileges=false
+
+# Resource allocation
+# Provide soft guarantee on minimum memory
+# that LCM service could use. Kernel
+# tries its best to not reclaim this memory
+# but as last resort kernel will take away this
+# memory.
+MemoryLow=50M
+
+# Linux capabilities:
+
+# CAP_SETUID - to set uid for the sudo cmd
+# needed by resource manager until polkit is avaliable
+CapabilityBoundingSet=CAP_SETUID
+
+# CAP_SYS_PTRACE - for readlink calls
+CapabilityBoundingSet=CAP_SYS_PTRACE
+AmbientCapabilities=CAP_SYS_PTRACE
+
+# CAP_SETGID - to set supplementary groups
+# needed by resource manager until polkit is avaliable
+CapabilityBoundingSet=CAP_SETGID
+AmbientCapabilities=CAP_SETGID
+
+# CAP_NET_ADMIN - for netlink socket usage in process monitor
+CapabilityBoundingSet=CAP_NET_ADMIN
+AmbientCapabilities=CAP_NET_ADMIN
+
+# CAP_DAC_OVERRIDE - in pivot root, this gives privilege to
+# create bind mount directories (/mnt/tmp, /mnt/dev..etc) on the root
+# owned /mnt
+# This also acts as a workaround to bypass aipc directory ownership
+# (which is root:root)
+CapabilityBoundingSet=CAP_DAC_OVERRIDE
+AmbientCapabilities=CAP_DAC_OVERRIDE
+
+# CAP_MAC_OVERRIDE - privilege override smack policy
+# todo(vgimonka) remove after https://issues.labcollab.net/browse/ACE-56123
+CapabilityBoundingSet=CAP_MAC_OVERRIDE
+AmbientCapabilities=CAP_MAC_OVERRIDE
+
+# CAP_CHOWN - required by resource manager
+CapabilityBoundingSet=CAP_CHOWN
+AmbientCapabilities=CAP_CHOWN
+
+# CAP_KILL - if app crashes, bypass permission checks for
+# sending signal kill, so that we dont leave zombie processes
+CapabilityBoundingSet=CAP_KILL
+AmbientCapabilities=CAP_KILL
+
+# CAP_SYS_NICE - required by resource manager
+CapabilityBoundingSet=CAP_SYS_NICE
+AmbientCapabilities=CAP_SYS_NICE
+
+# CAP_SYS_RESOURCE - required by resource manager
+# for changing OOM priority of a process.
+CapabilityBoundingSet=CAP_SYS_RESOURCE
+AmbientCapabilities=CAP_SYS_RESOURCE
+
+SmackProcessLabel=System::Privileged
+
+# Resource manager, which is part of LCM, will own cgroups.
+# This flag lets systemd know that it shouldn't modify sub-cgroups
+# from here.
+Delegate=yes
+
+# Required to send sd_notify msges.
+NotifyAccess=all
+
+# Executable path
+ExecStart=/usr/bin/lcm_service
+
+# Need for binder
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+DeviceAllow=/dev/binder rw
+
+# Needed for gwsi
+ReadWritePaths=-/dev/dri
+BindPaths=-/dev/dri
+DeviceAllow=char-drm rw
+ReadWritePaths=-/dev/hgsl
+BindPaths=-/dev/hgsl
+DeviceAllow=char-hgsl rw
+
+# --- Service fortification ---
+
+# Recommended configurations set above:
+# * User=lcm
+# * SupplementaryGroups=aipc system package-cache
+
+# Not applicable configurations (do not follow fortification recommendations)
+# 1. PrivateTmp=true
+# Would prevent LCM from creating tmp file upon ANR/LMK
+# 2. SmackProcessLabel=System
+# Smoke tests and LCM integrations tests fail
+# 3. PrivateDevices=true
+# Would silently set NoNewPrivileges (see below)
+# 4. PrivateNetwork=true
+# Needed for messaging with VTrace server
+#
+# Not applicable configurations due to RM's start/stop systemd service
+# functionality (LCM needs SETUID and other permissions to run  systemctl
+# start/stop commands, which the following recommended settings restrict):
+# 1. NoNewPrivileges=true
+# 2. CapabilityBoundingSet={...} # Subset of AmbientCapabilities (RM needs
+#    SETUID which is not in AmbientCapabilities)
+# 3. RestrictNamespaces=true
+# 4. ProtectClock=true
+# 5. ProtectKernelLogs=true
+# 6. ProtectKernelModules=true
+# 7. ProtectKernelTunables=true
+# 8. LockPersonality=true
+# 9. RestrictSUIDSGID=true
+# 10. SystemCallErrorNumber=EPERM
+# 11. SystemCallFilter=@system-service
+# 12. RestrictAddressFamilies=AF_UNIX AF_NETLINK
+
+EnvironmentFile=-/etc/app-framework/config.env
+
+[Install]
+# Boot target to start this executable
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.lcm.app-control-ops.service
+OffersService=com.amazon.lcm.app-control.service
+OffersService=com.amazon.lcm.app-launch.service
+OffersService=com.amazon.lcm.app.session.notifier.service
+OffersService=com.amazon.lcm.timeout.management.service
+OffersService=com.amazon.resmgr.stats-control.service
+OffersService=com.amazon.resmgr.user_engagement.service
+OffersService=com.amazon.service.resource-manager

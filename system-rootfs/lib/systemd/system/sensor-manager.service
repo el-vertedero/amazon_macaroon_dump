@@ -1,0 +1,95 @@
+#
+# Copyright 2023-2026 Amazon.com, Inc. or its affiliates. All rights reserved.
+#
+# AMAZON PROPRIETARY/CONFIDENTIAL
+#
+# You may not use this file except in compliance with the terms and conditions
+# set forth in the accompanying LICENSE.TXT file.
+#
+# THESE MATERIALS ARE PROVIDED ON AN "AS IS" BASIS. AMAZON SPECIFICALLY
+# DISCLAIMS, WITH RESPECT TO THESE MATERIALS, ALL WARRANTIES, EXPRESS,
+# IMPLIED, OR STATUTORY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+#
+[Unit]
+Description=Sensor Manager Service
+Wants=service-registrar.service
+PartOf=service-registrar.service
+# Adding dependency on AMF service
+After=ace_amfd.service
+Wants=ace_amfd.service
+# Adding dependency on network service
+After=netsvc.service
+Wants=netsvc.service
+# Adding dependency on audio stream
+After=audiosystemservice.service
+Wants=audiosystemservice.service
+# Adding dependency on audio server
+After=audioserver.service
+Wants=audioserver.service
+# Adding dependency on video server
+After=videoserver.service
+Wants=videoserver.service
+
+[Service]
+# Execution type: notify
+Type=notify
+Slice=framework.slice
+
+# Restart the service always.
+Restart=always
+
+DynamicUser=yes
+
+SupplementaryGroups=aipc system graphic 
+
+ReadWritePaths=/var/lib/data/ace/aipc/
+
+# AIPC over Binder/IPCN
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+PrivateDevices=yes
+DeviceAllow=/dev/binder rw
+
+# Update device allow list for camera shared buffer access
+ReadWritePaths=-/dev/dri
+BindPaths=-/dev/dri
+DeviceAllow=/dev/dri/renderD128 rw
+
+# Make logging paths visible, since PrivateDevices=yes
+# /dev/socket for SS
+# /dev/log for SS and SIM
+# /run/systemd/journal/socket for sd_journal
+ReadWritePaths=-/dev/socket -/dev/log -/run/systemd/journal/socket
+
+# Make logging paths visible, since PrivateDevices=yes
+BindPaths=-/dev/socket -/dev/log -/run/systemd/journal/socket
+
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+# Add allowed list of syscalls
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+SmackProcessLabel=System
+
+# Executable path
+ExecStart=/usr/bin/sensormgrd
+
+#Fortifying the service
+ # PrivateNetwork=true        # Exposed due to VTrace.
+ CapabilityBoundingSet=none
+ RestrictAddressFamilies=AF_UNIX
+ RestrictNamespaces=true
+ NoNewPrivileges=true
+ PrivateTmp=true
+ ProtectClock=true
+ ProtectKernelLogs=true
+ ProtectKernelTunables=true
+ RestrictSUIDSGID=true
+ LockPersonality=true
+
+[Install]
+# Boot target to start this executable
+WantedBy=multi-user.target

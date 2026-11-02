@@ -1,0 +1,18 @@
+# Notify dhcpcd do the renew
+
+[Unit]
+Description=DHCPCD
+
+[Service]
+Type=oneshot
+User=net
+Group=net
+SupplementaryGroups=wifi log
+
+CapabilityBoundingSet=CAP_SYS_CHROOT CAP_NET_ADMIN CAP_NET_RAW CAP_NET_BROADCAST CAP_NET_BIND_SERVICE CAP_KILL
+AmbientCapabilities=CAP_SYS_CHROOT CAP_NET_ADMIN CAP_NET_RAW CAP_NET_BROADCAST CAP_NET_BIND_SERVICE CAP_KILL
+
+ExecStart=/sbin/dhcpcd %i -N
+RemainAfterExit=True
+
+[Install]

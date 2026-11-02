@@ -1,0 +1,56 @@
+[Unit]
+Description=Failure Manager reset
+RefuseManualStart=true
+
+# If there is no failure db, don't bother trying to reset
+ConditionPathExists=/var/lib/failure-manager/failure-manager.db
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/failure-manager -a reset
+StateDirectory=failure-manager
+WorkingDirectory=/var/lib/failure-manager
+
+SupplementaryGroups=reserved_disk
+
+Slice=framework.slice
+
+User=failuremgr
+Group=failuremgr
+
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+DeviceAllow=/dev/binder rw
+
+PrivateDevices=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+PrivateNetwork=false
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=true
+ProtectKernelLogs=true
+PrivateTmp=true
+ProtectClock=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+LockPersonality=true
+ProtectKernelTunables=true
+CapabilityBoundingSet=none
+AmbientCapabilities=
+NoNewPrivileges=true
+
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+# Unfortunately "Conflict" doesn't work here as it will just stop the other unit
+# before starting this one. What we want to express is that _if_ there has been
+# a failure of anything, we will not ever reset the count. This works because
+# failure-manager@ has RemainAfterExit set.
+ExecCondition=/bin/bash -xc "/bin/systemctl is-active --quiet 'failure-manager*' && exit 1 || exit 0"
+
+EnvironmentFile=-/etc/app-framework/config.env
+
+# The reset service should _only_ be started by the timer, so don't add
+# any of the normal WantedBy targets
+[Install]
+WantedBy=

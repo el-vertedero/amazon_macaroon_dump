@@ -1,0 +1,74 @@
+#-----------------------------------------------------------------------
+# inputd, aka the input manager, is a system component that allows
+# developers to register for a stream of input events.
+# It sits between the input dev nodes and Weston, intercepting events as
+# needed and forwarding the rest to Weston using uinput devices.
+# This is achieved by assigning devices of interest to physical seat 1.
+# Weston reads input events from seat 0. inputd reads them from seat 1,
+# and creates corresponding uinput devices on seat 0 as needed.
+#-----------------------------------------------------------------------
+
+#-----------------------------------------------------------------------
+# These rules assign all devices that fall under the purview of inputd to seat 1.
+#-----------------------------------------------------------------------
+# redirect touch inputs
+ACTION=="add|change", \
+    KERNEL=="event[0-9]*", \
+    ENV{ID_INPUT_TOUCHSCREEN}=="1", \
+    ATTRS{name}!="inputd-*", \
+    ENV{ID_SEAT}="seat1"
+# redirect key inputs
+ACTION=="add|change", \
+    KERNEL=="event[0-9]*", \
+    ENV{ID_INPUT_KEY}=="1", \
+    ATTRS{name}!="inputd-*", \
+    ENV{ID_SEAT}="seat1"
+# redirect switch inputs
+ACTION=="add|change", \
+    KERNEL=="event[0-9]*", \
+    ENV{ID_INPUT_SWITCH}=="1", \
+    ATTRS{name}!="inputd-*", \
+    ENV{ID_SEAT}="seat1"
+# redirect mouse inputs
+ACTION=="add|change", \
+    KERNEL=="event[0-9]*", \
+    ENV{ID_INPUT_MOUSE}=="1", \
+    ATTRS{name}!="inputd-*", \
+    ENV{ID_SEAT}="seat1"
+# redirect joysticks inputs
+ACTION=="add|change", \
+    KERNEL=="event[0-9]*", \
+    ENV{ID_INPUT_JOYSTICK}=="1", \
+    ATTRS{name}!="inputd-*", \
+    ENV{ID_SEAT}="seat1"
+
+#-----------------------------------------------------------------------
+# inputd creates input injection devices that it uses in order to inject
+# inputs into the input subsystem. These inputs need to be redirected to
+# seat1 as well.  They also need the approperiate properties assigned to
+# them.
+#-----------------------------------------------------------------------
+# redirect inputd touch injection inputs to seat1 and set touch screen property
+ACTION=="add|change", \
+    KERNEL=="event[0-9]*", \
+    ENV{ID_INPUT_TOUCHSCREEN}="1", \
+    ATTRS{name}=="inputmgr-touch-injection-*", \
+    ENV{ID_SEAT}="seat1"
+# redirect inputd key injection inputs to seat1 and set key property
+ACTION=="add|change", \
+    KERNEL=="event[0-9]*", \
+    ENV{ID_INPUT_KEY}="1", \
+    ATTRS{name}=="inputmgr-key-injection-*", \
+    ENV{ID_SEAT}="seat1"
+# redirect inputd mouse injection inputs to seat1 and set mouse property
+ACTION=="add|change", \
+    KERNEL=="event[0-9]*", \
+    ENV{ID_INPUT_MOUSE}="1", \
+    ATTRS{name}=="inputmgr-mouse-injection-*", \
+    ENV{ID_SEAT}="seat1"
+# redirect inputd joystick injection inputs to seat1 and set joystick property
+ACTION=="add|change", \
+    KERNEL=="event[0-9]*", \
+    ENV{ID_INPUT_JOYSTICK}="1", \
+    ATTRS{name}=="inputmgr-joystick-injection-*", \
+    ENV{ID_SEAT}="seat1"

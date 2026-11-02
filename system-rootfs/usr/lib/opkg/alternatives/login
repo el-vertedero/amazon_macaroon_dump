@@ -1,0 +1,4 @@
+/bin/login
+/bin/busybox 50
+/bin/login.shadow 200
+/bin/toybox 60

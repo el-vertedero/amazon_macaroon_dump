@@ -1,0 +1,175 @@
+{
+   "model_name": "macaroon",
+   "mem_stats": "/proc/meminfo",
+   "cycles_to_bytes": 16,
+   "pmu_devices": [
+       {
+           "path": "/sys/devices/armv8_pmuv3",
+           "display_name": "armv8_pmuv3",
+           "pmu_events": [
+               {
+                   "event": "l3d_cache",
+                   "name": "l3d_cache",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               },
+               {
+                   "event": "l3d_cache_allocate",
+                   "name": "l3d_alloc",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               },
+               {
+                   "event": "l3d_cache_refill",
+                   "name": "l3d_refill",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               },
+               {
+                   "event": "l2d_cache_wb",
+                   "name": "l2d_wb",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               }
+           ]
+       },
+       {
+           "path": "/sys/devices/azma_pmu_cpuss0_rd_pprobe",
+           "display_name": "core0_p",
+           "pmu_events": [
+               {
+                   "event": "read_bytes",
+                   "name": "read_bytes",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               }
+           ]
+       },
+       {
+           "path": "/sys/devices/azma_pmu_cpuss0_wr_pprobe",
+           "display_name": "core0_p",
+           "pmu_events": [
+               {
+                   "event": "write_bytes",
+                   "name": "write_bytes",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               }
+           ]
+       },
+       {
+           "path": "/sys/devices/azma_pmu_cpuss1_pprobe",
+           "display_name": "core1_p",
+           "pmu_events": [
+               {
+                   "event": "write_bytes",
+                   "name": "write_bytes",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               },
+               {
+                   "event": "read_bytes",
+                   "name": "read_bytes",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               }
+           ]
+       },
+       {
+           "path": "/sys/devices/azma_pmu_memnoc_p0_rd_pprobe",
+           "display_name": "p0_rd",
+           "pmu_events": [
+               {
+                   "event": "read_bytes",
+                   "name": "read_bytes",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               }
+           ]
+       },
+       {
+           "path": "/sys/devices/azma_pmu_memnoc_p1_rd_pprobe",
+           "display_name": "p1_rd",
+           "pmu_events": [
+               {
+                   "event": "read_bytes",
+                   "name": "read_bytes",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               }
+           ]
+       },
+       {
+           "path": "/sys/devices/azma_pmu_memnoc_p2_rd_pprobe0",
+           "display_name": "p2_rd0",
+           "pmu_events": [
+               {
+                   "event": "read_bytes",
+                   "name": "read_bytes",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               }
+           ]
+       },
+       {
+           "path": "/sys/devices/azma_pmu_memnoc_p2_rd_pprobe1",
+           "display_name": "p2_rd1",
+           "pmu_events": [
+               {
+                   "event": "read_bytes",
+                   "name": "read_bytes",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               }
+           ]
+       },
+       {
+           "path": "/sys/devices/azma_pmu_memnoc_p0_wr_pprobe",
+           "display_name": "p0_wr",
+           "pmu_events": [
+               {
+                   "event": "write_bytes",
+                   "name": "write_bytes",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               }
+           ]
+       },
+       {
+           "path": "/sys/devices/azma_pmu_memnoc_p1_wr_pprobe",
+           "display_name": "p1_wr",
+           "pmu_events": [
+               {
+                   "event": "write_bytes",
+                   "name": "write_bytes",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               }
+           ]
+       },
+       {
+           "path": "/sys/devices/azma_pmu_memnoc_p2_wr_pprobe0",
+           "display_name": "p2_wr0",
+           "pmu_events": [
+               {
+                   "event": "write_bytes",
+                   "name": "write_bytes",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               }
+           ]
+       },
+       {
+           "path": "/sys/devices/azma_pmu_memnoc_p2_wr_pprobe1",
+           "display_name": "p2_wr1",
+           "pmu_events": [
+               {
+                   "event": "write_bytes",
+                   "name": "write_bytes",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               }
+           ]
+       }
+   ]
+}

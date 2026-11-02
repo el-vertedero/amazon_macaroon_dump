@@ -1,0 +1,32 @@
+[Unit]
+Description=Timestamping service
+ConditionCapability=CAP_SYS_TIME
+DefaultDependencies=no
+After=systemd-sysusers.service
+Before=time-set.target sysinit.target shutdown.target systemd-timesyncd.service
+Conflicts=shutdown.target
+Wants=time-set.target time-sync.target
+
+[Service]
+DynamicUser=yes
+AmbientCapabilities=CAP_SYS_TIME
+CapabilityBoundingSet=CAP_SYS_TIME
+SmackProcessLabel=System
+SupplementaryGroups=
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service @clock
+SystemCallErrorNumber=EPERM
+RemainAfterExit=yes
+ExecStart=/usr/bin/set-boot-timestamp.sh
+
+[Install]
+WantedBy=sysinit.target

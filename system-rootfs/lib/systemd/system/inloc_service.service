@@ -1,0 +1,51 @@
+[Unit]
+Description=Indoor Localization Service
+After=bluetooth.service
+Wants=bluetooth.service service-registrar.service netsvc.service
+PartOf=service-registrar.service
+
+[Service]
+ExecStart=/usr/bin/inloc_service
+Restart=always
+RestartSec=2
+
+# PrivateNetwork=true # Exposed to allow http
+User=inloc
+Group=inloc
+SmackProcessLabel=System
+SupplementaryGroups=aipc system kvstore
+CapabilityBoundingSet=none
+# RestrictAddressFamilies=AF_UNIX # Exposed to allow http
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+RemoveIPC=yes
+ProtectControlGroups=yes
+
+# Required if use dynamic user
+ReadWritePaths=/var/lib/data/ace/aipc
+ReadWritePaths=/var/lib/data/ace/kvstorage
+# Make logging paths visible, since PrivateDevices=yes
+ReadWritePaths=-/dev/socket -/dev/log
+BindPaths=-/dev/socket -/dev/log
+
+#AIPC Binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.inloc.service

@@ -1,0 +1,44 @@
+[Unit]
+Description=Download manager service
+After=ace_eventmgr.service netsvc.service multi-user.target service-registrar.service
+Wants=ace_eventmgr.service service-registrar.service
+PartOf=service-registrar.service
+Conflicts=shutdown.target
+
+[Service]
+User=downloadmgr
+Group=downloadmgr
+
+CapabilityBoundingSet=CAP_CHOWN CAP_FOWNER
+AmbientCapabilities=CAP_CHOWN CAP_FOWNER
+
+SupplementaryGroups=aipc system net wifi
+
+ReadWritePaths=/var/lib/data/ace/aipc
+ReadWritePaths=/var/lib/dm/data
+ReadWritePaths=/var/lib/dm/cache
+
+# IPC communication
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+ExecStart=/usr/bin/dm_service_host
+Restart=on-failure
+SmackProcessLabel=System
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+RestrictNamespaces=true
+NoNewPrivileges=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.ace.experimental.middleware.download_manager

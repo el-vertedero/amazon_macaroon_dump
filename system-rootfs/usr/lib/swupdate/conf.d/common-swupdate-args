@@ -1,0 +1,2 @@
+# add file path for root ca
+SWUPDATE_ARGS="$SWUPDATE_ARGS --ca-path=/etc/sys_ota_root_ca.pem"

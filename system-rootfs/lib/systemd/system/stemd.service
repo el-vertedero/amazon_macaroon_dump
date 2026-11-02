@@ -1,0 +1,169 @@
+#
+# Copyright 2022 Amazon.com, Inc. or its affiliates. All rights reserved.
+#
+# AMAZON PROPRIETARY/CONFIDENTIAL
+#
+# You may not use this file except in compliance with the terms and conditions
+# set forth in the accompanying LICENSE.TXT file.
+#
+# THESE MATERIALS ARE PROVIDED ON AN "AS IS" BASIS. AMAZON SPECIFICALLY
+# DISCLAIMS, WITH RESPECT TO THESE MATERIALS, ALL WARRANTIES, EXPRESS,
+# IMPLIED, OR STATUTORY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+#
+[Unit]
+Description=Stem Manager
+PartOf=lifecycle-manager.service
+
+OnFailure=failure-manager@%N.service
+
+[Service]
+ExecStart=/usr/bin/stemd
+Type=notify
+WatchdogSec=12
+NotifyAccess=main
+
+# Generate an ACR on startup timeout
+TimeoutStartFailureMode=abort
+
+# Puts service in the right cgroup
+Slice=framework.slice
+
+# Restart the service always.
+Restart=always
+
+# todo(rig)
+User=lcm
+Group=lcm
+
+RuntimeDirectory=stemd
+RuntimeDirectoryMode=0755
+RuntimeDirectoryPreserve=restart
+
+# RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+ProtectKernelLogs=true
+ProtectKernelModules=true
+LockPersonality=true
+
+RemoveIPC=true
+NoNewPrivileges=true
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+
+SmackProcessLabel=System::Privileged
+
+# Linux capabilities:
+# CAP_SETPCAP - to drop capabilities, so apps dont
+# inherit the capabilities from stemd
+CapabilityBoundingSet=CAP_SETPCAP
+AmbientCapabilities=CAP_SETPCAP
+
+# CAP_SYS_PTRACE - for readlink calls
+CapabilityBoundingSet=CAP_SYS_PTRACE
+AmbientCapabilities=CAP_SYS_PTRACE
+
+# CAP_SYS_ADMIN - for namespace CLONE calls
+CapabilityBoundingSet=CAP_SYS_ADMIN
+AmbientCapabilities=CAP_SYS_ADMIN
+
+# CAP_MAC_ADMIN - for smack labeling process
+CapabilityBoundingSet=CAP_MAC_ADMIN
+AmbientCapabilities=CAP_MAC_ADMIN
+
+# CAP_SETGID - to set supplementary groups
+CapabilityBoundingSet=CAP_SETGID
+AmbientCapabilities=CAP_SETGID
+
+# CAP_SETUID - to set user as app_user
+CapabilityBoundingSet=CAP_SETUID
+AmbientCapabilities=CAP_SETUID
+
+# CAP_NET_ADMIN - for netlink socket usage in process monitor
+CapabilityBoundingSet=CAP_NET_ADMIN
+AmbientCapabilities=CAP_NET_ADMIN
+
+# CAP_NET_BIND_SERVICE - to bind to privileged ports (<1024) for apps such as PTP timing sync
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+# CAP_DAC_OVERRIDE - in pivot root, this gives privilege to
+# create bind mount directories (/mnt/tmp, /mnt/dev..etc) on the root
+# owned /mnt
+# This also acts as a workaround to bypass aipc directory ownership
+# (which is root:root)
+CapabilityBoundingSet=CAP_DAC_OVERRIDE
+AmbientCapabilities=CAP_DAC_OVERRIDE
+
+# CAP_MAC_OVERRIDE - privilege override smack policy
+# todo(vgimonka) remove after https://issues.labcollab.net/browse/ACE-56123
+CapabilityBoundingSet=CAP_MAC_OVERRIDE
+AmbientCapabilities=CAP_MAC_OVERRIDE
+
+# CAP_FOWNER - to set extended attributes for
+# inodes (transmute attr)
+CapabilityBoundingSet=CAP_FOWNER
+AmbientCapabilities=CAP_FOWNER
+
+# CAP_MKNOD - to create special files for
+# mounting /dev in chroot
+CapabilityBoundingSet=CAP_MKNOD
+AmbientCapabilities=CAP_MKNOD
+
+# CAP_CHOWN - to create sandbox directories
+# owned by app_user
+CapabilityBoundingSet=CAP_CHOWN
+AmbientCapabilities=CAP_CHOWN
+
+# CAP_SYS_CHROOT - to do chroot
+CapabilityBoundingSet=CAP_SYS_CHROOT
+AmbientCapabilities=CAP_SYS_CHROOT
+
+# CAP_KILL - if app crashes, bypass permission checks for
+# sending signal kill, so that we dont leave zombie processes
+CapabilityBoundingSet=CAP_KILL
+AmbientCapabilities=CAP_KILL
+
+# required for:
+# https://issues.labcollab.net/browse/APPFWK-6384
+CapabilityBoundingSet=CAP_SYS_NICE
+AmbientCapabilities=CAP_SYS_NICE
+
+# required for:
+# https://issues.labcollab.net/browse/PROJVEGA-275998
+CapabilityBoundingSet=CAP_SYS_RESOURCE
+AmbientCapabilities=CAP_SYS_RESOURCE
+
+# required for:
+# https://issues.labcollab.net/browse/PROJVEGA-172027
+CapabilityBoundingSet=CAP_SYS_TIME
+AmbientCapabilities=CAP_SYS_TIME
+
+# required for:
+# https://issues.labcollab.net/browse/PROJVEGA-174611
+CapabilityBoundingSet=CAP_SYS_BOOT
+AmbientCapabilities=CAP_SYS_BOOT
+
+### Not applicable list
+# 1.CapabilityBoundingSet=none
+# Need to add chown and DAC override to change the permission on the directories created.
+# 2.AmbientCapabilities=none
+# Need to add chown and DAC override to change the permission on the directories created.
+# 3.RestrictAddressFamilies=none
+# Writing to system log needs to invoke Unix domain socket.
+# Also apps which are children of stemd will require internet sockets.
+# 4.DynamicUser=yes
+# Need to share its directries with other services.
+# 5.PrivateNetwork=true
+# Need messaging with vtrace server
+# 6.PrivateDevices=true
+# Needs access to /dev for binding mounting nodes in app sandbox
+# 7.SystemCallFilter=@system-service
+# Needs to setup syscall filter for app sandbox
+# 8.ProtectClock=true
+# Setting above will remove CAP_SYS_TIME which is required by
+# privileged apps
+
+EnvironmentFile=-/etc/app-framework/config.env
+
+[Install]
+WantedBy=multi-user.target

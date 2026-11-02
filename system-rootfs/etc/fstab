@@ -1,0 +1,7 @@
+/dev/root            /                    auto       defaults              0  1
+proc                 /proc                proc       defaults              0  0
+devpts               /dev/pts             devpts     mode=0620,gid=5       0  0
+tmpfs                /run                 tmpfs      mode=0755,nodev,nosuid,strictatime 0  0
+tmpfs                /var/volatile        tmpfs      defaults              0  0
+/dev/mtdblock9       /persist             jffs2      ro,noatime,nosuid,nodev,nofail         0  0
+/dev/ubi0_13         /cache               ubifs      defaults,nofail              0  0

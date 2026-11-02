@@ -1,0 +1,33 @@
+# dnsmasq is brought up to provide DHCP server and DNS forward support
+
+[Unit]
+Description=dhcp_server
+
+# disable rate limit
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=net
+Group=net
+SupplementaryGroups=wifi log
+
+CapabilityBoundingSet=CAP_NET_RAW CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_RAW CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+
+ProtectControlGroups=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectKernelLogs=true
+RestrictRealtime=true
+LockPersonality=true
+ProtectClock=true
+ProtectKernelModules=true
+RestrictNamespaces=true
+
+EnvironmentFile=/var/run/dnsmasq/dhcps_dnsmasq_%I
+ExecStart=/usr/bin/dhcp_svr_dnsmasq.sh ${interface} ${ip} ${dhcp_range} ${extra1} ${extra2}
+PIDFile=/var/run/dnsmasq/dhcps_dnsmasq_%I.pid
+Restart=always
+
+[Install]

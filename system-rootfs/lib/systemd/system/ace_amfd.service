@@ -1,0 +1,105 @@
+[Unit]
+Description=Acs AMF service
+Conflicts=shutdown.target
+Wants=service-registrar.service
+PartOf=service-registrar.service
+After=service-registrar.service
+StartLimitBurst=5
+StartLimitIntervalSec=10 
+# wait on udev to set permission on the devices
+
+Requires=dev-amf_0.device
+After=dev-amf_0.device
+Requires=dev-amf_1.device
+After=dev-amf_1.device
+Requires=dev-adfdspctrl.device
+After=dev-adfdspctrl.device
+Requires=dev-dsp_log.device
+After=dev-dsp_log.device
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/ace_amfd
+Restart=always
+DynamicUser=yes
+StateDirectory=amf-service
+
+# Adding service to aipc and system supplementary groups
+SupplementaryGroups=aipc input system
+
+# Make input paths visible
+ReadWritePaths=-/dev/input
+BindPaths=-/dev/input
+
+#Add Smack process label
+SmackProcessLabel=System
+
+# Make AIPC visible
+ReadWritePaths=/var/lib/data/ace/aipc/
+
+# Fortification
+IPAddressDeny=any
+SystemCallFilter=@system-service
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectHostname=yes
+ProtectClock=yes
+LockPersonality=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+MemoryDenyWriteExecute=yes
+RestrictNamespaces=yes
+SystemCallArchitectures=native
+CapabilityBoundingSet=
+UMask=0077
+PrivateNetwork=yes
+RestrictAddressFamilies=AF_UNIX
+ProtectProc=invisible
+PrivateDevices=yes
+
+
+#AIPC Binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+# List devices to include in sandbox
+DeviceAllow=/dev/amf_0 rw
+BindPaths=/dev/amf_0
+ReadWritePaths=/dev/amf_0
+
+DeviceAllow=/dev/amf_1 rw
+BindPaths=/dev/amf_1
+ReadWritePaths=/dev/amf_1
+
+DeviceAllow=/dev/adfdspctrl rw
+BindPaths=/dev/adfdspctrl
+ReadWritePaths=/dev/adfdspctrl
+
+DeviceAllow=/dev/dsp_log rw
+BindPaths=/dev/dsp_log
+ReadWritePaths=/dev/dsp_log
+
+# com.amazon.remoteproc.crash.stats
+ReadOnlyPaths=-/sys/devices/platform/1fff000.rproc/remoteproc/remoteproc0/
+
+# com.amazon.amf.state.stats
+ReadOnlyPaths=-/sys/kernel/amf/
+
+# com.amazon.azma.privilege.log.read
+ReadOnlyPaths=-/proc/azma_log
+
+# com.amazon.hardware-clock.privilege.read
+DeviceAllow=/dev/azma_gtmem r
+BindPaths=-/dev/azma_gtmem
+ReadOnlyPaths=-/dev/azma_gtmem
+
+# DMC shared memory access
+SupplementaryGroups=adfshm
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,31 @@
+{
+    "description": "Alexa.Identity.Enrollment.Face GCA config",
+    "version": "1.0",
+    "CAMPSchemaVersion": "1.0",
+    "streams": [
+        {
+            "name": "VID_TRANSFER_GCA",
+            "type": "core.GenericCA",
+            "args": {
+                "capability": {
+                    "discovery": {
+                        "type": "AlexaInterface",
+                        "interface": "Alexa.Identity.Enrollment.Face",
+                        "version": "1.1"
+                    },
+                    "directives": [
+                        {
+                            "name": "DownloadImages"
+                        },
+                        {
+                            "name": "UploadImages"
+                        },
+                        {
+                            "name": "SetEnrolledPersons"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

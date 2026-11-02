@@ -1,0 +1,2 @@
+enable smartbox.service
+enable smartbox-health-check.timer

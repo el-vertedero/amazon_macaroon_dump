@@ -1,0 +1,55 @@
+{
+    "model_name": "macaroon",
+    "mem_stats": "/proc/meminfo",
+    "cycles_to_bytes": 16,
+    "bspmulti_stats": [
+        {
+            "name": "assert_lat",
+            "type": "time",
+            "param":["min", "max", "avg"],
+            "path": "/sys/kernel/debug/scmi_kpi/resets/assert_lat"
+        },
+        {
+            "name": "deassert_lat",
+            "type": "time",
+            "param":["min", "max", "avg"],
+            "path": "/sys/kernel/debug/scmi_kpi/resets/deassert_lat"
+        },
+        {
+            "name": "reset_lat",
+            "type": "time",
+            "param":["min", "max", "avg"],
+            "path": "/sys/kernel/debug/scmi_kpi/resets/reset_lat"
+        },
+        {
+            "name": "clk_rate_lat",
+            "type": "time",
+            "param":["min", "max", "avg"],
+            "path": "/sys/kernel/debug/scmi_kpi/clocks/get_rate_lat"
+        },
+        {
+            "name": "reg_volt_lat",
+            "type": "time",
+            "param":["min", "max", "avg"],
+            "path": "/sys/kernel/debug/scmi_kpi/regulator/get_voltage_lat"
+        },
+        {
+            "name": "reg_enable_lat",
+            "type": "time",
+            "param":["min", "max", "avg"],
+            "path": "/sys/kernel/debug/scmi_kpi/regulator/get_enable_lat"
+        },
+        {
+            "name": "dvfs_perf_lat",
+            "type": "time",
+            "param":["min", "max", "avg"],
+            "path": "/sys/kernel/debug/scmi_kpi/dvfs/get_perf_lat"
+        },
+        {
+            "name": "latency",
+            "type": "time",
+            "param":["suspend_min", "suspend_max", "suspend_avg", "resume_min", "resume_max", "resume_avg"],
+            "path": "/sys/kernel/debug/suspend_latency"
+        }
+    ]
+}

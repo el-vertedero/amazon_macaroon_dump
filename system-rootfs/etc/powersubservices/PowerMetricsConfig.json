@@ -1,0 +1,47 @@
+{
+	"upload_interval": "P1D",
+	"cache_interval": "PT1H",
+	"cache_dir_path": "/var/lib/powersubservices/ifm",
+	"metrics": {
+		"group_id": "89v6txw5",
+		"schema_id": "202h/2/02330460",
+		"sampling_percentage": 100
+	},
+	"pmmaggregator": {
+		"sample_interval": "PT1S",
+		"data_sources": [
+            {
+                "name": "USE_CASE_INFO",
+                "lib": "libPowerMetricsDataSource_UseCaseInfo.so",
+                "params": {
+                    "metricname": "use_case_info"
+                }
+            },
+			{
+				"name": "POWER_USAGE",
+				"lib": "libPowerMetricsDataSource_File.so",
+				"params": {
+					"path": "/dev/sensors/scmi_sensors/power1_input",
+					"metricname": "device_power"
+				}
+			}
+		]
+	},
+	"polling_collector": {
+		"sample_interval": "PT15S",
+		"data_sources": [
+			{
+				"name": "POWER_USAGE",
+				"lib": "libPowerMetricsDataSource_File.so",
+				"params": {
+					"path": "/dev/sensors/scmi_sensors/power1_average",
+					"metricname": "device_power"
+				}
+			}
+		]
+	},
+	"use_case_priority": {
+		"AUDIO_ANY": 3,
+		"MUTE": 2
+	}
+}

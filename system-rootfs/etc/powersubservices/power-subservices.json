@@ -1,0 +1,21 @@
+{
+	"compatible": "power_subservices_config",
+	"version": 1.0,
+	"subservice": {
+		"LPMControl": {
+			"module": "/usr/lib/libLPMControlService.so",
+			"libversion": 1.0,
+			"default": ""
+		},
+		"Metrics": {
+			"module": "/usr/lib/libPowerMetricsService.so",
+			"libversion": 1.0,
+			"default": ""
+		},
+		"ResidencyMetrics": {
+			"module": "/usr/lib/libPowerResidencyMetricsService.so",
+			"libversion": 1.0,
+			"default": ""
+		}
+	}
+}

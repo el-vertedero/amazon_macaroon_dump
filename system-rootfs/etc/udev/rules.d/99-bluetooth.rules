@@ -1,0 +1,2 @@
+ACTION=="add", KERNEL=="stpbt", OWNER="root", GROUP="bt", MODE="0660", RUN+="/usr/bin/chsmack -a '*' /dev/stpbt"
+ACTION=="add", KERNEL=="uhid", OWNER="root", GROUP="bt", MODE="0660", RUN+="/usr/bin/chsmack -a '*' /dev/uhid"

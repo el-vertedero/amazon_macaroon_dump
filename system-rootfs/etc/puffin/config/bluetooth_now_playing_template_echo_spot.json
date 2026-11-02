@@ -1,0 +1,127 @@
+{
+  "type": "APL",
+  "version": "1.9",
+  "onConfigChange": {
+    "type": "Reinflate"
+  },
+  "environment": {
+    "allowOpenURL": true
+  },
+  "import": [
+    {
+      "name": "alexa-layouts",
+      "version": "1.7.0"
+    },
+    {
+      "name": "alexa-viewport-profiles",
+      "version": "1.4.0"
+    },
+    {
+      "name": "alexa-music-layouts",
+      "version": "1.2.0",
+      "source": "https://prod.apl-music-multimodal.com/packages/layouts/now-playing-layouts/1.2.0/document.json"
+    }
+  ],
+  "extensions": [
+    {
+      "name": "DataStore",
+      "uri": "alexaext:datastore:10"
+    }
+  ],
+  "theme": "dark",
+  "mainTemplate": {
+    "parameters": [
+      "nowPlayingData",
+      "nowPlayingConfig"
+    ],
+    "items": [
+      {
+        "type": "Container",
+        "id": "btNpsRoot",
+        "bind": [
+          {
+            "name": "playerActivityStatus",
+            "value": "${playerStatus.playerActivity}"
+          },
+          {
+            "name": "nowPlayingConfig",
+            "value": "${nowPlayingConfig}"
+          },
+          {
+            "name": "btTitle",
+            "value": "${nowPlayingData[0].infoText.primaryText || 'No Title'}"
+          },
+          {
+            "name": "btArtist",
+            "value": "${nowPlayingData[0].infoText.secondaryText || 'No Artist'}"
+          },
+          {
+            "name": "btAlbum",
+            "value": "${nowPlayingData[0].infoText.tertiaryText || 'No Album'}"
+          },
+          {
+            "name": "btNowPlayingItem",
+            "value": {
+              "infoText": {
+                "primaryText": "${btTitle}",
+                "secondaryText": "${btArtist}",
+                "tertiaryText": "${btAlbum}"
+              },
+              "template": "${nowPlayingData[0].template}",
+              "provider": "${nowPlayingData[0].provider}",
+              "contentType": "${nowPlayingData[0].contentType}",
+              "transport": "${nowPlayingData[0].transport}",
+              "liveMetadata": "${nowPlayingData[0].liveMetadata}",
+              "explicitContentPresentBadge": "${nowPlayingData[0].explicitContentPresentBadge}",
+              "programmingTypeBadge": "${nowPlayingData[0].programmingTypeBadge}"
+            }
+          }
+        ],
+        "items": [
+          {
+            "type": "AlexaMusicNowPlayingScreenExtraSmall",
+            "nowPlayingData": "${btNowPlayingItem}",
+            "nowPlayingConfig": "${nowPlayingConfig}",
+            "transportControlPreviousAction": {
+              "type": "SendEvent",
+              "arguments": ["btPrevious"]
+            },
+            "transportControlNextAction": {
+              "type": "SendEvent",
+              "arguments": ["btNext"]
+            },
+            "transportControlPlayAction": {
+              "type": "SendEvent",
+              "arguments": ["btPlay"]
+            },
+            "transportControlPauseAction": {
+              "type": "SendEvent",
+              "arguments": ["btPause"]
+            },
+            "playerActivityStatus": "${playerActivityStatus}"
+          }
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "DataStore": {
+      "dataBindings": [
+        {
+          "region": "com.amazon.mm.settings_settings",
+          "namespace": "settings.ecs",
+          "key": "night_time_active_json",
+          "dataBindingName": "nightTimeActive",
+          "initialize": "onRegister"
+        },
+        {
+          "region": "com.amazon.mm.settings_settings",
+          "namespace": "settings.audioplayer.presentation",
+          "key": "music-visualizer",
+          "dataBindingName": "musicVisualizerEnablement",
+          "initialize": "onRegister"
+        }
+      ]
+    }
+  }
+}

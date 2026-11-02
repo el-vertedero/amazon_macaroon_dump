@@ -1,0 +1,14 @@
+# boot0 swupdate rules
+
+ACTION=="add", SUBSYSTEM=="block", KERNEL=="mmcblk0boot0", RUN+="/bin/chgrp disk /sys/class/block/mmcblk0boot0/force_ro"
+ACTION=="add", SUBSYSTEM=="block", KERNEL=="mmcblk0boot0", RUN+="/bin/chmod g+rw /sys/class/block/mmcblk0boot0/force_ro"
+ACTION=="add", SUBSYSTEM=="block", KERNEL=="mmcblk0boot0", RUN+="/usr/bin/chsmack -a 'System' /sys/block/mmcblk0boot0/force_ro"
+
+# boot1 + mmcblk0 swupdate rules
+
+ACTION=="add", SUBSYSTEM=="block", KERNEL=="mmcblk0boot1", RUN+="/bin/chgrp disk /sys/class/block/mmcblk0boot1/force_ro"
+ACTION=="add", SUBSYSTEM=="block", KERNEL=="mmcblk0boot1", RUN+="/bin/chmod g+rw /sys/class/block/mmcblk0boot1/force_ro"
+ACTION=="add", SUBSYSTEM=="block", KERNEL=="mmcblk0boot1", RUN+="/usr/bin/chsmack -a 'System' /sys/block/mmcblk0boot1/force_ro"
+ACTION=="add", SUBSYSTEM=="block", KERNEL=="mmcblk0", RUN+="/bin/chgrp disk /sys/class/block/mmcblk0/force_ro"
+ACTION=="add", SUBSYSTEM=="block", KERNEL=="mmcblk0", RUN+="/bin/chmod g+rw /sys/class/block/mmcblk0/force_ro"
+ACTION=="add", SUBSYSTEM=="block", KERNEL=="mmcblk0", RUN+="/usr/bin/chsmack -a 'System' /sys/block/mmcblk0/force_ro"

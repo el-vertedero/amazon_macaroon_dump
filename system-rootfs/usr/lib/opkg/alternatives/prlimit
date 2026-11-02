@@ -1,0 +1,3 @@
+/usr/bin/prlimit
+/bin/toybox 60
+/usr/bin/prlimit.util-linux 80

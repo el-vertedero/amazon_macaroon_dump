@@ -1,0 +1,3 @@
+/sbin/modinfo
+/sbin/modinfo.kmod 70
+/bin/toybox 60

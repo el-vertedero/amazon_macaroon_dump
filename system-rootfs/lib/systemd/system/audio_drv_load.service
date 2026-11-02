@@ -1,0 +1,14 @@
+[Unit]
+Description=audio_drv_load
+After=data-ubi-mnt.service
+
+[Service]
+DynamicUser=yes
+Group=system
+AmbientCapabilities=CAP_SYS_MODULE CAP_SYS_BOOT CAP_SYS_ADMIN
+Type=simple
+ExecStart=/bin/sh /etc/audio_drv_load.sh
+SmackProcessLabel=System
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,27 @@
+[Unit]
+Description=Discard unused blocks on filesystems
+Documentation=man:fstrim(8)
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/fstrim /rootfs.rw -v
+
+# Fortifying the service
+PrivateNetwork=true
+User=root
+SmackProcessLabel=System::Privileged
+SupplementaryGroups=
+# CapabilityBoundingSet not needed as user is already root
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM

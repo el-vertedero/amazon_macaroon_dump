@@ -1,0 +1,174 @@
+{
+    "applicationProtocols": [
+        {
+            "type": "BLE_MESH",
+            "maxVersion": "1.0",
+            "commissioneeTypes": {
+                "displayCategories": [
+                    "FAN",
+                    "LIGHT",
+                    "OTHER",
+                    "REMOTE",
+                    "SMARTPLUG"
+                ]
+            }
+        },
+        {
+            "type": "OTHER",
+            "name": "LAP",
+            "maxVersion": "1.0",
+            "commissioneeTypes": {
+                "displayCategories": [
+                    "LIGHT",
+                    "SMARTPLUG",
+                    "SWITCH"
+                ]
+            }
+        },
+        {
+            "type": "ZIGBEE",
+            "maxVersion": "3.0",
+            "transportProtocols": [
+                {
+                    "type": "ZIGBEE_2.4GHZ",
+                    "maxVersion": "3.0"
+                }
+            ],
+            "commissioneeTypes": {
+                "displayCategories": [
+                    "BINARY_SENSOR",
+                    "BLIND",
+                    "LIGHT",
+                    "MOTION_SENSOR",
+                    "REMOTE",
+                    "SCENE_TRIGGER",
+                    "SMARTLOCK",
+                    "SMARTPLUG",
+                    "SWITCH",
+                    "TEMPERATURE_SENSOR",
+                    "THERMOSTAT"
+                ]
+            }
+        },
+        {
+            "type": "MATTER",
+            "maxVersion": "1.5",
+            "transportProtocols": [
+                {
+                    "type": "WI-FI",
+                    "maxVersion": "5.0"
+                },
+                {
+                    "type": "THREAD",
+                    "maxVersion": "1.3"
+                }
+            ],
+            "commissioneeTypes": {
+                "displayCategories": [
+                    "AIR_CONDITIONER",
+                    "AIR_PURIFIER",
+                    "AIR_QUALITY_MONITOR",
+                    "CARBON_MONOXIDE_SENSOR",
+                    "CONTACT_SENSOR",
+                    "DISHWASHER",
+                    "FAN",
+                    "HUB",
+                    "HUMIDITY_SENSOR",
+                    "INTERIOR_BLIND",
+                    "LIGHT",
+                    "LIGHT_SENSOR",
+                    "MOTION_SENSOR",
+                    "OTHER",
+                    "REMOTE",
+                    "SMARTLOCK",
+                    "SMARTPLUG",
+                    "SMOKE_SENSOR",
+                    "SWITCH",
+                    "TEMPERATURE_SENSOR",
+                    "THERMOSTAT",
+                    "VACUUM_CLEANER"
+                ],
+                "deviceTypes": [
+                    "10",
+                    "14",
+                    "15",
+                    "19",
+                    "21",
+                    "22",
+                    "43",
+                    "44",
+                    "45",
+                    "114",
+                    "116",
+                    "117",
+                    "118",
+                    "256",
+                    "257",
+                    "262",
+                    "263",
+                    "266",
+                    "267",
+                    "268",
+                    "269",
+                    "514",
+                    "769",
+                    "770",
+                    "775"
+                ]
+            }
+        },
+        {
+            "type": "PHILIPS_HUE",
+            "maxVersion": "1.0",
+            "transportProtocols": [
+                {
+                    "type": "WI-FI",
+                    "maxVersion": "5.0"
+                }
+            ],
+            "commissioneeTypes": {
+                "displayCategories": [
+                    "LIGHT"
+                ]
+            }
+        },
+        {
+            "type": "WEMO",
+            "maxVersion": "1.0",
+            "transportProtocols": [
+                {
+                    "type": "WI-FI",
+                    "maxVersion": "5.0"
+                }
+            ],
+            "commissioneeTypes": {
+                "displayCategories": [
+                    "SMARTPLUG",
+                    "SWITCH"
+                ]
+            }
+        },
+        {
+            "type": "IPP",
+            "maxVersion": "2.1",
+            "transportProtocols": [
+                {
+                    "type": "WI-FI",
+                    "maxVersion": "5.0"
+                }
+            ],
+            "commissioneeTypes": {
+                "displayCategories": [
+                    "PRINTER"
+                ]
+            }
+        }
+    ],
+    "supportedFeatures": {
+        "preferredDirectiveNamespaceName": "SmartCloud.HubRequest",
+        "smartCloudOwnershipMode": "EXCLUSIVE",
+        "matter": {
+            "enhancedSetupMode": true
+        }
+    }
+}

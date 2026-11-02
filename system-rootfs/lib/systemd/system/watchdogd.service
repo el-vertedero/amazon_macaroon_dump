@@ -1,0 +1,36 @@
+[Unit]
+Description=trigger watchdog to detect system hang
+After=sysinit.target dev-kmsg.device dev-watchdog.device
+Before=umount.target final.target
+Requires=dev-kmsg.device dev-watchdog.device
+DefaultDependencies=no
+
+[Service]
+DynamicUser=yes
+SupplementaryGroups=system
+Type=simple
+ExecStart=/usr/bin/watchdogd
+StandardOutput=tty
+StandardError=tty
+SmackProcessLabel=System
+
+# Never kill the watchdogd daemon for low memory
+OOMScoreAdjust=-1000
+# Allow to run mlockall() to lock pages
+AmbientCapabilities=CAP_IPC_LOCK
+
+PrivateNetwork=true
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

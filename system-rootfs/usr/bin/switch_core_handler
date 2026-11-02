@@ -1,0 +1,18 @@
+#!/bin/bash
+
+case $1 in
+  "acr")
+    #MEMO: if changing this, also update: 90-override-coredump.conf
+    echo "|/usr/bin/acr_core_dump_script %P %t %u %g %i %c %s %e %E" > /proc/sys/kernel/core_pattern
+    echo "Core handler set to: acr"    
+    ;;
+
+  "systemd")
+    echo "|/lib/systemd/systemd-coredump %P %u %g %s %t %c %h" > /proc/sys/kernel/core_pattern
+    echo "Core handler set to: systemd"    
+    ;;
+
+  *)
+    echo "Usage: sudo switch_core_handler [acr|systemd]" 
+    ;;
+esac

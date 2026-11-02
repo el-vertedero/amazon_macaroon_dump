@@ -1,0 +1,3 @@
+/usr/sbin/rtcwake
+/bin/toybox 60
+/usr/sbin/rtcwake.util-linux 80

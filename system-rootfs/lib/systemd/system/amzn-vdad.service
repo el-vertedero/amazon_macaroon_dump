@@ -1,0 +1,19 @@
+[Unit]
+Description=VDA Daemon
+ConditionPathExists=/etc/vda/enable-vda
+DefaultDependencies=no
+
+[Service]
+Type=simple
+Restart=always
+OOMPolicy=continue
+OOMScoreAdjust=-1000
+ExecStartPre=/bin/mkdir -p /var/run/amzn-vdad
+ExecStartPre=-/usr/bin/vdad-gadget-setup adb
+ExecStart=/usr/bin/vdad
+ExecStartPost=/usr/bin/vdad-gadget-setup post
+
+SmackProcessLabel=System::Privileged
+
+[Install]
+WantedBy=sysinit.target

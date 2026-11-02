@@ -1,0 +1,36 @@
+{
+    "description": "USF Upload Controller config",
+    "version": "1.0",
+    "CAMPSchemaVersion": "1.0",
+    "streams": [
+        {
+            "name": "usfUploadControllerGCA",
+            "type": "core.GenericCA",
+            "args": {
+                "capability": {
+                    "discovery": {
+                        "type": "AlexaInterface",
+                        "interface": "Alexa.USF.UploadController",
+                        "version": "1.1",
+                        "properties": {
+                            "supported": [
+                                {
+                                    "name": "uploadConfiguration",
+                                    "type": "object",
+                                    "default": "{\"value\":\"DISABLED\"}"
+                                }
+                            ],
+                            "proactivelyReported": true,
+                            "retrievable": true
+                        }
+                    },
+                    "directives": [
+                        {
+                            "name": "SetUploadConfiguration"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

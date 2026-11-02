@@ -1,0 +1,114 @@
+#
+# Copyright 2020-2026 Amazon.com, Inc. or its affiliates. All rights reserved.
+#
+# AMAZON PROPRIETARY/CONFIDENTIAL
+#
+# You may not use this file except in compliance with the terms and conditions
+# set forth in the accompanying LICENSE.TXT file.
+#
+# THESE MATERIALS ARE PROVIDED ON AN "AS IS" BASIS. AMAZON SPECIFICALLY
+# DISCLAIMS, WITH RESPECT TO THESE MATERIALS, ALL WARRANTIES, EXPRESS,
+# IMPLIED, OR STATUTORY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+#
+[Unit]
+Description=Package Manager Service
+After=security-manager.service storaged.socket
+Wants=ace_eventmgr.service security-manager.service service-registrar.service storaged.socket
+Wants=failure-manager@SystemPackageInstallationFailure.path
+PartOf=service-registrar.service
+
+# APP_FWK_REMOVE_IF_DEBUG_START
+# This section will be removed by copy-systemd-service-files.sh
+# in debug builds.
+
+OnFailure=failure-manager@%N.service
+# APP_FWK_REMOVE_IF_DEBUG_END
+
+[Service]
+# Execution type: exec
+Type=notify
+
+# Wait at most 4 minutes to complete install, for the firstboot/OTA
+# package installs. This value should be reflected in other service that
+# wait on PM for their startup (like LCM).
+TimeoutStartSec=240
+
+# Generate an ACR on startup timeout
+TimeoutStartFailureMode=abort
+
+# Restart the service always.
+Restart=always
+
+# Set up user and group for this service
+User=pkgmgr
+Group=pkgmgr
+SupplementaryGroups=aipc system reserved_disk failuremgr
+
+# Add chown to allow changing the ownership of the directories created
+CapabilityBoundingSet=CAP_CHOWN
+AmbientCapabilities=CAP_CHOWN
+
+# Add DAC override to change the permission on the directories created
+CapabilityBoundingSet=CAP_DAC_OVERRIDE
+AmbientCapabilities=CAP_DAC_OVERRIDE
+
+SmackProcessLabel=System
+
+# Tighten sandboxing by removing unnecessary features
+NoNewPrivileges=yes
+RestrictSUIDSGID=yes
+RemoveIPC=yes
+
+# Restrict the permitted syscalls to a reasonable set used by common system services.
+# If an unexpected syscall occurs, return EPERM instead of terminating.
+SystemCallFilter=@system-service @network-io @chown
+SystemCallErrorNumber=EPERM
+
+# Binder access
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+# Required to send sd_notify msges.
+NotifyAccess=all
+
+ExecStart=/usr/bin/pkgmgrd
+
+# Need Unix domain socket to write system log
+RestrictAddressFamilies=AF_UNIX
+
+# Fortifying the service
+RestrictNamespaces=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+LockPersonality=true
+RestrictRealtime=true
+
+### Not applicable list
+# 1.CapabilityBoundingSet=none
+# Need to add chown and DAC override to change the permission on the directories created.
+# 2.AmbientCapabilities=none
+# Need to add chown and DAC override to change the permission on the directories created.
+# 3.RestrictAddressFamilies=none
+# Writing to system log needs to invoke Unix domain socket.
+# 4.DynamicUser=yes
+# Need to share its directries with other services.
+# 5.PrivateDevices=true
+# Need access to /dev for binder
+# 6.PrivateTmp=true
+# Need access to /tmp to install apps
+# 7.PrivateNetwork=true
+# Need messaging with vtrace server
+
+EnvironmentFile=-/etc/app-framework/config.env
+
+[Install]
+# Boot target to start this executable
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.package-manager.service
+OffersService=com.amazon.package-manager.installer.service

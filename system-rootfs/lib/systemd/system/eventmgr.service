@@ -1,0 +1,91 @@
+[Unit]
+Description=Start event manager
+After=security-manager.service
+Wants=service-registrar.service
+PartOf=service-registrar.service
+Conflicts=shutdown.target
+
+# APP_FWK_REMOVE_IF_DEBUG_START
+# This section will be removed by copy-systemd-service-files.sh
+# in debug builds.
+
+OnFailure=failure-manager@%N.service
+# APP_FWK_REMOVE_IF_DEBUG_END
+
+[Service]
+Type=notify
+Restart=always
+ExecStart=/usr/bin/eventmgrd
+
+# DynamiUser to static User transition
+User=eventmgr
+Group=eventmgr
+
+Environment=APMF_LOGGING="com.amazon.apmf.logger.sd_journal=DEBUG"
+SupplementaryGroups=aipc appfwkcfgsvc
+
+ReadWritePaths=/var/lib/data/ace/aipc/
+
+# Needed for message router
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+DeviceAllow=/dev/binder rw
+
+# Make logging paths visible
+# /dev/socket for SS
+# /dev/log for SS and SIM
+# /run/systemd/journal/socket for sd_journal
+ReadWritePaths=-/dev/socket -/dev/log -/run/systemd/journal/socket
+
+Environment=APMF_LOGGING="com.amazon.apmf.logger.sd_journal=DEBUG"
+
+StateDirectory=eventmgrd/
+
+# Make logging paths visible, since PrivateDevices=yes
+BindPaths=-/dev/socket -/dev/log -/run/systemd/journal/socket
+
+# Service fortification
+SmackProcessLabel=System
+
+PrivateDevices=yes
+PrivateTmp=yes
+# PrivateNetwork=true # Breaks vtrace
+
+ProtectControlGroups=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=yes
+ProtectKernelTunables=true
+
+RemoveIPC=yes
+NoNewPrivileges=yes
+
+AmbientCapabilities=
+CapabilityBoundingSet=none
+
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+RestrictSUIDSGID=yes
+RestrictRealtime=true
+
+LockPersonality=true
+
+# Add allowed list of syscalls
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+# CAP_SYS_PTRACE - for readlink calls
+CapabilityBoundingSet=CAP_SYS_PTRACE
+AmbientCapabilities=CAP_SYS_PTRACE
+
+EnvironmentFile=-/etc/app-framework/config.env
+
+[Install]
+Alias=ace_eventmgr.service
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.eventmgr.service
+OffersService=com.amazon.service.message-router

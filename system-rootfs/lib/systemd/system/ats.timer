@@ -1,0 +1,20 @@
+[Unit]
+Description=Run ACS middleware ATS every 24 hours
+Requires=ats.service
+Wants=service-registrar.service
+PartOf=service-registrar.service
+
+[Timer]
+Unit=ats.service
+# exec ATS soon after system startup
+OnStartupSec=1
+# continue executing ATS every 24 hours after first exec
+OnUnitActiveSec=86400
+
+#AIPC Binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+[Install]
+WantedBy=timers.target

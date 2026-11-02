@@ -1,0 +1,58 @@
+[Unit]
+Description=SOCBeacon Service
+After=network.target
+
+[Service]
+User=debugfs
+Group=debugfs
+Type=simple
+Restart=on-failure
+RestartSec=30s
+SmackProcessLabel=System
+SupplementaryGroups=aipc log
+ExecStartPre=+/bin/bash -c '\
+	chgrp -R debugfs /sys/kernel/debug/scmi_kpi 2>/dev/null || true; \
+	chmod -R g+r /sys/kernel/debug/scmi_kpi 2>/dev/null || true; \
+	chgrp debugfs /sys/kernel/debug/dri/*/crtc-*/*underflow 2>/dev/null || true; \
+	chmod g+r /sys/kernel/debug/dri/*/crtc-*/*underflow 2>/dev/null || true; \
+	chgrp debugfs /sys/kernel/debug/dri/*/crtc-*/g4_recovery_count 2>/dev/null || true; \
+	chmod g+r /sys/kernel/debug/dri/*/crtc-*/g4_recovery_count 2>/dev/null || true'
+
+
+ExecStart=/usr/bin/socbeacon
+
+Nice=19
+IOSchedulingClass=idle
+CPUSchedulingPolicy=idle
+MemoryLimit=128M
+
+# Memory settings
+MemoryHigh=128M
+MemoryMax=256M
+
+ReadWritePaths=/var/log /tmp
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateNetwork=true
+
+# Enable AIPC/IPCN Access
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+PrivateTmp=true
+ProtectClock=false
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=kepler-deferred.target
+Alias=socbeacon.service

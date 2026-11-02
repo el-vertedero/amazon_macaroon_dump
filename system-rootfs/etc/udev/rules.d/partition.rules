@@ -1,0 +1,31 @@
+#
+# Copyright 2021 Amazon.com, Inc. or its affiliates. All rights reserved.
+#
+# AMAZON PROPRIETARY/CONFIDENTIAL
+#
+# You may not use this file except in compliance with the terms and conditions
+# set forth in the accompanying LICENSE.TXT file.
+#
+# THESE MATERIALS ARE PROVIDED ON AN "AS IS" BASIS. AMAZON SPECIFICALLY
+# DISCLAIMS, WITH RESPECT TO THESE MATERIALS, ALL WARRANTIES, EXPRESS,
+# IMPLIED, OR STATUTORY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+#
+
+# Platform mount UDEV rules
+SUBSYSTEM!="block", GOTO="action_end"
+DEVPATH!="/devices/platform/*", GOTO="action_end"
+
+ACTION!="add|change", GOTO="action_remove"
+PROGRAM="/bin/ls -d /dev/block/platform", GOTO="create_link"
+# Create symlink directory if it doesn't exist
+RUN+="/bin/mkdir -p /dev/block/platform"
+LABEL="create_link"
+SYMLINK+="block/platform/%E{PARTNAME}"
+GOTO="action_end"
+
+LABEL="action_remove"
+ACTION!="remove", GOTO="action_end"
+RUN+="/bin/rm /dev/block/platform/%E{PARTNAME}"
+
+LABEL="action_end"

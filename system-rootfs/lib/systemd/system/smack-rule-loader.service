@@ -1,0 +1,44 @@
+[Unit]
+Description=Load SMACK rules for platform and vendor
+DefaultDependencies=no
+Before=sysinit.target
+After=local-fs.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+DynamicUser=yes
+SmackProcessLabel=System::Privileged
+
+# Required to change SMACK rules
+CapabilityBoundingSet=CAP_MAC_ADMIN
+AmbientCapabilities=CAP_MAC_ADMIN
+
+# Required to write /sys/fs/smackfs/load2
+CapabilityBoundingSet=CAP_DAC_OVERRIDE
+AmbientCapabilities=CAP_DAC_OVERRIDE
+
+ExecStart=/usr/bin/smack-rule-loader
+
+# Ugly hack for fixing OTA SMACK label issue
+ExecStartPre=+/usr/bin/chsmack -T /var/lib/data
+
+### Fortifying the service ###
+PrivateNetwork=true
+RestrictAddressFamilies=none
+RestrictNamespaces=true
+NoNewPrivileges=true 
+PrivateDevices=true 
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+RestrictSUIDSGID=true      
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+RestrictRealtime=true           
+LockPersonality=true 
+ProtectControlGroups=true
+
+[Install]
+WantedBy=multi-user.target

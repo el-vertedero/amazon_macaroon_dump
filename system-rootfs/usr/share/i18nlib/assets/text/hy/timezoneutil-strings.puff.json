@@ -1,0 +1,9 @@
+{
+    "note": "string resources for time zone util",
+    "dir": "ltr",
+    "resources": {
+        "exemplar_location_name_for_asia_jerusalem": {
+            "value": "Թել Ավիվ"
+        }
+    }
+}

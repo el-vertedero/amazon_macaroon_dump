@@ -1,0 +1,4 @@
+/sbin/insmod
+/bin/busybox 50
+/sbin/insmod.kmod 70
+/bin/toybox 60

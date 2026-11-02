@@ -1,0 +1,51 @@
+[Unit]
+Description=DataStore Service
+# As suggested via https://code.amazon.com/packages/VegaAppFramework/blobs/mainline/--/public/docs/ServiceRegistrar.md
+Wants=service-registrar.service
+PartOf=service-registrar.service
+After=systemd-tmpfiles-setup.service
+
+[Service]
+PrivateDevices=true
+#Enable AIPC/IPCN Access
+DeviceAllow=/dev/binder rw
+DeviceAllow=/dev/tee0 rw
+DeviceAllow=/dev/teepriv0 rw
+BindPaths=-/dev/binder
+BindPaths=-/dev/tee0
+BindPaths=-/dev/teepriv0
+ReadWritePaths=-/dev/binder
+DynamicUser=no
+User=datastore
+Group=datastore
+# kvstore needed for accessing ACE MAP apis.
+SupplementaryGroups=aipc tee kvstore
+SmackProcessLabel=System
+Type=exec
+# Provide writable directories for our service under /var/run/ and /var/lib/
+# The first is removed when the service is stopped, while the latter is persisted.
+RuntimeDirectory=DataStore DataStorePackageManager DataStore/RemoteConfig DataStorePackageManager/DefaultPackages
+StateDirectory=DataStore DataStorePackageManager
+# Make AIPC visible
+ReadWritePaths=/var/lib/data/ace/aipc/
+# Further restrict the API subtrees, as most services don't need these.
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+#Changes for allowing log to get written
+ReadWritePaths=-/dev/socket -/dev/log
+BindPaths=-/dev/socket -/dev/log
+# Restrict the permitted syscalls to a reasonable set used by common system serv
+# If an unexpected syscall occurs, return EPERM instead of terminating.
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+ExecStart=/usr/bin/DataStoreDaemon
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.alexa.datastore.service
+OffersService=com.amazon.alexaext.datastore.10.service
+

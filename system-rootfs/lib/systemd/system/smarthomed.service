@@ -1,0 +1,67 @@
+[Unit]
+Description=Start SmartHome Daemon for 3P endpoints pairing and controls through Echo devices
+Conflicts=shutdown.target
+After=PuffinApp.service netsvc.service dbus.socket
+Wants=dbus.socket service-registrar.service
+PartOf=service-registrar.service
+
+[Service]
+# Add rules to create directory + permissions for access
+ExecStartPre=+sh /usr/bin/setup_directories.sh
+
+ExecStart=/usr/bin/SmartHomed
+Restart=always
+
+User=system
+Group=system
+SmackProcessLabel=System
+SupplementaryGroups=aipc blemesh kvstore ota assetmgr graphic
+
+# Data paths
+ReadWritePaths=/var/lib/data/ace/aipc/
+ReadWritePaths=/var/lib/data/ace/kvstorage/
+ReadWritePaths=-/var/lib/data/dshs
+ReadWritePaths=-/data/securedStorageLocation
+ReadWritePaths=-/data/misc
+ReadWritePaths=-/var/lib/data/edcf
+
+### Fortifying the service ###
+
+# Capabilities - drop all since we run as non-root user 'system'
+CapabilityBoundingSet=none
+NoNewPrivileges=true
+
+# Network - commented out PrivateNetwork to allow VTrace/Perfetto and cloud connectivity
+# PrivateNetwork=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
+
+# Namespace restrictions
+RestrictNamespaces=true
+
+# Device access - private devices with explicit binder exception for AIPC/IPCN
+PrivateDevices=true
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+# Filesystem protection
+PrivateTmp=true
+ProtectClock=true
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+
+# Privilege escalation prevention
+RestrictSUIDSGID=true
+LockPersonality=true
+RestrictRealtime=true
+
+# System call filtering
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,4 @@
+/bin/ps
+/bin/busybox 50
+/bin/ps.procps 200
+/bin/toybox 300

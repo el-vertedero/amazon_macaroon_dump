@@ -1,0 +1,67 @@
+#!/bin/bash
+
+set -e
+
+RUNLEVEL_STORAGE_DIR=/var/lib/runlevels/
+RUNLEVEL_DROPIN_PATH="${RUNLEVEL_STORAGE_DIR}/dropins.tar.gz"
+RUNLEVEL_ENABLED_PATH="${RUNLEVEL_STORAGE_DIR}/enabled"
+
+function are_runlevels_enabled() {
+    if [ -f "${RUNLEVEL_ENABLED_PATH}" ]; then
+        return 0
+    fi
+    return 1
+}
+
+function enable_runlevels() {
+    if are_runlevels_enabled; then
+        echo "Runlevels already enabled. Skipping"
+        return 0;
+    fi
+
+    tar xzf "${RUNLEVEL_DROPIN_PATH}" -C /lib/systemd/system/
+    touch "${RUNLEVEL_ENABLED_PATH}"
+
+    set +e
+    # If post-idle-lifecycle-manager exists, disable it
+    systemctl disable post-idle-lifecycle-manager
+    set -e
+
+    systemctl daemon-reload
+
+    echo "Runlevels enabled"
+}
+
+function disable_runlevels() {
+    if ! are_runlevels_enabled; then
+        echo "Runlevels already disabled. Skipping"
+        return 0;
+    fi
+
+    for dir in /lib/systemd/system/*.d; do
+        if [ -f "${dir}/runlevel.conf" ]; then
+            rm "${dir}/runlevel.conf"
+        fi
+    done
+    rm "${RUNLEVEL_ENABLED_PATH}"
+
+    set +e
+    # If post-idle-lifecycle-manager exists, enable it
+    systemctl enable post-idle-lifecycle-manager
+    set -e
+
+    echo "Runlevels disabled"
+}
+
+case "$1" in
+    enable)
+        enable_runlevels
+    ;;
+    disable)
+        disable_runlevels
+    ;;
+    *)
+        echo "Usage: $0 [enable|disable]"
+        echo "Enable or disable runlevels on this device"
+    ;;
+esac

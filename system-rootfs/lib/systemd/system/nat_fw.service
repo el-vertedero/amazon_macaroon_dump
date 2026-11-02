@@ -1,0 +1,13 @@
+# Setup NAT for FFS only
+
+[Unit]
+Description=Firewall NAT FFS only
+
+[Service]
+Type=oneshot
+EnvironmentFile=/var/run/nat_file
+ExecStart=/usr/bin/firewall.sh start nat $P2PIF $APIF $IP
+ExecStop=/usr/bin/firewall.sh stop nat $APIF
+RemainAfterExit=True
+
+[Install]

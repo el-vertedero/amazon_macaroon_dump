@@ -1,0 +1,5 @@
+enable bootmon.service
+enable bugreport-procs-snapshot.path
+enable bugreport-procs-snapshot.service
+enable shipmode.service
+enable shipmode.path

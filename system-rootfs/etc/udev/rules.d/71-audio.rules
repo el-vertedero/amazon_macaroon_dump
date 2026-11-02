@@ -1,0 +1,4 @@
+ACTION=="add", KERNEL=="mt_xgpt", OWNER="system", GROUP="audio", MODE="0660"
+KERNEL=="pcmC*", SECLABEL{smack}="System"
+KERNEL=="timer", SECLABEL{smack}="System"
+KERNEL=="controlC*", SECLABEL{smack}="System"

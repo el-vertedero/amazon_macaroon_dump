@@ -1,0 +1,7 @@
+[3p]
+# Control switch used to enable or disable enforcement of 3p-events-allow-list entries.
+# * setting mode to "enforce" will block publish/subscribe actions by 3p and send metrics
+# * setting mode to "observe" will allow publish/subscribe actions by 3p and send metrics
+access-control-mode = "observe"
+3p-events-allow-list = [
+]

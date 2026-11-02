@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!--
+Available sound types:
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_BOOT_UP
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_BACK_BUTTON
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_HOME_BUTTON_DOUBLE_TAP
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_HOME_BUTTON_LONG_PRESS
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_HOME_BUTTON
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_MENU_BUTTON
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_LEFT
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_RIGHT
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_UP
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_DOWN
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_MIC_OFF
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_MIC_ON
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_BLUETOOTH_PAIRING
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_BLUETOOTH_PAIRED
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_BLUETOOTH_UNPAIRED
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_ERROR
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_VOLUME_UP
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_VOLUME_DOWN
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_PLAY
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_SELECT
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_CLICK
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_KEYPRESS_SET
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_KEYPRESS_REJECT
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_KEYPRESS_NORMAL
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_NOTIFICATION_STANDARD
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_ALERT_SPORT
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_ALERT_FAVORITE
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_ALERT_TRAFFIC
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_ALERT_WEATHER
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_ALERT_APP
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_CUSTOM_1
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_CUSTOM_2
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_CUSTOM_3
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_CUSTOM_4
+    AMAZON_AUDIO_SYSTEM_SOUND_TYPE_CUSTOM_5
+-->
+
+<!--
+(Optional)Available usage types:
+    AMAZON_AUDIO_USAGE_SYSTEM
+    AMAZON_AUDIO_USAGE_NOTIFICATION
+    If no usage is present the default will be AMAZON_AUDIO_USAGE_SYSTEM
+-->
+
+<system_sound_themes>
+    <!-- If default theme is set, only the sound types listed below are supported -->
+    <theme name="default" description="Common set of sound files for all themes">
+        <sound type="AMAZON_AUDIO_SYSTEM_SOUND_TYPE_LEFT" file="/usr/share/earcon/base/Effect_Tick.wav" usage="AMAZON_AUDIO_USAGE_SYSTEM"/>
+        <sound type="AMAZON_AUDIO_SYSTEM_SOUND_TYPE_RIGHT" file="/usr/share/earcon/base/Effect_Tick.wav" usage="AMAZON_AUDIO_USAGE_SYSTEM"/>
+        <sound type="AMAZON_AUDIO_SYSTEM_SOUND_TYPE_UP" file="/usr/share/earcon/base/Effect_Tick.wav"  usage="AMAZON_AUDIO_USAGE_SYSTEM"/>
+        <sound type="AMAZON_AUDIO_SYSTEM_SOUND_TYPE_DOWN" file="/usr/share/earcon/base/Effect_Tick.wav" usage="AMAZON_AUDIO_USAGE_SYSTEM"/>
+        <sound type="AMAZON_AUDIO_SYSTEM_SOUND_TYPE_ERROR" file="/usr/share/earcon/base/Effect_Tick.wav" usage="AMAZON_AUDIO_USAGE_SYSTEM"/>
+        <sound type="AMAZON_AUDIO_SYSTEM_SOUND_TYPE_SELECT" file="/usr/share/earcon/base/Effect_Tick.wav" usage="AMAZON_AUDIO_USAGE_SYSTEM"/>
+        <sound type="AMAZON_AUDIO_SYSTEM_SOUND_TYPE_CLICK" file="/usr/share/earcon/base/Effect_Tick.wav" usage="AMAZON_AUDIO_USAGE_SYSTEM"/>
+        <sound type="AMAZON_AUDIO_SYSTEM_SOUND_TYPE_KEYPRESS_SET" file="/usr/share/earcon/base/Effect_Tick.wav" usage="AMAZON_AUDIO_USAGE_SYSTEM"/>
+        <sound type="AMAZON_AUDIO_SYSTEM_SOUND_TYPE_KEYPRESS_REJECT" file="/usr/share/earcon/base/Effect_Tick.wav" usage="AMAZON_AUDIO_USAGE_SYSTEM"/>
+        <sound type="AMAZON_AUDIO_SYSTEM_SOUND_TYPE_KEYPRESS_NORMAL" file="/usr/share/earcon/base/Effect_Tick.wav" usage="AMAZON_AUDIO_USAGE_SYSTEM"/>
+        <sound type="AMAZON_AUDIO_SYSTEM_SOUND_TYPE_NOTIFICATION_STANDARD" file="/usr/share/earcon/base/Effect_Tick.wav" usage="AMAZON_AUDIO_USAGE_SYSTEM"/>
+    </theme>
+    <!-- Custom system sound themes go below here -->
+    <theme name="custom" description="Custom theme for test purpose">
+        <sound type="AMAZON_AUDIO_SYSTEM_SOUND_TYPE_SELECT" file="/usr/share/earcon/base/Effect_Tick.wav" usage="AMAZON_AUDIO_USAGE_SYSTEM"/>
+    </theme>
+</system_sound_themes>

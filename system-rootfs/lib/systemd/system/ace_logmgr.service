@@ -1,0 +1,46 @@
+[Unit]
+Description=LogMgr Daemon
+After=smartbox.service ace_messaging_service.service service-registrar.service
+Wants=dbus.socket service-registrar.service
+PartOf=service-registrar.service
+Conflicts=shutdown.target
+
+[Service]
+User=log
+ExecStart=/usr/bin/logmgr
+Restart=always
+SmackProcessLabel=System
+SupplementaryGroups=aipc log kvstore
+
+ReadWritePaths=/var/lib/data/ace/aipc/
+ReadWritePaths=/var/lib/data/ace/kvstorage
+ReadWritePaths=-/data/logd -/dev/socket -/dev/log -/cache/recovery/ -/data/system/ -/var/lib/data/acr/tombstones/ -/var/lib/data/ace/dropbox/
+ReadWritePaths=-/var/lib/private/acedropboxd/
+
+#AIPC Binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.ace.logmanager

@@ -1,0 +1,9 @@
+ [Unit]
+ Description=Trigger factory-reset start
+ 
+ [Path]
+ PathModified=/var/run/factory-reset/Start
+ Unit=factory-reset.service
+ 
+ [Install]
+ WantedBy=sysinit.target

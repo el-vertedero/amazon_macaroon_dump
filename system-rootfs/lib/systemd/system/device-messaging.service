@@ -1,0 +1,55 @@
+[Unit]
+Description=Device Messaging Service
+After=kvs_util.service eventmgr.service secure_kvs.service service-registrar.service
+# Start before any units that currently have an After dependency on
+# ace_messaging_service, until they can switch over to
+# device-messaging-service.
+Before=tokend.service ace_dioded.service ace_logmgr.service halo-msg-bridge.service credentialmanager.service
+Conflicts=shutdown.target
+Wants=secure_kvs.service service-registrar.service
+PartOf=service-registrar.service
+
+[Service]
+Type=notify
+User=messaging
+Group=messaging
+ExecStart=/usr/bin/device-messaging-service
+Restart=always
+RestartSec=1
+StartLimitBurst=10
+
+SmackProcessLabel=System
+
+DeviceAllow=/dev/tee0 rw
+BindPaths=-/dev/tee0
+ReadWritePaths=-/dev/tee0
+
+ReadWritePaths=/var/lib/data/ace/aipc/ /var/lib/data/ace/kvstorage/
+SupplementaryGroups=aipc tee kvstore
+# Fortifying the service
+#PrivateNetwork=true        # Exposed due to VTrace.
+CapabilityBoundingSet=none
+# Service requires access to internet
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+# Allow access to /dev/binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.ace.messaging.service

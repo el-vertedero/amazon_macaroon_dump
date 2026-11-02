@@ -1,0 +1,45 @@
+[Unit]
+Description=ACS Metric Daemon
+After=kvs_util.service dbus.service
+Wants=service-registrar.service
+PartOf=service-registrar.service
+Conflicts=shutdown.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ace_metric_daemon
+Restart=always
+SmackProcessLabel=System
+User=metrics
+Group=metrics
+ReadWritePaths=/var/lib/data/ace/metricd -/dev/socket -/dev/log
+BindPaths=/var/lib/data/ace/metricd -/dev/socket -/dev/log
+SupplementaryGroups=messagebus aipc kvstore
+
+#AIPC Binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+	 
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+	 
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.ace.metrics

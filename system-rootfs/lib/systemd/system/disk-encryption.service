@@ -1,0 +1,16 @@
+[Unit]
+Description=Initialization of disk encryption
+DefaultDependencies=no
+Conflicts=umount.target
+IgnoreOnIsolate=true
+Before=local-fs.target var-volatile.mount umount.target systemd-journald.service systemd-pstore.service systemd-remount-fs.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+TimeoutSec=0
+ExecStart=/sbin/disk-encryption.sh
+SmackProcessLabel=_
+
+[Install]
+WantedBy=local-fs.target

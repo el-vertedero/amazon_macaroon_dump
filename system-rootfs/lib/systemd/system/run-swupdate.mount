@@ -1,0 +1,12 @@
+[Unit]
+Description=SWUpdate Temporary Filesystem
+Before=swupdate.service swupdate.socket
+
+[Mount]
+What=tmpfs
+Where=/run/swupdate
+Type=tmpfs
+Options=mode=0770,uid=root,gid=ota,strictatime,nosuid,nodev,size=10%%,nr_inodes=1m
+
+[Install]
+WantedBy=local-fs.target

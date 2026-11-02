@@ -1,0 +1,68 @@
+#
+# Copyright 2024 Amazon.com, Inc. or its affiliates. All rights reserved.
+#
+# AMAZON PROPRIETARY/CONFIDENTIAL
+#
+# You may not use this file except in compliance with the terms and conditions
+# set forth in the accompanying LICENSE.TXT file. This file is a
+# Modifiable File, as defined in the accompanying LICENSE.TXT file.
+#
+# THESE MATERIALS ARE PROVIDED ON AN "AS IS" BASIS. AMAZON SPECIFICALLY
+# DISCLAIMS, WITH RESPECT TO THESE MATERIALS, ALL WARRANTIES, EXPRESS,
+# IMPLIED, OR STATUTORY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+#
+
+[Unit]
+Description=Time service
+Conflicts=shutdown.target
+After=eventmgr.service device-config-manager.service ats.service service-registrar.service
+Requires=eventmgr.service
+Wants=device-config-manager.service service-registrar.service
+PartOf=service-registrar.service
+
+[Service]
+ExecStart=/usr/bin/timeservice
+DynamicUser=yes
+Restart=always
+
+# Configure watch dog to restart after 120 seconds of inactivity
+WatchdogSec=120
+
+# Further restrict the API subtrees, as most services don't need these.
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+# Restrict the permitted syscalls to a reasonable set used by common system services.
+# If an unexpected syscall occurs, return EPERM instead of terminating.
+SystemCallFilter=@system-service @basic-io
+SystemCallErrorNumber=EPERM
+
+# Required for AIPC
+SupplementaryGroups=aipc
+ReadWritePaths=/var/lib/data/ace/aipc/
+
+# Required for logging
+ReadWritePaths=-/dev/socket -/dev/log
+BindPaths=-/dev/socket -/dev/log
+
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+SmackProcessLabel=System
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectKernelLogs=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

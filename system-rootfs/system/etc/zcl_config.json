@@ -1,0 +1,2575 @@
+{
+    "dataTypes": {
+      "BOOL": "0x10",
+      "MAP8": "0x18",
+      "MAP16": "0x19",
+      "MAP24": "0x1a",
+      "MAP32": "0x1b",
+      "MAP40": "0x1c",
+      "MAP48": "0x1d",
+      "MAP56": "0x1e",
+      "MAP64": "0x1f",
+      "UINT8": "0x20",
+      "UINT16": "0x21",
+      "UINT24": "0x22",
+      "UINT32": "0x23",
+      "UINT40": "0x24",
+      "UINT48": "0x25",
+      "UINT56": "0x26",
+      "UINT64": "0x27",
+      "INT8": "0x28",
+      "INT16": "0x29",
+      "INT24": "0x2a",
+      "INT32": "0x2b",
+      "INT40": "0x2c",
+      "INT48": "0x2d",
+      "INT56": "0x2e",
+      "INT64": "0x2f",
+      "ENUM8": "0x30",
+      "ENUM16": "0x31",
+      "STRING": "0x42",
+      "IEEEADDRESS": "0xF0",
+      "TOD": "0xe0",
+      "DATE": "0xe1",
+      "UTC": "0xe2"
+    },
+    "clusters": {
+      "BASIC": {
+        "id": "0x0000",
+        "server": {
+          "attributes": {
+            "ZclVersion": {
+              "id": "0x0000",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": "0x03"
+            },
+            "AppVersion": {
+              "id": "0x0001",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": "0x00"
+            },
+            "StackVersion": {
+              "id": "0x0002",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": "0x00"
+            },
+            "HwVersion": {
+              "id": "0x0003",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": "0x00"
+            },
+            "ManufacturerName": {
+              "id": "0x0004",
+              "type": "STRING",
+              "minValue": "",
+              "maxValue": "",
+              "defaultValue": ""
+            },
+            "ModelIdentifier": {
+              "id": "0x0005",
+              "type": "STRING",
+              "minValue": "",
+              "maxValue": "",
+              "defaultValue": ""
+            },
+            "DateCode": {
+              "id": "0x0006",
+              "type": "STRING",
+              "minValue": "",
+              "maxValue": "",
+              "defaultValue": ""
+            },
+            "PowerSource": {
+              "id": "0x0007",
+              "type": "ENUM8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": "0x00"
+            }
+          },
+          "commands": {
+            "ResetToFactory": {
+              "id": "0x00",
+              "payload": {
+              }
+            }
+          }
+        },
+        "client": {
+        }
+      },
+      "POWER_CONFIGURATION": {
+        "id": "0x0001",
+        "server": {
+          "attributes": {
+            "MainsVoltage": {
+              "id": "0x0000",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff",
+              "defaultValue": ""
+            },
+            "MainsFrequency": {
+              "id": "0x0001",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": ""
+            },
+            "BatteryVoltage": {
+              "id": "0x0020",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": ""
+            },
+            "BatteryRemaining": {
+              "id": "0x0021",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": "0x00"
+            },
+            "BatteryManufacturer": {
+              "id": "0x0030",
+              "type": "STRING",
+              "minValue": "",
+              "maxValue": "",
+              "defaultValue": ""
+            },
+            "BatterySize": {
+              "id": "0x0031",
+              "type": "ENUM8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": "0Xff"
+            },
+            "BatteryVoltage2": {
+              "id": "0x0040",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": ""
+            },
+            "BatteryRemaining2": {
+              "id": "0x0041",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": "0x00"
+            },
+            "Battery3Voltage3": {
+              "id": "0x0060",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": ""
+            },
+            "BatteryRemaining3": {
+              "id": "0x0061",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": "0x00"
+            }
+          }
+        }
+      },
+      "IDENTIFY": {
+        "id": "0x0003",
+        "server": {
+          "attributes": {
+            "IdentifyTime": {
+              "id": "0x0000",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff",
+              "defaultValue": "0x0000"
+            }
+          },
+          "commands": {
+            "Identify": {
+              "id": "0x00",
+              "payload": {
+                "IdentifyTime": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 0
+                }
+              }
+            },
+            "IdentifyQuery": {
+              "id": "0x01",
+              "payload": {
+              }
+            },
+            "IdentifyQueryResponse": {
+              "id": "0x00",
+              "payload": {
+                "Timeout": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 0
+                }
+              }
+            }
+          }
+        },
+        "client": {
+        }
+      },
+      "GROUPS": {
+        "id": "0x0004"
+      },
+      "SCENES": {
+        "id": "0x0005"
+      },
+      "ON_OFF": {
+        "id": "0x0006",
+        "non-sleepy": true,
+        "server": {
+          "attributes": {
+            "OnOff": {
+              "id": "0x0000",
+              "type": "BOOL",
+              "minValue": "0x00",
+              "maxValue": "0x01",
+              "defaultValue": "0x00"
+            },
+            "OnTime": {
+              "id": "0x4001",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff",
+              "defaultValue": "0x0000"
+            },
+            "OffWaitTime": {
+              "id": "0x4002",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff",
+              "defaultValue": "0x0000"
+            }
+          },
+          "commands": {
+            "Off": {
+              "id": "0x00",
+              "payload": {
+              }
+            },
+            "On": {
+              "id": "0x01",
+              "payload": {
+              }
+            },
+            "Toggle": {
+              "id": "0x02",
+              "payload": {
+              }
+            },
+            "OffWithEffect": {
+              "id": "0x40",
+              "payload": {
+                "EffectId": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                },
+                "EffectVariant": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 1
+                }
+              }
+            },
+            "OnWithTimedOff": {
+              "id": "0x42",
+              "payload": {
+                "Control": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                },
+                "OnTime": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                },
+                "OffWaitTime": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 2
+                }
+              }
+            }
+          }
+        },
+        "client": {
+        }
+      },
+      "ON_OFF_SWITCH_CONFIGURATION": {
+        "id": "0x0007"
+      },
+      "LEVEL_CONTROL": {
+        "id": "0x0008",
+        "non-sleepy": true,
+        "server": {
+          "attributes": {
+            "CurrentLevel": {
+              "id": "0x0000",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xfe",
+              "defaultValue": ""
+            },
+            "RemainingTime": {
+              "id": "0x0001",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff",
+              "defaultValue": "0x0000"
+            },
+            "OnOffTransitionTime": {
+              "id": "0x0010",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff",
+              "defaultValue": "0x0000"
+            },
+            "OnLevel": {
+              "id": "0x0011",
+              "type": "UINT8",
+              "minValue": "0x01",
+              "maxValue": "0xff",
+              "defaultValue": "0xff"
+            },
+            "OnTransitionTime": {
+              "id": "0x0012",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xfffe",
+              "defaultValue": ""
+            },
+            "OffTransitionTime": {
+              "id": "0x0013",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xfffe",
+              "defaultValue": ""
+            },
+            "DefaultMoveRate": {
+              "id": "0x0014",
+              "type": "UINT16",
+              "minValue": "0x00",
+              "maxValue": "0xfe",
+              "defaultValue": ""
+            },
+            "Options": {
+              "id": "0x000F",
+              "type": "MAP8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": "0x00"
+            }
+          },
+          "commands": {
+            "MoveToLevel": {
+              "id": "0x00",
+              "payload": {
+                "Level": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                },
+                "TransitionTime": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                }
+              }
+            },
+            "Move": {
+              "id": "0x01",
+              "payload": {
+                "MoveMode": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "Rate": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 1
+                }
+              }
+            },
+            "Step": {
+              "id": "0x02",
+              "payload": {
+                "StepMode": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "StepSize": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 1
+                },
+                "TransitionTime": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 2
+                }
+              }
+            },
+            "Stop": {
+              "id": "0x03",
+              "payload": {
+              }
+            },
+            "MoveToLevelWithOnOff": {
+              "id": "0x04",
+              "payload": {
+                "Level": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                },
+                "TransitionTime": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                }
+              }
+            },
+            "MoveWithOnOff": {
+              "id": "0x05",
+              "payload": {
+                "MoveMode": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "Rate": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 1
+                }
+              }
+            },
+            "StepWithOnOff": {
+              "id": "0x06",
+              "payload": {
+                "StepMode": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "StepSize": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 1
+                },
+                "TransitionTime": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 2
+                }
+              }
+            },
+            "StopWithOnOff": {
+              "id": "0x07",
+              "payload": {
+              }
+            }
+          }
+        },
+        "client": {}
+      },
+      "ALARMS": {
+        "id": "0x0009"
+      },
+      "TIME": {
+        "id": "0x000a",
+        "server": {
+          "attributes": {
+            "Time": {
+              "id": "0x0000",
+              "type": "UTC",
+              "minValue": "0x00000000",
+              "maxValue": "0xfffffffe",
+              "defaultValue": ""
+            },
+            "TimeStatus": {
+              "id": "0x0001",
+              "type": "MAP8",
+              "minValue": "0x00",
+              "maxValue": "0x0f",
+              "defaultValue": "0x00"
+            },
+            "TimeZone": {
+              "id": "0x0002",
+              "type": "INT32",
+              "minValue": "-86400",
+              "maxValue": "86400",
+              "defaultValue": "0"
+            },
+            "DstStart": {
+              "id": "0x0003",
+              "type": "UINT32",
+              "minValue": "0x00000000",
+              "maxValue": "0xfffffffe",
+              "defaultValue": ""
+            },
+            "DstEnd": {
+              "id": "0x0004",
+              "type": "UINT32",
+              "minValue": "0x00000000",
+              "maxValue": "0xfffffffe",
+              "defaultValue": ""
+            },
+            "DstShift": {
+              "id": "0x0005",
+              "type": "INT32",
+              "minValue": "-86400",
+              "maxValue": "86400",
+              "defaultValue": "0"
+            },
+            "StandardTime": {
+              "id": "0x0006",
+              "type": "UINT32",
+              "minValue": "0x00000000",
+              "maxValue": "0xfffffffe",
+              "defaultValue": ""
+            },
+            "LocalTime": {
+              "id": "0x0007",
+              "type": "UINT32",
+              "minValue": "0x00000000",
+              "maxValue": "0xfffffffe",
+              "defaultValue": ""
+            },
+            "LastSetTime": {
+              "id": "0x0008",
+              "type": "UTC",
+              "minValue": "0x00000000",
+              "maxValue": "0xffffffff",
+              "defaultValue": "0xffffffff"
+            }
+          },
+          "commands": {
+          }
+        },
+        "client": {
+        }
+      },
+      "RSSI": {
+        "id": "0x000b"
+      },
+      "ANALOG_INPUT": {
+        "id": "0x000c"
+      },
+      "ANALOG_OUTPUT": {
+        "id": "0x000d"
+      },
+      "ANALOG_VALUE": {
+        "id": "0x000e"
+      },
+      "BINARY_INPUT": {
+        "id": "0x000f"
+      },
+      "BINARY_OUTPUT": {
+        "id": "0x0010"
+      },
+      "BINARY_VALUE": {
+        "id": "0x0011"
+      },
+      "MULTISTATE_INPUT": {
+        "id": "0x0012"
+      },
+      "MULTISTATE_OUTPUT": {
+        "id": "0x0013"
+      },
+      "MULTISTATE_VALUE": {
+        "id": "0x0014"
+      },
+      "OTA": {
+        "id": "0x0019",
+        "server": {
+          "attributes": {
+            "UpgradeServerId": {
+              "id": "0x0000",
+              "minValue": "0x0000000000000000",
+              "maxValue": "0xffffffffffffffff",
+              "type": "IEEEADDRESS",
+              "defaultValue": "0xffffffffffffffff"
+            },
+            "FileOffset": {
+              "id": "0x0001",
+              "type": "UINT32",
+              "minValue": "0x00000000",
+              "maxValue": "0xffffffff",
+              "defaultValue": "0xffffffff"
+            },
+            "CurrentFileVersion": {
+              "id": "0x0002",
+              "type": "UINT32",
+              "minValue": "0x00000000",
+              "maxValue": "0xffffffff",
+              "defaultValue": "0xffffffff"
+            },
+            "CurrentZigbeeStackVersion": {
+              "id": "0x0003",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff",
+              "defaultValue": "0xffff"
+            },
+            "DownloadFileVersion": {
+              "id": "0x0004",
+              "type": "UINT32",
+              "minValue": "0x00000000",
+              "maxValue": "0xffffffff",
+              "defaultValue": "0xffffffff"
+            },
+            "DownloadZigbeeStackVersion": {
+              "id": "0x0005",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff",
+              "defaultValue": "0xffff"
+            },
+            "ImageUpgradeStatus": {
+              "id": "0x0006",
+              "type": "ENUM8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": "0x00"
+            },
+            "ManufacturerId": {
+              "id": "0x0007",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff",
+              "defaultValue": ""
+            },
+            "ImageTypeId": {
+              "id": "0x0008",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff",
+              "defaultValue": ""
+            },
+            "MinBlockPeriod": {
+              "id": "0x0009",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xfffe",
+              "defaultValue": "0x0000"
+            },
+            "ImageStamp": {
+              "id": "0x000a",
+              "type": "UINT32",
+              "minValue": "0x00000000",
+              "maxValue": "0xffffffff",
+              "defaultValue": ""
+            }
+          },
+          "commands": {
+            "ImageNotify": {
+              "id": "0x00",
+              "payload": {
+                "PayloadType": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "QueryJitter": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 1
+                },
+                "ManufacturerCode": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 2
+                },
+                "ImageType": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 3
+                },
+                "NewFileVersion": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 4
+                }
+              }
+            },
+            "ImageNotify": {
+              "id": "0x00",
+              "payload": {
+                "PayloadType": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "QueryJitter": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 1
+                }
+              }
+            },
+            "QueryNextImageRequest": {
+              "id": "0x01",
+              "payload": {
+                "FieldControl": {
+                  "bits": 8,
+                  "dataType": "MAP8",
+                  "order": 0
+                },
+                "ManufacturerCode": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                },
+                "ImageType": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 2
+                },
+                "OldFileVersion": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 3
+                },
+                "HardwareVersion": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 4
+                }
+              }
+            },
+            "QueryNextImageResponse": {
+              "id": "0x02",
+              "payload": {
+                "Status": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "ManufacturerCode": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                },
+                "ImageType": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 2
+                },
+                "FileVersion": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 3
+                },
+                "ImageSize": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 4
+                }
+              }
+            },
+            "QueryNextImageResponseStatus": {
+              "id": "0x02",
+              "payload": {
+                "Status": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                }
+              }
+            },
+            "ImageBlockRequest": {
+              "id": "0x03",
+              "payload": {
+                "FieldControl": {
+                  "bits": 8,
+                  "dataType": "MAP8",
+                  "order": 0
+                },
+                "ManufacturerCode": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                },
+                "ImageType": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 2
+                },
+                "FileVersion": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 3
+                },
+                "FileOffset": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 4
+                },
+                "MaxDataSize": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 5
+                },
+                "RequestNodeAddress": {
+                  "bits": 64,
+                  "dataType": "EUI64",
+                  "order": 6
+                },
+                "MinBlockPeriod": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 7
+                }
+              }
+            },
+            "ImagePageRequest": {
+              "id": "0x04",
+              "payload": {
+                "FieldControl": {
+                  "bits": 8,
+                  "dataType": "MAP8",
+                  "order": 0
+                },
+                "ManufacturerCode": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                },
+                "ImageType": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 2
+                },
+                "FileVersion": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 3
+                },
+                "FileOffset": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 4
+                },
+                "MaxDataSize": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 5
+                },
+                "PageSize": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 6
+                },
+                "ResponseSpacing": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 7
+                },
+                "RequestNodeAddress": {
+                  "bits": 64,
+                  "dataType": "EUI64",
+                  "order": 8
+                }
+              }
+            },
+            "ImageBlockResponse": {
+              "id": "0x05",
+              "payload": {
+                "SuccessStatus": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "ManufacturerCode": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                },
+                "ImageType": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 2
+                },
+                "FileVersion": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 3
+                },
+                "FileOffset": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 4
+                },
+                "DataSize": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 5
+                }
+              }
+            },
+            "UpgradeEndRequest": {
+              "id": "0x06",
+              "payload": {
+                "Status": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "ManufacturerCode": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                },
+                "ImageType": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 2
+                },
+                "FileVersion": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 3
+                }
+              }
+            },
+            "UpgradeEndResponse": {
+              "id": "0x07",
+              "payload": {
+                "ManufacturerCode": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 0
+                },
+                "ImageType": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                },
+                "FileVersion": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 2
+                },
+                "CurrentTime": {
+                  "bits": 32,
+                  "dataType": "UTC",
+                  "order": 3
+                },
+                "UpgradeTime": {
+                  "bits": 8,
+                  "dataType": "UTC",
+                  "order": 4
+                }
+              }
+            },
+            "QueryDeviceSpecificFileRequest": {
+              "id": "0x08",
+              "payload": {
+                "RequestNodeAddress": {
+                  "bits": 64,
+                  "dataType": "EUI64",
+                  "order": 0
+                },
+                "ManufacturerCode": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                },
+                "ImageType": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 2
+                },
+                "FileVersion": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 3
+                },
+                "CurrentZigbeeStackVersion": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 4
+                }
+              }
+            },
+            "QueryDeviceSpecificFileResponse": {
+              "id": "0x09",
+              "payload": {
+                "Status": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "ManufacturerCode": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                },
+                "ImageType": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 2
+                },
+                "FileVersion": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 3
+                },
+                "ImageSize": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 4
+                }
+              }
+            }
+          }
+        },
+        "client": {
+        }
+      },
+      "POLL_CONTROL": {
+        "id": "0x0020",
+        "server": {
+          "attributes": {
+            "CheckInInterval": {
+              "id": "0x0000",
+              "type": "UINT32",
+              "minValue": "0x00",
+              "maxValue": "0x6e0000",
+              "defaultValue": "0x3840"
+            },
+            "LongPollInterval": {
+              "id": "0x0001",
+              "type": "UINT32",
+              "minValue": "0x04",
+              "maxValue": "0x6e0000",
+              "defaultValue": "0x14"
+            },
+            "ShortPollInterval": {
+              "id": "0x0002",
+              "type": "UINT16",
+              "minValue": "0x01",
+              "maxValue": "0xffff",
+              "defaultValue": "0x02"
+            },
+            "FastPollTimeout": {
+              "id": "0x0003",
+              "type": "UINT16",
+              "minValue": "0x01",
+              "maxValue": "0xffff",
+              "defaultValue": "0x28"
+            },
+            "CheckInIntervalMin": {
+              "id": "0x0004",
+              "type": "UINT32",
+              "minValue": "0x00000000",
+              "maxValue": "0xffffffff",
+              "defaultValue": "0x0"
+            },
+            "LongPollIntervalMin": {
+              "id": "0x0005",
+              "type": "UINT32",
+              "minValue": "0x00000000",
+              "maxValue": "0xffffffff",
+              "defaultValue": "0x0"
+            },
+            "FastPollTimeoutMax": {
+              "id": "0x0006",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff",
+              "defaultValue": "0x0"
+            }
+          },
+          "commands": {
+            "CheckIn": {
+              "id": "0x00",
+              "payload": {
+              }
+            },
+            "CheckInResponse": {
+              "id": "0x00",
+              "payload": {
+                "StartFastPolling": {
+                  "bits": 8,
+                  "dataType": "BOOL",
+                  "order": 0
+                },
+                "FastPollTimeout": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                }
+              }
+            },
+            "FastPollStop": {
+              "id": "0x01",
+              "payload": {
+              }
+            },
+            "SetLongPollInterval": {
+              "id": "0x02",
+              "payload": {
+                "NewLongPollInterval": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 0
+                }
+              }
+            },
+            "SetShortPollInterval": {
+              "id": "0x03",
+              "payload": {
+                "NewShortPollInterval": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 0
+                }
+              }
+            }
+          }
+        },
+        "client": {
+        }
+      },
+      "KEEP_ALIVE": {
+        "id": "0x0025",
+        "server": {
+          "attributes": {
+            "Base": {
+              "id": "0x0000",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": "0x00"
+            },
+            "Jitter": {
+              "id": "0x0001",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff",
+              "defaultValue": "0x0000"
+            }
+          },
+          "commands": {
+          }
+        },
+        "client": {
+        }
+      },
+      "LOCK_CONTROL": {
+        "id": "0x0101",
+        "non-sleepy": true,
+        "server": {
+          "attributes": {
+            "LockState": {
+              "id": "0x0000",
+              "type": "ENUM8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": ""
+            },
+            "LockType": {
+              "id": "0x0001",
+              "type": "ENUM8",
+              "minValue": "0x00",
+              "maxValue": "0x0a",
+              "defaultValue": ""
+            },
+            "ActuatorEnabled": {
+              "id": "0x0002",
+              "type": "BOOL",
+              "minValue": "0x00",
+              "maxValue": "0x01"
+            }
+          },
+          "commands": {
+            "LockDoor": {
+              "id": "0x00",
+              "payload": {
+              }
+            },
+            "UnlockDoor": {
+              "id": "0x01",
+              "payload": {
+              }
+            }
+          },
+          "client": {}
+        }
+      },
+      "WINDOW_COVERING": {
+        "id": "0x0102",
+        "server": {
+          "attributes": {
+            "CoveringType": {
+              "id": "0x0000",
+              "type": "ENUM8",
+              "minValue": "0x00",
+              "maxValue": "0x09",
+              "defaultValue": ""
+            },
+            "CurrPosLiftPercent": {
+              "id": "0x0008",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0x64",
+              "defaultValue": "0x00"
+            },
+            "Mode": {
+              "id": "0x0007",
+              "type": "MAP8",
+              "minValue": "0x00",
+              "maxValue": "0x7f",
+              "defaultValue": "0x03"
+            }
+          },
+          "commands": {
+            "Up": {
+              "id": "0x00",
+              "payload": {
+              }
+            },
+            "Down": {
+              "id": "0x01",
+              "payload": {
+              }
+            },
+            "Stop": {
+              "id": "0x02",
+              "payload": {
+              }
+            },
+            "GoToLiftPercent": {
+              "id": "0x05",
+              "payload": {
+                "LiftValuePercent": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                }
+              }
+            }
+          }
+        },
+        "client": {
+        }
+      },
+      "PUMP_CONFIGURATION_AND_CONTROL": {
+        "id": "0x0200"
+      },
+      "THERMOSTAT": {
+        "id": "0x0201",
+        "non-sleepy": true,
+        "server": {
+          "attributes": {
+            "LocalTemperature": {
+              "id": "0x0000",
+              "type": "INT16",
+              "minValue": "0x954d",
+              "maxValue": "0x7fff",
+              "defaultValue": ""
+            },
+            "OutdoorTemperature": {
+              "id": "0x0001",
+              "type": "INT16",
+              "minValue": "0x954d",
+              "maxValue": "0x7fff",
+              "defaultValue": ""
+            },
+            "Occupancy": {
+              "id": "0x0002",
+              "type": "MAP8",
+              "minValue": "0x0000",
+              "maxValue": "0xfffe",
+              "defaultValue": "0x0"
+            },
+            "OccupiedCoolingSetpoint": {
+              "id": "0x0011",
+              "type": "INT16",
+              "minValue": "0x954d",
+              "maxValue": "0x7fff",
+              "defaultValue": "0x0a28"
+            },
+            "OccupiedHeatingSetpoint": {
+              "id": "0x0012",
+              "type": "INT16",
+              "minValue": "0x954d",
+              "maxValue": "0x7fff",
+              "defaultValue": "0x07d0"
+            },
+            "UnoccupiedCoolingSetpoint": {
+              "id": "0x0013",
+              "type": "INT16",
+              "minValue": "0x954d",
+              "maxValue": "0x7fff",
+              "defaultValue": "0x0a28"
+            },
+            "UnccupiedHeatingSetpoint": {
+              "id": "0x0014",
+              "type": "INT16",
+              "minValue": "0x954d",
+              "maxValue": "0x7fff",
+              "defaultValue": "0x07d0"
+            },
+            "MinHeatSetpointLimit": {
+              "id": "0x0015",
+              "type": "INT16",
+              "minValue": "0x954d",
+              "maxValue": "0x7fff",
+              "defaultValue": "0x02bc"
+            },
+            "MaxHeatSetpointLimit": {
+              "id": "0x0016",
+              "type": "INT16",
+              "minValue": "0x954d",
+              "maxValue": "0x7fff",
+              "defaultValue": "0x0bb8"
+            },
+            "MinCoolSetpointLimit": {
+              "id": "0x0017",
+              "type": "INT16",
+              "minValue": "0x954d",
+              "maxValue": "0x7fff",
+              "defaultValue": "0x0640"
+            },
+            "MaxCoolSetpointLimit": {
+              "id": "0x0018",
+              "type": "INT16",
+              "minValue": "0x954d",
+              "maxValue": "0x7fff",
+              "defaultValue": "0x0c80"
+            },
+            "MinSetpointDeadband": {
+              "id": "0x0019",
+              "type": "INT8",
+              "minValue": "0x0a",
+              "maxValue": "0x19",
+              "defaultValue": "0x19"
+            },
+            "ControlSequenceOfOperation": {
+              "id": "0x001b",
+              "type": "ENUM8",
+              "minValue": "0x00",
+              "maxValue": "0x05",
+              "defaultValue": "0x04"
+            },
+            "SystemMode": {
+              "id": "0x001c",
+              "type": "ENUM8",
+              "minValue": "0x00",
+              "maxValue": "0x09",
+              "defaultValue": "0x01"
+            }
+          },
+          "commands": {
+            "SetPointRaiseLower": {
+              "id": "0x00",
+              "payload": {
+                "Mode": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "Amount": {
+                  "bits": 8,
+                  "dataType": "INT8",
+                  "order": 1
+                }
+              }
+            }
+          }
+        }
+      },
+      "FAN_CONTROL": {
+        "id": "0x0202"
+      },
+      "COLOR_CONTROL": {
+        "id": "0x0300",
+        "non-sleepy": true,
+        "server": {
+          "attributes": {
+            "CurrentHue": {
+              "id": "0x0000",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xfe",
+              "defaultValue": "0x00"
+            },
+            "CurrentSaturation": {
+              "id": "0x0001",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xfe",
+              "defaultValue": "0x00"
+            },
+            "RemainingTime": {
+              "id": "0x0002",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xfffe",
+              "defaultValue": "0x00"
+            },
+            "CurrentX": {
+              "id": "0x0003",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xfeff",
+              "defaultValue": "0x616b"
+            },
+            "CurrentY": {
+              "id": "0x0004",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xfeff",
+              "defaultValue": "0x607d"
+            },
+            "DriftCompensation": {
+              "id": "0x0005",
+              "type": "ENUM8",
+              "minValue": "0x00",
+              "maxValue": "0x04",
+              "defaultValue": ""
+            },
+            "CompensationText": {
+              "id": "0x0006",
+              "type": "STRING",
+              "minValue": "",
+              "maxValue": "",
+              "defaultValue": ""
+            },
+            "ColorTemperatureMireds": {
+              "id": "0x0007",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xfeff",
+              "defaultValue": "0x00fa"
+            },
+            "ColorMode": {
+              "id": "0x0008",
+              "type": "ENUM8",
+              "minValue": "0x00",
+              "maxValue": "0x02",
+              "defaultValue": "0x01"
+            },
+            "ColorCapabilities": {
+              "id": "0x400a",
+              "type": "MAP16",
+              "minValue": "0x0000",
+              "maxValue": "0x001f",
+              "defaultValue": "0x0000"
+            }
+          },
+          "commands": {
+            "MoveToHue": {
+              "id": "0x00",
+              "payload": {
+                "Hue": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                },
+                "Direction": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 1
+                },
+                "TransitionTime": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 2
+                }
+              }
+            },
+            "MoveHue": {
+              "id": "0x01",
+              "payload": {
+                "MoveMode": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "Rate": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 1
+                }
+              }
+            },
+            "StepHue": {
+              "id": "0x02",
+              "payload": {
+                "StepMode": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "StepSize": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 1
+                },
+                "TransitionTime": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 2
+                }
+              }
+            },
+            "MoveToSaturation": {
+              "id": "0x03",
+              "payload": {
+                "Saturation": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                },
+                "TransitionTime": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                }
+              }
+            },
+            "MoveSaturation": {
+              "id": "0x04",
+              "payload": {
+                "MoveMode": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "Rate": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 1
+                }
+              }
+            },
+            "StepSaturation": {
+              "id": "0x05",
+              "payload": {
+                "StepMode": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "StepSize": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 1
+                },
+                "TransitionTime": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 2
+                }
+              }
+            },
+            "MoveToHueAndSaturation": {
+              "id": "0x06",
+              "payload": {
+                "Hue": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                },
+                "Saturation": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 1
+                },
+                "TransitionTime": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 2
+                }
+              }
+            },
+            "MoveToColorTemperature": {
+              "id": "0x0a",
+              "payload": {
+                "ColorTemperatureMireds": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 0
+                },
+                "TransitionTime": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                }
+              }
+            }
+          }
+        },
+        "client": {}
+      },
+      "BALLAST_CONTROL": {
+        "id": "0x0301"
+      },
+      "TEMPERATURE_MEASUREMENT": {
+        "id": "0x0402",
+        "server": {
+          "attributes": {
+            "MeasuredValue": {
+              "id": "0x0000",
+              "type": "INT16",
+              "minValue": "0x954d",
+              "maxValue": "0x7fff",
+              "defaultValue": "0xffff"
+            },
+            "MinMeasuredVal": {
+              "id": "0x0001",
+              "type": "INT16",
+              "minValue": "0x954d",
+              "maxValue": "0x7ffe",
+              "defaultValue": "0x8000"
+            },
+            "MaxMeasuredVal": {
+              "id": "0x0002",
+              "type": "INT16",
+              "minValue": "0x954e",
+              "maxValue": "0x7fff",
+              "defaultValue": "0x8000"
+            },
+            "Tolerance": {
+              "id": "0x0003",
+              "type": "INT16",
+              "minValue": "0x0000",
+              "maxValue": "0x8000",
+              "defaultValue": ""
+            }
+          }
+        },
+        "client": {
+        }
+      },
+      "PRESSURE_MEASUREMENT": {
+        "id": "0x0403",
+        "server": {
+          "attributes": {
+            "MeasuredValue": {
+              "id": "0x0000",
+              "type": "INT16",
+              "minValue": "0x8001",
+              "maxValue": "0x7fff",
+              "defaultValue": "0xffff"
+            },
+            "MinMeasuredVal": {
+              "id": "0x0001",
+              "type": "INT16",
+              "minValue": "0x8001",
+              "maxValue": "0x7ffe",
+              "defaultValue": "0x8000"
+            },
+            "MaxMeasuredVal": {
+              "id": "0x0002",
+              "type": "INT16",
+              "minValue": "0x8002",
+              "maxValue": "0x7fff",
+              "defaultValue": "0x8000"
+            },
+            "Tolerance": {
+              "id": "0x0003",
+              "type": "INT16",
+              "minValue": "0x0000",
+              "maxValue": "0x8000",
+              "defaultValue": ""
+            }
+          }
+        },
+        "client": {
+        }
+      },
+      "FLOW_MEASUREMENT": {
+        "id": "0x0404",
+        "server": {
+          "attributes": {
+            "MeasuredValue": {
+              "id": "0x0000",
+              "type": "INT16",
+              "minValue": "0x0000",
+              "maxValue": "0x2710",
+              "defaultValue": "0xffff"
+            },
+            "MinMeasuredVal": {
+              "id": "0x0001",
+              "type": "INT16",
+              "minValue": "0x0000",
+              "maxValue": "0x270f",
+              "defaultValue": "0xffff"
+            },
+            "MaxMeasuredVal": {
+              "id": "0x0002",
+              "type": "INT16",
+              "minValue": "0x0001",
+              "maxValue": "0x2710",
+              "defaultValue": "0xffff"
+            },
+            "Tolerance": {
+              "id": "0x0003",
+              "type": "INT16",
+              "minValue": "0x0000",
+              "maxValue": "0x8000",
+              "defaultValue": ""
+            }
+          }
+        },
+        "client": {
+        }
+      },
+      "RELATIVE_HUMIDITY": {
+        "id": "0x0405",
+        "server": {
+          "attributes": {
+            "MeasuredValue": {
+              "id": "0x0000",
+              "type": "UINT16",
+              "minValue": "0x8001",
+              "maxValue": "0xffff",
+              "defaultValue": "0xffff"
+            },
+            "MinMeasuredVal": {
+              "id": "0x0001",
+              "type": "UINT16",
+              "minValue": "0x8000",
+              "maxValue": "0xffff",
+              "defaultValue": "0x8000"
+            },
+            "MaxMeasuredVal": {
+              "id": "0x0002",
+              "type": "UINT16",
+              "minValue": "0x0001",
+              "maxValue": "0x7ffe",
+              "defaultValue": "0x8000"
+            },
+            "Tolerance": {
+              "id": "0x0003",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0x8000",
+              "defaultValue": ""
+            }
+          }
+        },
+        "client": {
+        }
+      },
+      "OCCUPANCY_SENSING": {
+        "id": "0x0406",
+        "server": {
+          "attributes": {
+            "Occupancy": {
+              "id": "0x0000",
+              "type": "MAP8",
+              "minValue": "0x00",
+              "maxValue": "0x01",
+              "defaultValue": ""
+            },
+            "OccupancySensorType": {
+              "id": "0x0001",
+              "type": "ENUM8",
+              "minValue": "0x00",
+              "maxValue": "0x03",
+              "defaultValue": ""
+            },
+            "OccupncySnsorTypeMap": {
+              "id": "0x0002",
+              "type": "MAP8",
+              "minValue": "0x00",
+              "maxValue": "0x07",
+              "defaultValue": ""
+            }
+          }
+        }
+      },
+      "LEAF_WETNESS": {
+        "id": "0x0407",
+        "server": {
+          "attributes": {
+            "MeasuredValue": {
+              "id": "0x0000",
+              "type": "UINT16",
+              "minValue": "0x8001",
+              "maxValue": "0xffff",
+              "defaultValue": "0xffff"
+            },
+            "MinMeasuredVal": {
+              "id": "0x0001",
+              "type": "UINT16",
+              "minValue": "0x8000",
+              "maxValue": "0xffff",
+              "defaultValue": "0x8000"
+            },
+            "MaxMeasuredVal": {
+              "id": "0x0002",
+              "type": "UINT16",
+              "minValue": "0x0001",
+              "maxValue": "0x7ffe",
+              "defaultValue": "0x8000"
+            },
+            "Tolerance": {
+              "id": "0x0003",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0x8000",
+              "defaultValue": ""
+            }
+          }
+        },
+        "client": {
+        }
+      },
+      "SOIL_MOISTURE": {
+        "id": "0x0408",
+        "server": {
+          "attributes": {
+            "MeasuredValue": {
+              "id": "0x0000",
+              "type": "UINT16",
+              "minValue": "0x8001",
+              "maxValue": "0xffff",
+              "defaultValue": "0xffff"
+            },
+            "MinMeasuredVal": {
+              "id": "0x0001",
+              "type": "UINT16",
+              "minValue": "0x8000",
+              "maxValue": "0xffff",
+              "defaultValue": "0x8000"
+            },
+            "MaxMeasuredVal": {
+              "id": "0x0002",
+              "type": "UINT16",
+              "minValue": "0x0001",
+              "maxValue": "0x7ffe",
+              "defaultValue": "0x8000"
+            },
+            "Tolerance": {
+              "id": "0x0003",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0x8000",
+              "defaultValue": ""
+            }
+          }
+        },
+        "client": {
+        }
+      },
+      "IAS_ZONE": {
+        "id": "0x0500",
+        "server": {
+          "attributes": {
+            "ZoneState": {
+              "id": "0x0000",
+              "type": "ENUM8",
+              "minValue": "0x00",
+              "maxValue": "0x01",
+              "defaultValue": "0x00"
+            },
+            "ZoneType": {
+              "id": "0x0001",
+              "type": "ENUM16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff",
+              "defaultValue": ""
+            },
+            "ZoneStatus": {
+              "id": "0x0002",
+              "type": "MAP16",
+              "minValue": "0x00",
+              "maxValue": "0x09",
+              "defaultValue": "0x00"
+            },
+            "IAS_CIE_Address": {
+              "id": "0x0010",
+              "type": "IEEEADDRESS",
+              "minValue": "",
+              "maxValue": "",
+              "defaultValue": ""
+            },
+            "ZoneID": {
+              "id": "0x0011",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xFF",
+              "defaultValue": "0xFF"
+            },
+            "NumZoneSensitivityLvlsSupport": {
+              "id": "0x0012",
+              "type": "UINT8",
+              "minValue": "0x02",
+              "maxValue": "0xFF",
+              "defaultValue": "0x02"
+            },
+            "CurrentZoneSensitivityLevel": {
+              "id": "0x0013",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xFF",
+              "defaultValue": "0x00"
+            }
+          },
+          "commands": {
+            "ZoneStatusChangeNotification": {
+              "id": "0x00",
+              "payload": {
+                "ZoneStatus": {
+                  "bits": 16,
+                  "dataType": "MAP16",
+                  "order": 0
+                },
+                "ExtendedStatus": {
+                  "bits": 8,
+                  "dataType": "MAP8",
+                  "order": 1
+                },
+                "ZoneID": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 2
+                },
+                "Delay": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 3
+                }
+              }
+            },
+            "ZoneEnrollRequest": {
+              "id": "0x01",
+              "payload": {
+                "ZoneType": {
+                  "bits": 16,
+                  "dataType": "ENUM16",
+                  "order": 0
+                },
+                "manufacturerCode": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                }
+              }
+            }
+          }
+        },
+        "client": {
+          "commands": {
+            "ZoneEnrollResponse": {
+              "id": "0x00",
+              "payload": {
+                "EnrollResponseCode": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "ZoneID": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 1
+                }
+              }
+            },
+            "InitiateNormalOperationMode": {
+              "id": "0x01",
+              "payload": {
+              }
+            },
+            "InitiateTestMode": {
+              "id": "0x02",
+              "payload": {
+                "TestModeDuration": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                },
+                "CurrentZoneSensitivityLevel": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 1
+                }
+              }
+            }
+          }
+        }
+      },
+      "IAS_ACE": {
+        "id": "0x0501",
+        "non-sleepy": true
+      },
+      "IAS_WD": {
+        "id": "0x0502",
+        "non-sleepy": true
+      },
+      "DIAGNOSTICS": {
+        "id": "0x0b05"
+      },
+      "PHILIPS_HUE": {
+        "id": "0x1000"
+      },
+      "WWAH": {
+        "id": "0xfc57",
+        "server": {
+          "attributes": {
+            "Version": {
+              "id": "0x0000",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff",
+              "defaultValue": ""
+            },
+            "DisableOTADowngrades": {
+              "id": "0x0002",
+              "type": "BOOL",
+              "minValue": "0x00",
+              "maxValue": "0x01"
+            },
+            "MGMTLeaveWithoutRejoinEnabled": {
+              "id": "0x0003",
+              "type": "BOOL",
+              "minValue": "0x00",
+              "maxValue": "0x01",
+              "defaultValue": "0x01"
+            },
+            "NetworkRetryCount": {
+              "id": "0x0004",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff"
+            },
+            "MACRetryCount": {
+              "id": "0x0005",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": ""
+            },
+            "RouterCheckinEnabled": {
+              "id": "0x0006",
+              "type": "BOOL",
+              "minValue": "0x00",
+              "maxValue": "0x01",
+              "defaultValue": "0x00"
+            },
+            "TouchlinkInterpanEnabled": {
+              "id": "0x0007",
+              "type": "BOOL",
+              "minValue": "0x00",
+              "maxValue": "0x01",
+              "defaultValue": ""
+            },
+            "WWAHParentClassificationEnabled": {
+              "id": "0x0008",
+              "type": "BOOL",
+              "minValue": "0x00",
+              "maxValue": "0x01"
+            },
+            "WWAHAppEventRetryEnabled": {
+              "id": "0x0009",
+              "type": "BOOL",
+              "minValue": "0x00",
+              "maxValue": "0x01",
+              "defaultValue": "0x00"
+            },
+            "WWAHAppEventRetryQueueSize": {
+              "id": "0x000a",
+              "type": "UINT16",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": "0x0a"
+            },
+            "WWAHRejoinEnabled": {
+              "id": "0x000b",
+              "type": "BOOL",
+              "minValue": "0x00",
+              "maxValue": "0x01",
+              "defaultValue": "0x00"
+            },
+            "MaxPollCCAWaitTime": {
+              "id": "0x000c",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": "0x03"
+            },
+            "ConfigurationModeEnabled": {
+              "id": "0x000d",
+              "type": "BOOL",
+              "minValue": "0x00",
+              "maxValue": "0x01",
+              "defaultValue": "0x01"
+            },
+            "CurrentDebugReportID": {
+              "id": "0x000e",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff"
+            },
+            "TCSecurityOnNtwrkKeyRotationEnabled": {
+              "id": "0x000f",
+              "type": "BOOL",
+              "minValue": "0x00",
+              "maxValue": "0x01",
+              "defaultValue": "0x00"
+            },
+            "WWAHBadParentRecoveryEnabled": {
+              "id": "0x0010",
+              "type": "BOOL",
+              "minValue": "0x00",
+              "maxValue": "0x01",
+              "defaultValue": "0x00"
+            },
+            "PendingNetworkUpdateChannel": {
+              "id": "0x0011",
+              "type": "UINT8",
+              "minValue": "0x00",
+              "maxValue": "0xff",
+              "defaultValue": "ff"
+            },
+            "PendingNetworkUpdatePANID": {
+              "id": "0x0012",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff",
+              "defaultValue": "0xffff"
+            },
+            "OTAMaxOfflineDuration": {
+              "id": "0x0013",
+              "type": "UINT16",
+              "minValue": "0x0000",
+              "maxValue": "0xffff"
+            }
+          },
+          "commands": {
+            "EnableApsLinkKeyAuthorization": {
+              "id": "0x00",
+              "payload": {
+                "ClusterCount": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                }
+              }
+            },
+            "DisableApsLinkKeyAuthorization": {
+              "id": "0x01",
+              "payload": {
+                "ClusterCount": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                }
+              }
+            },
+            "ApsLinkKeyAuthorizationQuery": {
+              "id": "0x02",
+              "payload": {
+                "ClusterID": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                }
+              }
+            },
+            "RequestNewApsLinkKey": {
+              "id": "0x03",
+              "payload": {
+              }
+            },
+            "EnableWWAHAppEventRetry": {
+              "id": "0x04",
+              "payload": {
+                "FirstBackOffTimeInSecs": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                },
+                "BackoffSequenceCommonRatio": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 1
+                },
+                "MaxBackoffTimeInSecs": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 2
+                },
+                "MaxRedeliveryAttempts": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 3
+                }
+              }
+            },
+            "DisableWWAHAppEventRetry": {
+              "id": "0x05",
+              "payload": {
+              }
+            },
+            "RequestTime": {
+              "id": "0x06",
+              "payload": {
+              }
+            },
+            "EnableWWAHRejoin": {
+              "id": "0x07",
+              "payload": {
+                "fastRejoinTimeInSecs": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 0
+                },
+                "durationBetweenEachRejoinInSecs": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                },
+                "firstBackoffTimeInSecs": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 2
+                },
+                "maxBackoffTimeInSecs": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 3
+                },
+                "maxBackoffIterations": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 4
+                }
+              }
+            },
+            "DisableWWAHRejoin": {
+              "id": "0x08",
+              "payload": {
+              }
+            },
+            "SetIasZoneEnrollmentMethod": {
+              "id": "0x09",
+              "payload": {
+                "EnrollmentMode": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                }
+              }
+            },
+            "ClearBindingTable": {
+              "id": "0x0A",
+              "payload": {
+              }
+            },
+            "EnablePeriodicRouterCheckins": {
+              "id": "0x0B",
+              "payload": {
+                "checkinInterval": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 0
+                }
+              }
+            },
+            "DisablePeriodicRouterCheckins": {
+              "id": "0x0C",
+              "payload": {
+              }
+            },
+            "SetMacPollCcaWaitTime": {
+              "id": "0x0D",
+              "payload": {
+                "waitTime": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                }
+              }
+            },
+            "SetPendingNetworkUpdate": {
+              "id": "0x0E",
+              "payload": {
+                "channel": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                },
+                "panID": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                }
+              }
+            },
+            "RequireApsAcks": {
+              "id": "0x0F",
+              "payload": {
+                "ClusterCount": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                }
+              }
+            },
+            "RemoveApsAcksRequirement": {
+              "id": "0x10",
+              "payload": {
+              }
+            },
+            "ApsAcksRequirementQuery": {
+              "id": "0x11",
+              "payload": {
+              }
+            },
+            "DebugReportQuery": {
+              "id": "0x12",
+              "payload": {
+                "debugReportID": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                }
+              }
+            },
+            "SurveyBeacons": {
+              "id": "0x13",
+              "payload": {
+                "standardBeacons": {
+                  "bits": 8,
+                  "dataType": "BOOL",
+                  "order": 0
+                }
+              }
+            },
+            "DisableOtaDowngrades": {
+              "id": "0x14",
+              "payload": {
+              }
+            },
+            "DisableMgmtLeaveWithoutRejoin": {
+              "id": "0x15",
+              "payload": {
+              }
+            },
+            "DisableTouchlinkInterpan": {
+              "id": "0x16",
+              "payload": {
+              }
+            },
+            "EnableWWAHParentClassification": {
+              "id": "0x17",
+              "payload": {
+              }
+            },
+            "DisableWWAHParentClassification": {
+              "id": "0x18",
+              "payload": {
+              }
+            },
+            "EnableTcSecurityOnNtwkKeyRotation": {
+              "id": "0x19",
+              "payload": {
+              }
+            },
+            "EnableWWAHBadParentRecovery": {
+              "id": "0x1A",
+              "payload": {
+              }
+            },
+            "DisableWWAHBadParentRecovery": {
+              "id": "0x1B",
+              "payload": {
+              }
+            },
+            "EnableConfigurationMode": {
+              "id": "0x1C",
+              "payload": {
+              }
+            },
+            "DisableConfigurationMode": {
+              "id": "0x1D",
+              "payload": {
+              }
+            },
+            "UseTrustCenterForClusterServer": {
+              "id": "0x1E",
+              "payload": {
+                "ClusterCount": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                }
+              }
+            },
+            "TrustCenterForClusterServerQuery": {
+              "id": "0x1F",
+              "payload": {
+              }
+            }
+          }
+        },
+        "client": {
+          "commands": {
+            "ApsLinkKeyAuthorizationQueryResponse": {
+              "id": "0x00",
+              "payload": {
+                "ClusterID": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 0
+                },
+                "Enabled": {
+                  "bits": 8,
+                  "dataType": "BOOL",
+                  "order": 1
+                }
+              }
+            },
+            "PoweringOffNotification": {
+              "id": "0x01",
+              "payload": {
+                "PowerNotificationReason": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "ManufacturerID": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                },
+                "ManufacturPowerNotifReasonLen": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                }
+              }
+            },
+            "PoweringOnNotification": {
+              "id": "0x02",
+              "payload": {
+                "PowerNotificationReason": {
+                  "bits": 8,
+                  "dataType": "ENUM8",
+                  "order": 0
+                },
+                "ManufacturerID": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                },
+                "ManufacturPowerNotifReasonLen": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                }
+              }
+            },
+            "ShortAddressChange": {
+              "id": "0x03",
+              "payload": {
+                "DeviceEUI64": {
+                  "bits": 64,
+                  "dataType": "EUI64",
+                  "order": 0
+                },
+                "DeviceShort": {
+                  "bits": 16,
+                  "dataType": "UINT16",
+                  "order": 1
+                }
+              }
+            },
+            "ApsAckEnablementQueryResponse": {
+              "id": "0x04",
+              "payload": {
+                "ClusterCount": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                }
+              }
+            },
+            "PowerDescriptorChange": {
+              "id": "0x05",
+              "payload": {
+              }
+            },
+            "NewDebugReportNotification": {
+              "id": "0x06",
+              "payload": {
+                "DebugReportId": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                },
+                "SizeOfReport": {
+                  "bits": 32,
+                  "dataType": "UINT32",
+                  "order": 1
+                }
+              }
+            },
+            "DebugReportQueryResponse": {
+              "id": "0x07",
+              "payload": {
+                "Opaque": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                }
+              }
+            },
+            "TrustCenterForClusterServerQueryResponse": {
+              "id": "0x08",
+              "payload": {
+                "ClusterCount": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                }
+              }
+            },
+            "SurveyBeaconsResponse": {
+              "id": "0x09",
+              "payload": {
+                "BeaconCount": {
+                  "bits": 8,
+                  "dataType": "UINT8",
+                  "order": 0
+                }
+              }
+            }
+          }
+        }
+      },
+      "CLUSTER_UNDEFINED": {
+          "id": "0xffff"
+        }
+      }
+    }

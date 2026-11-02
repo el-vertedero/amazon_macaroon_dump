@@ -1,0 +1,39 @@
+{
+    "note": "time zone group display name strings",
+    "dir": "ltr",
+    "resources": {
+        "time-zone-group-north-america": {
+            "value": "Bắc Mỹ"
+        },
+        "time-zone-group-united-states": {
+            "value": "Hoa Kỳ"
+        },
+        "time-zone-group-south-america": {
+            "value": "Nam Mỹ"
+        },
+        "time-zone-group-atlantic-ocean": {
+            "value": "Đại Tây Dương"
+        },
+        "time-zone-group-europe": {
+            "value": "Châu Âu"
+        },
+        "time-zone-group-africa": {
+            "value": "Châu Phi"
+        },
+        "time-zone-group-indian-ocean": {
+            "value": "Ấn Độ Dương"
+        },
+        "time-zone-group-asia": {
+            "value": "Châu Á"
+        },
+        "time-zone-group-australia": {
+            "value": "Úc"
+        },
+        "time-zone-group-pacific-ocean": {
+            "value": "Thái Bình Dương"
+        },
+        "time-zone-group-antarctica": {
+            "value": "Nam Cực"
+        }
+    }
+}

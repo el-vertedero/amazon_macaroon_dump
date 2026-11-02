@@ -1,0 +1,24 @@
+{
+    "configs": [
+        {
+            "deviceName": "inputd-gpio-privacy-state",
+            "keyName": "KEY_POWER",
+            "privacyConfig": {
+                "privacyType": "microphone",
+                "keyType": "EV_SW",
+                "keyName": "SW_MUTE_DEVICE",
+                "driverPath": "/sys/devices/platform/gpio-privacy"
+            }
+        },
+        {
+            "deviceName": "gpio-keys",
+            "keyName": "KEY_VOLUMEDOWN",
+            "hasRepeater": true
+        },
+        {
+            "deviceName": "gpio-keys",
+            "keyName": "KEY_VOLUMEUP",
+            "hasRepeater": true
+        }
+    ]
+}

@@ -1,0 +1,62 @@
+# Packaged as part of image composition
+[Unit]
+Description=DeviceMonitorAndReport - v 0.1.4
+After=systemd-tmpfiles-setup.service minerva.service service-registrar.service
+Wants=minerva.service service-registrar.service
+PartOf=service-registrar.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/dev-monitor-report
+RemainAfterExit=no
+
+User=devmonrpt
+Group=devmonrpt
+
+SmackProcessLabel=System
+SupplementaryGroups=system disk aipc reserved_disk
+
+IOSchedulingClass=idle
+IOSchedulingPriority=7
+
+# Allow service to write logs to systemd-journal
+ReadWritePaths=-/var/log/journal -/run/log/journal
+
+# Make AIPC visible
+ReadWritePaths=/var/lib/data/ace/aipc
+
+# Binder setup
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+DeviceAllow=/dev/binder rw
+
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+# Allow mmc block device access for eMMC metrics
+DeviceAllow=block-mmc
+ReadWritePaths=-/dev/block
+BindPaths=-/dev/block
+
+SystemCallFilter=@system-service
+
+# CAP_SYS_RAWIO: Allow eMMC util to capture eMMC metrics from mmc block device.
+CapabilityBoundingSet=CAP_SYS_RAWIO
+AmbientCapabilities=CAP_SYS_RAWIO
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+# PrivateDevices=true  # Inteferes with amzn_mmc_utils calls
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallErrorNumber=EPERM
+
+[Install]
+Alias=dev-monitor-report.service

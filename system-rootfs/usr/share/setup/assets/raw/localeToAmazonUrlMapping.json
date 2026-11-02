@@ -1,0 +1,20 @@
+{
+    "en-US" : "Amazon.com",
+    "en-GB" : "Amazon.co.uk",
+    "de-DE" : "Amazon.de",
+    "en-IN" : "Amazon.in",
+    "en-CA" : "Amazon.ca",
+    "en-AU" : "Amazon.com.au",
+    "fr-FR" : "Amazon.fr",
+    "fr-CA" : "Amazon.ca",
+    "es-ES" : "Amazon.es",
+    "it-IT" : "Amazon.it",
+    "es-MX" : "Amazon.com.mx",
+    "cs-CZ" : "Amazon.com",
+    "ja-JP" : "Amazon.co.jp",
+    "pt-BR" : "Amazon.com.br",
+    "hi-IN" : "Amazon.in",
+    "es-US" : "Amazon.com",
+    "ar-SA" : "Amazon.ae/Amazon.sa",
+    "nl-NL" : "Amazon.nl"
+}

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+SECTION=""
+WARNING=""
+RESET=""
+
+LINK_URL="https://developer.amazon.com/docs/vega/latest/loggingctl.html"
+
+if [[ $TERM == *"color"* ]]; then
+    SECTION="\e[1m\e[4m"
+    WARNING="\e[1;33m"
+    RESET="\e[0m"
+fi
+
+printf "\n${WARNING}WARNING:${RESET} journalctl is not supported in developer mode shell. Please use loggingctl instead."
+printf "\n\n${SECTION}Example:${RESET} 'loggingctl log -f' is equivalent to 'journalctl -f'.\n\nSee ${LINK_URL} for more details.\n\n"
+printf "${SECTION}LoggingCTL 'log' commands${RESET}\n\n"
+loggingctl log --help
+printf "\n\n"

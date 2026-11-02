@@ -1,0 +1,35 @@
+[Unit]
+Description=Autotrace tracing session
+DefaultDependencies=no
+ConditionPathExists=/sys/kernel/tracing
+After=sys-kernel-tracing.mount tmp.mount device-config-manager.service systemd-tmpfiles-setup.service
+Conflicts=shutdown.target
+
+[Service]
+User=trace
+Group=trace
+Type=forking
+
+ExecStartPre=+sh /usr/bin/boot_tracing.sh launch_setup
+ExecStart=sh /usr/bin/boot_tracing.sh launch_service
+
+Restart=on-failure
+PrivateNetwork=true
+
+# add supplementary groups
+# kvstore to read ota group before starting perfetto tracing
+# log for log folder access
+SupplementaryGroups=kvstore log aipc
+
+#Add Smack process label
+SmackProcessLabel=System::Open
+
+PrivateDevices=true
+
+#Enable AIPC/IPCN Access
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+[Install]
+WantedBy=kepler-deferred.target

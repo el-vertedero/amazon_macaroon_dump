@@ -1,0 +1,75 @@
+{
+    "model_name": "macaroon",
+    "mem_stats": "/proc/meminfo",
+    "devfreq_devices": [
+    ],
+    "nna_stats": [
+        {
+            "name": "nna0_perf",
+            "type": "perf_count0",
+            "path": "/sys/devices/platform/soc/8c001000.amazon,nna/perf_cycles"
+        },
+        {
+            "name": "nna0_cfreq",
+            "type": "clk_freq",
+            "path": "/sys/devices/platform/soc/8c001000.amazon,nna/devfreq/8c001000.amazon,nna/cur_freq"
+        }
+    ],
+    "pmu_devices": [
+        {
+            "path": "/sys/devices/azma_pmu_memnoc_p2_rd_pprobe0",
+            "display_name": "nna_p2_rd0",
+            "pmu_events": [
+                {
+                    "event": "read_bytes",
+                    "name": "read_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        },
+        {
+            "path": "/sys/devices/azma_pmu_memnoc_p2_wr_pprobe0",
+            "display_name": "nna_p2_wr0",
+            "pmu_events": [
+                {
+                    "event": "write_bytes",
+                    "name": "write_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        },
+        {
+            "path": "/sys/devices/azma_pmu_memnoc_p2_rd_pprobe1",
+            "display_name": "nna_p2_rd1",
+            "pmu_events": [
+                {
+                    "event": "read_bytes",
+                    "name": "read_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        },
+        {
+            "path": "/sys/devices/azma_pmu_memnoc_p2_wr_pprobe1",
+            "display_name": "nna_p2_wr1",
+            "pmu_events": [
+                {
+                    "event": "write_bytes",
+                    "name": "write_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        }
+    ],
+    "process_stats": [
+        {
+            "name": "ps_cpu",
+            "param":["socbench", "acenna_service"],
+            "path": "/sys/%d/stat"
+        }
+    ]
+}

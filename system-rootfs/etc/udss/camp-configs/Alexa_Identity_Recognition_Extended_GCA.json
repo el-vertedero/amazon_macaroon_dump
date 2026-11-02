@@ -1,0 +1,45 @@
+{
+    "description": "Alexa.Identity.Recognition GCA config",
+    "version": "1.0",
+    "CAMPSchemaVersion": "1.0",
+    "streams": [
+        {
+            "name": "AIDA_GCA",
+            "type": "core.GenericCA",
+            "args": {
+                "capability": {
+                    "discovery": {
+                        "type": "AlexaInterface",
+                        "interface": "Alexa.Identity.Recognition",
+                        "version": "1.4",
+                        "configurations": {
+                            "is1pDevice": true,
+                            "supportedSettings": [
+                              "momentOfRecognitionAudioIndicator"
+                            ]
+                        },
+                        "properties": {
+                            "supported": [
+                                {
+                                    "name": "RecognitionState",
+                                    "type": "object",
+                                    "default": "{\"primaryPerson\":{\"id\":\"\",\"acl\":0}}"
+                                }
+                            ],
+                            "proactivelyReported": false,
+                            "retrievable": false
+                        }
+                    },
+                    "directives": [
+                        {
+                            "name": "RecognitionInfoChanged"
+                        },
+                        {
+                          "name": "SetMomentOfRecognitionAudioIndicator"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

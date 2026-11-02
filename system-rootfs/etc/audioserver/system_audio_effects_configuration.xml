@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<audio_effects_configuration version="1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <!-- version section contains a tag in the form "major.minor" e.g version="1.0" -->
+
+    <!-- Effect Modules section, <effect_modules>:
+        There is one section, <module>, per AL module present on the platform.
+        Each module section will contain attributes of the HAL:
+        "id" - Mandatory. Helps identify
+        "description" - Description of the HAL module
+        "version" - Version of the HAL module
+        "library" - Library to load.
+
+        Each HAL <module> will contain the following child sections:
+        <audio_effects>: a list of audio effects supported by the module.
+    -->
+    <effect_modules>
+        <module id="effect" description="System Audio Effects HAL"
+                version="1.0" library="audioeffectsbundle.system.so">
+
+            <audio_effects>
+                <!-- NOTE: devices must match the device tags from hwio configuration xml
+                     The effects reference hal is tested on a target that supports media_speaker device tag
+                     and listed the corresponding hwio xml file. Change the tags to test on other targets.
+                -->
+                <effect name="SystemResampler" type_uuid="48443bd9-6654-4f58-bb89-66987892c474"/>
+                <effect name="SystemChannelRemap" type_uuid="92a3cd73-a852-4314-8e5f-796403135708"/>
+                <effect name="SystemVolume" type_uuid="471f008c-182f-4799-b641-966fe73df2a6"/>
+            </audio_effects>
+        </module>
+
+    </effect_modules>
+    <!-- End of HwModules section -->
+
+</audio_effects_configuration>

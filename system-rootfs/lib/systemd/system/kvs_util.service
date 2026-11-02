@@ -1,0 +1,33 @@
+[Unit]
+Description=Start kvs_util as a process to create all the storage databases
+Conflicts=shutdown.target
+DefaultDependencies=no
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=-+/bin/chown -R kvstore:kvstore /var/lib/data/ace/kvstorage/kvsDefault.db-journal
+ExecStart=/usr/bin/kvs_util
+SmackProcessLabel=System
+User=kvstore
+Group=kvstore
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+DeviceAllow=/dev/binder rw
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

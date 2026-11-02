@@ -1,0 +1,52 @@
+[Unit]
+Description=UdssCampD daemon provides CAMP (Config-Assembled ML Pipelines) framework
+Conflicts=shutdown.target
+After=dbus.socket sensor-manager.service lifecycle-manager.service
+Wants=sensor-manager.service dbus.socket service-registrar.service com.amazon.usermanager.service com.amazon.inputd.service
+PartOf=service-registrar.service
+
+[Service]
+ExecStartPre=+mkdir -p /var/lib/data/udss/camp-configs-working-dir
+ExecStartPre=+chown -R system:system /var/lib/data/udss
+ExecStartPre=+/usr/bin/chsmack -r -a System /var/lib/data/udss
+
+ExecStart=/usr/bin/UdssCampD
+Restart=always
+SmackProcessLabel=System
+SupplementaryGroups=aipc kvstore assetmgr
+User=system
+Group=system
+
+# Make AIPC visible
+ReadWritePaths=/var/lib/data/ace/aipc
+ReadWritePaths=-/var/lib/data/udss
+
+# Make KVS visible
+ReadWritePaths=-/var/lib/data/ace/kvstorage
+
+# Make IPCN visible for IPCv4
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+PrivateDevices=yes
+DeviceAllow=/dev/binder rw
+
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+# Fortifying the service per
+# https://tiny.amazon.com/m98zzqk6/wikilabcnetconfdispPROJSyst
+CapabilityBoundingSet=none
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
+

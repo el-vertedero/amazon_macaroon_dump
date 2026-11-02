@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+ 
+<audio_hwio_configuration version="1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <!-- version section contains a tag in the form "major.minor" e.g version="1.0" -->
+ 
+    <!-- Hardware Modules section, <hw_modules>:
+        There is one section, <module>, per audio HAL module present on the platform.
+        Each module section will contain attributes of the audio HAL:
+        "id" - Mandatory. Helps identify
+        "description" - Description of the HAL module
+        "version" - Version of the HAL module
+        "library" - Library to load. If this is not specified, then the HwIoManager would
+                    assume the library name as audio.<module id>.<target>.so
+ 
+        Each HAL <module> will contain the following child sections:
+        <audio_ports>: a list of port descriptors for all different sink/source ports
+                       supported by the module.
+ 
+        <audio_devices>: descriptors of the devices supported by the module. For e.g. Speaker, HDMI, etc.
+ 
+        <audio_patches>: descriptors for any device to device loopback supported by the module.
+                         For e.g. Line In to Speaker, HDMI In to Speaker etc.
+    -->
+    <hw_modules>
+        <!-- Primary Audio HAL -->
+        <module id="primary" description="Primary Audio HAL" version="1.0">
+            <!-- library="audio.primary.macaroon.so" -->
+            <audio_ports>
+                <port name="primary output" role="AMAZON_AUDIO_ROLE_SINK"
+                    flags="AMAZON_AUDIO_FLAG_ADAPTIVE_HOME_THEATER"
+                    devices="Speaker">
+                    <config format="AMAZON_AUDIO_FORMAT_PCM_32_BIT"
+                            sampleRates="AMAZON_AUDIO_SAMPLE_RATE_48_KHZ"
+                            channelMasks="AMAZON_AUDIO_CHANNEL_STEREO"/>
+                </port>
+
+                <port name="alexa home theater output" role="AMAZON_AUDIO_ROLE_SINK"
+                    flags="AMAZON_AUDIO_FLAG_HIGH_PERFORMANCE_PROCESSING|AMAZON_AUDIO_FLAG_ADAPTIVE_HOME_THEATER"
+                    periodFrameCount="192"
+                    periodCount="4"
+                    devices="Speaker">
+                    <config format="AMAZON_AUDIO_FORMAT_PCM_32_BIT"
+                            sampleRates="AMAZON_AUDIO_SAMPLE_RATE_48_KHZ"
+                            channelMasks="AMAZON_AUDIO_CHANNEL_STEREO"/>
+                </port>
+
+                <port name="echo cancellation" role="AMAZON_AUDIO_ROLE_SINK"
+                    flags="AMAZON_AUDIO_FLAG_NONE"
+                    devices="EchoCanceller">
+                    <config format="AMAZON_AUDIO_FORMAT_PCM_32_BIT"
+                            sampleRates="AMAZON_AUDIO_SAMPLE_RATE_96_KHZ"
+                            channelMasks="AMAZON_AUDIO_CHANNEL_STEREO"/>
+                </port>
+ 
+                <port name="primary input" role="AMAZON_AUDIO_ROLE_SOURCE"
+                    flags="AMAZON_AUDIO_FLAG_NONE"
+                    devices="BuiltIn-Mic">
+                    <config format="AMAZON_AUDIO_FORMAT_PCM_16_BIT"
+                            sampleRates="AMAZON_AUDIO_SAMPLE_RATE_16_KHZ"
+                            channelMasks="AMAZON_AUDIO_CHANNEL_MONO,AMAZON_AUDIO_CHANNEL_STEREO"/>
+                </port>
+
+                <port name="tap input" role="AMAZON_AUDIO_ROLE_SOURCE"
+                    flags="AMAZON_AUDIO_FLAG_NONE"
+                    devices="TapDetect-Mic">
+                    <config format="AMAZON_AUDIO_FORMAT_PCM_32_BIT"
+                            sampleRates="AMAZON_AUDIO_SAMPLE_RATE_16_KHZ"
+                            channelMasks="AMAZON_AUDIO_CHANNEL_QUAD"/>
+                </port>
+
+                <port name="sensors" role="AMAZON_AUDIO_ROLE_SOURCE"
+                     flags="AMAZON_AUDIO_FLAG_NONE"
+                     devices="Sensors-Mic">
+                     <config format="AMAZON_AUDIO_FORMAT_PCM_32_BIT"
+                             sampleRates="AMAZON_AUDIO_SAMPLE_RATE_16_KHZ"
+                             channelMasks="AMAZON_AUDIO_CHANNEL_8POINT1POINT7"/>
+                </port>
+
+                <port name="uspd input" role="AMAZON_AUDIO_ROLE_SOURCE"
+                    flags="AMAZON_AUDIO_FLAG_NONE"
+                    devices="UltraSound-Mic">
+                    <config format="AMAZON_AUDIO_FORMAT_PCM_32_BIT"
+                            sampleRates="AMAZON_AUDIO_SAMPLE_RATE_2_KHZ"
+                            channelMasks="AMAZON_AUDIO_CHANNEL_7POINT1"/>
+                </port>
+            </audio_ports>
+
+            <!-- Audio source groups. Use the name wihtout any spaces to avoid parsing errors -->
+            <!-- This field should be declared before audio_devices -->
+            <audio_source_groups>
+                <group name="TapDetect" sourceType="AMAZON_AUDIO_SOURCE_TAP_DETECTION"/>
+                <group name="Sensors" sourceType="AMAZON_AUDIO_SOURCE_SENSORS"/>
+                <group name="USPD" sourceType="AMAZON_AUDIO_SOURCE_ULTRASOUND"/>
+            </audio_source_groups>
+ 
+            <audio_devices>
+                <device name="Speaker" role="AMAZON_AUDIO_ROLE_SINK" type="AMAZON_AUDIO_DEVICE_SPEAKER" address="" attached="true">
+                </device>
+
+                <device name="EchoCanceller" role="AMAZON_AUDIO_ROLE_SINK" type="AMAZON_AUDIO_DEVICE_ECHO_CANCELLER" address="" attached="true">
+                </device>
+ 
+                <device name="BuiltIn-Mic" role="AMAZON_AUDIO_ROLE_SOURCE" type="AMAZON_AUDIO_DEVICE_BUILTIN_MIC" address="" attached="true">
+                </device>
+
+                <device name="TapDetect-Mic" role="AMAZON_AUDIO_ROLE_SOURCE" type="AMAZON_AUDIO_DEVICE_BUILTIN_MIC" address="" attached="true" sourceGroups="TapDetect">
+                </device>
+
+                <device name="Sensors-Mic" role="AMAZON_AUDIO_ROLE_SOURCE" type="AMAZON_AUDIO_DEVICE_BUILTIN_MIC" address="" attached="true" sourceGroups="Sensors">
+                </device>
+
+                <device name="UltraSound-Mic" role="AMAZON_AUDIO_ROLE_SOURCE" type="AMAZON_AUDIO_DEVICE_BUILTIN_MIC" address="" attached="true" sourceGroups="USPD">
+                </device>
+            </audio_devices>
+ 
+        </module>
+ 
+        <!-- Nested XML configuration xml files are supported. But must be listed as below within the
+             <hw_modules> section-->
+        <include file="a2dp_audio_hwio_configuration.xml" />
+ 
+    </hw_modules>
+    <!-- End of HwModules section -->
+ 
+</audio_hwio_configuration>

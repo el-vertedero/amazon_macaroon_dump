@@ -1,0 +1,30 @@
+{
+    "version": 1,
+    "combo_directives": [
+        {
+            "directiveId": "DeepFactoryReset",
+            "event": {
+                "stopOnFail": true,
+                "stopOnSuccess": true,
+                "intent_uri": "orpheus://com.amazon.factoryreset.tasks.deepfactoryresettask"
+            }
+        },
+        {
+            "directiveId": "ShallowFactoryReset",
+            "event": {
+                "stopOnFail": true,
+                "stopOnSuccess": true,
+                "intent_uri": "orpheus://com.amazon.factoryreset.tasks.shallowfactoryresettask"
+            }
+        },
+        {
+            "directiveId": "SuperDeepFactoryReset",
+            "event": {
+                "stopOnFail": true,
+                "stopOnSuccess": true,
+                "intent_uri": "orpheus://com.amazon.factoryreset.tasks.superdeepfactoryresettask"
+            }
+        }
+    ]
+}
+

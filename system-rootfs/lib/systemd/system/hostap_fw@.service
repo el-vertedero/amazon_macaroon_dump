@@ -1,0 +1,12 @@
+# Setup Hostap
+
+[Unit]
+Description=Firewall Hostap
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/firewall.sh start hostap %i
+ExecStop=/usr/bin/firewall.sh stop hostap %i
+RemainAfterExit=True
+
+[Install]

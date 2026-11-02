@@ -1,0 +1,39 @@
+[Unit]
+Description=Set transient hostname
+DefaultDependencies=no
+Conflicts=umount.target
+IgnoreOnIsolate=true
+After=basic.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+TimeoutSec=0
+ExecStart=/usr/bin/set-transient-hostname
+
+# To read and write to file
+User=net
+Group=net
+SmackProcessLabel=System
+
+# To call sethostname
+AmbientCapabilities=CAP_SYS_ADMIN
+CapabilityBoundingset=CAP_SYS_ADMIN
+
+RestrictAddressFamilies=AF_UNIX
+ProtectControlGroups=yes
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+RestrictRealtime=true
+PrivateNetwork=true
+SystemCallFilter=@system-service sethostname
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

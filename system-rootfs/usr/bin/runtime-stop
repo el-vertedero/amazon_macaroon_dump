@@ -1,0 +1,12 @@
+#!/bin/bash
+
+systemctl isolate runtime-stop.target
+
+# Stopping service-registrar will also stop all services
+# that is PartOf service-registrar.
+systemctl stop service-registrar.service
+
+# Clean up all resources
+systemctl kill framework.slice
+
+echo "Kepler runtime stopped."

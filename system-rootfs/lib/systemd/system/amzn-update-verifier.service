@@ -1,0 +1,32 @@
+[Unit]
+Description=Validate OTA after switch root
+Requires=systemd-udevd.service
+After=systemd-udevd.service local-fs.target
+StartLimitInterval=30
+StartLimitBurst=15
+OnFailure=failure-manager@%N.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/amzn-update-verifier.sh
+DynamicUser=yes
+SupplementaryGroups=disk
+RestartSec=1
+Restart=on-failure
+RemainAfterExit=True
+
+# Fortifying the service
+SmackProcessLabel=System
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=sysinit.target

@@ -1,0 +1,13 @@
+# Packaged as part of image composition
+[Unit]
+Description=DeviceMonitorAndReport - v 0.1.4
+
+[Timer]
+# Run initial data collection and report shortly after boot
+OnBootSec=30s
+
+# Run every 8 hours after initial collection and report
+OnUnitActiveSec=8h
+
+[Install]
+WantedBy=timers.target

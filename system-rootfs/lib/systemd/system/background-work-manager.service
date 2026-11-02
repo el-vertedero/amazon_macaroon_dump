@@ -1,0 +1,97 @@
+#
+# Copyright 2021-2025 Amazon.com, Inc. or its affiliates. All rights reserved.
+#
+# AMAZON PROPRIETARY/CONFIDENTIAL
+#
+# You may not use this file except in compliance with the terms and conditions
+# set forth in the accompanying LICENSE.TXT file.
+#
+# THESE MATERIALS ARE PROVIDED ON AN "AS IS" BASIS. AMAZON SPECIFICALLY
+# DISCLAIMS, WITH RESPECT TO THESE MATERIALS, ALL WARRANTIES, EXPRESS,
+# IMPLIED, OR STATUTORY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+#
+[Unit]
+Description=Background Work Manager Service
+After=security-manager.service netsvc.service pkgmgr.service
+Wants=security-manager.service service-registrar.service
+PartOf=service-registrar.service lifecycle-manager.service eventmgr.service
+
+# Dependencies required but added as wants to avoid
+# cyclical dependency.
+Wants=lifecycle-manager.service
+Wants=eventmgr.service
+
+[Service]
+Type=notify
+WatchdogSec=12
+
+# Generate an ACR on startup timeout
+TimeoutStartFailureMode=abort
+
+# Restart the service.
+Restart=always
+
+# DynamiUser to static User transition
+User=bkgwrkmgr
+Group=bkgwrkmgr
+
+RemoveIPC=yes
+PrivateTmp=yes
+NoNewPrivileges=yes
+RestrictSUIDSGID=yes
+ProtectSystem=strict
+ProtectHome=read-only
+
+SupplementaryGroups=aipc reserved_disk appfwkcfgsvc
+
+PrivateDevices=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+ReadWritePaths=/var/lib/data/ace/aipc
+# Needed for message router
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+PrivateDevices=yes
+DeviceAllow=/dev/binder rw
+
+# /dev/socket for SS
+# /dev/log for SS and SIM
+# /run/systemd/journal/socket for sd_journal
+ReadWritePaths=-/dev/socket -/dev/log -/run/systemd/journal/socket
+
+# to persist work items
+StateDirectory=bkgwrkmgr/
+
+# Make logging paths visible, since PrivateDevices=yes
+BindPaths=-/dev/socket -/dev/log -/run/systemd/journal/socket
+
+# Add allowed list of syscalls
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+SmackProcessLabel=System
+
+# Executable path
+ExecStart=/usr/bin/bkgwrkmgrd
+
+# Fortifying the service
+AmbientCapabilities=none
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelTunables=true
+LockPersonality=true
+RestrictRealtime=true
+
+EnvironmentFile=-/etc/app-framework/config.env
+
+[Install]
+Alias=task-manager.service
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.taskmanager.service

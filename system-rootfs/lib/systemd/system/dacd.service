@@ -1,0 +1,36 @@
+[Unit]
+Description=Start dacd
+After=ace_eventmgr.service multi-user.target service-registrar.service
+Wants=service-registrar.service
+PartOf=service-registrar.service
+StartLimitIntervalSec=60
+StartLimitBurst=10
+
+[Service]
+ExecStart=/usr/bin/dacd
+Restart=always
+RestartSec=5
+
+# run dacd as system user and group
+User=system
+Group=system
+
+# add supplementary groups
+# aipc for to send receive events
+# metrics for uploading metrics using pmet
+SupplementaryGroups=aipc metrics log
+
+# use system smack label
+SmackProcessLabel=System
+
+# Access to aipc, logs
+ReadWritePaths=-/var/lib/data/ace/aipc/ -/dev/socket -/dev/log
+BindPaths=-/dev/socket -/dev/log
+
+# AIPC over Binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+[Install]
+WantedBy=multi-user.target

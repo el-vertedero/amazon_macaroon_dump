@@ -1,0 +1,29 @@
+[Unit]
+Description=Launch AudioServer
+Wants=dbus.socket service-registrar.service
+PartOf=service-registrar.service
+After=sound.target dbus.socket dbus.service
+DefaultDependencies=no
+Conflicts=shutdown.target
+
+[Service]
+ExecStartPre=/bin/sh -c 'until grep -q "azmasndcard" /proc/asound/cards; do sleep 0.3; done'
+ExecStartPre=/bin/sh -c 'while ! [ -r /dev/snd/controlC0 ]; do sleep 0.3; done'
+Type=notify
+Environment="SHMLIB_DISABLE_ONLOAD=true"
+ExecStart=/usr/bin/mixer
+Restart=on-failure
+SmackProcessLabel=System::Open
+
+User=audio
+Group=audio
+SupplementaryGroups=aipc tee hometheater adfshm
+
+CapabilityBoundingSet=CAP_SYS_NICE
+AmbientCapabilities=CAP_SYS_NICE
+
+StateDirectory=audioserver
+ConfigurationDirectory=audioserver
+
+[Install]
+WantedBy=multi-user.target

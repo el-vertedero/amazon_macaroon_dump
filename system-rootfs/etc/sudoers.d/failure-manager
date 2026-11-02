@@ -1,0 +1,1 @@
+%failuremgr ALL= NOPASSWD: /sbin/reboot --

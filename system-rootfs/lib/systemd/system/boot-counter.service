@@ -1,0 +1,47 @@
+[Unit]
+Description=Boot Counter Service
+Before=onlycap-post.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/boot-counter.sh
+
+# User/Group
+User=root
+SmackProcessLabel=System
+StateDirectory=data/boot-counter
+RuntimeDirectory=boot-counter
+RuntimeDirectoryMode=0755
+RuntimeDirectoryPreserve=yes
+
+# Capabilities
+NoNewPrivileges=true
+RestrictSUIDSGID=true
+
+# Filesystem
+ProtectSystem=no
+ProtectHome=true
+PrivateTmp=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=no
+
+# Devices
+PrivateDevices=true
+ProtectClock=true
+
+# Network
+PrivateNetwork=true
+
+# Namespaces
+ProtectHostname=true
+
+# Misc
+UMask=0022
+
+# System calls
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=sysinit.target

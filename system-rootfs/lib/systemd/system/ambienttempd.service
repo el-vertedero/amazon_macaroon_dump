@@ -1,0 +1,47 @@
+[Unit]
+Description=Start the ambient temperature daemon
+Conflicts=shutdown.target
+After=PuffinApp.service dbus.socket
+AssertPathExists=/etc/atsd/model/atsd_model.so
+
+[Service]
+Environment=TVM_NUM_THREADS=1
+ExecStart=/usr/bin/atsd
+Restart=always
+
+# run perfmonitord as system user and group
+User=system
+Group=system
+
+# Set the Smack Process Label
+SmackProcessLabel=System
+
+# Set Supplementary Groups
+SupplementaryGroups=log system aipc metrics
+
+ReadWritePaths=/var/lib/data/ace/aipc
+
+PrivateDevices=true
+
+# Enable AIPC/IPCN Access
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+# Enable Sensor dev access
+DeviceAllow=/dev/sensors rw
+BindPaths=-/dev/sensors
+ReadWritePaths=-/dev/sensors
+
+# Enable kmsg dev access
+DeviceAllow=/dev/kmsg rw
+BindPaths=-/dev/kmsg
+ReadWritePaths=-/dev/kmsg
+
+# Enable LED dev access
+DeviceAllow=/dev/atsd_inputs rw
+BindPaths=-/dev/atsd_inputs
+ReadWritePaths=-/dev/atsd_inputs
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,5 @@
+[Match]
+OriginalName=eth*
+
+[Link]
+NamePolicy=kernel

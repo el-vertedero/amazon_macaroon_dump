@@ -1,0 +1,229 @@
+#!/bin/bash
+# Bugreport plugin process to generate a processes snapshots
+
+PROG=$(basename $0)
+
+PARALLEL_JOBS=2
+
+help() {
+    echo "Usage: $PROG [-h]"
+    echo "  -h  Display this help message"
+    echo "  -d  Output directory for temporary files"
+    echo "  -l  Log the process backtrace to syslog"
+    echo "  -p  Number of parallel jobs [Default: $PARALLEL_JOBS]"
+    echo "  -t  Test mode. Do not remove the temporary files"
+    echo "  The following options/modes are used by the bugreport pluging for asnyc mode"
+    echo "  -f  Dump the snapshot archive as base64 to a file. The file name is store in the complete sentinel file"
+    echo "       This option is for the process handling the kick request"
+    echo "  -c  COMPLETE_SENTINEL_FILE. Write the complete sentinel file or wait mode monitoring. Default: $DEFAULT_COMPLETE_SENTINEL_FILE"
+    echo "  -k  KICK_SENTINEL_FILE. Write the kick sentinel file. Default: $DEFAULT_KICK_SENTINEL_FILE"
+    echo "  -w  MAXTIME. Wait for the snapshot. Default: $DEFAULT_WAIT_MAXTIME"
+    echo "  -v  Verbose mode"
+    exit 1
+}
+
+cleanup() {
+    rv=$?
+    if [ ! "$TESTMODE" ]; then
+        rm -rf $DESTDIR
+    fi
+    exit $rv
+}
+
+dump_as_stdout() {
+    # Dump the snapshot tarball to stdout in base64 format
+    local snapshot_dir=$1
+    local tag="bugreport_pids_snapshot_base64"
+    echo "<$tag>"
+    tar -czf - -C $(dirname $snapshot_dir) $(basename $snapshot_dir) | base64
+    echo "</$tag>"
+}
+
+dump_as_file() {
+    local snapshot_dir=$1
+    dump_as_stdout $snapshot_dir > $DUMPFILE_PATH
+}
+
+snapshot_process() {
+    local dest_dir=$1
+    local pid=$2
+    local log_bt_opt=""
+    if [ "$LOG_BT" ]; then
+        log_bt_opt="-l"
+    fi
+    $SNAPSHOT_TOOL $log_bt_opt -p $pid -d $dest_dir 2>&1 >/dev/null
+}
+
+snapshot_all_apps() {
+    local dest_dir=$1
+    local apps=$(vlcm list | grep -v "launch args")
+    while read -r line; do
+        if test "$(jobs | wc -l)" -ge $PARALLEL_JOBS; then
+            wait
+        fi
+        local pid=$(echo $line | awk '{print $3}')
+        {
+            snapshot_process $dest_dir $pid
+        } &
+    done <<< "$apps"
+
+    # final wait
+    wait
+}
+
+snapshot_appfwk_core() {
+    local dest_dir=$1
+    APPFWK_PROC=" \
+        lcm_service \
+        securitymgrd \
+        pkgmgrd \
+        eventmgrd \
+    "
+
+    for proc in $APPFWK_PROC; do
+        if test "$(jobs | wc -l)" -ge $PARALLEL_JOBS; then
+            wait
+        fi
+        {
+            snapshot_process $dest_dir $proc
+        } &
+    done
+
+    # final wait
+    wait
+}
+
+SNAPSHOT_TOOL=/usr/bin/pid2acr
+VERBOSE=
+DESTDIR=/tmp
+
+DEFAULT_KICK_SENTINEL_FILE=/var/spool/debugd/bugreport/.kick
+DEFAULT_COMPLETE_SENTINEL_FILE=/var/spool/debugd/bugreport/.done
+DEFAULT_WAIT_MAXTIME=90
+
+COMPLETE_SENTINEL_FILE=$DEFAULT_COMPLETE_SENTINEL_FILE
+
+set -e
+while getopts "c:d:fhk:lp:tw:v" opt; do
+    case ${opt} in
+    d)
+        DESTDIR=$OPTARG
+        ;;
+    l)
+        LOG_BT="true"
+        ;;
+    p)
+        PARALLEL_JOBS=$OPTARG
+        ;;
+    v)
+        VERBOSE="true"
+        ;;
+    t)
+        TESTMODE="true"
+        ;;
+    c)
+        COMPLETE_SENTINEL_FILE=$OPTARG
+        ;;
+    f)
+        DUMPASFILE="true"
+        ;;
+    k)
+        KICK_SENTINEL_FILE=$OPTARG
+        ;;
+    w)
+        KICKWAIT_MAXTIME=$OPTARG
+        ;;
+    h)
+        help
+        exit
+        ;;
+    \?)
+        echo "Invalid option: $OPTARG" 1>&2
+        help
+        exit
+        ;;
+    esac
+done
+set +e
+
+shift $((OPTIND - 1))
+
+[ "$VERBOSE" ] && {
+    set -x
+    set -e
+}
+
+if [  "$KICKWAIT_MAXTIME" ]; then
+    if [ ! "$KICK_SENTINEL_FILE" ]; then
+        KICK_SENTINEL_FILE=$DEFAULT_KICK_SENTINEL_FILE
+    fi
+
+    if [ ! "$COMPLETE_SENTINEL_FILE" ]; then
+        COMPLETE_SENTINEL_FILE=$DEFAULT_COMPLETE_SENTINEL_FILE
+    fi
+
+    if [ "$KICKWAIT_MAXTIME" = "0" ]; then
+        KICKWAIT_MAXTIME=$DEFAULT_WAIT_MAXTIME
+    fi
+
+    rm -f $COMPLETE_SENTINEL_FILE
+    # Kick systemd job. Parameters can also be passed in "kick" file (NOT IMPLEMENTED YET)
+    if [ ! -d $(dirname $KICK_SENTINEL_FILE) ]; then
+        mkdir -p $(dirname $KICK_SENTINEL_FILE)
+    fi
+    touch $KICK_SENTINEL_FILE
+    sleep 1
+    rm -f $KICK_SENTINEL_FILE
+    # Wait for the snapshot
+    for i in $(seq 1 $KICKWAIT_MAXTIME); do
+        if [ -f $COMPLETE_SENTINEL_FILE ]; then
+            break
+        fi
+        sleep 1
+    done
+    if [ -f $COMPLETE_SENTINEL_FILE ]; then
+        cat $(cat $COMPLETE_SENTINEL_FILE)
+        rm -f $(cat $COMPLETE_SENTINEL_FILE)
+        rm -f $COMPLETE_SENTINEL_FILE
+    else
+        echo "Failed waiting for process snapshot."
+        exit 1
+    fi
+else
+    DUMPFILE_PATH=$DESTDIR/bugreport-pids-snapshot-$$-archive.log
+    DESTDIR=$DESTDIR/bugreport-pids-snapshot-$$
+    trap "cleanup" EXIT
+
+    # create a temporary directory for the snapshot with a random name
+    mkdir -p $DESTDIR
+    cd $DESTDIR
+
+    vlcm list > vlcm-list.txt
+    ps -e > ps-all.txt
+    snapshot_all_apps $PWD
+    snapshot_appfwk_core $PWD
+
+    # Dump the snapshot tarball to stdout in base64 format
+    if [ "$DUMPASFILE" ]; then
+        dump_as_file $DESTDIR $DUMPASFILE
+    else
+        dump_as_stdout $DESTDIR
+    fi
+
+    # Write complete sentinel file
+    if [ "$DUMPASFILE" ]; then
+        if [ ! "$COMPLETE_SENTINEL_FILE" ]; then
+            COMPLETE_SENTINEL_FILE=$DEFAULT_COMPLETE_SENTINEL_FILE
+        fi
+        if [ ! -d $(dirname $COMPLETE_SENTINEL_FILE) ]; then
+            mkdir -p $(dirname $COMPLETE_SENTINEL_FILE)
+        fi
+        echo $DUMPFILE_PATH > $COMPLETE_SENTINEL_FILE
+    fi
+
+    # if not test mode
+    if [ ! "$TESTMODE" ]; then
+        # remove the temporary directory
+        rm -rf $DESTDIR
+    fi
+fi

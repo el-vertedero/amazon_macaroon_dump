@@ -1,0 +1,4 @@
+/sbin/swapoff
+/bin/busybox 50
+/bin/toybox 60
+/sbin/swapoff.util-linux 80

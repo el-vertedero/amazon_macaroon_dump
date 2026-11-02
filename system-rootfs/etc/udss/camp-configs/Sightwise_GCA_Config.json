@@ -1,0 +1,91 @@
+{
+    "description": "Sightwise GCA config",
+    "version": "1.0",
+    "CAMPSchemaVersion": "1.0",
+    "streams": [
+        {
+            "name": "SightwiseGCA",
+            "type": "core.GenericCA",
+            "args": {
+                "capability": {
+                    "discovery": {
+                        "type": "AlexaInterface",
+                        "interface": "Alexa.Camera.VisualIntelligence",
+                        "version": "1.0",
+                        "properties": {
+                            "supported": [
+                                {
+                                    "name": "enablement",
+                                    "type": "string",
+                                    "default": "DISABLED"
+                                }
+                            ],
+                            "proactivelyReported": false,
+                            "retrievable": true
+                        }
+                    },
+                    "directives": [
+                        {
+                            "name": "SetEnablement"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Sightwise Enablement Directive Accessor",
+            "type": "core.json.accessor",
+            "args": {
+                "accessKey": "directive.payload.enablement"
+            },
+            "inputs": [
+                "GenericCA|Directives|Alexa.Camera.VisualIntelligence|SetEnablement|IPCIn"
+            ]
+        },
+        {
+            "name": "Clear enablement IPCOut Cache upon SetEnablement Directive",
+            "type": "core.clearcache",
+            "inputs": [
+                "GenericCA|Directives|Alexa.Camera.VisualIntelligence|SetEnablement|IPCIn",
+                "GenericCA|Properties|Alexa.Camera.VisualIntelligence|enablement|IPCOut"
+            ]
+        },
+        {
+            "name": "Sightwise Enablement Settings Event Sender",
+            "type": "core.ipc.output",
+            "args": {
+                "payloadParamType": "string",
+                "settingKey": "SIGHTWISE_SETTING"
+            },
+            "inputs": [
+                "GenericCA|Properties|Alexa.Camera.VisualIntelligence|enablement|Setting"
+            ]
+        },
+        {
+            "name": "Clear Settings Event Sender Cache upon SetEnablement Directive",
+            "type": "core.clearcache",
+            "inputs": [
+                "GenericCA|Directives|Alexa.Camera.VisualIntelligence|SetEnablement|IPCIn",
+                "Sightwise Enablement Settings Event Sender"
+            ]
+        },
+        {
+            "name": "Sightwise DCS Enablement Writer",
+            "type": "core.dcs.writer",
+            "args": {
+                "dcsGroup": "sightwise-live",
+                "dcsKey": "enablement"
+            },
+            "inputs": [
+                "GenericCA|Properties|Alexa.Camera.VisualIntelligence|enablement|Setting"
+            ]
+        }
+    ],
+    "exec": [
+        {
+            "command": "connect",
+            "input": "Sightwise Enablement Directive Accessor",
+            "consumer": "GenericCA|Properties|Alexa.Camera.VisualIntelligence|enablement|Setting"
+        }
+    ]
+}

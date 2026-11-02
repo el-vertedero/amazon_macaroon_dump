@@ -1,0 +1,50 @@
+[Unit]
+Description=Log Rotation
+
+[Service]
+EnvironmentFile=-/etc/halo/common-env
+ExecStartPre=+/bin/sh -c '/bin/mkdir -p /var/lib/data/halo/var/log'
+ExecStartPre=+/bin/sh -c '/bin/mkdir -p /var/lib/data/halo/var/metrics_reporter'
+ExecStartPre=+/bin/chown -R root:halo /var/lib/data/halo
+ExecStartPre=+/bin/chmod -R 775 /var/lib/data/halo
+ExecStartPre=+/bin/chmod +x /sys/kernel/debug
+ExecStartPre=-/bin/sh -c '/bin/mkdir -p /run/halo/etc'
+ExecStartPre=-/bin/sh -c '/bin/mkdir -p /run/halo/run/mfg'
+ExecStartPre=+/bin/chmod -R 775 /run/halo/
+ExecStartPre=-/bin/sh -c 'test -f /run/halo/run/mfg/gatewayid || echo "__dummy__" > /run/halo/run/mfg/gatewayid'
+ExecStartPre=-/bin/sh -c 'test -f /run/halo/run/mfg/gateway_device_type || echo "__dummy__" > /run/halo/run/mfg/gateway_device_type'
+ExecStartPre=-/bin/sh -c 'test -f /run/halo/etc/sdk_version || echo "__dummy__" > /run/halo/etc/sdk_version'
+ExecStartPre=-/bin/sh -c 'test -f /run/halo/etc/sw_version || echo "__dummy__" > /run/halo/etc/sw_version'
+ExecStart=-/bin/sh -c '/usr/bin/halo_logr --uploader.device_id=$(cat /run/halo/run/mfg/gatewayid) --uploader.device_kind=$(cat /run/halo/run/mfg/gateway_device_type) --uploader.sdk_version=$(cat /run/halo/etc/sdk_version) --uploader.firmware_version=$(cat /run/halo/etc/sw_version)'
+Restart=always
+
+SupplementaryGroups=system aipc
+
+User=halo
+Group=halo
+
+# Fortifying the service
+SmackProcessLabel=System
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictAddressFamilies=AF_INET
+RestrictAddressFamilies=AF_INET6
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+#Enable AIPC/IPCN Access
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+[Install]

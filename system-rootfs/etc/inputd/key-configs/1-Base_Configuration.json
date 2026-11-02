@@ -1,0 +1,56 @@
+{
+    "version": 1,
+    "combo_directives": [
+        {
+            "directiveId": "LogUpload",
+            "event": {
+                "stopOnFail": true,
+                "stopOnSuccess": true,
+                "internalHandler": true
+            }
+        },
+        {
+            "directiveId": "Reboot",
+            "event": {
+                "stopOnFail": true,
+                "stopOnSuccess": true,
+                "internalHandler": true
+            }
+        },
+        {
+            "directiveId": "RebootToRecovery",
+            "event": {
+                "stopOnFail": true,
+                "stopOnSuccess": true,
+                "internalHandler": true
+            }
+        },
+        {
+            "directiveId": "ScreenToggle",
+            "event_1": {
+                "stopOnFail": true,
+                "stopOnSuccess": false,
+                "internalHandler": true
+            },
+            "event_2": {
+                "triggerComboEvent": true
+            }
+        },
+        {
+            "directiveId": "ScreenOff",
+            "event": {
+                "stopOnFail": true,
+                "stopOnSuccess": true,
+                "internalHandler": true
+            }
+        },
+        {
+            "directiveId": "ScreenOn",
+            "event": {
+                "stopOnFail": true,
+                "stopOnSuccess": true,
+                "internalHandler": true
+            }
+        }
+    ]
+}

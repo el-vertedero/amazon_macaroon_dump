@@ -1,0 +1,37 @@
+{
+    "model_name": "macaroon",
+    "mem_stats": "/proc/meminfo",
+    "cycles_to_bytes": 16,
+    "pmu_devices": [
+        {
+            "path": "/sys/devices/armv8_pmuv3",
+            "display_name": "armv8_pmuv3",
+            "pmu_events": [
+               {
+                   "event": "bus_cycles",
+                   "name": "bus_cycle",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               },
+               {
+                   "event": "cpu_cycles",
+                   "name": "cpu_cycles",
+                   "convert_to_mb": false,
+                   "max_value": 50000000
+               },
+               {
+                "event": "ll_cache_miss_rd",
+                "name": "ll_miss_rd",
+                "convert_to_mb": false,
+                "max_value": 50000000
+               },
+               {
+                "event": "ll_cache_rd",
+                "name": "ll_rd",
+                "convert_to_mb": false,
+                "max_value": 50000000
+               }
+            ]
+        }
+    ]
+}

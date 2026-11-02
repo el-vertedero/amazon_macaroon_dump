@@ -1,0 +1,49 @@
+{
+	"note": "Product Names for this device.  Possible gender value numbers are: 0 (other), 1 (feminine), 2 (masculine), 3 (neuter), 4 (female), 5 (male).",
+	"dir": "ltr",
+	"resources": {
+	  "pn_generic": {
+		"value": "Device"
+	  },
+	  "pn_gender_generic": {
+		"note": "other gender",
+		"value": 0
+	  },
+	  "pn_short": {
+		"value": "Echo Dot"
+	  },
+	  "pn_gender_short": {
+		"note": "other gender",
+		"value": 0
+	  },
+	  "pn_medium": {
+		"value": "Echo Dot"
+	  },
+	  "pn_gender_medium": {
+		"note": "other gender",
+		"value": 0
+	  },
+	  "pn_long": {
+		"value": "Echo Dot (6th Gen)"
+	  },
+	  "pn_gender_long": {
+		"note": "other gender",
+		"value": 0
+	  },
+	  "pn_full": {
+		"value": "Amazon Echo Dot"
+	  },
+	  "pn_gender_full": {
+		"note": "other gender",
+		"value": 0
+	  },
+	  "pn_generational": {
+		"value": "Amazon Echo Dot (6th Gen)"
+	  },
+	  "pn_gender_generational": {
+		"note": "other gender",
+		"value": 0
+	  }
+	}
+  }
+  

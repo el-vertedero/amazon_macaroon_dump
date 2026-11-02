@@ -1,0 +1,8 @@
+{
+    "schemaVersion": 1,
+    "bundle_dependencies": {
+        "index.amzn__kepler-compatibility-1.hermes.bundle": {
+            "dependencies": []
+        }
+    }
+}

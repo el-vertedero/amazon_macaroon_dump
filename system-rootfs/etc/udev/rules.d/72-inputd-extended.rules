@@ -1,0 +1,5 @@
+# Assign the privacy device to inputmgr group and apply system smack label
+ACTION=="add", DRIVER=="gpio-privacy", \
+    RUN+="/bin/chown root:inputmgr /sys/devices/platform/gpio-privacy/enable" \
+    RUN+="/bin/chmod g+rw /sys/devices/platform/gpio-privacy/enable" \
+    RUN+="/usr/bin/chsmack -a 'System' /sys/devices/platform/gpio-privacy/enable"

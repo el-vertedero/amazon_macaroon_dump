@@ -1,0 +1,11 @@
+[Unit]
+Description=Start Firewall after bootup
+After=netsvc.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/firewall.sh start default %i
+RemainAfterExit=True
+
+[Install]
+

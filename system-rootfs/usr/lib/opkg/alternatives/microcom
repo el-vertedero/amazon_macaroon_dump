@@ -1,0 +1,3 @@
+/usr/bin/microcom
+/bin/busybox 50
+/bin/toybox 60

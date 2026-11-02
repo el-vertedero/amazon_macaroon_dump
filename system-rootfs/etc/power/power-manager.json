@@ -1,0 +1,105 @@
+{
+    "compatible": "power_config",
+    "version": 1,
+
+    "global": {
+        "autosleep_forbidden": true
+    },
+
+    "perflock": {
+       "cpu" : {
+           "module": "/usr/lib/libperflock_sysfs.so.1",
+           "default": "normal",
+           "release": [
+               {
+                   "key": "/sys/power/wake_unlock",
+                   "value": "PERFLOCK_SYSFS"
+               }
+           ],
+           "powersave": [
+               {
+                   "key": "/sys/power/wake_lock",
+                   "value": "PERFLOCK_SYSFS"
+               },
+               {
+                   "key": "/sys/devices/system/cpu/cpufreq/policy0/scaling_governor",
+                   "value": "schedutil"
+               }
+           ],
+           "normal": [
+               {
+                   "key": "/sys/power/wake_lock",
+                   "value": "PERFLOCK_SYSFS"
+               },
+               {
+                   "key": "/sys/devices/system/cpu/cpufreq/policy0/scaling_governor",
+                   "value": "schedutil"
+               }
+           ],
+           "performance": [
+               {
+                   "key": "/sys/power/wake_lock",
+                   "value": "PERFLOCK_SYSFS"
+               },
+               {
+                   "key": "/sys/devices/system/cpu/cpufreq/policy0/scaling_governor",
+                   "value": "performance"
+               }
+           ]
+       },
+        "network" : {
+            "module": "/usr/lib/libperflockwifi.so",
+            "default": "normal",
+            "release": [
+                {
+                    "key": "ace_wifi_power_save_on",
+                    "value": "1"
+                }
+            ],
+            "powersave": [
+                {
+                    "key": "ace_wifi_power_save_on",
+                    "value": "1"
+                }
+            ],
+            "normal": [
+                {
+                    "key": "ace_wifi_power_save_off",
+                    "value": ""
+                }
+            ],
+            "performance": [
+                {
+                    "key": "ace_wifi_power_save_off",
+                    "value": ""
+                }
+            ]
+        }
+    },
+    "legacy" : {
+        "standby_low" : {
+            "cpu" : "powersave",
+            "network" : "powersave"
+        },
+        "standby_med" : {
+            "cpu" : "normal",
+            "network" : "normal"
+        },
+        "standby_high" : {
+            "cpu" : "performance",
+            "network" : "performance"
+        },
+        "active_low" : {
+            "cpu" : "normal",
+            "network" : "powersave"
+        },
+        "active_med" : {
+            "cpu" : "normal",
+            "network" : "normal"
+        },
+        "active_high" : {
+            "cpu" : "performance",
+            "network" : "performance"
+        }
+    }
+}

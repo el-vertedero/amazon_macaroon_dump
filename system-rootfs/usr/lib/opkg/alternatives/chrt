@@ -1,0 +1,3 @@
+/usr/bin/chrt
+/bin/toybox 60
+/usr/bin/chrt.util-linux 80

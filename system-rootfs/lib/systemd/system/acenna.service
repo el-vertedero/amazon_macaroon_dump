@@ -1,0 +1,36 @@
+[Unit]
+Description=NNA service daemon
+After=tmp.mount systemd-tmpfiles-setup.service
+Requires=dev-nna.device
+After=dev-nna.device
+
+[Service]
+Environment=LD_USE_LOAD_BIAS=0
+ExecStart=/usr/bin/acenna_service -e -l2 -p0 -m4 -n-20 -k3
+Restart=on-failure
+User=acenna
+Group=acenna
+SupplementaryGroups=package graphic
+Wants=service-registrar.service
+PartOf=service-registrar.service
+SmackProcessLabel=System
+PrivateDevices=true
+# Enable NNA access
+DeviceAllow=/dev/nna rw
+BindPaths=-/dev/nna
+ReadWritePaths=-/dev/nna
+# Enable dmabuf system heap access
+DeviceAllow=/dev/dma_heap/system rw
+BindPaths=-/dev/dma_heap/system
+ReadWritePaths=-/dev/dma_heap/system
+# Enable dmabuf reserved heap access
+DeviceAllow=/dev/dma_heap/reserved rw
+BindPaths=-/dev/dma_heap/reserved
+ReadWritePaths=-/dev/dma_heap/reserved
+#Enable AIPC/IPCN Access
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+[Install]
+WantedBy=multi-user.target

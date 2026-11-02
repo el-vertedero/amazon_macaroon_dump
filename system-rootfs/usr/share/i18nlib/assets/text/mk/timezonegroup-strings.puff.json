@@ -1,0 +1,39 @@
+{
+    "note": "time zone group display name strings",
+    "dir": "ltr",
+    "resources": {
+        "time-zone-group-north-america": {
+            "value": "Северна Америка"
+        },
+        "time-zone-group-united-states": {
+            "value": "Соединетите Американски Држави"
+        },
+        "time-zone-group-south-america": {
+            "value": "Јужна Америка"
+        },
+        "time-zone-group-atlantic-ocean": {
+            "value": "Атлантскиот Океан"
+        },
+        "time-zone-group-europe": {
+            "value": "Европа"
+        },
+        "time-zone-group-africa": {
+            "value": "Африка"
+        },
+        "time-zone-group-indian-ocean": {
+            "value": "Индискиот Океан"
+        },
+        "time-zone-group-asia": {
+            "value": "Азија"
+        },
+        "time-zone-group-australia": {
+            "value": "Австралија"
+        },
+        "time-zone-group-pacific-ocean": {
+            "value": "Тихиот Океан"
+        },
+        "time-zone-group-antarctica": {
+            "value": "Антарктикот"
+        }
+    }
+}

@@ -1,0 +1,9 @@
+[Unit]
+Description=Trigger process snapshot
+
+[Path]
+PathModified=/var/spool/debugd/bugreport/.kick
+Unit=bugreport-procs-snapshot.service
+
+[Install]
+WantedBy=multi-user.target

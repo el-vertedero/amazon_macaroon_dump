@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<audio_effects_configuration version="1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <!-- version section contains a tag in the form "major.minor" e.g version="1.0" -->
+
+    <!-- Effect Modules section, <effect_modules>:
+        There is one section, <module>, per AL module present on the platform.
+        Each module section will contain attributes of the HAL:
+        "id" - Mandatory. Helps identify
+        "description" - Description of the HAL module
+        "version" - Version of the HAL module
+        "library" - Library to load.
+
+        Each HAL <module> will contain the following child sections:
+        <audio_effects>: a list of audio effects supported by the module.
+    -->
+    <effect_modules>
+        <module id="effect" description="Playback Intensity Effect HAL"
+                version="1.0" library="libplaybackintensity.so">
+            <audio_effects>
+                <effect name="PlaybackIntensity" type_uuid="d2391719-966a-4209-989a-57f209b48801" devices="Speaker"/>
+                <effect name="PlaybackIntensityObserver" type_uuid="5c2e5b7d-b1f9-4c34-8719-5d4fca96edca" ports="primary output">
+                    <attach_to_attribute content_type="all" usage="all" flags="all"/>
+                </effect>
+            </audio_effects>
+        </module>
+
+        <module id="effect" description="Macaroon Audio Effects HAL"
+                version="1.0" library="audioeffectsbundle.macaroon.so">
+
+            <audio_effects>
+                <!-- NOTE: devices must match the device tags from hwio configuration xml
+                     The effects reference hal is tested on a target that supports media_speaker device tag
+                     and listed the corresponding hwio xml file. Change the tags to test on other targets.
+                -->
+                <!-- global effect section -->
+                <effect name="ASP VoIP control" type_uuid="1ad67991-ce48-4e85-8d31-a9b996ad2962" devices="Speaker"/>
+                <effect name="ASP control" type_uuid="49f8f4ad-b1bc-4009-9777-9f139e4583ab" devices="Speaker"/>
+                <effect name="Speech intensity" type_uuid="1aef312b-39c1-402e-b85a-4da82fd8e0d4" devices="BuiltIn-Mic"/>
+                <effect name="Beam direction" type_uuid="59c93c79-ce35-4420-a361-6f286d705d37" devices="BuiltIn-Mic"/>
+                <!-- playback pre-volume effect section -->
+                <effect name="Energy logger" type_uuid="b27b7939-fa04-4602-bb09-0a214cde23cf" ports="primary output" >
+                    <attach_to_attribute content_type="all" usage="all" flags="all"/>
+                </effect>
+                <effect name="AudimatonVolumeLeveler" type_uuid="136ffcbf-8e7f-4c81-b218-e0044904ca0c" ports="primary output">
+                    <attach_to_attribute content_type="music" usage="media" flags="all"/>
+                    <attach_to_attribute content_type="all" usage="flash_briefing" flags="all"/>
+                </effect>
+                <effect name="LoudnessControl" type_uuid="964337a1-6082-4432-bad3-68b7440e95aa" ports="primary output, alexa home theater output">
+                    <attach_to_attribute content_type="all" usage="all" flags="all"/>
+                </effect>
+                <effect name="SpatialRenderer" type_uuid="0196a7d5-08aa-754e-b9b3-2c0f4bcbd906" ports="primary output, alexa home theater output">
+                    <attach_to_attribute content_type="music" usage="media" flags="adaptive_home_theater"/>
+                    <attach_to_attribute content_type="music" usage="media" flags="adaptive_home_theater|high_performance_processing"/>
+                    <attach_to_attribute content_type="movie" usage="media" flags="adaptive_home_theater"/>
+                    <attach_to_attribute content_type="movie" usage="media" flags="adaptive_home_theater|high_performance_processing"/>
+                </effect>
+                <!-- playback post-mix effect section -->
+                <!-- record pre-split effect section -->
+                <effect name="MetadataDecoder" type_uuid="7f9e8d3a-b1c2-4e5f-9d6b-2c8a1f3e0d7b" ports="primary input">
+                    <attach_to_source source="voice_recognition"/>
+                </effect>
+            </audio_effects>
+        </module>
+
+    </effect_modules>
+    <!-- End of HwModules section -->
+
+</audio_effects_configuration>

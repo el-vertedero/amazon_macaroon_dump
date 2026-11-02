@@ -1,0 +1,4 @@
+
+VEGA_FOS_SYSTEM_PROPERTY=/run/halo/sysprop/
+VEGA_FOS_PERSIST_SYSTEM_PROPERTY=/var/lib/data/halo/sysprop/
+PATH=/usr/bin/halo_init:/usr/sbin:/usr/bin:/sbin:/bin:/vendor/usr/bin:/vendor/usr/sbin:/vendor/sbin

@@ -1,0 +1,61 @@
+{
+  "key": "com.amazon.alexa.datastore.service.directive_handler",
+  "applicationId": "com.amazon.alexa.datastore.service",
+  "capabilityConfiguration": {
+    "defaultEndpointCapabilities": [
+      {
+        "type": "AlexaInterface",
+        "interface": "Alexa.DataStore",
+        "version": "1.3",
+        "additionalConfigurations": {
+          "configurations": "{\"environment\":{\"agentName\":\"DSSyncAgentCapabilityAgent\",\"agentVersion\":\"1.3\"},\"defaultStorageConfiguration\":{\"client\":{\"dataLimitKB\":2048},\"total\":{\"dataLimitKB\":20480}},\"modules\":{\"dsmodule://localcompute\":{\"version\":\"1.0\"},\"dsmodule://dataPushToCloud\":{\"version\":\"1.0\"}}}"
+        }
+      },
+      {
+        "type": "AlexaInterface",
+        "interface": "Alexa.DataStore.PackageManager",
+        "version": "0.7",
+        "properties": {
+          "retrievable": true,
+          "proactivelyReported": true,
+          "supportedProperties": ["PackageManagerState"]
+        },
+        "additionalConfigurations": {
+          "configurations": "{\"environment\":{\"agentName\":\"PackageManagerCapabilityAgent\",\"agentVersion\":\"1.4\",\"packages\":{\"supportedTypes\":[{\"type\":\"APL_PACKAGE\",\"version\":\"1.0\"},{\"type\":\"ASSET_PACKAGE\",\"version\":\"1.0\"}]}}}"
+        }
+      }
+    ]
+  },
+  "directiveHandling": {
+    "manualDirectiveDelivery": {
+      "launchUri": "",
+      "componentName": "com.amazon.alexa.datastore.service.directive_handler"
+    },
+    "directiveHandlingConfigurations": [
+      {
+        "directiveMatchingRule": {
+          "applicableEndpointIDs": [],
+          "applicableCapabilityNamespaces": ["Alexa.DataStore"],
+          "applicableCapabilityInstances": [],
+          "applicableDirectiveNames": ["*"]
+        },
+        "blockingPolicy": {
+          "mediums": ["visual"],
+          "isBlocking": false
+        }
+      },
+      {
+        "directiveMatchingRule": {
+          "applicableEndpointIDs": [],
+          "applicableCapabilityNamespaces": ["Alexa.DataStore.PackageManager"],
+          "applicableCapabilityInstances": [],
+          "applicableDirectiveNames": ["*"]
+        },
+        "blockingPolicy": {
+          "mediums": ["visual"],
+          "isBlocking": false
+        }
+      }
+    ]
+  }
+}

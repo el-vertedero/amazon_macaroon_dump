@@ -1,0 +1,11 @@
+[Unit]
+Description=Trigger a custom failure for %i
+ConditionPathExists=!/var/forbid_failure_reboot
+ConditionPathExists=/var/lib/failure-manager/custom-failure
+
+[Path]
+Unit=failure-manager@%i.service
+PathChanged=/var/lib/failure-manager/custom-failure/%i
+
+[Install]
+WantedBy=multi-user.target

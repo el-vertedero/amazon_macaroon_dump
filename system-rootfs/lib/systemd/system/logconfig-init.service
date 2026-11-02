@@ -1,0 +1,52 @@
+[Unit]
+Description=Log Configuration Service
+After=systemd-tmpfiles-setup.service local-fs.target service-registrar.service
+Requires=service-registrar.service
+PartOf=service-registrar.service
+Conflicts=shutdown.target
+
+[Service]
+Type=notify
+User=log
+Group=log
+SmackProcessLabel=System
+
+ProtectSystem=strict
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+ReadOnlyPaths=-/etc/log/config
+ReadWritePaths=-/dev/log -/var/run/log/config/policy -/var/run/log/config/share -/var/lib/log/config
+
+SystemCallFilter=@system-service
+
+ExecStart=/usr/bin/logconfigd
+Restart=always
+TimeoutStartSec=60
+WatchdogSec=60
+
+SmackProcessLabel=System
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+DeviceAllow=/dev/binder rw
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=basic.target
+
+[X-Kepler]
+OffersService=com.amazon.logconfig.ipc

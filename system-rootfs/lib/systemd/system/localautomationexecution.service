@@ -1,0 +1,69 @@
+[Unit]
+Description=Start Local Automation Execution daemon for scripted automations
+Conflicts=shutdown.target
+After=PuffinApp.service netsvc.service dbus.socket
+Wants=dbus.socket service-registrar.service
+PartOf=service-registrar.service
+# The store and the ReadWritePaths= entries below all live under this mount.
+RequiresMountsFor=/var/lib/data
+# MUST be in [Unit], not [Service]: systemd ignores it there, and the unit keeps
+# the platform default (1min/5 attempts) — measured on device.
+StartLimitIntervalSec=0
+
+[Service]
+ExecStartPre=+sh /usr/bin/lae_setup_directories.sh
+ExecStart=/usr/bin/LocalAutomationExecutionD
+Restart=always
+# Without this, a persistent init failure exhausts the default start limit
+# (100ms x 5) in ~0.5s and the unit is left 'failed' until reboot. Paired with
+# StartLimitIntervalSec=0 in [Unit], which disables the limit entirely.
+# No WatchdogSec: LAE makes no sd_notify calls, so systemd would kill it.
+RestartSec=5
+User=system
+Group=system
+SmackProcessLabel=System
+SupplementaryGroups=aipc kvstore
+ReadWritePaths=/var/lib/data/ace/aipc/
+ReadWritePaths=/var/lib/data/ace/kvstorage/
+# The PARENT, not the leaf, and mandatory (no '-').
+#
+# MEASURED, not deduced: with the leaf named here, a start from an absent leaf fails
+# with 226/NAMESPACE and ExecStartPre -- the script that would have created it -- never
+# runs. So this entry is enforced for ExecStartPre even though it carries '+'.
+#
+# Deliberately not explaining that via "'+' skips sandboxing but not namespacing":
+# systemd.service(5) says the opposite, that for a '+' command "the various file system
+# namespacing options ... are not applied", and a comment a maintainer can disprove from
+# the man page is one they will delete. ReadWritePaths= specifically is not one of the
+# options that gets skipped. Whatever the internal reason, the observed behaviour above
+# is the constraint: name the parent, which is a mount point and always exists.
+#
+# Keeping it mandatory turns a failed bind mount into a visible failure rather than a
+# silent skip. It grants no new access -- the unit sets no ProtectSystem= and no
+# ReadOnlyPaths=, so /var/lib/data was already writable in the namespace -- which also
+# makes the two ace/ entries above redundant, harmlessly.
+ReadWritePaths=/var/lib/data
+CapabilityBoundingSet=none
+NoNewPrivileges=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
+RestrictNamespaces=true
+PrivateDevices=true
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+PrivateTmp=true
+ProtectClock=true
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+RestrictRealtime=true
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

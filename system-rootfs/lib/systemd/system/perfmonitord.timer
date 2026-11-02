@@ -1,0 +1,13 @@
+[Unit]
+Description=Timer for perfmonitord
+After=multi-user.target
+
+[Timer]
+# This is done to avoid spamming the logs with the configuration during boot.
+# In addition we know that right after boot there's going to be expected contention
+# so it's unnecessary to log that.   So 90 seconds after multi-user.target
+OnBootSec=90sec  
+Unit=perfmonitord.service
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,135 @@
+#
+# Copyright 2021-2024 Amazon.com, Inc. or its affiliates. All rights reserved.
+#
+# AMAZON PROPRIETARY/CONFIDENTIAL
+#
+# You may not use this file except in compliance with the terms and conditions
+# set forth in the accompanying LICENSE.TXT file.
+#
+# THESE MATERIALS ARE PROVIDED ON AN "AS IS" BASIS. AMAZON SPECIFICALLY
+# DISCLAIMS, WITH RESPECT TO THESE MATERIALS, ALL WARRANTIES, EXPRESS,
+# IMPLIED, OR STATUTORY, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+#
+[Unit]
+Description=Security Manager Service
+# we should start after initialization of smack is done
+After=smack.service
+Requires=service-registrar.service
+DefaultDependencies=no
+
+# APP_FWK_REMOVE_IF_DEBUG_START
+# This section will be removed by copy-systemd-service-files.sh
+# in debug builds.
+
+OnFailure=failure-manager@%N.service
+# APP_FWK_REMOVE_IF_DEBUG_END
+
+[Service]
+Type=notify
+NotifyAccess=main
+WatchdogSec=12
+
+# Restart the service.
+Restart=always
+
+# Generate an ACR on startup timeout
+TimeoutStartFailureMode=abort
+
+#Need Unix domain socket to write system log
+RestrictAddressFamilies=AF_UNIX
+
+RestrictRealtime=true
+LockPersonality=true
+ProtectClock=true
+ProtectKernelLogs=true
+
+NoNewPrivileges=yes
+RestrictSUIDSGID=yes
+RemoveIPC=yes
+PrivateTmp=yes
+
+User=securitymgr
+Group=securitymgr
+
+SupplementaryGroups=aipc system reserved_disk
+
+PrivateDevices=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+# Capabilities needed for labeling
+CapabilityBoundingSet=CAP_MAC_ADMIN
+AmbientCapabilities=CAP_MAC_ADMIN
+
+# todo (vgimonka) remove these are done
+# https://issues.labcollab.net/browse/ACE-56746
+CapabilityBoundingSet=CAP_DAC_OVERRIDE
+AmbientCapabilities=CAP_DAC_OVERRIDE
+
+# todo (vgimonka) remove this cap when
+# https://issues.labcollab.net/browse/ACE-56976 is done
+CapabilityBoundingSet=CAP_MAC_OVERRIDE
+AmbientCapabilities=CAP_MAC_OVERRIDE
+
+# Needed for readlink function
+# https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1890848
+CapabilityBoundingSet=CAP_SYS_PTRACE
+AmbientCapabilities=CAP_SYS_PTRACE
+
+# Add chown to allow changing the ownership of the directories created
+CapabilityBoundingSet=CAP_CHOWN
+AmbientCapabilities=CAP_CHOWN
+
+# Make logging paths visible, since PrivateDevices=yes
+# /dev/socket for SS
+# /dev/log for SS and SIM
+# /run/systemd/journal/socket for sd_journal
+ReadWritePaths=-/dev/socket -/dev/log -/run/systemd/journal/socket
+
+# to store persistent policy backing file
+StateDirectory=securitymgrd/
+
+# to store persistent platform-config.conf
+ConfigurationDirectory=securitymgrd/
+
+# Make logging paths visible, since PrivateDevices=yes
+BindPaths=-/dev/socket -/dev/log -/run/systemd/journal/socket
+
+# AIPC binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+# Executable path
+# change ownership for smackfs so system group
+# can have w access. This is required, to avoid
+# using CAP_DAC_OVERRIDE
+ExecStartPre=+/bin/chown -R root:system /sys/fs/smackfs
+ExecStartPre=+/bin/chmod g+rwx /sys/fs/smackfs
+ExecStart=/usr/bin/securitymgrd
+
+### Not applicable list
+# 1.CapabilityBoundingSet=none
+# Need to add chown and DAC override to change the permission on the directories created.
+# 2.AmbientCapabilities=none
+# Need to add chown and DAC override to change the permission on the directories created.
+# 3.RestrictAddressFamilies=none
+# Writing to system log needs to invoke Unix domain socket.
+# 4.DynamicUser=yes
+# Need to share its directries with other services.
+# 5.PrivateNetwork=true
+# Need messaging with vtrace server
+# 6.ProtectKernelTunables=true
+# Need to apply smack policy using /sys/fs/smackfs
+
+SmackProcessLabel=System::Privileged
+
+EnvironmentFile=-/etc/app-framework/config.env
+
+[Install]
+# Boot target to start this executable
+WantedBy=sysinit.target
+
+[X-Kepler]
+OffersService=com.amazon.service.security_manager_ipcn

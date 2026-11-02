@@ -1,0 +1,4 @@
+/bin/dmesg
+/bin/busybox 50
+/bin/toybox 60
+/bin/dmesg.util-linux 80

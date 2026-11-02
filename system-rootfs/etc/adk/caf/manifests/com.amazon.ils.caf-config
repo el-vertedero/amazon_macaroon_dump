@@ -1,0 +1,38 @@
+{
+  "key": "com.amazon.ils",
+  "applicationId": "com.amazon.ils",
+  "capabilityConfiguration": {
+    "defaultEndpointCapabilities": [
+      {
+        "type": "AlexaInterface",
+        "interface": "Alexa.Sensor.Proximity",
+        "version": "1.1",
+        "instance": "BLUETOOTH",
+        "properties": {
+          "supportedProperties": ["deviceProximity"],
+          "proactivelyReported": true
+        }
+      }
+    ]
+  },
+  "directiveHandling": {
+    "manualDirectiveDelivery": {
+      "launchUri": "",
+      "componentName": "com.amazon.ils.directive_handler"
+    },
+    "directiveHandlingConfigurations": [
+      {
+        "directiveMatchingRule": {
+          "applicableEndpointIDs": [],
+          "applicableCapabilityNamespaces": ["Alexa.Sensor.Proximity"],
+          "applicableCapabilityInstances": [],
+          "applicableDirectiveNames": []
+        },
+        "blockingPolicy": {
+          "mediums": ["visual"],
+          "isBlocking": false
+        }
+      }
+    ]
+  }
+}

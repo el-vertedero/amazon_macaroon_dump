@@ -1,0 +1,154 @@
+{
+    "model_name": "macaroon",
+    "mem_stats": "/proc/meminfo",
+    "devfreq_devices": [
+    ],
+    "bsp_stats": [
+        {
+            "name": "ap_to_hifi1_ipc_us",
+            "type": "ap2hifi1",
+            "path": "/sys/kernel/debug/audio_hifi1_kpi/ap_to_hifi1_ipc_us"
+        },
+        {
+            "name": "ap_to_hifi5_ipc_us",
+            "type": "ap2hifi5",
+            "path": "/sys/kernel/debug/audio_hifi5_kpi/ap_to_hifi5_ipc_us"
+        },
+        {
+            "name": "hifi1_crash_recovery_us",
+            "type": "h1_crash",
+            "path": "/sys/kernel/debug/audio_hifi1_kpi/hifi1_crash_recovery_us"
+        },
+        {
+            "name": "hifi5_crash_recovery_us",
+            "type": "h5_crash",
+            "path": "/sys/kernel/debug/audio_hifi5_kpi/hifi5_crash_recovery_us"
+        },
+        {
+            "name": "hifi1_fw_load_time_us",
+            "type": "h1_load",
+            "path": "/sys/kernel/debug/audio_hifi1_kpi/hifi1_fw_load_time_us"
+        },
+        {
+            "name": "hifi5_fw_load_time_us",
+            "type": "h5_load",
+            "path": "/sys/kernel/debug/audio_hifi5_kpi/hifi5_fw_load_time_us"
+        },
+        {
+            "name": "hifi1_fw_memory_usage_kb",
+            "type": "h1_memory",
+            "path": "/sys/kernel/debug/audio_hifi1_kpi/hifi1_fw_memory_usage_kb"
+        },
+        {
+            "name": "hifi5_fw_memory_usage_kb",
+            "type": "h5_memory",
+            "path": "/sys/kernel/debug/audio_hifi5_kpi/hifi5_fw_memory_usage_kb"
+        },
+        {
+            "name": "uspd_mixing_with_playback_us",
+            "type": "uspd_mixing",
+            "path": "/sys/kernel/debug/audio_hifi1_kpi/uspd_mixing_with_playback_us"
+        },
+        {
+            "name": "playback_framedrop",
+            "type": "framedrop",
+            "path": "/sys/kernel/debug/audio_hifi1_kpi/playback_frame_drop_cnt"
+        },
+        {
+            "name": "capture_framedrop",
+            "type": "framedrop",
+            "path": "/sys/kernel/debug/audio_hifi5_kpi/capture_frame_drop_cnt"
+        },
+        {
+            "name": "playback_latency",
+            "type": "latency",
+            "path": "/sys/kernel/debug/audio_hifi1_kpi/playback_latency_us"
+        },
+        {
+            "name": "data_write_latency",
+            "type": "latency",
+            "path": "/sys/kernel/debug/audio_hifi1_kpi/data_write_latency_us"
+        },
+        {
+            "name": "data_read_latency",
+            "type": "latency",
+            "path": "/sys/kernel/debug/audio_hifi5_kpi/data_read_latency_us"
+        },
+        {
+            "name": "hifi5_mips",
+            "type": "clk_freq",
+            "path": "/sys/kernel/debug/audio_hifi5_kpi/hifi5_mips"
+        }
+    ],
+    "bspmulti_stats": [
+        {
+            "name": "capture",
+            "type": "latency",
+            "param":["asr", "voip", "dc"],
+            "path": "/sys/kernel/debug/audio_hifi5_kpi/capture_latency_us_asr_voip_dc"
+        },
+        {
+            "name": "dsp_idcache",
+            "type": "misses",
+            "param":["icache", "dcache"],
+            "path": "/sys/kernel/debug/audio_hifi5_kpi/hifi5_pmu_icache_dcache_miss"
+        }
+    ],
+    "pmu_devices": [
+        {
+            "path": "/sys/devices/azma_pmu_audio_ss_rd_pprobe",
+            "display_name": "audio_ss_rd",
+            "pmu_events": [
+                {
+                    "event": "read_bytes",
+                    "name": "read_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        },
+        {
+            "path": "/sys/devices/azma_pmu_audio_ss_wr_pprobe",
+            "display_name": "audio_ss_wr",
+            "pmu_events": [
+                {
+                    "event": "write_bytes",
+                    "name": "write_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        },
+        {
+            "path": "/sys/devices/azma_pmu_memnoc_p1_rd_pprobe",
+            "display_name": "audio_p1_rd",
+            "pmu_events": [
+                {
+                    "event": "read_bytes",
+                    "name": "read_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        },
+        {
+            "path": "/sys/devices/azma_pmu_memnoc_p1_wr_pprobe",
+            "display_name": "audio_p1_wr",
+            "pmu_events": [
+                {
+                    "event": "write_bytes",
+                    "name": "write_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        }
+    ],
+    "hwmon_sensors": [
+        {
+            "name": "pvt_audio",
+            "type": "temp",
+            "path": "/sys/class/thermal/thermal_zone2/temp"
+        }
+    ]
+}

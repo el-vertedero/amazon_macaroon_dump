@@ -1,0 +1,16 @@
+[Unit]
+Description=Android Debug Bridge
+
+[Service]
+Type=simple
+Restart=always
+Environment=PATH=/usr/sbin:/usr/bin:/sbin:/bin
+Environment="PS1=\\h:\\w\\$ "
+ExecStartPre=/usr/bin/android-gadget-setup adb
+ExecStart=/usr/bin/adbd
+ExecStartPost=/usr/bin/android-gadget-setup post
+
+SmackProcessLabel=System::Privileged
+
+[Install]
+WantedBy=basic.target

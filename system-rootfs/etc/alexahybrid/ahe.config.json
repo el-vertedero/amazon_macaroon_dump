@@ -1,0 +1,96 @@
+{
+    "AlexaHybrid.CoreEngine.WorkingDir": "/var/lib/data/alexahybrid/files/CoreEngineWorking",
+    "AlexaHybrid.SDK.ArtifactManager.CAInfoCertFile": "/etc/ssl/certs/ca-certificates.crt",
+    "AlexaHybrid.SDK.ArtifactManager.DownloadDirectory": "/var/lib/data/alexahybrid/files/AmWorking",
+    "AlexaHybrid.SDK.ArtifactManager.IngestionEP": "/var/lib/data/alexahybrid/ec-sockets/ingestionEP.sock",
+    "AlexaHybrid.SDK.ArtifactManager.ModelDirrectory": "/var/lib/data/alexahybrid/files/AmModel",
+    "AlexaHybrid.SDK.EnabledFeatures.BuiltInSnoozeSkill": "true",
+    "AlexaHybrid.SDK.ExecutionController.Address": "0.0.0.0",
+    "AlexaHybrid.SDK.ExecutionController.Port": "7802",
+    "AlexaHybrid.SDK.ExecutionController.SocketDirectory": "/var/lib/data/alexahybrid/ec-sockets",
+    "AlexaHybrid.SDK.ExecutionController.SocketPermissions": "ALL",
+    "AlexaHybrid.SDK.ExecutionController.StartLSF": "false",
+    "AlexaHybrid.SDK.HybridPlatformInterface.Backend": "HR",
+    "AlexaHybrid.SDK.LocalRequestOrchestrator.BriefMode": "false",
+    "AlexaHybrid.SDK.LocalRequestOrchestrator.SocketDirectory": "/var/lib/data/alexahybrid/lro-sockets",
+    "AlexaHybrid.SDK.LocalRequestOrchestrator.SocketPermissions": "ALL",
+    "AlexaHybrid.SDK.MetricsLoggerType": "ACE_METRICS",
+    "AlexaHybrid.SDK.SettingsManager.Enabled": "true",
+    "AlexaHybrid.SDK.SettingsManager.PersistDirPath": "/var/lib/data/alexahybrid/files/sm",
+    "ArtifactManager.Lmb.EnableDeregisterDelay": "true",
+    "ArtifactManager.Lmb.DeregisterDelaySecs": "30",
+    "ArtifactManager.ModelClass": "odie-litespeed",
+    "ArtifactManager.DavsPollServer.TcpPort": "9091",
+    "ArtifactManager.DavsPollServer.Enable": "true",
+    "ArtifactManager.Download.DownloaderPolicy": "MIN_STORAGE_FOOTPRINT",
+    "AlexaHybrid.DAC.ComponentId": "AHE",
+    "DacService.UUID": "132",
+    "VersionFilePath": "/etc/alexahybrid/ahe.version",
+    "shared": {
+        "writableDir": "/var/lib/data/alexahybrid/files/working-directory"
+    },
+    "platformServices": {
+        "endpoint": {
+            "details": {
+            },
+            "type": "socket"
+        },
+        "aceMapLibraryPath": "/usr/lib/libace_map.so",
+        "aceEventManagerLibraryPath": "/usr/lib/libace_eventmgr.so",
+        "aceHalKeyValueLibraryPath": "/usr/lib/libacehal_kv_storage.so.1",
+        "aceNetManagerLibraryPath": "/usr/lib/libace_netmgr.so",
+        "lipcLibraryPath": "/usr/lib/liblipc.so.0.0.1",
+        "aceMetricsLibraryPath": "/usr/lib/libace_metric.so",
+        "aceAipcLibraryPath": "/usr/lib/libace_aipc.so"
+    },
+    "builtInSkillCollections": [
+       {
+            "skillCollectionId": "amzn1.ask.skill.d3a1dfa8-61ba-4a58-8355-66d09358f725",
+            "skillConfiguration": {
+                "Skill.SmartHomeSkillId.ApplianceDriverRegistryDatabaseFile": "/etc/alexahybrid/smartHomeSkill/driverRegistry.db",
+                "Skill.SmartHomeSkillId.ArtifactManager.IngestionEP": "/var/lib/data/alexahybrid/ec-sockets/ingestionEP.sock",
+                "Skill.SmartHomeSkillId.CACertFile": "/etc/ssl/certs/ca-certificates.crt",
+                "Skill.SmartHomeSkillId.CHRSyncDatabaseFile": "/var/lib/data/alexahybrid/smartHomeSkill/customerHomeRegistrySync.db",
+                "Skill.SmartHomeSkillId.CHRDatabaseFile": "/var/lib/data/alexahybrid/smartHomeSkill/customerHomeRegistry.db",
+                "Skill.SmartHomeSkillId.DirectoryPath": "/var/lib/data/alexahybrid/smartHomeSkill",
+                "Skill.SmartHomeSkillId.MetricsLoggerType": "ACE_METRICS",
+                "Skill.SmartHomeSkillId.ACEMetricsLibraryPath": "/usr/lib/libace_metric.so",
+                "Skill.SmartHomeSkillId.PromptsJSONFile": "/etc/alexahybrid/smartHomeSkill/prompts.json",
+                "Skill.SmartHomeSkillId.ACEEventsLibraryPath": "/usr/lib/libace_eventmgr.so",
+                "Skill.SmartHomeSkillId.ACEMapLibraryPath": "/usr/lib/libace_map.so",
+                "Skill.SmartHomeSkillId.ACEHalKVStorageLibraryPath": "/usr/lib/libacehal_kv_storage.so.1",
+                "Skill.SmartHomeSkillId.ACENetMgrLibraryPath": "/usr/lib/libace_netmgr.so",
+                "Skill.SmartHomeSkillId.ACEMinervaMetricsLibraryPath": "/usr/lib/libace_minerva_metrics_api.so",
+                "Skill.SmartHomeSkillId.ApplianceStateStoreLibPath": "/usr/lib/libshdsclient.so",
+                "Skill.SmartHomeSkillId.DAVSLibraryPath": "/usr/lib/libDAVSUtils.so",
+                "Skill.SmartHomeSkillId.SHSConnectorLibraryPath": "/usr/lib/libshsconnector.so"
+            },
+            "actionInterfaces": ["SmartHome.executeAction", "SmartHome.executeActionClassic"]
+        },
+        {
+            "skillCollectionId": "com.amazon.alexahybrid.AlertsSkill"
+        },
+        {
+            "skillCollectionId": "com.amazon.alexahybrid.StopFallbackSkill",
+            "skillConfiguration": {
+                "AlexaHybrid.SDK.MetricsLoggerType": "ACE_METRICS",
+                "AlexaHybrid.SDK.ACEMetricsLibraryPath": "/usr/lib/libace_metric.so"
+            }
+        },
+        {
+            "skillCollectionId": "com.amazon.alexahybrid.VolumeControlSkill",
+            "skillConfiguration": {
+                "AlexaHybrid.SDK.MetricsLoggerType": "ACE_METRICS",
+                "AlexaHybrid.SDK.ACEMetricsLibraryPath": "/usr/lib/libace_metric.so"
+            }
+        },
+        {
+            "skillCollectionId": "com.amazon.alexahybrid.ChronoSkill",
+            "skillConfiguration": {
+                "AlexaHybrid.SDK.MetricsLoggerType": "ACE_METRICS",
+                "AlexaHybrid.SDK.ACEMetricsLibraryPath": "/usr/lib/libace_metric.so"
+            },
+            "actionInterfaces": ["System.fetchCurrentTime", "System.fetchCurrentDay"]
+        }
+    ]
+}

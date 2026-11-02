@@ -1,0 +1,164 @@
+{
+    "version": 9,
+    "application_configs": [
+        {
+            "application": "hulu",
+            "intent_uri": "amzns://apps/android?asin=B00F4A1GN6&clickStreamReftag=r_btn_app_11",
+            "package": "com.hulu.plus",
+            "metric_key": "Hulu"
+        },
+        {
+            "application": "ctv",
+            "intent_uri": "amzns://apps/android?asin=B07DPRZ7NH&clickStreamReftag=r_btn_app_5",
+            "package": "ca.bellmedia.ctv",
+            "metric_key": "CTV"
+        },
+        {
+            "application": "crave",
+            "intent_uri": "amzns://apps/android?asin=B0789RWQK1&clickStreamReftag=r_btn_app_6",
+            "package": "ca.bellmedia.cravetv",
+            "metric_key": "Crave"
+        },
+        {
+            "application": "zee5",
+            "intent_uri": "amzns://apps/android?asin=B079PZHHBS&clickStreamReftag=r_btn_app_7",
+            "package": "com.zee5.amazon",
+            "metric_key": "Zee5"
+        },
+        {
+            "application": "sony",
+            "intent_uri": "amzns://apps/android?asin=B06XP3HSPW&clickStreamReftag=r_btn_app_8",
+            "package": "com.onemainstream.sonyliv.android",
+            "metric_key": "SonyLiv"
+        },
+        {
+            "application": "tvnow",
+            "intent_uri": "amzns://apps/android?asin=B01MTVGZE1&clickStreamReftag=r_btn_app_9",
+            "package": "de.cbc.tvnow.firetv",
+            "metric_key": "TvNow"
+        },
+        {
+            "application": "dazn",
+            "intent_uri": "amzns://apps/android?asin=B01IPC7MBE&clickStreamReftag=r_btn_app_10",
+            "package": "com.dazn",
+            "metric_key": "DAZN"
+        },
+        {
+            "application": "livetv",
+            "intent_uri": "livetv://showLiveTVButtonContent",
+            "package": "com.amazon.tv.livetv",
+            "service": "com.amazon.tv.livetv.TuneService",
+            "metric_key": "LiveTv"
+        },
+        {
+            "application": "apps",
+            "intent_uri": "amzn://apps/android?a_lib",
+            "metric_key": "Apps"
+        },
+        {
+            "application": "amazonmusic",
+            "intent_uri": "amzns://apps/android?p=com.amazon.bueller.music",
+            "package": "com.amazon.bueller.music",
+            "metric_key": "Music"
+        },
+        {
+            "application": "primevideo",
+            "intent_uri": "orpheus://com.amazon.frenchpress.main",
+            "package": "com.amazon.frenchpress.main",
+            "metric_key": "PrimeVideo"
+        },
+        {
+            "application": "imdb",
+            "package": "com.imdb.mobile",
+            "intent_uri": "amzn://com.amazon.tv.launcher/navmenu?p=com.amazon.tv.launcher&pageType=subscription&ref=[reftype=browse/menu,refid=imdb_tv_root]",
+            "metric_key": "Imdb"
+        },
+        {
+            "application": "hbo",
+            "intent_uri_1": "amzns://apps/android?asin=B0089BPEZS&clickStreamReftag=r_btn_app_3",
+            "package_1": "com.HBO",
+            "intent_uri_2": "amzns://apps/android?asin=B00XZFCVK4&clickStreamReftag=r_btn_app_3",
+            "package_2": "com.hbo.hbonow",
+            "metric_key": "HBO"
+        },
+        {
+            "application": "psvue",
+            "package": "com.snei.vue.firetv",
+            "intent_uri": "amzn://apps/android?page=collection&asinList=B00ODC5N80,B00F4A1GN6,B07XF2P9KR,B07BKPFXTJ&title=Live",
+            "metric_key": "PlayStationVue"
+        },
+        {
+            "application": "netflix",
+            "intent_uri": "amzns://apps/android?asin=B00OGRMULA&clickStreamReftag=r_btn_app_1",
+            "package": "com.netflix.ninja",
+            "metric_key": "Netflix"
+        },
+        {
+            "application": "disney",
+            "intent_uri": "amzns://apps/android?asin=B07Y8SJGCV&clickStreamReftag=r_btn_app_12",
+            "package": "com.disney.disneyplus",
+            "metric_key": "Disney"
+        },
+        {
+            "application": "explorefvp",
+            "intent_uri": "amzns://apps/android?asin=B08CH5D716&clickStreamReftag=r_btn_app_13",
+            "package": "uk.co.freeview.firetv.explore",
+            "metric_key": "ExploreFVP"
+        },
+        {
+            "application": "silk",
+            "intent_uri": "amzns://apps/android?p=com.amazon.cloud9",
+            "package": "com.amazon.cloud9",
+            "metric_key": "Internet"
+        },
+        {
+            "application": "download",
+            "intent_action": "com.amazon.tv.launcher.ui.DownloadLauncher",
+            "package": "com.amazon.tv.launcher",
+            "metric_key": "DownloadLauncher",
+            "foreground_relaunch": "true"
+        },
+        {
+            "application": "abema",
+            "intent_uri": "amzns://apps/android?asin=B01M5DGW0G&clickStreamReftag=r_btn_app_85",
+            "package": "com.abema",
+            "metric_key": "ABEMA"
+        },
+        {
+            "application": "comingsoon",
+            "intent_uri": "com.amazon.tv.keypolicymanager.comingsoon.ComingSoonActivity",
+            "package": "com.amazon.tv.keypolicymanager",
+            "metric_key": "ComingSoon"
+        },
+        {
+            "application": "peacock",
+            "intent_uri": "amzns://apps/android?asin=B08BG9MPT9&clickStreamReftag=r_btn_app_77",
+            "package": "com.peacock.peacockfiretv",
+            "metric_key": "peacock"
+        },
+        {
+            "application": "directv",
+            "intent_uri": "amzns://apps/android?asin=B01J62Q632&clickStreamReftag=r_btn_app_88",
+            "package": "com.att.tv",
+            "metric_key": "DIRECTV"
+        },
+        {
+            "application": "tver",
+            "intent_uri": "amzns://apps/android?asin=B07PY2LDRK&clickStreamReftag=r_btn_app_99",
+            "package": "jp.co.tver.tvapp",
+            "metric_key": "TVer"
+        },
+        {
+            "application": "unext",
+            "intent_uri": "amzns://apps/android?asin=B01890I97S&clickStreamReftag=r_btn_app_22",
+            "package": "jp.unext.fire.player",
+            "metric_key": "Unext"
+        },
+        {
+            "application": "youtube",
+            "intent_uri": "amzns://apps/android?asin=B07T771SPH&clickStreamReftag=r_btn_app_33",
+            "package": "com.amazon.firetv.youtube",
+            "metric_key": "YouTube"
+        }
+    ]
+}

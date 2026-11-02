@@ -1,0 +1,250 @@
+{
+    "hal-name": "Audio Primary Hal",
+    "playback": {
+        "stream-id": "p0",
+        "amp-path": "/sys/bus/i2c/drivers/TAS5815m/5-0055/name",
+        "primary-amp-name": "tas5815m",
+        "secondary-amp-name": "aw85806",
+        "speaker": {
+            "pcm-name": "Internal_Playback",
+            "sample-rate": 48000,
+            "channels": 6,
+            "bits": 32,
+            "period-size-ms": 16,
+            "period-count": 4,
+            "ring-buf-count": 3,
+            "enable-adaptation": false
+        },
+        "echocanceller": {
+            "pcm-name": "A2DP_Ref_Playback",
+            "sample-rate": 96000,
+            "channels": 2,
+            "bits": 32,
+            "period-size-ms": 16,
+            "period-count": 6,
+            "ring-buf-count": 9
+        },
+        "common-paths": {
+            "pre-open-settings": {},
+            "post-open-settings": {},
+            "pre-start-settings": {},
+            "post-start-settings":{},
+            "pre-pause-settings": {},
+            "post-pause-settings": {},
+            "pre-resume-settings": {},
+            "post-resume-settings": {}
+        },
+        "maxim-paths": {
+            "pre-open-settings": {
+                "aw85806_analog_gain Volume": "19",
+                "aw85806_digital_gain Volume": "204"
+            },
+            "post-open-settings": {},
+            "pre-start-settings": {
+                "Common Playback Switch": "1"
+            },
+            "post-start-settings": {},
+            "pre-pause-settings": {},
+            "post-pause-settings": {},
+            "pre-resume-settings": {},
+            "post-resume-settings": {}
+        },
+        "ti-paths": {
+            "pre-open-settings": {
+                "Analog Volume": "19",
+                "Digital Ch1 Volume": "207",
+                "Master Playback Volume": "110"
+            },
+            "post-open-settings": {},
+            "pre-start-settings": {
+                "Common Playback Switch": "1",
+                "Master Playback Volume": "110"
+            },
+            "post-start-settings":{},
+            "pre-pause-settings": {},
+            "post-pause-settings": {},
+            "pre-resume-settings": {},
+            "post-resume-settings": {}
+        },
+        "speaker-paths": {
+            "pre-open-settings": {},
+            "post-open-settings": {},
+            "pre-start-settings": {},
+            "post-start-settings": {},
+            "pre-pause-settings": {},
+            "post-pause-settings": {
+                "Common Playback Switch": "0"
+            },
+            "pre-resume-settings": {},
+            "post-resume-settings": {}
+        },
+        "echocanceller-paths": {
+            "pre-open-settings": {},
+            "post-open-settings": {},
+            "pre-start-settings": {},
+            "post-start-settings": {},
+            "pre-pause-settings": {},
+            "post-pause-settings": {},
+            "pre-resume-settings": {},
+            "post-resume-settings": {}
+        }
+    },
+    "capture": {
+        "stream-id": "c0",
+        "mic-path": "/sys/bus/i2c/drivers/tlv320adc5140/1-004c/name",
+        "read-delay-in-ms": 200,
+        "asr": {
+            "pcm-name": "DSP_ASR_STREAM",
+            "sample-rate": 16000,
+            "channels": 2,
+            "transform-channels": [1,2],
+            "bits": 16,
+            "period-size-ms": 16,
+            "period-count": 128,
+            "ring-buf-count": 192
+        },
+        "voip": {
+            "pcm-name": "DSP_VOIP_STREAM",
+            "sample-rate": 16000,
+            "channels": 1,
+            "bits": 16,
+            "period-size-ms": 16,
+            "period-count": 4,
+            "ring-buf-count": 6
+        },
+        "uspd": {
+            "pcm-name": "DSP_USBB_STREAM",
+            "sample-rate": 2000,
+            "channels": 8,
+            "bits": 32,
+            "period-size-ms": 16,
+            "period-count": 4,
+            "ring-buf-count": 6
+        },
+        "tap": {
+            "pcm-name": "DSP_TAP_STREAM",
+            "sample-rate": 16000,
+            "channels": 4,
+            "bits": 32,
+            "period-size-ms": 16,
+            "period-count": 4,
+            "ring-buf-count": 6
+        },
+        "rad": {
+            "pcm-name": "DSP_RAD_STREAM",
+            "sample-rate": 16000,
+            "channels": 10,
+            "bits": 32,
+            "period-size-ms": 16,
+            "period-count": 8,
+            "ring-buf-count": 6
+        },
+        "sensors": {
+            "pcm-name": "DSP_MMSF_STREAM",
+            "sample-rate": 16000,
+            "channels": 16,
+            "bits": 32,
+            "period-size-ms": 16,
+            "period-count": 8,
+            "ring-buf-count": 12
+        },
+        "common-paths": {
+            "pre-open-settings": {},
+            "post-open-settings": {},
+            "pre-start-settings": {},
+            "post-start-settings": {},
+            "pre-pause-settings": {},
+            "post-pause-settings": {},
+            "pre-resume-settings": {},
+            "post-resume-settings": {}
+        },
+        "ti-paths": {
+            "pre-open-settings": {
+                "ADC Reset A": "on",
+                "Ch1 Slot Offset A": "0",
+                "Ch2 Slot Offset A": "1",
+                "Ch3 Slot Offset A": "2",
+                "Ch4 Slot Offset A": "3",
+                "Ch1 Gain A": "19",
+                "Ch2 Gain A": "19",
+                "Ch3 Gain A": "19",
+                "Ch4 Gain A": "19",
+                "Ch1 Digital Capture Vol A": "201",
+                "Ch2 Digital Capture Vol A": "201",
+                "Ch3 Digital Capture Vol A": "201",
+                "Ch4 Digital Capture Vol A": "201",
+                "Ch1 Input Impedance A": "1",
+                "Ch2 Input Impedance A": "1",
+                "Ch3 Input Impedance A": "1",
+                "Ch4 Input Impedance A": "1",
+                "Ch1 DRE Enable A": "off",
+                "Ch2 DRE Enable A": "off",
+                "Ch3 DRE Enable A": "off",
+                "Ch4 DRE Enable A": "off"
+            },
+            "post-open-settings": {},
+            "pre-start-settings": {},
+            "post-start-settings": {},
+            "pre-pause-settings": {},
+            "post-pause-settings": {},
+            "pre-resume-settings": {},
+            "post-resume-settings": {}
+        },
+        "ak-paths": {
+            "pre-open-settings": {},
+            "post-open-settings": {},
+            "pre-start-settings": {},
+            "post-start-settings": {},
+            "pre-pause-settings": {},
+            "post-pause-settings": {},
+            "pre-resume-settings": {},
+            "post-resume-settings": {}
+        }
+    },
+    "params-to-kcontrol": {
+        "SetSpeakerMode": {
+            "common-paths": {
+            }
+        },
+        "SetUltrasoundMode": {
+            "common-paths": {
+                "InternalUspdHandler" : "0"
+            },
+            "maxim-paths": {
+            },
+            "ti-paths": {
+            }
+        },
+        "Timestamp": {
+            "common-paths": {
+                "AZMA GNWTS": ""
+            }
+        },
+        "DACName": {
+            "maxim-paths": {
+                "AW85806": ""
+            },
+            "ti-paths": {
+                "TAS5815M": ""
+            }
+        },
+        "DACGain": {
+            "maxim-paths": {
+                "aw85806_analog_gain Volume": "",
+                "aw85806_digital_gain Volume": ""
+            },
+            "ti-paths": {
+                "Analog Volume": "",
+                "Master Playback Volume": ""
+            }
+        },
+        "DACReset": {
+            "maxim-paths": {
+                "Reset aw85806": ""
+            },
+            "ti-paths": {
+                "Reset TAS5815m": ""
+            }
+        }
+    }
+}

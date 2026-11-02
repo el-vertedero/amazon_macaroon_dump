@@ -1,0 +1,49 @@
+{
+    "version": 1.0,
+    "flow_inputs": {
+        "input": [
+            {
+                "name": "USPD",
+                "type": "ACE_SENSORS_STREAM_PRESENCE"
+            },
+            {
+                "name": "RADAR",
+                "type": "ACE_SENSORS_STREAM_PRESENCE"
+            }
+        ]
+    },
+    "flow_outputs": {
+        "output": [
+            {
+                "name": "enhanced_presence_uspd_wifi_radar",
+                "type": "ACE_SENSORS_STREAM_PRESENCE"
+            }
+        ]
+    },
+    "connection_information": [
+        {
+            "connection": {
+                "input": [
+                    {
+                        "name": "USPD",
+                        "type": "ACE_SENSORS_STREAM_PRESENCE"
+                    },
+                    {
+                        "name": "RADAR",
+                        "type": "ACE_SENSORS_STREAM_PRESENCE"
+                    }
+                ],
+                "output": [
+                    {
+                        "name": "enhanced_presence_uspd_wifi_radar",
+                        "type": "ACE_SENSORS_STREAM_PRESENCE",
+                        "visibility": true
+                    }
+                ],
+                "processing_algorithm": {
+                    "name": "uspd_wifi_radar_algorithm"
+                }
+            }
+        }
+    ]
+}

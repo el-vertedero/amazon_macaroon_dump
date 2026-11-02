@@ -1,0 +1,49 @@
+[Unit]
+Description=Start ACS middleware ATS
+After=ace_eventmgr.service kvs_util.service service-registrar.service secure_kvs.service
+Wants=ace_eventmgr.service netsvc.service ats.timer service-registrar.service secure_kvs.service
+PartOf=service-registrar.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ace_time_service
+SmackProcessLabel=System
+User=ats
+Group=ats
+SupplementaryGroups=aipc kvstore
+
+CapabilityBoundingSet=CAP_SYS_TIME
+AmbientCapabilities=CAP_SYS_TIME
+
+ReadWritePaths=/var/lib/data/ace/aipc
+ReadWritePaths=/var/lib/data/ace/kvstorage
+
+SystemCallFilter=@system-service @clock
+SystemCallErrorNumber=EPERM
+
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+PrivateDevices=yes
+ReadWritePaths=-/dev/socket
+BindPaths=-/dev/socket
+
+#AIPC over Binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

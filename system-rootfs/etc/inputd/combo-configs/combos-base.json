@@ -1,0 +1,119 @@
+{
+    "combos" : [ 
+        {
+            "chords" : [
+                {
+                    "triggerMs" : 3000,
+                    "keys" : [
+                            {
+                                "inputDeviceName" : "inputd-gpio-privacy-button",
+                                "keyName" : "KEY_POWER"
+                            }
+                    ]
+                }
+            ],
+            "triggerType" : "timeElapsed",
+            "resetTime" : 5000,
+            "generic" : false,
+            "name" : "powerOff"
+       },
+       {
+            "chords" : [
+                {
+                    "triggerMs" : 6000,
+                    "keys" : [
+                            {
+                                "inputDeviceName" : "inputd-gpio-privacy-button",
+                                "keyName" : "KEY_POWER"
+                            },
+                            {
+                                "inputDeviceName" : "inputd-gpio-keys",
+                                "keyName" : "KEY_VOLUMEUP"
+                            }
+                    ]
+                }
+            ],
+            "triggerType" : "timeElapsed",
+            "resetTime" : 5000,
+            "generic" : false,
+            "suppressKeys": true,
+            "name" : "oobeFactoryReset"
+       },
+       {
+            "chords" : [
+                  {
+                    "triggerMs" : 15000,
+                    "triggerMaxMs" : 25000,
+                    "keys" : [
+                            {
+                                "inputDeviceName" : "inputd-gpio-privacy-button",
+                                "keyName" : "KEY_POWER"
+                            },
+                            {
+                                "inputDeviceName" : "inputd-gpio-keys",
+                                "keyName" : "KEY_VOLUMEDOWN"
+                            }
+                    ]
+                }
+            ],
+            "triggerType" : "onRelease",
+            "resetTime" : 5000,
+            "generic" : false,
+            "suppressKeys": true,
+            "name" : "softFactoryResetPlatform"
+       },
+       {
+            "chords" : [
+                {
+                    "triggerMs" : 25000,
+                    "keys" : [
+                            {
+                                "inputDeviceName" : "inputd-gpio-privacy-button",
+                                "keyName" : "KEY_POWER"
+                            },
+                            {
+                                "inputDeviceName" : "inputd-gpio-keys",
+                                "keyName" : "KEY_VOLUMEDOWN"
+                            }
+                    ]
+                }
+            ],
+            "triggerType" : "timeElapsed",
+            "resetTime" : 5000,
+            "generic" : false,
+            "suppressKeys": true,
+            "name" : "deepFactoryReset"
+       },
+       {
+            "chords" : [
+                {
+                    "triggerMs" : 3000,
+                    "keys" : [
+                            {
+                                "inputDeviceName" : "inputd-gpio-privacy-button",
+                                "keyName" : "KEY_POWER"
+                            },
+                            {
+                                "inputDeviceName" : "inputd-gpio-keys",
+                                "keyName" : "KEY_VOLUMEDOWN"
+                            }
+                    ]
+                },
+                {
+                    "triggerMs" : 1,
+                    "keys" : [
+                            {
+                                "inputDeviceName" : "inputd-gpio-keys",
+                                "keyName" : "KEY_VOLUMEUP"
+                            }
+                    ]
+                }
+            ],
+            "triggerType" : "onRelease",
+            "resetTime" : 5000,
+            "generic" : false,
+            "suppressKeys": true,
+            "name" : "logUpload"
+       }
+   ]
+}

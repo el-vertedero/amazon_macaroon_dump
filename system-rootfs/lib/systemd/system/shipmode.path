@@ -1,0 +1,9 @@
+[Unit]
+Description="Trigger shipmode"
+
+[Path]
+PathExists=/run/shipmode/shipmode.txt
+Unit=shipmode.service
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,32 @@
+# bridged daemon
+
+[Unit]
+Description=bridged daemon
+
+# disable rate limit
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=wifi
+Group=wifi
+SupplementaryGroups=net log
+
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_RAW
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_RAW
+
+ProtectControlGroups=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectKernelLogs=true
+RestrictRealtime=true
+LockPersonality=true
+ProtectClock=true
+ProtectKernelModules=true
+RestrictNamespaces=true
+
+EnvironmentFile=/var/run/bridged_file
+ExecStart=/usr/bin/bridged -d 2 ${WANIF} ${LANIF0} ${LANIF1} ${LANIF2} ${LANIF3} -m -l -c
+Restart=on-failure
+
+[Install]

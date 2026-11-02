@@ -1,0 +1,33 @@
+#!/bin/bash
+
+systemctl start multi-user.target
+
+sleep 3
+wait_jobs() {
+    local timeout=${1:-120}  # default 2 minutes timeout
+    local start_time=$(date +%s)
+
+    while true; do
+        local jobs=$(systemctl list-jobs 2>/dev/null)
+        if [ "$jobs" = "No jobs running." ]; then
+            return 0
+        fi
+
+        # Check timeout
+        local current_time=$(date +%s)
+        local elapsed=$((current_time - start_time))
+        if [ $elapsed -gt $timeout ]; then
+            echo "Timeout waiting for systemd jobs to complete"
+            return 1
+        fi
+
+        sleep 0.1
+    done
+}
+
+if wait_jobs ; then
+    echo "Kepler runtime started."
+else
+    echo "Failed to start Kepler runtime."
+    exit 1
+fi

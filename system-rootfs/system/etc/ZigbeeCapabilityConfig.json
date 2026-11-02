@@ -1,0 +1,32 @@
+{
+    "applicationProtocols": [
+        {
+            "type": "ZIGBEE",
+            "maxVersion": "3.0",
+            "transportProtocols": [
+                {
+                    "type": "ZIGBEE_2.4GHZ",
+                    "maxVersion": "3.0"
+                }
+            ],
+            "commissioneeTypes": {
+                "displayCategories": [
+                    "BINARY_SENSOR",
+                    "BLIND",
+                    "CONTACT_SENSOR",
+                    "HUMIDITY_SENSOR",
+                    "LIGHT",
+                    "MOTION_SENSOR",
+                    "REMOTE",
+                    "SCENE_TRIGGER",
+                    "SMARTLOCK",
+                    "SMARTPLUG",
+                    "SWITCH",
+                    "TEMPERATURE_SENSOR",
+                    "THERMOSTAT",
+                    "WATER_LEAK_SENSOR"
+                ]
+            }
+        }
+    ]
+}

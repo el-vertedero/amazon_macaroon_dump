@@ -1,0 +1,42 @@
+[Unit]
+Description=CoMet Daemon Service
+After=ace_metric_daemon.service minerva.service eventmgr.service amzn-kcr.service multi-user.target
+Wants=ace_metric_daemon.service
+
+[Service]
+User=trace
+Group=trace
+Type=simple
+Restart=on-failure
+ReadWritePaths=/var/lib/data/ace/aipc/ -/dev/socket -/dev/log -/dev/metrics -/dev/vitals /var/log/
+BindPaths=-/dev/socket -/dev/log -/dev/vitals -/dev/metrics
+SmackProcessLabel=System
+SupplementaryGroups=aipc log failuremgr
+ExecStart=/usr/bin/comet_main /usr/share/comet/default.cfg
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+DeviceAllow=/dev/metrics rw
+DeviceAllow=/dev/vitals rw
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+# Binder Access
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+DeviceAllow=/dev/binder rw
+
+[Install]
+WantedBy=multi-user.target

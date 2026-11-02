@@ -1,0 +1,31 @@
+# dhcpcd systemd service
+# dhcpcd will not start automatically after power up
+# wifisvc will call startIpProvisioning/stopIpProvisioning to control dhcpcd
+
+[Unit]
+Description=DHCPCD
+
+[Service]
+User=net
+Group=net
+SupplementaryGroups=wifi log
+SmackProcessLabel=System::Privileged
+
+CapabilityBoundingSet=CAP_SYS_CHROOT CAP_NET_ADMIN CAP_NET_RAW CAP_NET_BROADCAST CAP_NET_BIND_SERVICE CAP_MAC_OVERRIDE
+AmbientCapabilities=CAP_SYS_CHROOT CAP_NET_ADMIN CAP_NET_RAW CAP_NET_BROADCAST CAP_NET_BIND_SERVICE CAP_MAC_OVERRIDE
+
+ProtectControlGroups=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectKernelLogs=true
+RestrictRealtime=true
+LockPersonality=true
+ProtectClock=true
+ProtectKernelModules=true
+RestrictNamespaces=true
+
+ExecStart=/sbin/dhcpcd %i -AdLK --hostname --nodelay --nobackground
+PIDFile = /run/dhcpcd/%i.pid
+Restart=always
+
+[Install]

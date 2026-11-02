@@ -1,0 +1,29 @@
+[Unit]
+Description=AICF daemon
+Conflicts=shutdown.target
+After=PuffinApp.service wifisvc.service dbus.socket
+Wants=dbus.socket
+
+[Service]
+ExecStartPre=+mkdir -p /var/lib/data/aicf
+ExecStartPre=+chown -R system:system /var/lib/data/aicf
+
+User=system
+Group=system
+SmackProcessLabel=System
+Restart=always
+
+ExecStart=/usr/bin/AicfD
+# StateDirectory=data/aicf
+
+# Enable AIPC
+SupplementaryGroups=aipc kvstore
+ReadWritePaths=/var/lib/data/ace/aipc/ /var/lib/data/ace/kvstorage/
+
+# Restrict the permitted syscalls to a reasonable set used by common system services.
+# If an unexpected syscall occurs, return EPERM instead of terminating.
+SystemCallFilter=@system-service @network-io
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target

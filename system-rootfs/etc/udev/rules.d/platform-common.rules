@@ -1,0 +1,4 @@
+# /dev/uinput
+SUBSYSTEM=="misc", KERNEL=="uinput", OWNER="root", GROUP="input", MODE="0660", TAG+="systemd"
+# /dev/binder
+SUBSYSTEM=="misc", KERNEL=="binder", SECLABEL{smack}="*", OWNER="root", GROUP="root", MODE="0666"

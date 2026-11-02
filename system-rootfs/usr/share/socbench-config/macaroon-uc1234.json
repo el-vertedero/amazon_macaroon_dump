@@ -1,0 +1,138 @@
+{
+    "model_name": "macaroon",
+    "mem_stats": "/proc/meminfo",
+    "cycles_to_bytes": 16,
+    "pmu_devices": [
+        {
+            "path": "/sys/devices/azma_pmu_memnoc_p0_rd_pprobe",
+            "display_name": "p0_rd",
+            "pmu_events": [
+                {
+                    "event": "read_bytes",
+                    "name": "read_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        },
+        {
+            "path": "/sys/devices/azma_pmu_memnoc_p1_rd_pprobe",
+            "display_name": "p1_rd",
+            "pmu_events": [
+                {
+                    "event": "read_bytes",
+                    "name": "read_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        },
+        {
+            "path": "/sys/devices/azma_pmu_memnoc_p2_rd_pprobe0",
+            "display_name": "p2_rd0",
+            "pmu_events": [
+                {
+                    "event": "read_bytes",
+                    "name": "read_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        },
+        {
+            "path": "/sys/devices/azma_pmu_memnoc_p2_rd_pprobe1",
+            "display_name": "p2_rd1",
+            "pmu_events": [
+                {
+                    "event": "read_bytes",
+                    "name": "read_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        },
+        {
+            "path": "/sys/devices/azma_pmu_memnoc_p0_wr_pprobe",
+            "display_name": "p0_wr",
+            "pmu_events": [
+                {
+                    "event": "write_bytes",
+                    "name": "write_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        },
+        {
+            "path": "/sys/devices/azma_pmu_memnoc_p1_wr_pprobe",
+            "display_name": "p1_wr",
+            "pmu_events": [
+                {
+                    "event": "write_bytes",
+                    "name": "write_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        },
+        {
+            "path": "/sys/devices/azma_pmu_memnoc_p2_wr_pprobe0",
+            "display_name": "p2_wr0",
+            "pmu_events": [
+                {
+                    "event": "write_bytes",
+                    "name": "write_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        },
+        {
+            "path": "/sys/devices/azma_pmu_memnoc_p2_wr_pprobe1",
+            "display_name": "p2_wr1",
+            "pmu_events": [
+                {
+                    "event": "write_bytes",
+                    "name": "write_bytes",
+                    "convert_to_mb": false,
+                    "max_value": 50000000
+                }
+            ]
+        }
+    ],
+    "hwmon_sensors": [
+        {
+            "name": "pvt_a55",
+            "type": "temp",
+            "path": "/sys/class/thermal/thermal_zone0/temp"
+        },
+        {
+            "name": "pvt_mem_ss",
+            "type": "temp",
+            "path": "/sys/class/thermal/thermal_zone1/temp"
+        },
+        {
+            "name": "pvt_audio",
+            "type": "temp",
+            "path": "/sys/class/thermal/thermal_zone2/temp"
+        }
+    ],
+    "bsp_stats": [
+        {
+            "name": "cpufreq_a55",
+            "path": "/sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq"
+        }
+    ],
+    "process_stats": [
+        {
+            "name": "ps_cpu",
+            "param":["socbench", "acenna_service"],
+            "path": "/sys/%d/stat"
+        },
+        {
+            "name": "ps_mem_pss",
+            "param":["socbench", "acenna_service"],
+            "path": "/proc/%d/smaps"
+        }
+    ]
+}

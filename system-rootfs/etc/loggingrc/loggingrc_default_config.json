@@ -1,0 +1,3 @@
+{
+    "all":{"type":"process", "sev":"INFO", "rate":"300","mute":"false"}
+}

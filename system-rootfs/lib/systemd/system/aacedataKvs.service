@@ -1,0 +1,79 @@
+[Unit]
+Description=Kepler Storage and Config System (manages kvs db files and device configuration)
+Wants=service-registrar.service
+PartOf=service-registrar.service
+Before=kvs_util.service
+DefaultDependencies=no
+StartLimitBurst=5
+StartLimitIntervalSec=10
+OnFailure=failure-manager@%N.service
+
+[Service]
+Type=notify
+TimeoutStartFailureMode=abort
+
+# Prep secure kvs directory
+ExecStartPre=+/usr/bin/chsmack -r -s -a System /var/lib/private/SecureKvs
+
+# Merged executable
+ExecStart=/usr/bin/kscs-service
+
+Restart=always
+
+# Use DynamicUser since secure_kvs writes files and needs isolation
+DynamicUser=yes
+
+# Merge supplementary groups - dynamic user will inherit these
+SupplementaryGroups=root kvstore app_user system wifi aipc reserved_disk
+
+# StateDirectory - systemd auto-creates with correct ownership for dynamic user
+StateDirectory=SecureKvs
+StateDirectoryMode=750
+UMask=0007
+
+# Merge all ReadWritePaths
+ReadWritePaths=-/dev/binder -/dev/socket -/dev/log -/run/systemd/journal/socket
+ReadWritePaths=-/home/app_user/packages/ -/var/lib/data/ace/aipc/ -/var/lib/data/ace/kvstorage
+
+# Merge all BindPaths
+BindPaths=-/dev/binder -/dev/socket -/dev/log -/run/systemd/journal/socket
+
+# Device permissions
+DeviceAllow=/dev/binder rw
+
+# Security settings
+CapabilityBoundingSet=none
+AmbientCapabilities=
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectControlGroups=yes
+ProtectSystem=strict
+RestrictSUIDSGID=true
+RestrictRealtime=true
+LockPersonality=true
+RemoveIPC=yes
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+SmackProcessLabel=System
+
+# Limit glibc malloc arenas to reduce memory waste from short-lived threads
+Environment=MALLOC_ARENA_MAX=2
+
+EnvironmentFile=-/etc/app-framework/config.env
+
+[Install]
+WantedBy=multi-user.target
+# Aliases for backward compatibility
+Alias=device-config-manager.service
+
+[X-Kepler]
+OffersService=com.amazon.secureKvs.service
+OffersService=com.amazon.device-config.service

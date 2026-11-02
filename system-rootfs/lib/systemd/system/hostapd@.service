@@ -1,0 +1,32 @@
+[Unit]
+Description=Hostapd daemon
+Requires=sys-subsystem-net-devices-wlan0.device
+After=sys-subsystem-net-devices-wlan0.device
+Before=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=wifi
+Group=wifi
+SupplementaryGroups=net log
+
+CapabilityBoundingSet=CAP_SYS_ADMIN CAP_NET_ADMIN CAP_NET_RAW CAP_NET_BROADCAST
+AmbientCapabilities=CAP_SYS_ADMIN  CAP_NET_ADMIN CAP_NET_RAW CAP_NET_BROADCAST
+
+WorkingDirectory=/var/run/
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+NoNewPrivileges=yes
+RestrictSUIDSGID=yes
+
+# Make logging paths visible, since PrivateDevices=yes
+BindPaths=-/dev/socket -/dev/log
+ReadWritePaths=-/dev/socket -/dev/log
+
+ExecStart=hostapd -dd -Gwifi /var/run/hostap/hostapd.conf
+
+[Install]

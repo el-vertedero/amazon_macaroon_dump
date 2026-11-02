@@ -1,0 +1,26 @@
+#!/bin/sh
+
+hostname_file="/etc/hostname"
+transient_hostname_path="/var/lib/misc"
+transient_hostname_file="$transient_hostname_path/transient-hostname"
+FILE_SIZE_MIN=20
+FILE_SIZE_MAX=30
+transient_hostname=""
+
+# Check if script has already run and hostname is valid
+if [[ -f "$transient_hostname_file" ]] && 
+   (( $(wc -c < "$transient_hostname_file") > $FILE_SIZE_MIN )) && 
+   (( $(wc -c < "$transient_hostname_file") < $FILE_SIZE_MAX )); then
+  # Read the transient hostname from the file
+  transient_hostname=$(cat $transient_hostname_file)
+else
+  # Generate a new transient hostname
+  random_num=$(head -c 8 /dev/urandom | xxd -p)
+  transient_hostname=$(head -c 12 $hostname_file)-$random_num
+
+  # Save the new transient hostname to a file
+  echo $transient_hostname > $transient_hostname_file
+fi
+
+# Update the hostname
+hostname $transient_hostname

@@ -1,0 +1,7 @@
+#
+# Copyright (c) 2025 Amazon.com, Inc. or its affiliates.  All rights reserved.
+# PROPRIETARY/CONFIDENTIAL.  USE IS SUBJECT TO LICENSE TERMS.
+#
+
+# Add permissions for /dev/watchdog
+ACTION=="add", SUBSYSTEM=="misc", KERNEL=="watchdog", OWNER="root", GROUP="system", MODE="0660", TAG+="systemd"

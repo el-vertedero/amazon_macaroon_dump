@@ -1,0 +1,4 @@
+# /dev/vitals
+SUBSYSTEM=="misc", KERNEL=="vitals", SECLABEL{smack}="System", OWNER="root", GROUP="trace", MODE="0640"
+# /dev/metrics
+SUBSYSTEM=="misc", KERNEL=="metrics", SECLABEL{smack}="System", OWNER="root", GROUP="trace", MODE="0640"

@@ -1,0 +1,41 @@
+[Unit]
+Description=Record the last system log before shutdown to persisent storage
+DefaultDependencies=no
+Before=shutdown.target reboot.target halt.target poweroff.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/reboot-log.sh
+RemainAfterExit=yes
+
+# Fortifying the service
+User=log
+Group=log
+
+CapabilityBoundingSet=none
+IPAddressDeny=any
+LockPersonality=true
+MemoryDenyWriteExecute=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateNetwork=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ReadWritePaths=/var/log/reboot
+ReadOnlyPaths=/proc/sys/kernel/random /proc/uptime
+RemoveIPC=true
+RestrictNamespaces=true
+RestrictAddressFamilies=none
+RestrictRealtime=true
+RestrictSUIDSGID=true
+SmackProcessLabel=System
+SupplementaryGroups=
+SystemCallFilter=@basic-io @file-system @ipc @process @signal @sync
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=shutdown.target

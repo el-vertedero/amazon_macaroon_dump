@@ -1,0 +1,11 @@
+[Unit]
+Description=AIPC Socket-Folder Mount To TMPFS
+
+[Mount]
+What=tmpfs
+Where=/var/lib/data/ace/aipc
+Type=tmpfs
+Options=mode=2770,uid=root,gid=aipc,strictatime,nosuid,nodev,size=10%%,nr_inodes=1m
+
+[Install]
+WantedBy=local-fs.target

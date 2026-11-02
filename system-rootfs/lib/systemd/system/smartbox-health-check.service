@@ -1,0 +1,48 @@
+[Unit]
+Description=Periodic health check of logging stack
+After=service-registrar.service
+Wants=service-registrar.service
+PartOf=service-registrar.service
+
+[Service]
+User=log
+Group=log
+SmackProcessLabel=System::Privileged
+SupplementaryGroups=systemd-journal aipc kvstore
+
+ReadWritePaths=-/var/ -/run/log/journal
+
+# Binder setup
+ReadWritePaths=-/dev/binder
+BindPaths=-/dev/binder
+DeviceAllow=/dev/binder rw
+
+# Apply syscall filtering
+SystemCallFilter=@system-service adjtimex clock_adjtime clock_adjtime64
+
+Type=oneshot
+ExecStart=/usr/bin/smartboxctl health_check --emit-acr-on-failure
+ExecStopPost=/bin/bash -c 'if [[ $EXIT_STATUS == 0 ]]; then exit 0; elif [[ $SERVICE_RESULT == "exit-code" && $EXIT_CODE == "exited" && $EXIT_STATUS == 21 ]]; then pkill -15 smartboxd; fi'
+
+# Processes running at this level get I/O time only when no one
+# else needs the disk.
+IOSchedulingClass=idle
+
+# 0 = highest priority, 7 = lowest priority
+IOSchedulingPriority=7
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallErrorNumber=EPERM

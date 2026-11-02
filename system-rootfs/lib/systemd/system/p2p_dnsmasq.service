@@ -1,0 +1,33 @@
+# When P2P is up, dnsmasq is brought up to provide DHCP server and DNS forward support
+
+[Unit]
+Description=dnsmasq
+
+# disable rate limit
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=net
+Group=net
+SupplementaryGroups=wifi log
+
+CapabilityBoundingSet=CAP_NET_RAW CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_RAW CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+
+ProtectControlGroups=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectKernelLogs=true
+RestrictRealtime=true
+LockPersonality=true
+ProtectClock=true
+ProtectKernelModules=true
+RestrictNamespaces=true
+
+EnvironmentFile=/var/run/p2p_dnsmasq_file
+ExecStart=/usr/bin/p2p_dnsmasq.sh ${interface} ${ip} ${dhcp_range}
+PIDFile=/var/run/p2p_dnsmasq.pid
+Restart=always
+
+[Install]

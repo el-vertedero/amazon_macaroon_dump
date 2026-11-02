@@ -1,0 +1,10 @@
+{
+    "ledCount": 12,
+    "defaultMaxStep": 14,
+    "intensityBoost": {
+        "enabled": false,
+        "minThreshold": 0.2,
+        "maxThreshold": 0.8,
+        "boostAmount": 0.2
+    }
+}

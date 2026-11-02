@@ -1,0 +1,2 @@
+/sbin/partprobe
+/bin/toybox 60

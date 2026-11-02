@@ -1,0 +1,9 @@
+# Add partition switching logic
+
+if `grep -q "slot_suffix=_a" /proc/cmdline`; then
+	selection="-q stable,copyB"
+else
+	selection="-q stable,copyA"
+fi
+product=$(ace hal device_info cli -g -e 3 | grep 'Entry' | awk '{print $3}')
+SWUPDATE_ARGS="$SWUPDATE_ARGS -H ${product}:1.0 ${selection} -f /etc/swupdate.cfg"

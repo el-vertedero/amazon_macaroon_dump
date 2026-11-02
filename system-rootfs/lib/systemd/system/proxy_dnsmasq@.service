@@ -1,0 +1,35 @@
+# Dnsmasq as proxy to provide global cache and blocklist
+
+[Unit]
+Description=DnsProxy
+Wants=network.target
+
+# disable rate limit
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=net
+Group=net
+SupplementaryGroups=wifi log
+
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+ProtectControlGroups=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectKernelLogs=true
+RestrictRealtime=true
+LockPersonality=true
+ProtectClock=true
+ProtectKernelModules=true
+RestrictNamespaces=true
+
+EnvironmentFile=/run/proxy_dnsmasq_%I
+
+ExecStart=/usr/bin/dnsmasq --bind-interfaces -a ${ip} --pid-file=/run/proxy_dnsmasq_%I.pid --resolv-file=/run/resolv_%I.dnsmasq
+PIDFile=/run/proxy_dnsmasq_%I.pid
+Restart=always
+
+[Install]

@@ -1,0 +1,3 @@
+/usr/bin/find
+/bin/busybox 50
+/bin/toybox 60

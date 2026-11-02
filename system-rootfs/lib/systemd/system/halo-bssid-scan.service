@@ -1,0 +1,39 @@
+[Unit]
+Description=Halo BSSID Scan
+
+[Service]
+EnvironmentFile=-/etc/halo/common-env
+EnvironmentFile=-/etc/halo/sysprop/sysprop_systemd_envfile
+ExecStart=/usr/bin/halo_bssid_scan
+RemainAfterExit=yes
+
+SupplementaryGroups=net aipc system
+
+User=halo
+Group=halo
+
+# Fortifying the service
+SmackProcessLabel=System
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictAddressFamilies=AF_INET
+RestrictAddressFamilies=AF_INET6
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+#Enable AIPC/IPCN Access
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+[Install]

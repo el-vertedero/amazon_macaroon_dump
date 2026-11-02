@@ -1,0 +1,47 @@
+[Unit]
+Description=Plugin Sidewalk
+
+[Service]
+EnvironmentFile=-/etc/halo/common-env
+ExecStartPre=+/bin/sh -c '/bin/mkdir -p /var/lib/data/halo/var/log/core-plugins'
+ExecStartPre=+/bin/chown -R root:halo /var/lib/data/halo
+ExecStartPre=+/bin/chmod -R 775 /var/lib/data/halo
+ExecStartPre=-/bin/sh -c '/bin/mkdir -p /run/halo/etc'
+ExecStartPre=-/bin/sh -c '/bin/mkdir -p /run/halo/run/mfg'
+ExecStartPre=+/bin/chmod -R 775 /run/halo
+ExecStart=/usr/bin/cp_sidewalk
+Restart=always
+
+SupplementaryGroups=system aipc
+
+User=halo
+Group=halo
+
+# Fortifying the service
+SmackProcessLabel=System
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX
+RestrictAddressFamilies=AF_INET
+RestrictAddressFamilies=AF_INET6
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+PrivateDevices=true
+
+#Enable AIPC/IPCN Access
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+DeviceAllow=/dev/halo0 rw
+BindPaths=-/dev/halo0
+ReadWritePaths=-/dev/halo0
+
+[Install]

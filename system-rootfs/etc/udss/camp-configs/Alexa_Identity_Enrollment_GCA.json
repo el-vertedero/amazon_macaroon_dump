@@ -1,0 +1,34 @@
+{
+    "description": "Alexa.Identity.Enrollment GCA config",
+    "version": "1.0",
+    "CAMPSchemaVersion": "1.0",
+    "streams": [
+        {
+            "name": "VID_ENROLLMENT_GCA",
+            "type": "core.GenericCA",
+            "args": {
+                "capability": {
+                    "discovery": {
+                        "type": "AlexaInterface",
+                        "interface": "Alexa.Identity.Enrollment",
+                        "version": "2.2",
+                        "configurations": {
+                            "activities": ["VISUAL_ID", "VISUAL_ID_NO_SUCCESS_SCREEN", "AVATAR", "AUTH_CHALLENGE"]
+                        }
+                    },
+                    "directives": [
+                        {
+                            "name": "Cancel"
+                        },
+                        {
+                            "name": "Complete"
+                        },
+                        {
+                            "name": "Start"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

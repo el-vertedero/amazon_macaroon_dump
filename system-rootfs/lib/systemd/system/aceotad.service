@@ -1,0 +1,45 @@
+[Unit]
+Description=Start ACS middleware OTA daemon
+After=ace_eventmgr.service kvs_util.service netsvc.service secure_kvs.service service-registrar.service lifecycle-manager.service
+Wants=ace_eventmgr.service netsvc.service service-registrar.service secure_kvs.service
+PartOf=service-registrar.service
+
+[Service]
+ExecStartPre=+/bin/mkdir -p /cache/ota
+ExecStartPre=+/bin/chown -R root:ota /cache/ota
+ExecStartPre=+/bin/chmod 660 -R /cache/ota/
+ExecStartPre=+/bin/chmod 2770 /cache/ota
+ExecStartPre=+/usr/bin/chsmack -r -a 'System' /cache/ota
+ExecStart=/usr/bin/ace_otad
+Restart=always
+SmackProcessLabel=System
+
+User=ota
+Group=ota
+StateDirectory=data/ace/ota_package data/ace/securedStorageLocation/SmartHome_shared
+StateDirectoryMode=775
+
+SupplementaryGroups=aipc kvstore system disk reserved_disk tee
+
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+# Fortifying the service
+# PrivateNetwork=true        # Exposed due to VTrace.
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectKernelLogs=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.ace.otadaemon.service

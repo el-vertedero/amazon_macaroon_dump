@@ -1,0 +1,11 @@
+ACTION=="add", KERNEL=="aonlpi_ipc_0", OWNER="root", RUN+="/bin/chgrp -R -h system /sys/devices/platform/i2c-aonlpi-ipc/i2c-0/0-0035/leds"
+ACTION=="add", KERNEL=="aonlpi_ipc_0", OWNER="root", RUN+="/bin/chmod g+rw -R /sys/devices/platform/i2c-aonlpi-ipc/i2c-0/0-0035/leds"
+ACTION=="add", KERNEL=="aonlpi_ipc_0", OWNER="root", RUN+="/usr/bin/chsmack -r -s -a 'System' /sys/devices/platform/i2c-aonlpi-ipc/i2c-0/0-0035/leds"
+
+ACTION=="add", KERNEL=="aonlpi_ipc_0", OWNER="root", RUN+="/bin/chgrp -R -h system /sys/devices/platform/i2c-aonlpi-ipc/i2c-0/0-0033/leds"
+ACTION=="add", KERNEL=="aonlpi_ipc_0", OWNER="root", RUN+="/bin/chmod g+rw -R /sys/devices/platform/i2c-aonlpi-ipc/i2c-0/0-0033/leds"
+ACTION=="add", KERNEL=="aonlpi_ipc_0", OWNER="root", RUN+="/usr/bin/chsmack -r -s -a 'System' /sys/devices/platform/i2c-aonlpi-ipc/i2c-0/0-0033/leds"
+
+ACTION=="add", KERNEL=="aonlpi_ipc_0", OWNER="root", RUN+="/bin/chgrp -R -h system /sys/devices/platform/i2c-aonlpi-ipc/i2c-0/0-0030/leds"
+ACTION=="add", KERNEL=="aonlpi_ipc_0", OWNER="root", RUN+="/bin/chmod g+rw -R /sys/devices/platform/i2c-aonlpi-ipc/i2c-0/0-0030/leds"
+ACTION=="add", KERNEL=="aonlpi_ipc_0", OWNER="root", RUN+="/usr/bin/chsmack -r -s -a 'System' /sys/devices/platform/i2c-aonlpi-ipc/i2c-0/0-0030/leds"

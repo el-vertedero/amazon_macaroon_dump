@@ -1,0 +1,59 @@
+[Unit]
+Description=Minerva Metrics Service
+After=kvs_util.service secure_kvs.service eventmgr.service
+Wants=service-registrar.service secure_kvs.service
+PartOf=service-registrar.service
+
+[Service]
+Type=simple
+User=minerva
+Group=minerva
+SmackProcessLabel=System
+Restart=always
+
+ExecStart=/usr/bin/minerva_service
+StateDirectory=data/minerva/metrics
+
+#AIPC Binder
+DeviceAllow=/dev/binder rw
+BindPaths=-/dev/binder
+ReadWritePaths=-/dev/binder
+
+# MAP calls
+DeviceAllow=/dev/idme rw
+ReadWritePaths=-/dev/idme
+BindPaths=-/dev/idme
+
+# Enable AIPC kvstore and logging
+SupplementaryGroups=aipc kvstore
+ReadWritePaths=/var/lib/data/ace/aipc/ /var/lib/data/ace/kvstorage -/dev/socket -/dev/log
+BindPaths=-/dev/socket -/dev/log
+
+# Further restrict the API subtrees, as most services don't need these.
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+# Restrict the permitted syscalls to a reasonable set used by common system services.
+# If an unexpected syscall occurs, return EPERM instead of terminating.
+SystemCallFilter=@system-service @network-io
+SystemCallErrorNumber=EPERM
+
+# Fortifying Systemd Service Reccomendations
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.minerva

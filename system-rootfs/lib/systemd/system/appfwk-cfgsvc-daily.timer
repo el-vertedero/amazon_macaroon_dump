@@ -1,0 +1,9 @@
+[Unit]
+Description=AppFramework Config Service Daily Timer
+
+[Timer]
+Unit=appfwk-cfgsvc.service
+OnUnitActiveSec=24h
+
+[Install]
+WantedBy=kepler-deferred.target

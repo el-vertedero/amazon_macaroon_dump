@@ -1,0 +1,1 @@
+%wifi ALL= NOPASSWD: /bin/systemctl ^restart avahi.+$

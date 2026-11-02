@@ -1,0 +1,15 @@
+# Copyright 2024-2026 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+#
+# Basic Inputd Key Layout File
+#
+
+# Mark that we support all keys
+supports_all_keys
+
+key 362   LIVE_TV
+
+# App Keys
+key 744   APP_1
+key 745   APP_2
+key 746   APP_3
+key 747   APP_4

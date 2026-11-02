@@ -1,0 +1,3 @@
+/sbin/poweroff
+/bin/toybox 60
+/bin/systemctl 300

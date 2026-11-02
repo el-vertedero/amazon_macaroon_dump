@@ -1,0 +1,22 @@
+#!/bin/bash
+# Usage:
+# $ lldb-run-helper <port> <program and args>
+
+set -e
+
+# lldb-server closes open files descriptors before
+# it fork/exec. So we cannot run the stem directly
+# under it, because the fd used for communication
+# between stemd and the stem will be closed. So
+# instead, we attach to this script, which then
+# becomes the stem.
+/usr/bin/lldb-server g "${1}" --attach "$$" &
+
+# Stop ourselves in order to avoid a race, where
+# lldb-server attaches _after_ stem-init has already
+# forked.
+kill -s STOP "$$"
+
+shift
+
+$@

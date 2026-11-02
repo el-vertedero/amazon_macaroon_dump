@@ -1,0 +1,49 @@
+[Unit]
+Description=User Manager service
+After=security-manager.service aacedataKvs.service
+Wants=service-registrar.service eventmgr.service minerva.service aacedataKvs.service
+PartOf=service-registrar.service
+
+[Service]
+Type=notify
+
+ExecStart=/usr/bin/userprofilemanager-server
+
+SmackProcessLabel=System
+
+DynamicUser=yes
+
+DeviceAllow=/dev/binder rw
+DeviceAllow=/dev/tee0 rw
+
+StateDirectory=usermanager
+
+Restart=always
+
+SupplementaryGroups=aipc kvstore
+
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+ProtectKernelTunables=yes
+
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+ReadWritePaths=-/dev/log -/dev/socket -/dev/binder -/dev/tee0
+BindPaths=-/dev/log -/dev/socket -/dev/binder -/dev/tee0
+PrivateDevices=true
+CapabilityBoundingSet=none
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectClock=true
+ProtectKernelLogs=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
+
+[X-Kepler]
+OffersService=com.amazon.usermanager.service

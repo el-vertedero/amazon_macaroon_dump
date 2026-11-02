@@ -1,0 +1,8 @@
+PRODUCT_NAME="macaroon"
+PRODUCT_MANUFACTURER="Amazon"
+HARDWARE_NAME="macaroon"
+PLATFORM_NAME="unknown"
+PACKAGE_NAME="com.amazon.macaroon.kepler.os"
+BOOTLOADER="unknown"
+PRODUCT_MODEL="AEOMC"
+PRODUCT_FAMILY="headless"

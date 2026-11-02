@@ -1,0 +1,22 @@
+[Unit]
+Description=Process snapshot service
+
+[Service]
+Type=oneshot
+Restart=no
+Group=system
+ExecStart=/usr/bin/bugreport-procs-snapshot -f -d /var/spool/debugd/bugreport
+UMask=007
+SystemCallFilter=@system-service ptrace
+IPAddressDeny=any
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+NoNewPrivileges=true
+RemoveIPC=true
+RestrictSUIDSGID=true
+ProtectControlGroups=yes
+ProtectHome=read-only
+ProtectHostname=yes
+ProtectKernelLogs=yes
+ProtectKernelModules=yes
+CPUQuota=200%

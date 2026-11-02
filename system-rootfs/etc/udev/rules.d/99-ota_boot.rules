@@ -1,0 +1,6 @@
+ACTION=="add", KERNEL=="ota_boot", RUN+="/bin/chgrp disk /sys/kernel/ota_boot"
+ACTION=="add", KERNEL=="ota_boot", RUN+="/bin/chmod g+rw /sys/kernel/ota_boot"
+ACTION=="add", KERNEL=="ota_boot", RUN+="/usr/bin/chsmack -a 'System' /sys/kernel/ota_boot"
+ACTION=="add", KERNEL=="ota_boot", RUN+="/bin/chgrp disk /sys/kernel/arbc_prog"
+ACTION=="add", KERNEL=="ota_boot", RUN+="/bin/chmod g+rw /sys/kernel/arbc_prog"
+ACTION=="add", KERNEL=="ota_boot", RUN+="/usr/bin/chsmack -a 'System' /sys/kernel/arbc_prog"

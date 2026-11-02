@@ -1,0 +1,7 @@
+enable nat_fw.service
+enable p2p_fw.service
+enable hostap_fw@.service
+enable bridged_fw.service
+enable nat_forward@.service
+enable tcptunnel_fw.service
+enable default_fw@.service

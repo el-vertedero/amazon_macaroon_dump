@@ -1,0 +1,106 @@
+{
+  "locales" : {
+        "en-US" : {
+          "rank" : 1
+        },
+        "en-GB" : {
+          "rank" : 2
+        },
+        "de-DE" : {
+          "rank" : 3
+        },
+        "en-IN" : {
+          "rank" : 4
+        },
+        "ja-JP" : {
+          "rank" : 5
+        },
+        "en-CA" : {
+          "rank" : 6
+        },
+        "en-AU" : {
+          "rank" : 7
+        },
+        "fr-FR" : {
+          "rank" : 8
+        },
+        "it-IT" : {
+          "rank" : 9
+        },
+        "es-ES" : {
+          "rank" : 10
+        },
+        "es-MX" : {
+          "rank" : 11
+        },
+        "en-US|es-US" : {
+          "rank" : 12
+        },
+        "es-US" : {
+          "rank" : 13
+        },
+        "es-US|en-US" : {
+          "rank" : 14
+        },
+        "en-CA|fr-CA" : {
+          "rank" : 15
+        },
+        "fr-CA" : {
+          "rank" : 16
+        },
+        "fr-CA|en-CA" : {
+          "rank" : 17
+        },
+        "en-IN|hi-IN" : {
+          "rank" : 18
+        },
+        "hi-IN" : {
+          "rank" : 19
+        },
+        "hi-IN|en-IN" : {
+          "rank" : 20
+        },
+        "pt-BR" : {
+          "rank" : 21
+        },
+        "ar-SA" : {
+          "rank" : 22
+        },
+        "en-US|fr-FR" : {
+          "rank" : 23
+        },
+        "fr-FR|en-US" : {
+          "rank" : 24
+        },
+        "en-US|de-DE" : {
+          "rank" : 25
+        },
+        "de-DE|en-US" : {
+          "rank" : 26
+        },
+        "en-US|it-IT" : {
+          "rank" : 27
+        },
+        "it-IT|en-US" : {
+          "rank" : 28
+        },
+        "en-US|es-ES" : {
+          "rank" : 29
+        },
+        "es-ES|en-US" : {
+          "rank" : 30
+        },
+        "en-US|ja-JP" : {
+          "rank" : 31
+        },
+        "ja-JP|en-US" : {
+          "rank" : 32
+        },
+        "nl-NL" : {
+          "rank" : 33
+        },
+        "cs-CZ" : {
+          "rank" : 1000
+        }
+  }
+}

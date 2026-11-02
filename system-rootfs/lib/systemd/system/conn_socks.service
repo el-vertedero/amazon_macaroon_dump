@@ -1,0 +1,32 @@
+# sock5 daemon to tunnel connections
+
+[Unit]
+Description=sock5 daemon
+
+# disable rate limit
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=wifi
+Group=wifi
+SupplementaryGroups=net log
+
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_RAW
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_RAW
+
+ProtectControlGroups=true
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectKernelLogs=true
+RestrictRealtime=true
+LockPersonality=true
+ProtectClock=true
+ProtectKernelModules=true
+RestrictNamespaces=true
+
+ExecStart=/usr/bin/socks -i p2p0 -p 1080
+Restart=always
+SmackProcessLabel=System
+
+[Install]

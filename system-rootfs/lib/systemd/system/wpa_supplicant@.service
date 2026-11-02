@@ -1,0 +1,46 @@
+[Unit]
+Description=WPA supplicant daemon (interface-specific version)
+Requires=sys-subsystem-net-devices-%i.device
+After=sys-subsystem-net-devices-%i.device
+Before=network.target
+Wants=network.target
+
+# disable rate limit
+StartLimitIntervalSec=0
+
+# NetworkManager users will probably want the dbus version instead.
+
+[Service]
+Type=simple
+User=wifi
+Group=wifi
+SupplementaryGroups=net log tee reserved_disk
+SmackProcessLabel=System::Privileged
+
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_RAW CAP_MAC_OVERRIDE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_RAW CAP_MAC_OVERRIDE
+
+WorkingDirectory=/var/run/
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+NoNewPrivileges=yes
+RestrictSUIDSGID=yes
+
+# Make logging paths visible, since PrivateDevices=yes
+BindPaths=-/dev/socket -/dev/log
+ReadWritePaths=-/dev/socket -/dev/log
+
+ExecStartPre=+/bin/chown wifi:wifi /var/lib/wifi/wpa_supplicant.conf
+ExecStartPre=+/bin/chmod 660 /var/lib/wifi/wpa_supplicant.conf
+ExecStartPre=+/bin/chown wifi:wifi /var/lib/wifi/p2p_supplicant.conf
+ExecStartPre=+/bin/chmod 660 /var/lib/wifi/p2p_supplicant.conf
+
+ExecStart=/usr/sbin/wpa_supplicant -i%I -Dnl80211 \
+			-c/var/lib/wifi/wpa_supplicant.conf -I/etc/wpa_supplicant_overlay.conf \
+			-N -ip2p0 -Dnl80211 -c/var/lib/wifi/p2p_supplicant.conf -I/etc/p2p_supplicant_overlay.conf \
+			-O/var/run/wpa_supplicant -g/var/run/wpa_%I -Gwifi
+
+[Install]

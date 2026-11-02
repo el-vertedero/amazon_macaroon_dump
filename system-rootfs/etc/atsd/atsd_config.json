@@ -1,0 +1,329 @@
+{
+    "description": "Macaroon ATS Configuration V1",
+    "revision": 1,
+    "run_interval_seconds": 15,
+    "inputs": [
+        {
+            "name": "cpu",
+            "type": "INPUT_FILE",
+            "args": {
+                "path": "/dev/atsd_inputs/thermal-zones/cpu-thermal/temp"
+            }
+        },
+        {
+            "name": "ddr",
+            "type": "INPUT_FILE",
+            "args": {
+                "path": "/dev/atsd_inputs/thermal-zones/memss-thermal/temp"
+            }
+        },
+        {
+            "name": "dsp",
+            "type": "INPUT_FILE",
+            "args": {
+                "path": "/dev/atsd_inputs/thermal-zones/audio-thermal/temp"
+            }
+        },
+        {
+            "name": "soc_max_sensor",
+            "type": "INPUT_FILE",
+            "args": {
+                "path": "/dev/atsd_inputs/thermal-zones/soc-max-thermal/temp"
+            }
+        },
+        {
+            "name": "soc",
+            "description": "soc is average of 'cpu','ddr','dsp','soc_max_sensor'",
+            "type": "INPUT_AVERAGE",
+            "args": {
+                "inputs": [
+                    "cpu",
+                    "ddr",
+                    "dsp",
+                    "soc_max_sensor"
+                ]
+            }
+        },
+        {
+            "name": "MusicPlayerState",
+            "type": "INPUT_AUDIO_PLAYBACK_STATUS",
+            "args": {
+                "card": 0,
+                "pcm": 0,
+                "sub": 0
+            }
+        },
+        {
+            "name": "loudness",
+            "type": "INPUT_AUDIO_MAIN_VOLUME"
+        },
+        {
+            "name": "IOB_ATS_ntc4",
+            "description": "ntc4 IOB ATS sensor",
+            "type": "INPUT_FILE",
+            "args": {
+                "path": "/dev/atsd_inputs/thermal-zones/thermistor4/temp"
+            },
+            "scaler": {
+                "type": "z",
+                "params": {
+                    "mean": 0,
+                    "stddev": 61418
+                }
+            }
+        },
+        {
+            "name": "soc_active",
+            "description": "soc_active is 'soc' multiply 'MusicPlayerState'",
+            "type": "INPUT_MULTIPLY",
+            "args": {
+                "input_1": "soc",
+                "input_2": "MusicPlayerState"
+            },
+            "scaler": {
+                "type": "z",
+                "params": {
+                    "mean": 0,
+                    "stddev": 99463.87
+                }
+            }
+        },
+        {
+            "name": "MLB_ntc0",
+            "description": "thermistor0",
+            "type": "INPUT_FILE",
+            "args": {
+                "path": "/dev/atsd_inputs/thermal-zones/thermistor0/temp"
+            },
+            "scaler": {
+                "type": "z",
+                "params": {
+                    "mean": 0,
+                    "stddev": 91956.1615832564 
+                }
+            }
+        },
+        {
+            "name": "Mic_Flex_ntc1",
+            "description": "thermistor1",
+            "type": "INPUT_FILE",
+            "args": {
+                "path": "/dev/atsd_inputs/thermal-zones/thermistor1/temp"
+            },
+            "scaler": {
+                "type": "z",
+                "params": {
+                    "mean": 0,
+                    "stddev": 76089.94
+                }
+            }
+        },
+        {
+            "name": "MLB_ntc3",
+            "description": "thermistor3",
+            "type": "INPUT_FILE",
+            "args": {
+                "path": "/dev/atsd_inputs/thermal-zones/thermistor3/temp"
+            },
+            "scaler": {
+                "type": "z",
+                "params": {
+                    "mean": 0,
+                    "stddev": 91956.1615832564 
+                }
+            }
+        },
+        {
+            "name": "main_pmic_die_t",
+            "description": "pmic die",
+            "type": "INPUT_FILE",
+            "args": {
+                "path": "/dev/thermal-zone-by-name/pmic_die_temp/temp"
+            },
+            "scaler": {
+                "type": "z",
+                "params": {
+                    "mean": 0,
+                    "stddev": 104655.3
+                }
+            }
+        },
+        {
+            "name": "power_pmic",
+            "description": "/dev/sensors/scmi_sensors/power1_input",
+            "type": "INPUT_FILE",
+            "args": {
+                "path": "/dev/sensors/scmi_sensors/power1_input",
+                "initial_value": 0
+            },
+            "scaler": {
+                "type": "z",
+                "params": {
+                    "mean": 0,
+                    "stddev": 25226000.0
+                }
+            }
+        },
+        {
+            "name": "audio",
+            "description": "'loudness' multiply 'MusicPlayerState'",
+            "type": "INPUT_MULTIPLY",
+            "args": {
+                "input_1": "loudness",
+                "input_2": "MusicPlayerState"
+            },
+            "scaler": {
+                "type": "z",
+                "params": {
+                    "mean": 0,
+                    "stddev": 90
+                }
+            }
+        },
+        {
+            "name": "wifi_status",
+            "description": "assume wifi is always connected (1)",
+            "type": "INPUT_CONSTANT",
+            "args": {
+                "value": 1
+            },
+            "scaler": {
+                "type": "z",
+                "params": {
+                    "mean": 0,
+                    "stddev": 1
+                }
+            }
+        },
+        {
+            "name": "led",
+            "description": "brightness is aggregation of 'led0','led1','led2','led2','led3','led4','led5','led6','led7','led8','led9','led10','led11'",
+            "type": "INPUT_LEDMODS",
+            "args": {
+                "mods": [
+                    "/dev/atsd_inputs/leds/ledmod_0/",
+                    "/dev/atsd_inputs/leds/ledmod_1/",
+                    "/dev/atsd_inputs/leds/ledmod_2/",
+                    "/dev/atsd_inputs/leds/ledmod_3/",
+                    "/dev/atsd_inputs/leds/ledmod_4/",
+                    "/dev/atsd_inputs/leds/ledmod_5/",
+                    "/dev/atsd_inputs/leds/ledmod_6/",
+                    "/dev/atsd_inputs/leds/ledmod_7/",
+                    "/dev/atsd_inputs/leds/ledmod_8/",
+                    "/dev/atsd_inputs/leds/ledmod_9/",
+                    "/dev/atsd_inputs/leds/ledmod_10/",
+                    "/dev/atsd_inputs/leds/ledmod_11/"
+                ],
+                "initial_value": 0
+            },
+            "scaler": {
+                "type": "z",
+                "params": {
+                    "mean": 0,
+                    "stddev": 167.33
+                }
+            }
+        },
+        {
+            "name": "amp_power_tweeter",
+            "type": "INPUT_PLAYBACK_POWER_INFO",
+            "args": {
+                "index": 0,
+                "max": 1
+            },
+            "scaler": {
+                "type": "z",
+                "params": {
+                    "mean": 0,
+                    "stddev": 0.083138
+                }
+            }
+        },
+        {
+            "name": "amp_power_woofer",
+            "type": "INPUT_PLAYBACK_POWER_INFO",
+            "args": {
+                "index": 1,
+                "max": 1
+            },
+            "scaler": {
+                "type": "z",
+                "params": {
+                    "mean": 0,
+                    "stddev": 1
+                }
+            }
+        },
+        {
+            "name": "amppower_woofer",
+            "description": "'power' multiply 'MusicPlayerState'",
+            "type": "INPUT_MULTIPLY",
+            "args": {
+                "input_1": "amp_power_woofer",
+                "input_2": "MusicPlayerState",
+                "initial_value": 0
+            },
+            "scaler": {
+                "type": "z",
+                "params": {
+                    "mean": 0,
+                    "stddev": 0.579849
+                }
+            }
+        },
+        {
+            "name": "amppower_tweeter",
+            "description": "'power' multiply 'MusicPlayerState'",
+            "type": "INPUT_MULTIPLY",
+            "args": {
+                "input_1": "amp_power_tweeter",
+                "input_2": "MusicPlayerState"
+            },
+            "scaler": {
+                "type": "z",
+                "params": {
+                    "mean": 0,
+                    "stddev": 1
+                }
+            }
+        },
+
+        {
+            "name": "Model_AMP",
+            "type": "INPUT_CONSTANT",
+            "args": {
+                "value": 0
+            }
+        },
+        
+        {
+            "name": "Tweeter",
+            "description": "Configuration input for tweeter vendor",
+            "type": "INPUT_CONSTANT",
+            "args": {
+                "value": 0
+            }
+        },
+        {
+            "name": "Woofer",
+            "description": "Configuration input for woofer vendor",
+            "type": "INPUT_CONSTANT",
+            "args": {
+                "value": 0
+            }
+        }
+    ],
+    "timeline_inputs": [
+        "IOB_ATS_ntc4",
+        "soc_active",
+        "MLB_ntc0",
+        "Mic_Flex_ntc1",
+        "power_pmic",
+        "led",
+        "amppower_woofer"
+    ],
+    "immutable_inputs": ["Model_AMP"],
+    "history_size": 230,
+    "output_scale": 41.757,
+    "calibration_time_s": 600
+}

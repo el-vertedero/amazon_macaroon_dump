@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cat << EOF | tojson -a $*
++state: $(cat /var/lib/data/halo/run/hub-core/conn_state 2>/dev/null)
++stats: $(cat /var/lib/data/halo/run/hub-core/stats 2>/dev/null)
+EOF

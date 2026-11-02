@@ -1,0 +1,13 @@
+# Setup firewall
+
+[Unit]
+Description=Firewall
+
+[Service]
+Type=oneshot
+EnvironmentFile=/var/run/tcp_tunnel_file
+ExecStart=/usr/bin/firewall.sh start tcp_tunnel $SRCIP $SRCPORT $DESTIP $DESTPORT $P2PIF $IP
+ExecStop=/usr/bin/firewall.sh stop tcp_tunnel $SRCIP $SRCPORT $DESTIP $DESTPORT $P2PIF $IP
+RemainAfterExit=True
+
+[Install]

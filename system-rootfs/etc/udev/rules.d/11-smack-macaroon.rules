@@ -1,0 +1,2 @@
+KERNEL=="binder", SECLABEL{smack}="*"
+KERNEL=="ubi*", SECLABEL{smack}="*"

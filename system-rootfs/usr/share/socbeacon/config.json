@@ -1,0 +1,181 @@
+{
+    "startup": {
+        "metrics": [
+            {
+                "name": "hifi5_fw_load_time_us",
+                "type": "single_val",
+                "schema_id": "3wqs/2/023304c0",
+                "group_id": "uhj754c3",
+                "param": ["hifi5_load_time"],
+                "path": "/sys/kernel/debug/audio_hifi5_kpi/hifi5_fw_load_time_us"
+            },
+            {
+                "name": "hifi1_fw_load_time_us",
+                "type": "load_time",
+                "schema_id": "wb6q/2/023304c0",
+                "group_id": "uhj754c3",
+                "param": ["hifi1_load_time"],
+                "path": "/sys/kernel/debug/audio_hifi1_kpi/hifi1_fw_load_time_us"
+            },
+            {
+                "name": "cpu_online",
+                "type": "single_val",
+                "schema_id": "qcke/2/023304c0",
+                "group_id": "uhj754c3",
+                "param": ["online_cpus"],
+                "path": "/sys/devices/system/cpu/online"
+            },
+            {
+                "name": "cpu1_online",
+                "type": "single_val",
+                "schema_id": "qcke/2/023304c0",
+                "group_id": "uhj754c3",
+                "param": ["cpu1_status"],
+                "path": "/sys/devices/system/cpu/cpu1/online"
+            },
+            {
+                "name": "cpu2_online",
+                "type": "single_val",
+                "schema_id": "qcke/2/023304c0",
+                "group_id": "uhj754c3",
+                "param": ["cpu2_status"],
+                "path": "/sys/devices/system/cpu/cpu2/online"
+            },
+            {
+                "name": "cpu3_online",
+                "type": "single_val",
+                "schema_id": "qcke/2/023304c0",
+                "group_id": "uhj754c3",
+                "param": ["cpu3_status"],
+                "path": "/sys/devices/system/cpu/cpu3/online"
+            },
+            {
+                "name": "cpu4_online",
+                "type": "single_val",
+                "schema_id": "qcke/2/023304c0",
+                "group_id": "uhj754c3",
+                "param": ["cpu4_status"],
+                "path": "/sys/devices/system/cpu/cpu4/online"
+            },
+            {
+                "name": "cpu5_online",
+                "type": "single_val",
+                "schema_id": "qcke/2/023304c0",
+                "group_id": "uhj754c3",
+                "param": ["cpu5_status"],
+                "path": "/sys/devices/system/cpu/cpu5/online"
+            }
+        ]
+    },
+    "periodic": [
+        {
+            "interval_hours": 12,
+            "metrics": [
+                {
+                    "name": "assert_lat",
+                    "type": "space_sep",
+                    "schema_id": "uxpe/2/023304c0",
+                    "group_id": "uhj754c3",
+                    "param": ["min_assert", "max_assert", "avg_assert"],
+                    "path": "/sys/kernel/debug/scmi_kpi/resets/assert_lat"
+                },
+                {
+                    "name": "deassert_lat",
+                    "type": "space_sep",
+                    "schema_id": "xf34/2/023304c0",
+                    "group_id": "uhj754c3",
+                    "param": ["min_deassert", "max_deassert", "avg_deassert"],
+                    "path": "/sys/kernel/debug/scmi_kpi/resets/deassert_lat"
+                },
+                {
+                    "name": "reset_lat",
+                    "type": "space_sep",
+                    "schema_id": "piue/2/023304c0",
+                    "group_id": "uhj754c3",
+                    "param": ["min_reset", "max_reset", "avg_reset"],
+                    "path": "/sys/kernel/debug/scmi_kpi/resets/reset_lat"
+                },
+                {
+                    "name": "clk_rate_lat",
+                    "type": "space_sep",
+                    "schema_id": "o1ax/2/023304c0",
+                    "group_id": "uhj754c3",
+                    "param": ["min_clk_lat", "max_clk_lat", "avg_clk_lat"],
+                    "path": "/sys/kernel/debug/scmi_kpi/clocks/get_rate_lat"
+                },
+                {
+                    "name": "reg_volt_lat",
+                    "type": "space_sep",
+                    "schema_id": "ae3w/2/023304c0",
+                    "group_id": "uhj754c3",
+                    "param": ["min_volt_lat", "max_volt_lat", "avg_volt_lat"],
+                    "path": "/sys/kernel/debug/scmi_kpi/regulator/get_voltage_lat"
+                },
+                {
+                    "name": "reg_enable_lat",
+                    "type": "space_sep",
+                    "schema_id": "nylc/2/023304c0",
+                    "group_id": "uhj754c3",
+                    "param": ["min_enable_lat", "max_enable_lat", "avg_enable_lat"],
+                    "path": "/sys/kernel/debug/scmi_kpi/regulator/get_enable_lat"
+                },
+                {
+                    "name": "dvfs_perf_lat",
+                    "type": "space_sep",
+                    "schema_id": "17rg/2/023304c0",
+                    "group_id": "uhj754c3",
+                    "param": ["min_dvfs_perf_lat", "max_dvfs_perf_lat", "avg_dvfs_perf_lat"],
+                    "path": "/sys/kernel/debug/scmi_kpi/dvfs/get_perf_lat"
+                },
+                {
+                    "name": "suspend_lat",
+                    "type": "space_sep",
+                    "schema_id": "e3xq/2/033304c0",
+                    "group_id": "uhj754c3",
+                    "param": ["suspend_min", "suspend_max", "suspend_avg", "resume_min", "resume_max", "resume_avg"],
+                    "path": "/sys/kernel/debug/suspend_latency"
+                },
+                {
+                    "name": "display_underflow",
+                    "type": "single_val",
+                    "schema_id": "yy4t/2/023304c0",
+                    "group_id": "uhj754c3",
+                    "param": ["display_frame_drop"],
+                    "path": "/sys/kernel/debug/dri/1/crtc-0/underflow"
+                },
+                {
+                    "name": "g4_underflow",
+                    "type": "single_val",
+                    "schema_id": "l9n2/2/023304c0",
+                    "group_id": "uhj754c3",
+                    "param": ["g4_underflow"],
+                    "path": "/sys/kernel/debug/dri/1/crtc-0/g4_underflow"
+                },
+                {
+                    "name": "g4_underflow_recovery",
+                    "type": "single_val",
+                    "schema_id": "pncu/2/053304c0",
+                    "group_id": "uhj754c3",
+                    "param": ["g4_underflow_recovery"],
+                    "path": "/sys/kernel/debug/dri/1/crtc-0/g4_recovery_count"
+                },
+                {
+                    "name": "opp_domain_0",
+                    "type": "opp_process",
+                    "schema_id": "116r/2/013304c0",
+                    "group_id": "uhj754c3",
+                    "param": ["res_d0"],
+                    "path": "/sys/devices/system/cpu/cpu0/cpufreq/stats"
+                },
+                {
+                    "name": "opp_domain_1",
+                    "type": "opp_process",
+                    "schema_id": "44xj/2/013304c0",
+                    "group_id": "uhj754c3",
+                    "param": ["res_d1"],
+                    "path": "/sys/devices/system/cpu/cpu4/cpufreq/stats"
+                }
+            ]
+        }
+    ]
+}
